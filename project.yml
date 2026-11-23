@@ -1,0 +1,73 @@
+name: DBooyvol
+options:
+  bundleIdPrefix: ru.evotor
+  deploymentTarget:
+    macOS: "13.0"
+  developmentLanguage: ru
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: NO
+
+targets:
+  DBooyvol:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+      - path: Resources
+        buildPhase: resources
+    settings:
+      base:
+        # Kept stable across the SQLDesk -> DBooyvol rename so existing
+        # UserDefaults (fonts, width settings) continue to load.
+        PRODUCT_BUNDLE_IDENTIFIER: ru.evotor.sqldesk
+        PRODUCT_NAME: DBooyvol
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "72"
+    info:
+      path: Info.plist
+      properties:
+        CFBundleName: DBooyvol
+        CFBundleDisplayName: DBooyvol
+        CFBundleIconFile: AppIcon
+        CFBundleDevelopmentRegion: ru
+        CFBundleLocalizations:
+          - en
+          - es
+          - pt
+          - fr
+          - de
+          - it
+          - nl
+          - pl
+          - tr
+          - ru
+          - uk
+          - ar
+          - hi
+          - zh-Hans
+          - zh-Hant
+          - ja
+          - ko
+          - id
+          - vi
+          - th
+          - sv
+          - cs
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "72"
+        LSMinimumSystemVersion: "13.0"
+        LSApplicationCategoryType: public.app-category.developer-tools
+        NSHighResolutionCapable: true
+        NSSupportsAutomaticTermination: false
+        NSSupportsSuddenTermination: false
