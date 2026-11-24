@@ -33,7 +33,7 @@ targets:
         PRODUCT_NAME: DBooyvol
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
         MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "72"
+        CURRENT_PROJECT_VERSION: "73"
     info:
       path: Info.plist
       properties:
@@ -65,7 +65,7 @@ targets:
           - sv
           - cs
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "72"
+        CFBundleVersion: "73"
         LSMinimumSystemVersion: "13.0"
         LSApplicationCategoryType: public.app-category.developer-tools
         NSHighResolutionCapable: true
