@@ -2,7 +2,6 @@ import Foundation
 import Security
 import LocalAuthentication
 import CryptoKit
-import IOKit
 import AppKit
 
 enum AppPaths {
@@ -21,7 +20,9 @@ enum AppPaths {
                 }
             }
         }
-        try? fm.createDirectory(at: dir, withIntermediateDirectories: true)
+        try? fm.createDirectory(at: dir, withIntermediateDirectories: true,
+                                attributes: [.posixPermissions: 0o700])
+        try? fm.setAttributes([.posixPermissions: 0o700], ofItemAtPath: dir.path)
         return dir
     }()
 
@@ -30,13 +31,106 @@ enum AppPaths {
     static var columnWidths: URL { support.appendingPathComponent("columnWidths.json") }
     static var history: URL { support.appendingPathComponent("history.jsonl") }
     static var exports: URL { support.appendingPathComponent("exports", isDirectory: true) }
-    /// Encrypted passwords (id → enc1:…), nothing readable.
+    /// Encrypted passwords (id → enc2:<keyid>:…), nothing readable.
     static var secrets: URL { support.appendingPathComponent("secrets.json") }
-    /// Master key, itself encrypted with a key derived from this Mac's hardware UUID.
+    /// Old master-key file from the machine-UUID scheme. Deleted on launch;
+    /// the master key now lives in the macOS Keychain.
     static var masterKey: URL { support.appendingPathComponent(".master.key") }
+
+    /// Files written by older builds used the default 0644. Fix them once at
+    /// launch, before any of them is rewritten.
+    static func tightenPermissions() {
+        let fm = FileManager.default
+        try? fm.setAttributes([.posixPermissions: 0o700], ofItemAtPath: support.path)
+        let files = [
+            profiles, tabs, columnWidths, history, secrets, masterKey,
+            support.appendingPathComponent("profiles.bak.json")
+        ]
+        for url in files where fm.fileExists(atPath: url.path) {
+            try? fm.setAttributes([.posixPermissions: 0o600], ofItemAtPath: url.path)
+        }
+    }
+}
+
+/// Writes app data with owner-only permissions from the first byte. Foundation's
+/// atomic write creates a 0644 temporary file and only chmods after the rename,
+/// so a crash in between could leave secrets readable by other users.
+enum PrivateFile {
+    static func write(_ data: Data, to url: URL) throws {
+        let fm = FileManager.default
+        let tmp = url.deletingLastPathComponent()
+            .appendingPathComponent(".\(url.lastPathComponent).\(UUID().uuidString).tmp")
+        guard fm.createFile(atPath: tmp.path, contents: nil,
+                            attributes: [.posixPermissions: 0o600]) else {
+            throw CocoaError(.fileWriteUnknown)
+        }
+        do {
+            let handle = try FileHandle(forWritingTo: tmp)
+            try handle.write(contentsOf: data)
+            try handle.synchronize()
+            try handle.close()
+            if fm.fileExists(atPath: url.path) {
+                _ = try fm.replaceItemAt(url, withItemAt: tmp)
+            } else {
+                try fm.moveItem(at: tmp, to: url)
+            }
+            try? fm.setAttributes([.posixPermissions: 0o600], ofItemAtPath: url.path)
+        } catch {
+            try? fm.removeItem(at: tmp)
+            throw error
+        }
+    }
+
+    static func write(_ text: String, to url: URL) throws {
+        guard let data = text.data(using: .utf8) else {
+            throw CocoaError(.fileWriteInapplicableStringEncoding)
+        }
+        try write(data, to: url)
+    }
+
+    static func append(_ data: Data, to url: URL) throws {
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            try write(data, to: url)
+            return
+        }
+        try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: url.path)
+        let handle = try FileHandle(forWritingTo: url)
+        defer { try? handle.close() }
+        try handle.seekToEnd()
+        try handle.write(contentsOf: data)
+    }
+
+    static func excludeFromBackup(_ url: URL) {
+        var values = URLResourceValues()
+        values.isExcludedFromBackup = true
+        var mutable = url
+        try? mutable.setResourceValues(values)
+    }
 }
 
 enum AppSettings {
+    /// Bundle identifier used before the move to `silver.dbooyvol`. Kept only
+    /// to import the old UserDefaults domain once.
+    static let previousDefaultsDomain = "ru.evotor.sqldesk"
+    private static let defaultsMigrationKey = "defaultsMigratedFrom"
+
+    /// macOS keys UserDefaults by bundle identifier. Without this, changing the
+    /// identifier would reset the language, fonts, tree state, window frames
+    /// and every other preference. Runs before the language is applied.
+    static func migrateDefaultsIfNeeded() {
+        let defaults = UserDefaults.standard
+        guard defaults.string(forKey: defaultsMigrationKey) == nil else { return }
+        defer { defaults.set(previousDefaultsDomain, forKey: defaultsMigrationKey) }
+        guard let old = defaults.persistentDomain(forName: previousDefaultsDomain),
+              !old.isEmpty else { return }
+        for (key, value) in old where key != defaultsMigrationKey {
+            // Never overwrite a value the new identifier has already written.
+            if defaults.object(forKey: key) == nil {
+                defaults.set(value, forKey: key)
+            }
+        }
+    }
+
     static let sshDirectoryKey = "sshDirectory"
     static let javaPathKey = "javaPath"
     static let autosaveTabsKey = "autosaveTabs"
@@ -222,107 +316,91 @@ enum AppSettings {
     }
 }
 
-enum Keychain {
-    private static let service = "ru.evotor.sqldesk"
-
-    /// Reads an item without ever showing the system "wants to access key" dialog.
-    /// Used only to migrate data written by older builds; new builds never touch the Keychain.
-    static func getSilently(_ account: String) -> String? {
-        let context = LAContext()
-        context.interactionNotAllowed = true
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: service,
-            kSecAttrAccount as String: account,
-            kSecReturnData as String: true,
-            kSecMatchLimit as String: kSecMatchLimitOne,
-            // Never show the access dialog; fail with errSecInteractionNotAllowed instead.
-            kSecUseAuthenticationContext as String: context
-        ]
-        var item: CFTypeRef?
-        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess,
-              let data = item as? Data else { return nil }
-        return String(data: data, encoding: .utf8)
-    }
-}
-
-enum MachineID {
-    private static var cached: String?
-
-    /// Stable per-machine identifier (IOPlatformUUID); falls back to the host name.
-    static var hardwareUUID: String {
-        if let cached { return cached }
-        var value = ProcessInfo.processInfo.hostName
-        let service = IOServiceGetMatchingService(kIOMainPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
-        if service != 0 {
-            defer { IOObjectRelease(service) }
-            if let property = IORegistryEntryCreateCFProperty(
-                service, "IOPlatformUUID" as CFString, kCFAllocatorDefault, 0
-            ), let uuid = property.takeRetainedValue() as? String, !uuid.isEmpty {
-                value = uuid
-            }
-        }
-        cached = value
-        return value
-    }
-}
-
 /// Passwords are encrypted with AES-256-GCM and stored in `secrets.json`.
-/// The master key lives in `.master.key`, encrypted with a key derived from this Mac's
-/// hardware UUID — so the files are useless on another machine. The Keychain is not used
-/// anymore, which removes the "DBooyvol wants to access your keychain" prompt after rebuilds.
+/// The 256-bit master key lives in the macOS Keychain, so a copy of the data
+/// folder is useless without the login keychain. Entries record the key id
+/// (`enc2:<id>:…`), so a stale key is reported instead of silently failing.
+enum SecretStoreError: LocalizedError {
+    case keychainUnavailable
+    case wrongKey
+    case corrupted
+
+    var errorDescription: String? {
+        switch self {
+        case .keychainUnavailable:
+            return L10n.tr("Не удалось получить мастер-ключ из связки ключей macOS")
+        case .wrongKey:
+            return L10n.tr("Пароль сохранён другим мастер-ключом — введите его заново")
+        case .corrupted:
+            return L10n.tr("Не удалось расшифровать сохранённый пароль — введите его заново")
+        }
+    }
+}
+
 enum SecretStore {
-    private static let legacyMasterAccount = "__master_key_v1__"
-    private static let prefix = "enc1:"
+    private static let keychainService = "silver.dbooyvol.secret-store"
+    private static let keychainAccount = "master-key-v2"
+    private static let prefix = "enc2:"
     private static let lock = NSRecursiveLock()
     private static var cachedMaster: SymmetricKey?
     private static var cachedSecrets: [String: String]?
-    private static var legacyChecked: Set<String> = []
 
-    // MARK: - files
+    // MARK: - master key (Keychain)
 
-    private static func write(_ data: Data, to url: URL) {
-        try? data.write(to: url, options: .atomic)
-        try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: url.path)
+    private static func keychainQuery() -> [String: Any] {
+        [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: keychainService,
+            kSecAttrAccount as String: keychainAccount
+        ]
     }
 
-    private static func machineKey() -> SymmetricKey {
-        let material = Data("ru.evotor.sqldesk|secret-store|v1|\(MachineID.hardwareUUID)".utf8)
-        return SymmetricKey(data: Data(SHA256.hash(data: material)))
+    private static func keychainLoad() -> Data? {
+        var query = keychainQuery()
+        query[kSecReturnData as String] = true
+        query[kSecMatchLimit as String] = kSecMatchLimitOne
+        var item: CFTypeRef?
+        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess,
+              let data = item as? Data, data.count == 32 else { return nil }
+        return data
     }
 
-    private static func masterKey() -> SymmetricKey {
+    @discardableResult
+    private static func keychainStore(_ raw: Data) -> Bool {
+        let query = keychainQuery()
+        let attrs: [String: Any] = [
+            kSecValueData as String: raw,
+            kSecAttrLabel as String: "DBooyvol master key"
+        ]
+        let updated = SecItemUpdate(query as CFDictionary, attrs as CFDictionary)
+        if updated == errSecSuccess { return true }
+        guard updated == errSecItemNotFound else { return false }
+        var add = query
+        add.merge(attrs) { $1 }
+        return SecItemAdd(add as CFDictionary, nil) == errSecSuccess
+    }
+
+    private static func masterKey() throws -> SymmetricKey {
         if let cachedMaster { return cachedMaster }
-
-        if let blob = try? Data(contentsOf: AppPaths.masterKey),
-           let box = try? AES.GCM.SealedBox(combined: blob),
-           let clear = try? AES.GCM.open(box, using: machineKey()),
-           clear.count == 32 {
-            let key = SymmetricKey(data: clear)
+        if let raw = keychainLoad() {
+            let key = SymmetricKey(data: raw)
             cachedMaster = key
             return key
         }
-
-        // One-time migration from the old Keychain item (silent: fails instead of prompting).
-        if let legacy = Keychain.getSilently(legacyMasterAccount),
-           let data = Data(base64Encoded: legacy), data.count == 32 {
-            let key = SymmetricKey(data: data)
-            persistMaster(key)
-            cachedMaster = key
-            return key
-        }
-
         let key = SymmetricKey(size: .bits256)
-        persistMaster(key)
+        let raw = key.withUnsafeBytes { Data($0) }
+        guard keychainStore(raw) else { throw SecretStoreError.keychainUnavailable }
         cachedMaster = key
         return key
     }
 
-    private static func persistMaster(_ key: SymmetricKey) {
+    private static func keyID(_ key: SymmetricKey) -> String {
         let raw = key.withUnsafeBytes { Data($0) }
-        guard let sealed = try? AES.GCM.seal(raw, using: machineKey()).combined else { return }
-        write(sealed, to: AppPaths.masterKey)
+        let digest = SHA256.hash(data: raw)
+        return digest.prefix(4).map { String(format: "%02x", $0) }.joined()
     }
+
+    // MARK: - files
 
     private static func secrets() -> [String: String] {
         if let cachedSecrets { return cachedSecrets }
@@ -335,76 +413,128 @@ enum SecretStore {
         return map
     }
 
-    private static func persist(_ map: [String: String]) {
+    private static func persist(_ map: [String: String]) throws {
+        let data = try JSONEncoder().encode(map)
+        try PrivateFile.write(data, to: AppPaths.secrets)
+        PrivateFile.excludeFromBackup(AppPaths.secrets)
         cachedSecrets = map
-        guard let data = try? JSONEncoder().encode(map) else { return }
-        write(data, to: AppPaths.secrets)
     }
 
     // MARK: - crypto
 
-    private static func encrypt(_ plaintext: String) -> String {
+    private static func encrypt(_ plaintext: String, using key: SymmetricKey) throws -> String {
         guard !plaintext.isEmpty else { return "" }
         guard let data = plaintext.data(using: .utf8),
-              let sealed = try? AES.GCM.seal(data, using: masterKey()),
-              let combined = sealed.combined else { return "" }
-        return prefix + combined.base64EncodedString()
+              let sealed = try? AES.GCM.seal(data, using: key),
+              let combined = sealed.combined else { throw SecretStoreError.corrupted }
+        return prefix + keyID(key) + ":" + combined.base64EncodedString()
     }
 
-    private static func decrypt(_ stored: String) -> String {
-        guard stored.hasPrefix(prefix) else { return stored }
-        let payload = String(stored.dropFirst(prefix.count))
+    private static func decrypt(_ stored: String, using key: SymmetricKey) throws -> String {
+        guard stored.hasPrefix(prefix) else { throw SecretStoreError.corrupted }
+        let rest = stored.dropFirst(prefix.count)
+        guard let separator = rest.firstIndex(of: ":") else { throw SecretStoreError.corrupted }
+        let storedID = String(rest[..<separator])
+        guard storedID == keyID(key) else { throw SecretStoreError.wrongKey }
+        let payload = String(rest[rest.index(after: separator)...])
         guard let data = Data(base64Encoded: payload),
               let box = try? AES.GCM.SealedBox(combined: data),
-              let clear = try? AES.GCM.open(box, using: masterKey()),
-              let text = String(data: clear, encoding: .utf8) else { return "" }
+              let clear = try? AES.GCM.open(box, using: key),
+              let text = String(data: clear, encoding: .utf8) else {
+            throw SecretStoreError.corrupted
+        }
         return text
     }
 
     // MARK: - public
 
-    static func save(_ password: String, for account: String) {
+    static func save(_ password: String, for account: String) throws {
         lock.lock()
         defer { lock.unlock() }
         var map = secrets()
         if password.isEmpty {
             map.removeValue(forKey: account)
         } else {
-            map[account] = encrypt(password)
+            map[account] = try encrypt(password, using: try masterKey())
         }
-        persist(map)
+        try persist(map)
     }
 
-    static func load(_ account: String) -> String {
+    static func load(_ account: String) throws -> String {
         lock.lock()
         defer { lock.unlock() }
-
-        if let stored = secrets()[account], !stored.isEmpty {
-            return decrypt(stored)
-        }
-
-        // Legacy item written by an older build: import it silently, if allowed.
-        if !legacyChecked.contains(account) {
-            legacyChecked.insert(account)
-            if let legacy = Keychain.getSilently(account), !legacy.isEmpty {
-                let plain = legacy.hasPrefix(prefix) ? decrypt(legacy) : legacy
-                if !plain.isEmpty {
-                    var map = secrets()
-                    map[account] = encrypt(plain)
-                    persist(map)
-                    return plain
-                }
-            }
-        }
-        return ""
+        guard let stored = secrets()[account], !stored.isEmpty else { return "" }
+        return try decrypt(stored, using: try masterKey())
     }
 
     static func delete(_ account: String) {
         lock.lock()
         defer { lock.unlock() }
         var map = secrets()
-        map.removeValue(forKey: account)
-        persist(map)
+        guard map.removeValue(forKey: account) != nil else { return }
+        try? persist(map)
+    }
+
+    /// Removes data from the old machine-UUID scheme. Passwords are expected to
+    /// be re-entered once after the switch to the Keychain master key.
+    static func purgeLegacy() {
+        lock.lock()
+        defer { lock.unlock() }
+        try? FileManager.default.removeItem(at: AppPaths.masterKey)
+        purgeLegacyKeychain()
+        let map = secrets()
+        let kept = map.filter { $0.value.hasPrefix(prefix) }
+        guard kept.count != map.count else { return }
+        try? persist(kept)
+    }
+
+    /// Removes items written under the old service name. They held plaintext
+    /// passwords, so they must not stay in the login keychain. The automatic
+    /// attempt never shows a dialog; the Settings button retries with one.
+    @discardableResult
+    static func deleteLegacyKeychain(interactive: Bool = true) -> Bool {
+        var query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: "ru.evotor.sqldesk"
+        ]
+        if !interactive {
+            let context = LAContext()
+            context.interactionNotAllowed = true
+            query[kSecUseAuthenticationContext as String] = context
+        }
+        let status = SecItemDelete(query as CFDictionary)
+        return status == errSecSuccess || status == errSecItemNotFound
+    }
+
+    private static func purgeLegacyKeychain() {
+        deleteLegacyKeychain(interactive: false)
+    }
+
+    /// Re-encrypts every stored password with a fresh random master key. The
+    /// old key is restored if writing the new file fails.
+    static func rotateMasterKey() throws {
+        lock.lock()
+        defer { lock.unlock() }
+        let oldKey = try masterKey()
+        var plain: [String: String] = [:]
+        for (account, stored) in secrets() where !stored.isEmpty {
+            plain[account] = try decrypt(stored, using: oldKey)
+        }
+        let newKey = SymmetricKey(size: .bits256)
+        var reencrypted: [String: String] = [:]
+        for (account, password) in plain {
+            reencrypted[account] = try encrypt(password, using: newKey)
+        }
+        let oldRaw = oldKey.withUnsafeBytes { Data($0) }
+        let newRaw = newKey.withUnsafeBytes { Data($0) }
+        guard keychainStore(newRaw) else { throw SecretStoreError.keychainUnavailable }
+        do {
+            try persist(reencrypted)
+        } catch {
+            _ = keychainStore(oldRaw)
+            throw error
+        }
+        cachedMaster = newKey
     }
 }
 
@@ -421,7 +551,7 @@ final class ProfilesStore {
         // fall back to the previous version if the main file is missing or broken
         if let data = try? Data(contentsOf: backupURL),
            let profiles = try? JSONDecoder().decode([ConnectionProfile].self, from: data) {
-            try? data.write(to: AppPaths.profiles, options: .atomic)
+            try? PrivateFile.write(data, to: AppPaths.profiles)
             return profiles
         }
         return []
@@ -430,12 +560,12 @@ final class ProfilesStore {
     static func save(_ profiles: [ConnectionProfile]) {
         // keep the previous revision, so a bad save never loses every connection
         if let existing = try? Data(contentsOf: AppPaths.profiles) {
-            try? existing.write(to: backupURL, options: .atomic)
+            try? PrivateFile.write(existing, to: backupURL)
         }
         let enc = JSONEncoder()
         enc.outputFormatting = [.prettyPrinted, .sortedKeys]
         guard let data = try? enc.encode(profiles) else { return }
-        try? data.write(to: AppPaths.profiles, options: .atomic)
+        try? PrivateFile.write(data, to: AppPaths.profiles)
     }
 }
 
@@ -501,13 +631,7 @@ final class HistoryStore {
             enc.dateEncodingStrategy = .iso8601
             guard let data = try? enc.encode(entry),
                   let line = String(data: data, encoding: .utf8) else { return }
-            if !FileManager.default.fileExists(atPath: AppPaths.history.path) {
-                try? line.appending("\n").write(to: AppPaths.history, atomically: true, encoding: .utf8)
-            } else if let handle = try? FileHandle(forWritingTo: AppPaths.history) {
-                handle.seekToEndOfFile()
-                handle.write(Data((line + "\n").utf8))
-                try? handle.close()
-            }
+            try? PrivateFile.append(Data((line + "\n").utf8), to: AppPaths.history)
         }
     }
 
@@ -553,7 +677,7 @@ final class HistoryStore {
                       let line = String(data: data, encoding: .utf8) else { continue }
                 text += line + "\n"
             }
-            try? text.write(to: AppPaths.history, atomically: true, encoding: .utf8)
+            try? PrivateFile.write(text, to: AppPaths.history)
         }
     }
 }
@@ -572,7 +696,7 @@ final class TabsStore {    static func load() -> TabsSnapshot? {
         let enc = JSONEncoder()
         enc.outputFormatting = [.prettyPrinted]
         guard let data = try? enc.encode(snapshot) else { return }
-        try? data.write(to: AppPaths.tabs, options: .atomic)
+        try? PrivateFile.write(data, to: AppPaths.tabs)
     }
 
     static func remove() {
@@ -683,6 +807,6 @@ final class ColumnWidthStore {
     private func save() {
         let encodable = records.mapValues { $0.mapValues { Double($0) } }
         guard let data = try? JSONEncoder().encode(encodable) else { return }
-        try? data.write(to: AppPaths.columnWidths, options: .atomic)
+        try? PrivateFile.write(data, to: AppPaths.columnWidths)
     }
 }

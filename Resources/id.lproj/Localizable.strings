@@ -4,7 +4,6 @@
 "%@ стр · %@ мс" = "%@ baris · %@ ms";
 "(всего %@ строк)" = "(dari %@ baris)";
 "(копия)" = "(salinan)";
-"./Sidecar/build.sh — пересобирает Resources/sidecar.jar" = "./Sidecar/build.sh - membangun kembali Resources/sidecar.jar";
 "1 год" = "1 tahun";
 "1 месяц" = "1 bulan";
 "1 неделя" = "1 minggu";
@@ -16,7 +15,6 @@
 "EZ Connect (хост и сервис)" = "EZ Connect (host dan layanan)";
 "JDBC URL (переопределить, необязательно)" = "URL JDBC (ganti, opsional)";
 "JDBC-драйвер" = "Pengemudi JDBC";
-"JDBC-драйверы задаются отдельно в каждом подключении (путь к jar)." = "Driver JDBC ditentukan secara terpisah di setiap koneksi (jalur ke jar).";
 "Java не найдена: %@. Укажите путь в настройках." = "Java tidak ditemukan: %@. Tentukan jalur di pengaturan.";
 "Java-процесс завершился" = "Proses Java telah dihentikan";
 "LDAP-сервер" = "Server LDAP";
@@ -50,9 +48,12 @@
 "Бессрочно" = "Tanpa batas waktu";
 "Браузер" = "Peramban";
 "Буфер обмена пуст" = "Papan klip kosong";
+"В JDBC URL указан пароль" = "URL JDBC berisi kata sandi";
+"В URL указан пароль — он попадёт в profiles.json открытым текстом. Уберите его из URL и используйте поле «Пароль»." = "URL berisi kata sandi - URL tersebut akan berakhir di profiles.json dalam teks yang jelas. Hapus dari URL dan gunakan bidang Kata Sandi.";
 "В названии столбца" = "Di tajuk kolom";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Ada perubahan yang belum disimpan di editor: memuat dari disk akan menggantikannya.";
 "В результате нет столбца первичного ключа «%@»" = "Akibatnya, tidak ada kolom kunci utama '%@'";
+"Введите пароль от «%@»" = "Masukkan kata sandi untuk \"%@\"";
 "Вернуть 200 строк на страницу" = "Kembalikan 200 baris per halaman";
 "Вернуть по умолчанию" = "Atur ulang ke default";
 "Вернуть прежний размер" = "Kembali ke ukuran sebelumnya";
@@ -76,7 +77,6 @@
 "Выберите ячейку и нажмите «Значение»" = "Pilih sel dan buka panel";
 "Выбрать JDBC-драйвер (.jar)" = "Pilih driver JDBC (.jar)";
 "Выбрать всё" = "Pilih semua";
-"Выбрать исполняемый файл java" = "Pilih Java yang dapat dieksekusi";
 "Выбрать каталог с файлом config" = "Pilih direktori dengan file konfigurasi";
 "Выбрать папку network/admin" = "Pilih folder jaringan/admin";
 "Выбрать файл базы SQLite" = "Pilih file database SQLite";
@@ -109,6 +109,7 @@
 "Дублировать вкладку" = "Tab duplikat";
 "Дублировать подключение" = "Koneksi duplikat";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Jika label NULL cocok dengan nilai pada clipboard, NULL dimasukkan ke dalam sel. Label kosong berarti baris kosong.";
+"Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Jika Anda tidak perlu menyimpan kata sandi koneksi, matikan \"Simpan kata sandi\" di pengaturannya - maka kata sandi itu akan diminta saat menghubungkan.";
 "Есть несохранённые изменения." = "Ada perubahan yang belum disimpan.";
 "Завершить DBooyvol" = "Keluar dari DBooyvol";
 "Завершить и закрыть все окна" = "Keluar dan tutup semua jendela";
@@ -181,6 +182,7 @@
 "Копировать названия столбцов" = "Salin judul kolom";
 "Копировать номера строк" = "Salin nomor baris";
 "Копировать…" = "Salin…";
+"Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Login dan kata sandi dari URL disimpan dalam teks yang jelas. Hapus mereka dari URL dan gunakan bidang Pengguna dan Kata Sandi.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "File SQLite lokal dibuka langsung, tidak diperlukan server.";
 "Максимальная авто-ширина: %@ pt" = "Lebar otomatis maksimum: %@ pt";
 "Максимум ширины:" = "Lebar maksimum:";
@@ -209,10 +211,13 @@
 "Не удалось открыть файл: %@" = "Gagal membuka berkas: %@";
 "Не удалось переименовать файл: %@" = "Gagal mengganti nama berkas: %@";
 "Не удалось подключиться: %@" = "Gagal terhubung: %@";
+"Не удалось получить мастер-ключ из связки ключей macOS" = "Gagal mendapatkan kunci master dari MacOS Keychain";
 "Не удалось получить столбцы %@" = "Gagal mendapatkan kolom %@";
 "Не удалось прочитать %@ как текст" = "Tidak dapat membaca %@ sebagai teks";
+"Не удалось расшифровать сохранённый пароль — введите его заново" = "Gagal mendekripsi kata sandi yang disimpan - silakan masukkan lagi";
 "Не удалось создать файл: %@" = "Gagal membuat file: %@";
 "Не удалось сохранить: %@" = "Gagal menyimpan: %@";
+"Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Gagal menghapus kata sandi lama - izinkan akses di perintah macOS";
 "Неизвестная ошибка" = "Kesalahan tidak diketahui";
 "Нет данных для вставки" = "Tidak ada data untuk dimasukkan";
 "Нет данных для копирования" = "Tidak ada data untuk disalin";
@@ -267,8 +272,13 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Folder Klien Instan: ojdbc*.jar dan jaringan/admin diambil darinya";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Folder jaringan/admin dengan tnsnames.ora, ldap.ora dan sqlnet.ora";
 "Папка: %@" = "Map: %@";
+"Пароли" = "Kata sandi";
+"Пароли перешифрованы новым мастер-ключом" = "Kata sandi dienkripsi ulang dengan kunci master baru";
 "Пароли…" = "Kata sandi...";
 "Пароль" = "Kata sandi";
+"Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Kata sandi akan diminta saat koneksi dan disimpan hanya sampai akhir sesi.";
+"Пароль не введён" = "Kata sandi tidak dimasukkan";
+"Пароль сохранён другим мастер-ключом — введите его заново" = "Kata sandi disimpan oleh kunci master lain - masukkan lagi";
 "Перезапустить" = "Mulai ulang";
 "Перезапустить приложение с новым языком" = "Mulai ulang aplikasi dengan bahasa baru";
 "Переименовать" = "Ganti nama";
@@ -280,6 +290,7 @@
 "Переместить и изменить размер" = "Pindahkan dan ubah ukurannya";
 "Перенос строк" = "Bungkus kata";
 "Перечитать tnsnames.ora и ldap.ora" = "Baca ulang tnsnames.ora dan ldap.ora";
+"Перешифровать пароли" = "Enkripsi ulang kata sandi";
 "По умолчанию" = "Default";
 "По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое." = "Standarnya adalah 200. Jika ada lebih banyak baris dalam hasil, saat menggulir ke akhir tabel, nomor yang sama akan dimuat secara otomatis. Tombol \"Muat Lebih Banyak\" melakukan hal yang sama.";
 "По умолчанию тип показывается во всплывающей подсказке при наведении на заголовок. Можно включить оба варианта или отключить оба." = "Secara default, jenisnya ditampilkan di tooltip saat mengarahkan kursor ke judul. Anda dapat mengaktifkan kedua opsi atau menonaktifkan keduanya.";
@@ -315,6 +326,7 @@
 "Пользователь" = "Pengguna";
 "Пользователь (необязательно)" = "Pengguna (opsional)";
 "Пользователь: %@" = "Pengguna: %@";
+"Понятно" = "Saya mengerti";
 "Порт" = "Pelabuhan";
 "Правка" = "Sunting";
 "Предыдущая вкладка" = "Tab sebelumnya";
@@ -331,7 +343,6 @@
 "Пусто" = "Kosong";
 "Пустой первичный ключ «%@»" = "Kosongkan kunci utama \"%@\"";
 "Путь к jar" = "Jalan menuju toples";
-"Путь к java" = "Jalur ke Jawa";
 "Разделитель столбцов" = "Pemisah kolom";
 "Разделитель строк" = "Pemisah garis";
 "Размер шрифта: %@ pt" = "Ukuran font: %@ pt";
@@ -344,7 +355,6 @@
 "Результат последнего запроса" = "Hasil permintaan terakhir";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Hasilnya berisi kolom dari tabel berbeda - tidak dapat disimpan";
 "Русский" = "Rusia";
-"Сборка sidecar" = "Perakitan sespan";
 "Сбросить вид" = "Setel ulang tampilan";
 "Сбросить поиск по истории" = "Setel ulang pencarian riwayat";
 "Свернуть" = "Runtuh";
@@ -384,6 +394,7 @@
 "Снизу справа" = "Kanan bawah";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Isi \"%@\" berbeda dengan yang disimpan di disk.\nHaruskah saya memuat versinya dari disk atau membiarkan teksnya di editor?";
 "Создать новое подключение…" = "Buat koneksi baru...";
+"Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Buat kunci master baru dan enkripsi ulang semua kata sandi yang disimpan";
 "Сортировка: %@ %@" = "Sortir: %@ %@";
 "Сохранение изменений…" = "Menyimpan perubahan...";
 "Сохранение…" = "Menyimpan…";
@@ -393,9 +404,12 @@
 "Сохранить" = "Simpan";
 "Сохранить значение в файл" = "Simpan nilai ke file";
 "Сохранить как…" = "Simpan sebagai...";
+"Сохранить пароль" = "Simpan kata sandi";
 "Сохранить подключение" = "Simpan koneksi";
 "Сохранить…" = "Simpan…";
+"Сохранять пароль" = "Simpan kata sandi";
 "Сохранять сжатое значение" = "Simpan nilai yang diperkecil";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Kata sandi yang disimpan dienkripsi dengan AES-256-GCM. Kunci master disimpan di Rantai Kunci macOS dan diikat ke tanda tangan aplikasi, jadi salinan folder data tanpa rantai kunci tidak ada gunanya.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Kata sandi yang disimpan akan dihapus. Tab yang terbuka akan tetap ada.";
 "Сочетание уже используется: %@" = "Pintasan sudah digunakan: %@";
 "Способ подключения" = "Metode koneksi";
@@ -405,6 +419,7 @@
 "Справа на экране" = "Tepat di layar";
 "Справка" = "Bantuan";
 "Справка DBooyvol" = "Bantuan DBooyvol";
+"Старые пароли удалены из связки ключей" = "Kata sandi lama dihapus dari gantungan kunci";
 "Столбец: %@ %@" = "Kolom: %@ %@";
 "Столбцы переставлены" = "Kolom disusun ulang";
 "Строк за загрузку: %@" = "Baris per muatan: %@";
@@ -429,6 +444,8 @@
 "Удалить всю историю запросов" = "Hapus semua riwayat kueri";
 "Удалить подключение «%@»?" = "Hapus koneksi \"%@\"?";
 "Удалить подключение…" = "Hapus koneksi...";
+"Удалить старые пароли из связки ключей" = "Hapus kata sandi lama dari gantungan kunci";
+"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Hapus elemen versi sebelumnya (layanan ru.evotor.sqldesk), tempat kata sandi disimpan dalam teks biasa";
 "Удалить это подключение и сохранённый пароль" = "Hapus koneksi ini dan kata sandi yang disimpan";
 "Удалить…" = "Hapus…";
 "Українська" = "Ukraina";

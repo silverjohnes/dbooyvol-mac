@@ -7,13 +7,18 @@ final class Session {
     private(set) var serverInfo: String = ""
     private(set) var isConnected = false
     private var tunnel: SSHTunnel?
-    private let passwordOverride: String?
+    private var passwordOverride: String?
+    /// Asked only for profiles that do not store a password. The app shows the
+    /// prompt and caches the answer for the current run.
+    private let passwordProvider: (() -> String?)?
 
     /// `password` is used by "Test connection" so the draft password can be checked
     /// before it is saved; normal sessions read the stored secret.
-    init(profile: ConnectionProfile, password: String? = nil) {
+    init(profile: ConnectionProfile, password: String? = nil,
+         passwordProvider: (() -> String?)? = nil) {
         self.profile = profile
         self.passwordOverride = password
+        self.passwordProvider = passwordProvider
     }
 
     /// Coalesces concurrent connection attempts: two tabs may start their
@@ -40,6 +45,8 @@ final class Session {
     private func connectNow() async throws {
         if isConnected, connId != nil { return }
 
+        let password = try resolvePassword()
+
         var host = profile.host
         var port = profile.port
         // TNS/LDAP aliases expand to a real host, so a localhost tunnel would not be used.
@@ -53,7 +60,6 @@ final class Session {
             port = started.1
         }
 
-        let password = passwordOverride ?? SecretStore.load(profile.id.uuidString)
         var params: [String: Any] = [
             "kind": profile.kind.rawValue,
             "host": host,
@@ -87,6 +93,24 @@ final class Session {
             tunnel = nil
             throw error
         }
+    }
+
+    /// The plaintext password is used once for the JDBC connect and then
+    /// dropped; only the encrypted map stays in memory.
+    private func resolvePassword() throws -> String {
+        defer { passwordOverride = nil }
+        if profile.kind.isFileBased { return "" }
+        if let passwordOverride { return passwordOverride }
+        if profile.storesPassword {
+            let stored = try SecretStore.load(profile.id.uuidString)
+            if !stored.isEmpty { return stored }
+        }
+        // Nothing stored: ask. This also covers a profile whose password was
+        // deliberately not saved.
+        guard let provided = passwordProvider?() else {
+            throw SidecarError(message: L10n.tr("Пароль не введён"))
+        }
+        return provided
     }
 
     private func startTunnel(_ ssh: SSHProfile, host: String, port: Int) async throws -> (SSHTunnel, Int) {

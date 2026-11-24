@@ -4,7 +4,6 @@
 "%@ стр · %@ мс" = "%@ satır · %@ ms";
 "(всего %@ строк)" = "(%@ satırdan)";
 "(копия)" = "(kopya)";
-"./Sidecar/build.sh — пересобирает Resources/sidecar.jar" = "./Sidecar/build.sh - Resources/sidecar.jar'ı yeniden oluşturur";
 "1 год" = "1 yıl";
 "1 месяц" = "1 ay";
 "1 неделя" = "1 hafta";
@@ -16,7 +15,6 @@
 "EZ Connect (хост и сервис)" = "EZ Connect (ana bilgisayar ve hizmet)";
 "JDBC URL (переопределить, необязательно)" = "JDBC URL'si (geçersiz kıl, isteğe bağlı)";
 "JDBC-драйвер" = "JDBC sürücüsü";
-"JDBC-драйверы задаются отдельно в каждом подключении (путь к jar)." = "JDBC sürücüleri her bağlantıda (jar yolu) ayrı ayrı belirtilir.";
 "Java не найдена: %@. Укажите путь в настройках." = "Java bulunamadı: %@. Ayarlarda yolu belirtin.";
 "Java-процесс завершился" = "Java işlemi sonlandırıldı";
 "LDAP-сервер" = "LDAP sunucusu";
@@ -50,9 +48,12 @@
 "Бессрочно" = "Süresiz olarak";
 "Браузер" = "Tarayıcı";
 "Буфер обмена пуст" = "Pano boş";
+"В JDBC URL указан пароль" = "JDBC URL'si bir şifre içeriyor";
+"В URL указан пароль — он попадёт в profiles.json открытым текстом. Уберите его из URL и используйте поле «Пароль»." = "URL şifreyi içerir; şifre açık metin olarak profiles.json dosyasında yer alır. URL'den kaldırın ve Şifre alanını kullanın.";
 "В названии столбца" = "Sütun başlığında";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Düzenleyicide kaydedilmemiş değişiklikler var: diskten yükleme bunların yerini alacak.";
 "В результате нет столбца первичного ключа «%@»" = "Sonuç olarak, '%@' birincil anahtar sütunu yok";
+"Введите пароль от «%@»" = "\"%@\" için şifreyi girin";
 "Вернуть 200 строк на страницу" = "Sayfa başına 200 satır döndür";
 "Вернуть по умолчанию" = "Varsayılana sıfırla";
 "Вернуть прежний размер" = "Önceki boyuta dön";
@@ -76,7 +77,6 @@
 "Выберите ячейку и нажмите «Значение»" = "Bir hücre seçin ve paneli açın";
 "Выбрать JDBC-драйвер (.jar)" = "JDBC sürücüsünü seçin (.jar)";
 "Выбрать всё" = "Tümünü seç";
-"Выбрать исполняемый файл java" = "Java yürütülebilir dosyasını seçin";
 "Выбрать каталог с файлом config" = "Yapılandırma dosyasının bulunduğu dizini seçin";
 "Выбрать папку network/admin" = "Ağ/yönetici klasörünü seçin";
 "Выбрать файл базы SQLite" = "SQLite veritabanı dosyasını seçin";
@@ -109,6 +109,7 @@
 "Дублировать вкладку" = "Sekmeyi kopyala";
 "Дублировать подключение" = "Yinelenen bağlantı";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "NULL etiketi panodaki değerle eşleşiyorsa hücreye bir NULL eklenir. Boş bir etiket, boş bir satır anlamına gelir.";
+"Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Bağlantı şifresini saklamanız gerekmiyorsa, ayarlarında \"Şifreyi kaydet\" seçeneğini kapatın; bu durumda bağlanırken istenecektir.";
 "Есть несохранённые изменения." = "Kaydedilmemiş değişiklikler var.";
 "Завершить DBooyvol" = "DBooyvol'dan çık";
 "Завершить и закрыть все окна" = "Çıkın ve tüm pencereleri kapatın";
@@ -181,6 +182,7 @@
 "Копировать названия столбцов" = "Sütun başlıklarını kopyala";
 "Копировать номера строк" = "Satır numaralarını kopyala";
 "Копировать…" = "Kopyala…";
+"Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "URL'deki kullanıcı adı ve şifre, düz metin olarak kaydedilir. Bunları URL'den kaldırın ve Kullanıcı ve Şifre alanlarını kullanın.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Yerel SQLite dosyası doğrudan açılır, sunucuya gerek yoktur.";
 "Максимальная авто-ширина: %@ pt" = "Maksimum otomatik genişlik: %@ nk";
 "Максимум ширины:" = "Maksimum genişlik:";
@@ -209,10 +211,13 @@
 "Не удалось открыть файл: %@" = "Dosya açılamadı: %@";
 "Не удалось переименовать файл: %@" = "Dosya yeniden adlandırılamadı: %@";
 "Не удалось подключиться: %@" = "Bağlantı başarısız oldu: %@";
+"Не удалось получить мастер-ключ из связки ключей macOS" = "MacOS Anahtar Zincirinden ana anahtar alınamadı";
 "Не удалось получить столбцы %@" = "%@ sütunları alınamadı";
 "Не удалось прочитать %@ как текст" = "%@ metin olarak okunamadı";
+"Не удалось расшифровать сохранённый пароль — введите его заново" = "Kaydedilen şifrenin şifresi çözülemedi - lütfen tekrar girin";
 "Не удалось создать файл: %@" = "Dosya oluşturulamadı: %@";
 "Не удалось сохранить: %@" = "Kaydedilemedi: %@";
+"Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Eski şifreler kaldırılamadı - macOS isteminde erişime izin verin";
 "Неизвестная ошибка" = "Bilinmeyen hata";
 "Нет данных для вставки" = "Eklenecek veri yok";
 "Нет данных для копирования" = "Kopyalanacak veri yok";
@@ -267,8 +272,13 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client klasörü: ojdbc*.jar ve network/admin buradan alınır";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Tnsnames.ora, ldap.ora ve sqlnet.ora içeren ağ/yönetici klasörü";
 "Папка: %@" = "Klasör: %@";
+"Пароли" = "Şifreler";
+"Пароли перешифрованы новым мастер-ключом" = "Parolalar yeni bir ana anahtarla yeniden şifrelenir";
 "Пароли…" = "Şifreler...";
 "Пароль" = "Şifre";
+"Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Şifre bağlantı sırasında istenecek ve yalnızca oturumun sonuna kadar saklanacaktır.";
+"Пароль не введён" = "Şifre girilmedi";
+"Пароль сохранён другим мастер-ключом — введите его заново" = "Şifre başka bir ana anahtar tarafından kaydedildi - tekrar girin";
 "Перезапустить" = "Yeniden başlat";
 "Перезапустить приложение с новым языком" = "Uygulamayı yeni bir dille yeniden başlatın";
 "Переименовать" = "Yeniden adlandır";
@@ -280,6 +290,7 @@
 "Переместить и изменить размер" = "Taşı ve yeniden boyutlandır";
 "Перенос строк" = "Kelime kaydırma";
 "Перечитать tnsnames.ora и ldap.ora" = "Tnsnames.ora ve ldap.ora'yı yeniden okuyun";
+"Перешифровать пароли" = "Şifreleri yeniden şifreleyin";
 "По умолчанию" = "Varsayılanlar";
 "По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое." = "Varsayılan değer 200'dür. Sonuçta daha fazla satır varsa tablonun sonuna doğru kaydırıldığında aynı numara otomatik olarak yüklenir. \"Daha Fazla Yükle\" düğmesi de aynı şeyi yapar.";
 "По умолчанию тип показывается во всплывающей подсказке при наведении на заголовок. Можно включить оба варианта или отключить оба." = "Varsayılan olarak tür, başlığın üzerine gelindiğinde bir araç ipucunda gösterilir. Her iki seçeneği de etkinleştirebilir veya her ikisini de devre dışı bırakabilirsiniz.";
@@ -315,6 +326,7 @@
 "Пользователь" = "Kullanıcı";
 "Пользователь (необязательно)" = "Kullanıcı (isteğe bağlı)";
 "Пользователь: %@" = "Kullanıcı: %@";
+"Понятно" = "Görüyorum";
 "Порт" = "Liman";
 "Правка" = "Düzenle";
 "Предыдущая вкладка" = "Önceki sekme";
@@ -331,7 +343,6 @@
 "Пусто" = "Boş";
 "Пустой первичный ключ «%@»" = "\"%@\" birincil anahtarını boşaltın";
 "Путь к jar" = "Kavanozun yolu";
-"Путь к java" = "Java'ya giden yol";
 "Разделитель столбцов" = "Sütun ayırıcı";
 "Разделитель строк" = "Hat ayırıcı";
 "Размер шрифта: %@ pt" = "Yazı tipi boyutu: %@ nk";
@@ -344,7 +355,6 @@
 "Результат последнего запроса" = "Son isteğin sonucu";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Sonuç farklı tablolardan sütunlar içeriyor; kaydedilemez";
 "Русский" = "Rusça";
-"Сборка sidecar" = "Sepet montajı";
 "Сбросить вид" = "Görünümü sıfırla";
 "Сбросить поиск по истории" = "Geçmiş aramasını sıfırla";
 "Свернуть" = "Daralt";
@@ -384,6 +394,7 @@
 "Снизу справа" = "Sağ alt";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "\"%@\" içeriği diskte depolananlardan farklı.\nSürümü diskten mi yüklemeliyim yoksa metni düzenleyicide mi bırakmalıyım?";
 "Создать новое подключение…" = "Yeni bir bağlantı oluştur...";
+"Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Yeni bir ana anahtar oluşturun ve kayıtlı tüm şifreleri yeniden şifreleyin";
 "Сортировка: %@ %@" = "Sırala: %@ %@";
 "Сохранение изменений…" = "Değişiklikler kaydediliyor...";
 "Сохранение…" = "Kaydediliyor…";
@@ -393,9 +404,12 @@
 "Сохранить" = "Kaydet";
 "Сохранить значение в файл" = "Değeri dosyaya kaydet";
 "Сохранить как…" = "Farklı kaydet...";
+"Сохранить пароль" = "Şifreyi kaydet";
 "Сохранить подключение" = "Bağlantıyı kaydet";
 "Сохранить…" = "Kaydet…";
+"Сохранять пароль" = "Şifreyi kaydet";
 "Сохранять сжатое значение" = "Küçültülmüş değeri kaydet";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Kaydedilen şifreler AES-256-GCM ile şifrelenir. Ana anahtar, macOS Anahtar Zincirinde saklanır ve uygulama imzasına bağlanır; dolayısıyla veri klasörünün anahtarlık olmadan bir kopyası işe yaramaz.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Kaydedilen şifre silinecektir. Açık sekmeler kalacak.";
 "Сочетание уже используется: %@" = "Kısayol zaten kullanımda: %@";
 "Способ подключения" = "Bağlantı yöntemi";
@@ -405,6 +419,7 @@
 "Справа на экране" = "Tam ekranda";
 "Справка" = "Yardım";
 "Справка DBooyvol" = "DBooyvol Yardım";
+"Старые пароли удалены из связки ключей" = "Eski şifreler anahtarlıktan kaldırıldı";
 "Столбец: %@ %@" = "Sütun: %@ %@";
 "Столбцы переставлены" = "Sütunlar yeniden düzenlendi";
 "Строк за загрузку: %@" = "Yük başına satır sayısı: %@";
@@ -429,6 +444,8 @@
 "Удалить всю историю запросов" = "Tüm sorgu geçmişini temizle";
 "Удалить подключение «%@»?" = "\"%@\" bağlantısı silinsin mi?";
 "Удалить подключение…" = "Bağlantıyı sil...";
+"Удалить старые пароли из связки ключей" = "Eski şifreleri anahtarlıktan kaldırın";
+"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Parolaların açık metin olarak saklandığı önceki sürümün (service ru.evotor.sqldesk) öğelerini silin";
 "Удалить это подключение и сохранённый пароль" = "Bu bağlantıyı ve kayıtlı şifreyi silin";
 "Удалить…" = "Sil…";
 "Українська" = "Ukraynaca";

@@ -143,6 +143,9 @@ final class AppModel: ObservableObject {
 
     let editor = EditorController()
     private var sessions: [UUID: Session] = [:]
+    /// Passwords typed for profiles that do not store one. Kept only for this
+    /// run and dropped on disconnect, so the next connect asks again.
+    private var sessionPasswords: [UUID: String] = [:]
     /// Each tab runs its queries on its own JDBC connection, so two tabs can
     /// execute at the same time even when they use the same profile.
     private var tabSessions: [UUID: Session] = [:]
@@ -183,6 +186,8 @@ final class AppModel: ObservableObject {
 
     private init() {
         AppSettings.registerDefaults()
+        AppPaths.tightenPermissions()
+        SecretStore.purgeLegacy()
         profiles = ProfilesStore.load()
         if let saved = AppSettings.selectedProfileID,
            profiles.contains(where: { $0.id == saved }) {
@@ -247,7 +252,9 @@ final class AppModel: ObservableObject {
         copy.name = p.name + " " + L10n.tr("(копия)")
         profiles.append(copy)
         AppSettings.markConnectionCollapsed("conn:\(copy.id)", for: copy.id)
-        SecretStore.save(SecretStore.load(p.id.uuidString), for: copy.id.uuidString)
+        if p.storesPassword, let password = try? SecretStore.load(p.id.uuidString), !password.isEmpty {
+            try? SecretStore.save(password, for: copy.id.uuidString)
+        }
         persist()
     }
 
@@ -261,7 +268,17 @@ final class AppModel: ObservableObject {
             // Do not auto-open a brand-new (usually still empty) connection.
             AppSettings.markConnectionCollapsed("conn:\(p.id)", for: p.id)
         }
-        SecretStore.save(password, for: p.id.uuidString)
+        if p.storesPassword {
+            do {
+                try SecretStore.save(password, for: p.id.uuidString)
+            } catch {
+                status = error.localizedDescription
+            }
+            sessionPasswords[p.id] = nil
+        } else {
+            SecretStore.delete(p.id.uuidString)
+            sessionPasswords[p.id] = password.isEmpty ? nil : password
+        }
         if activeProfileID == nil { activeProfileID = p.id }
         persist()
     }
@@ -332,14 +349,63 @@ final class AppModel: ObservableObject {
     }
 
     func password(for id: UUID) -> String {
-        SecretStore.load(id.uuidString)
+        (try? SecretStore.load(id.uuidString)) ?? ""
+    }
+
+    /// Asks for a password when the profile does not store one. The checkbox in
+    /// the same window decides whether the answer is saved. The answer is cached
+    /// for this run, so parallel tabs do not prompt repeatedly.
+    func passwordForConnect(_ profile: ConnectionProfile) -> String? {
+        if profile.kind.isFileBased { return "" }
+        if let cached = sessionPasswords[profile.id] { return cached }
+
+        let alert = NSAlert()
+        alert.messageText = L10n.fmt("Введите пароль от «%@»", profile.displayName)
+        alert.addButton(withTitle: L10n.tr("Подключиться"))
+        alert.addButton(withTitle: L10n.tr("Отмена"))
+
+        let field = NSSecureTextField(frame: NSRect(x: 0, y: 32, width: 320, height: 24))
+        field.placeholderString = L10n.tr("Пароль")
+        let saveBox = NSButton(checkboxWithTitle: L10n.tr("Сохранить пароль"),
+                               target: nil, action: nil)
+        saveBox.state = profile.storesPassword ? .on : .off
+        saveBox.frame = NSRect(x: 0, y: 4, width: 320, height: 20)
+
+        let container = NSView(frame: NSRect(x: 0, y: 0, width: 320, height: 60))
+        container.addSubview(field)
+        container.addSubview(saveBox)
+        alert.accessoryView = container
+        alert.window.initialFirstResponder = field
+        guard alert.runModal() == .alertFirstButtonReturn else { return nil }
+
+        let password = field.stringValue
+        let shouldSave = saveBox.state == .on
+        if let idx = profiles.firstIndex(where: { $0.id == profile.id }),
+           profiles[idx].storesPassword != shouldSave {
+            profiles[idx].savePassword = shouldSave
+            persist()
+        }
+        if shouldSave {
+            do {
+                try SecretStore.save(password, for: profile.id.uuidString)
+            } catch {
+                status = error.localizedDescription
+            }
+            sessionPasswords[profile.id] = nil
+        } else {
+            SecretStore.delete(profile.id.uuidString)
+            sessionPasswords[profile.id] = password
+        }
+        return password
     }
 
     // MARK: - sessions
 
     func session(for profile: ConnectionProfile) -> Session {
         if let s = sessions[profile.id] { return s }
-        let s = Session(profile: profile)
+        let s = Session(profile: profile, passwordProvider: { [weak self] in
+            self?.passwordForConnect(profile)
+        })
         sessions[profile.id] = s
         return s
     }
@@ -349,12 +415,15 @@ final class AppModel: ObservableObject {
     private func querySession(for tabID: UUID, profile: ConnectionProfile) -> Session {
         if let s = tabSessions[tabID], s.profile.id == profile.id { return s }
         tabSessions[tabID]?.disconnect()
-        let s = Session(profile: profile)
+        let s = Session(profile: profile, passwordProvider: { [weak self] in
+            self?.passwordForConnect(profile)
+        })
         tabSessions[tabID] = s
         return s
     }
 
     func disconnect(_ id: UUID) {
+        sessionPasswords[id] = nil
         sessions[id]?.disconnect()
         sessions[id] = nil
         for (tabID, session) in tabSessions where session.profile.id == id {

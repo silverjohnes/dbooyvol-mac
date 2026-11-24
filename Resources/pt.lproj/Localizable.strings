@@ -4,7 +4,6 @@
 "%@ стр · %@ мс" = "%@ linhas · %@ ms";
 "(всего %@ строк)" = "(de %@ linhas)";
 "(копия)" = "(cópia)";
-"./Sidecar/build.sh — пересобирает Resources/sidecar.jar" = "./Sidecar/build.sh - reconstrói Resources/sidecar.jar";
 "1 год" = "1 ano";
 "1 месяц" = "1 mês";
 "1 неделя" = "1 semana";
@@ -16,7 +15,6 @@
 "EZ Connect (хост и сервис)" = "EZ Connect (host e serviço)";
 "JDBC URL (переопределить, необязательно)" = "URL JDBC (substituição, opcional)";
 "JDBC-драйвер" = "Driver JDBC";
-"JDBC-драйверы задаются отдельно в каждом подключении (путь к jar)." = "Os drivers JDBC são especificados separadamente em cada conexão (caminho para jar).";
 "Java не найдена: %@. Укажите путь в настройках." = "Java não encontrado: %@. Especifique o caminho nas configurações.";
 "Java-процесс завершился" = "O processo Java foi encerrado";
 "LDAP-сервер" = "Servidor LDAP";
@@ -50,9 +48,12 @@
 "Бессрочно" = "Indefinidamente";
 "Браузер" = "Navegador";
 "Буфер обмена пуст" = "A área de transferência está vazia";
+"В JDBC URL указан пароль" = "O URL JDBC contém uma senha";
+"В URL указан пароль — он попадёт в profiles.json открытым текстом. Уберите его из URL и используйте поле «Пароль»." = "O URL contém a senha - ela terminará em profiles.json em texto não criptografado. Remova-o da URL e use o campo Senha.";
 "В названии столбца" = "No cabeçalho da coluna";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Existem alterações não salvas no editor: carregar do disco irá substituí-las.";
 "В результате нет столбца первичного ключа «%@»" = "Como resultado, não há coluna de chave primária '%@'";
+"Введите пароль от «%@»" = "Digite a senha para \"%@\"";
 "Вернуть 200 строк на страницу" = "Retornar 200 linhas por página";
 "Вернуть по умолчанию" = "Redefinir para o padrão";
 "Вернуть прежний размер" = "Voltar ao tamanho anterior";
@@ -76,7 +77,6 @@
 "Выберите ячейку и нажмите «Значение»" = "Selecione uma célula e abra o painel";
 "Выбрать JDBC-драйвер (.jar)" = "Selecione o driver JDBC (.jar)";
 "Выбрать всё" = "Selecionar tudo";
-"Выбрать исполняемый файл java" = "Selecione o executável java";
 "Выбрать каталог с файлом config" = "Selecione o diretório com o arquivo de configuração";
 "Выбрать папку network/admin" = "Escolha a pasta rede/admin";
 "Выбрать файл базы SQLite" = "Selecione o arquivo de banco de dados SQLite";
@@ -109,6 +109,7 @@
 "Дублировать вкладку" = "Guia duplicada";
 "Дублировать подключение" = "Conexão duplicada";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Se o rótulo NULL corresponder ao valor na área de transferência, um NULL será inserido na célula. Um rótulo vazio significa uma linha vazia.";
+"Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Caso não seja necessário armazenar a senha de conexão, desative “Salvar senha” em suas configurações - então ela será solicitada no momento da conexão.";
 "Есть несохранённые изменения." = "Existem alterações não salvas.";
 "Завершить DBooyvol" = "Sair do DBooyvol";
 "Завершить и закрыть все окна" = "Saia e feche todas as janelas";
@@ -181,6 +182,7 @@
 "Копировать названия столбцов" = "Copiar títulos de colunas";
 "Копировать номера строк" = "Copiar números de linha";
 "Копировать…" = "Copiar…";
+"Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "O login e a senha do URL são salvos em texto não criptografado. Remova-os da URL e use os campos Usuário e Senha.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "O arquivo SQLite local é aberto diretamente, sem necessidade de servidor.";
 "Максимальная авто-ширина: %@ pt" = "Largura automática máxima: %@ pt";
 "Максимум ширины:" = "Largura máxima:";
@@ -209,10 +211,13 @@
 "Не удалось открыть файл: %@" = "Falha ao abrir arquivo: %@";
 "Не удалось переименовать файл: %@" = "Falha ao renomear arquivo: %@";
 "Не удалось подключиться: %@" = "Falha ao conectar: %@";
+"Не удалось получить мастер-ключ из связки ключей macOS" = "Falha ao obter a chave mestra do macOS Keychain";
 "Не удалось получить столбцы %@" = "Falha ao obter colunas %@";
 "Не удалось прочитать %@ как текст" = "Não foi possível ler %@ como texto";
+"Не удалось расшифровать сохранённый пароль — введите его заново" = "Falha ao descriptografar a senha salva. Digite-a novamente";
 "Не удалось создать файл: %@" = "Falha ao criar arquivo: %@";
 "Не удалось сохранить: %@" = "Falha ao salvar: %@";
+"Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Falha ao remover senhas antigas – permitir acesso no prompt do macOS";
 "Неизвестная ошибка" = "Erro desconhecido";
 "Нет данных для вставки" = "Não há dados para inserir";
 "Нет данных для копирования" = "Não há dados para copiar";
@@ -267,8 +272,13 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Pasta Instant Client: ojdbc*.jar e network/admin são retirados dela";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Pasta rede/admin com tnsnames.ora, ldap.ora e sqlnet.ora";
 "Папка: %@" = "Pasta: %@";
+"Пароли" = "Senhas";
+"Пароли перешифрованы новым мастер-ключом" = "As senhas são criptografadas novamente com uma nova chave mestra";
 "Пароли…" = "Senhas...";
 "Пароль" = "Senha";
+"Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "A senha será solicitada no momento da conexão e armazenada somente até o final da sessão.";
+"Пароль не введён" = "Senha não digitada";
+"Пароль сохранён другим мастер-ключом — введите его заново" = "A senha é salva por outra chave mestra - digite-a novamente";
 "Перезапустить" = "Reiniciar";
 "Перезапустить приложение с новым языком" = "Reinicie o aplicativo com um novo idioma";
 "Переименовать" = "Renomear";
@@ -280,6 +290,7 @@
 "Переместить и изменить размер" = "Mover e redimensionar";
 "Перенос строк" = "Quebra de linha";
 "Перечитать tnsnames.ora и ldap.ora" = "Releia tnsnames.ora e ldap.ora";
+"Перешифровать пароли" = "Recriptografar senhas";
 "По умолчанию" = "Padrões";
 "По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое." = "O padrão é 200. Se houver mais linhas no resultado, ao rolar até o final da tabela, os mesmos números serão carregados automaticamente. O botão \"Carregar mais\" faz a mesma coisa.";
 "По умолчанию тип показывается во всплывающей подсказке при наведении на заголовок. Можно включить оба варианта или отключить оба." = "Por padrão, o tipo é mostrado em uma dica de ferramenta ao passar o mouse sobre o título. Você pode ativar ambas as opções ou desativar ambas.";
@@ -315,6 +326,7 @@
 "Пользователь" = "Usuário";
 "Пользователь (необязательно)" = "Usuário (opcional)";
 "Пользователь: %@" = "Usuário: %@";
+"Понятно" = "Eu vejo";
 "Порт" = "Porto";
 "Правка" = "Editar";
 "Предыдущая вкладка" = "Aba anterior";
@@ -331,7 +343,6 @@
 "Пусто" = "Vazio";
 "Пустой первичный ключ «%@»" = "Chave primária vazia \"%@\"";
 "Путь к jar" = "Caminho para o jarro";
-"Путь к java" = "Caminho para java";
 "Разделитель столбцов" = "Separador de colunas";
 "Разделитель строк" = "Separador de linha";
 "Размер шрифта: %@ pt" = "Tamanho da fonte: %@ pt";
@@ -344,7 +355,6 @@
 "Результат последнего запроса" = "Resultado da última solicitação";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "O resultado contém colunas de tabelas diferentes – não pode ser salvo";
 "Русский" = "Russo";
-"Сборка sidecar" = "Montagem do carro lateral";
 "Сбросить вид" = "Redefinir visualização";
 "Сбросить поиск по истории" = "Redefinir histórico de pesquisa";
 "Свернуть" = "Recolher";
@@ -384,6 +394,7 @@
 "Снизу справа" = "Canto inferior direito";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "O conteúdo de \"%@\" é diferente daqueles armazenados no disco.\nDevo carregar a versão do disco ou deixar o texto no editor?";
 "Создать новое подключение…" = "Crie uma nova conexão...";
+"Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Crie uma nova chave mestra e criptografe novamente todas as senhas salvas";
 "Сортировка: %@ %@" = "Classificar: %@ %@";
 "Сохранение изменений…" = "Salvando alterações...";
 "Сохранение…" = "Salvando…";
@@ -393,9 +404,12 @@
 "Сохранить" = "Salvar";
 "Сохранить значение в файл" = "Salvar valor em arquivo";
 "Сохранить как…" = "Salvar como...";
+"Сохранить пароль" = "Salvar senha";
 "Сохранить подключение" = "Salvar conexão";
 "Сохранить…" = "Salvar…";
+"Сохранять пароль" = "Salvar senha";
 "Сохранять сжатое значение" = "Salvar valor minificado";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "As senhas salvas são criptografadas com AES-256-GCM. A chave mestra é armazenada no macOS Keychain e vinculada à assinatura do aplicativo, portanto, uma cópia da pasta de dados sem o chaveiro é inútil.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "A senha salva será excluída. As guias abertas permanecerão.";
 "Сочетание уже используется: %@" = "Atalho já em uso: %@";
 "Способ подключения" = "Método de conexão";
@@ -405,6 +419,7 @@
 "Справа на экране" = "Bem na tela";
 "Справка" = "Ajuda";
 "Справка DBooyvol" = "Ajuda do DBooyvol";
+"Старые пароли удалены из связки ключей" = "Senhas antigas removidas do chaveiro";
 "Столбец: %@ %@" = "Coluna: %@ %@";
 "Столбцы переставлены" = "Colunas reorganizadas";
 "Строк за загрузку: %@" = "Linhas por carga: %@";
@@ -429,6 +444,8 @@
 "Удалить всю историю запросов" = "Limpar todo o histórico de consultas";
 "Удалить подключение «%@»?" = "Excluir conexão \"%@\"?";
 "Удалить подключение…" = "Excluir conexão...";
+"Удалить старые пароли из связки ключей" = "Remova senhas antigas do chaveiro";
+"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Exclua elementos da versão anterior (serviço ru.evotor.sqldesk), onde as senhas eram armazenadas em texto não criptografado";
 "Удалить это подключение и сохранённый пароль" = "Exclua esta conexão e senha salva";
 "Удалить…" = "Excluir…";
 "Українська" = "Ucraniano";

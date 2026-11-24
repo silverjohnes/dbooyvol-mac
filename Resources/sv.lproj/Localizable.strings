@@ -4,7 +4,6 @@
 "%@ стр · %@ мс" = "%@ rader · %@ ms";
 "(всего %@ строк)" = "(av %@ rader)";
 "(копия)" = "(kopia)";
-"./Sidecar/build.sh — пересобирает Resources/sidecar.jar" = "./Sidecar/build.sh - bygger om Resources/sidecar.jar";
 "1 год" = "1 år";
 "1 месяц" = "1 månad";
 "1 неделя" = "1 vecka";
@@ -16,7 +15,6 @@
 "EZ Connect (хост и сервис)" = "EZ Connect (värd och tjänst)";
 "JDBC URL (переопределить, необязательно)" = "JDBC URL (åsidosätt, valfritt)";
 "JDBC-драйвер" = "JDBC-drivrutinen";
-"JDBC-драйверы задаются отдельно в каждом подключении (путь к jar)." = "JDBC-drivrutiner anges separat i varje anslutning (sökväg till jar).";
 "Java не найдена: %@. Укажите путь в настройках." = "Java hittades inte: %@. Ange sökvägen i inställningarna.";
 "Java-процесс завершился" = "Java-processen har avslutats";
 "LDAP-сервер" = "LDAP-server";
@@ -50,9 +48,12 @@
 "Бессрочно" = "På obestämd tid";
 "Браузер" = "Webbläsare";
 "Буфер обмена пуст" = "Urklipp är tomt";
+"В JDBC URL указан пароль" = "JDBC URL innehåller ett lösenord";
+"В URL указан пароль — он попадёт в profiles.json открытым текстом. Уберите его из URL и используйте поле «Пароль»." = "URL:en innehåller lösenordet – det kommer att hamna i profiles.json i klartext. Ta bort den från URL:en och använd fältet Lösenord.";
 "В названии столбца" = "I kolumnrubriken";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Det finns osparade ändringar i editorn: laddning från disk kommer att ersätta dem.";
 "В результате нет столбца первичного ключа «%@»" = "Som ett resultat finns det ingen primärnyckelkolumn '%@'";
+"Введите пароль от «%@»" = "Ange lösenordet för \"%@\"";
 "Вернуть 200 строк на страницу" = "Returnera 200 rader per sida";
 "Вернуть по умолчанию" = "Återställ till standard";
 "Вернуть прежний размер" = "Återgå till föregående storlek";
@@ -76,7 +77,6 @@
 "Выберите ячейку и нажмите «Значение»" = "Välj en cell och öppna panelen";
 "Выбрать JDBC-драйвер (.jar)" = "Välj JDBC-drivrutin (.jar)";
 "Выбрать всё" = "Välj alla";
-"Выбрать исполняемый файл java" = "Välj körbar java";
 "Выбрать каталог с файлом config" = "Välj katalogen med konfigurationsfilen";
 "Выбрать папку network/admin" = "Välj mappen nätverk/admin";
 "Выбрать файл базы SQLite" = "Välj SQLite-databasfil";
@@ -109,6 +109,7 @@
 "Дублировать вкладку" = "Duplicera flik";
 "Дублировать подключение" = "Dubblettanslutning";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Om NULL-etiketten matchar värdet på urklippet, infogas en NULL i cellen. En tom etikett betyder en tom rad.";
+"Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Om du inte behöver lagra anslutningslösenordet, stäng av \"Spara lösenord\" i dess inställningar - då kommer det att begäras när du ansluter.";
 "Есть несохранённые изменения." = "Det finns ändringar som inte har sparats.";
 "Завершить DBooyvol" = "Avsluta DBooyvol";
 "Завершить и закрыть все окна" = "Avsluta och stäng alla fönster";
@@ -181,6 +182,7 @@
 "Копировать названия столбцов" = "Kopiera kolumntitlar";
 "Копировать номера строк" = "Kopiera radnummer";
 "Копировать…" = "Kopiera...";
+"Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Inloggningen och lösenordet från URL:en sparas i klartext. Ta bort dem från URL:en och använd fälten Användare och Lösenord.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Den lokala SQLite-filen öppnas direkt, ingen server behövs.";
 "Максимальная авто-ширина: %@ pt" = "Maximal automatisk bredd: %@ pt";
 "Максимум ширины:" = "Maximal bredd:";
@@ -209,10 +211,13 @@
 "Не удалось открыть файл: %@" = "Det gick inte att öppna filen: %@";
 "Не удалось переименовать файл: %@" = "Det gick inte att byta namn på filen: %@";
 "Не удалось подключиться: %@" = "Det gick inte att ansluta: %@";
+"Не удалось получить мастер-ключ из связки ключей macOS" = "Det gick inte att hämta huvudnyckeln från macOS-nyckelring";
 "Не удалось получить столбцы %@" = "Det gick inte att hämta kolumner %@";
 "Не удалось прочитать %@ как текст" = "Kunde inte läsa %@ som text";
+"Не удалось расшифровать сохранённый пароль — введите его заново" = "Det gick inte att dekryptera det sparade lösenordet - vänligen ange det igen";
 "Не удалось создать файл: %@" = "Det gick inte att skapa filen: %@";
 "Не удалось сохранить: %@" = "Det gick inte att spara: %@";
+"Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Det gick inte att ta bort gamla lösenord - tillåt åtkomst i macOS-prompt";
 "Неизвестная ошибка" = "Okänt fel";
 "Нет данных для вставки" = "Inga data att infoga";
 "Нет данных для копирования" = "Inga data att kopiera";
@@ -267,8 +272,13 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client-mapp: ojdbc*.jar och nätverk/admin tas från den";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Nätverk/admin-mapp med tnsnames.ora, ldap.ora och sqlnet.ora";
 "Папка: %@" = "Mapp: %@";
+"Пароли" = "Lösenord";
+"Пароли перешифрованы новым мастер-ключом" = "Lösenord krypteras om med en ny huvudnyckel";
 "Пароли…" = "Lösenord...";
 "Пароль" = "Lösenord";
+"Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Lösenordet kommer att begäras vid anslutning och lagras endast till slutet av sessionen.";
+"Пароль не введён" = "Lösenordet inte angett";
+"Пароль сохранён другим мастер-ключом — введите его заново" = "Lösenordet sparas av en annan huvudnyckel - ange den igen";
 "Перезапустить" = "Starta om";
 "Перезапустить приложение с новым языком" = "Starta om programmet med ett nytt språk";
 "Переименовать" = "Byt namn";
@@ -280,6 +290,7 @@
 "Переместить и изменить размер" = "Flytta och ändra storlek";
 "Перенос строк" = "Ordlindning";
 "Перечитать tnsnames.ora и ldap.ora" = "Läs om tnsnames.ora och ldap.ora";
+"Перешифровать пароли" = "Kryptera om lösenord";
 "По умолчанию" = "Standardvärden";
 "По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое." = "Standard är 200. Om det finns fler rader i resultatet, när du rullar till slutet av tabellen, laddas samma antal automatiskt. \"Ladda mer\"-knappen gör samma sak.";
 "По умолчанию тип показывается во всплывающей подсказке при наведении на заголовок. Можно включить оба варианта или отключить оба." = "Som standard visas typen i ett verktygstips när du håller muspekaren över titeln. Du kan aktivera båda alternativen eller inaktivera båda.";
@@ -315,6 +326,7 @@
 "Пользователь" = "Användare";
 "Пользователь (необязательно)" = "Användare (valfritt)";
 "Пользователь: %@" = "Användare: %@";
+"Понятно" = "Jag förstår";
 "Порт" = "Port";
 "Правка" = "Redigera";
 "Предыдущая вкладка" = "Föregående flik";
@@ -331,7 +343,6 @@
 "Пусто" = "Tom";
 "Пустой первичный ключ «%@»" = "Tom primärnyckel \"%@\"";
 "Путь к jar" = "Vägen till burken";
-"Путь к java" = "Vägen till java";
 "Разделитель столбцов" = "Kolumnavskiljare";
 "Разделитель строк" = "Linjeavskiljare";
 "Размер шрифта: %@ pt" = "Teckenstorlek: %@ pt";
@@ -344,7 +355,6 @@
 "Результат последнего запроса" = "Resultat av den senaste begäran";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Resultatet innehåller kolumner från olika tabeller - kan inte sparas";
 "Русский" = "Ryska";
-"Сборка sidecar" = "Sidovagnsmontering";
 "Сбросить вид" = "Återställ vyn";
 "Сбросить поиск по истории" = "Återställ historiksökning";
 "Свернуть" = "Kollapsa";
@@ -384,6 +394,7 @@
 "Снизу справа" = "Nederst till höger";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Innehållet i \"%@\" skiljer sig från det som är lagrat på disken.\nSka jag ladda versionen från disken eller lämna texten i editorn?";
 "Создать новое подключение…" = "Skapa en ny anslutning...";
+"Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Skapa en ny huvudnyckel och kryptera om alla sparade lösenord";
 "Сортировка: %@ %@" = "Sortera: %@ %@";
 "Сохранение изменений…" = "Sparar ändringar...";
 "Сохранение…" = "Sparar...";
@@ -393,9 +404,12 @@
 "Сохранить" = "Spara";
 "Сохранить значение в файл" = "Spara värde till fil";
 "Сохранить как…" = "Spara som...";
+"Сохранить пароль" = "Spara lösenord";
 "Сохранить подключение" = "Spara anslutning";
 "Сохранить…" = "Spara...";
+"Сохранять пароль" = "Spara lösenord";
 "Сохранять сжатое значение" = "Spara förminskat värde";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Sparade lösenord krypteras med AES-256-GCM. Huvudnyckeln lagras i macOS-nyckelringen och knuten till app-signaturen, så en kopia av datamappen utan nyckelringen är värdelös.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Det sparade lösenordet kommer att raderas. Öppna flikar kommer att finnas kvar.";
 "Сочетание уже используется: %@" = "Genväg används redan: %@";
 "Способ подключения" = "Anslutningsmetod";
@@ -405,6 +419,7 @@
 "Справа на экране" = "Direkt på skärmen";
 "Справка" = "Hjälp";
 "Справка DBooyvol" = "DBooyvol Hjälp";
+"Старые пароли удалены из связки ключей" = "Gamla lösenord har tagits bort från nyckelringen";
 "Столбец: %@ %@" = "Kolumn: %@ %@";
 "Столбцы переставлены" = "Kolumner omarrangerade";
 "Строк за загрузку: %@" = "Rader per laddning: %@";
@@ -429,6 +444,8 @@
 "Удалить всю историю запросов" = "Rensa all frågehistorik";
 "Удалить подключение «%@»?" = "Ta bort anslutningen \"%@\"?";
 "Удалить подключение…" = "Ta bort anslutning...";
+"Удалить старые пароли из связки ключей" = "Ta bort gamla lösenord från nyckelringen";
+"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Ta bort element från den tidigare versionen (service ru.evotor.sqldesk), där lösenord lagrades i klartext";
 "Удалить это подключение и сохранённый пароль" = "Ta bort den här anslutningen och det sparade lösenordet";
 "Удалить…" = "Ta bort...";
 "Українська" = "Ukrainska";

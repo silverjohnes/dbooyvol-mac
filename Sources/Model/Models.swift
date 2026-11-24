@@ -80,6 +80,23 @@ struct ConnectionProfile: Codable, Identifiable, Hashable {
     var oracleSid: Bool = false
     var ssh: SSHProfile = SSHProfile()
     var readOnly: Bool = true
+    /// nil for profiles written before the option existed: treated as true.
+    var savePassword: Bool?
+
+    /// When false, the password is asked on connect and kept only for this run.
+    var storesPassword: Bool { savePassword ?? true }
+
+    /// A password inside the URL would land in profiles.json in plain text.
+    var jdbcURLContainsCredentials: Bool {
+        let url = jdbcUrl.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !url.isEmpty else { return false }
+        let lower = url.lowercased()
+        if lower.contains("password=") || lower.contains("pwd=") { return true }
+        if url.range(of: "://[^/@:]+:[^/@]+@", options: .regularExpression) != nil { return true }
+        // Oracle thin form: jdbc:oracle:thin:scott/tiger@host:1521:ORCL
+        return url.range(of: "(?i)jdbc:oracle:[^\\s]*?/[^@\\s]+@",
+                         options: .regularExpression) != nil
+    }
 
     // Oracle network settings (thin driver: no native libraries needed).
     var oracleMode: OracleNetMode = .easy
@@ -108,7 +125,7 @@ struct ConnectionProfile: Codable, Identifiable, Hashable {
     /// JDBC URL shown in tooltips, mirroring what `Session` passes to the
     /// sidecar. Oracle network modes are abbreviated to their alias.
     var displayURL: String {
-        if !jdbcUrl.isEmpty { return jdbcUrl }
+        if !jdbcUrl.isEmpty { return Self.maskedURL(jdbcUrl) }
         switch kind {
         case .postgres:
             return "jdbc:postgresql://\(host):\(port)/\(database)"
@@ -123,6 +140,15 @@ struct ConnectionProfile: Codable, Identifiable, Hashable {
             let service = database.isEmpty ? "ORCL" : database
             return "jdbc:oracle:thin:@\(host):\(port):\(service)"
         }
+    }
+
+    /// Never show credentials from a hand-written JDBC URL in a tooltip.
+    static func maskedURL(_ url: String) -> String {
+        url
+            .replacingOccurrences(of: "://([^/@:]+):([^/@]+)@",
+                                  with: "://$1:•••@", options: .regularExpression)
+            .replacingOccurrences(of: "(?i)(password|pwd)=([^&;]+)",
+                                  with: "$1=•••", options: .regularExpression)
     }
 
     /// Used when the user leaves the name empty.
@@ -140,7 +166,7 @@ struct ConnectionProfile: Codable, Identifiable, Hashable {
 extension ConnectionProfile {
     private enum CodingKeys: String, CodingKey {
         case id, name, kind, host, port, database, user, driverPath, jdbcUrl
-        case oracleSid, ssh, readOnly
+        case oracleSid, ssh, readOnly, savePassword
         case oracleMode, oracleAlias, tnsAdmin, ldapHost, ldapPort, ldapContext
         case ldapSSL, oracleAuthServices, instantClientDir
     }
@@ -161,6 +187,7 @@ extension ConnectionProfile {
         oracleSid = try c.decodeIfPresent(Bool.self, forKey: .oracleSid) ?? false
         ssh = try c.decodeIfPresent(SSHProfile.self, forKey: .ssh) ?? SSHProfile()
         readOnly = try c.decodeIfPresent(Bool.self, forKey: .readOnly) ?? true
+        savePassword = try c.decodeIfPresent(Bool.self, forKey: .savePassword)
         oracleMode = try c.decodeIfPresent(OracleNetMode.self, forKey: .oracleMode) ?? .easy
         oracleAlias = try c.decodeIfPresent(String.self, forKey: .oracleAlias) ?? ""
         tnsAdmin = try c.decodeIfPresent(String.self, forKey: .tnsAdmin) ?? ""
@@ -186,6 +213,7 @@ extension ConnectionProfile {
         try c.encode(oracleSid, forKey: .oracleSid)
         try c.encode(ssh, forKey: .ssh)
         try c.encode(readOnly, forKey: .readOnly)
+        try c.encodeIfPresent(savePassword, forKey: .savePassword)
         try c.encode(oracleMode, forKey: .oracleMode)
         try c.encode(oracleAlias, forKey: .oracleAlias)
         try c.encode(tnsAdmin, forKey: .tnsAdmin)

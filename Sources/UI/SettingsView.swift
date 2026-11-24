@@ -6,7 +6,6 @@ struct SettingsView: View {
     @EnvironmentObject var model: AppModel
     @Environment(\.openWindow) private var openWindow
     @AppStorage(AppSettings.sshDirectoryKey) private var sshDirectory = "/Users/silver/.ssh"
-    @AppStorage(AppSettings.javaPathKey) private var javaPath = "/usr/bin/java"
     @AppStorage(AppSettings.autosaveTabsKey) private var autosaveTabs = true
     @ObservedObject private var shortcuts = ShortcutStore.shared
 
@@ -50,6 +49,34 @@ struct SettingsView: View {
                               shortcuts.binding(for: .shortcutsHelp)?.display ?? ""))
                     .font(.caption)
                     .foregroundColor(.secondary)
+            }
+
+            Section("Пароли") {
+                Text("Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                HStack {
+                    Button("Перешифровать пароли") {
+                        do {
+                            try SecretStore.rotateMasterKey()
+                            model.status = L10n.tr("Пароли перешифрованы новым мастер-ключом")
+                        } catch {
+                            model.status = error.localizedDescription
+                        }
+                    }
+                    .help("Создать новый мастер-ключ и заново зашифровать все сохранённые пароли")
+                    Spacer()
+                }
+                Text("Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Button("Удалить старые пароли из связки ключей") {
+                    let removed = SecretStore.deleteLegacyKeychain()
+                    model.status = removed
+                        ? L10n.tr("Старые пароли удалены из связки ключей")
+                        : L10n.tr("Не удалось удалить старые пароли — разрешите доступ в запросе macOS")
+                }
+                .help("Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом")
             }
 
             Section("Редактор") {
@@ -223,22 +250,6 @@ struct SettingsView: View {
                     .foregroundColor(.secondary)
             }
 
-            Section("Java (sidecar)") {
-                HStack {
-                    TextField("Путь к java", text: $javaPath)
-                    Button("Выбрать…") { chooseFile { javaPath = $0 } }
-                        .help("Выбрать исполняемый файл java")
-                }
-                Text("JDBC-драйверы задаются отдельно в каждом подключении (путь к jar).")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-
-            Section("Сборка sidecar") {
-                Text("./Sidecar/build.sh — пересобирает Resources/sidecar.jar")
-                    .font(.system(size: 11, design: .monospaced))
-                    .textSelection(.enabled)
-            }
         }
         .formStyle(.grouped)
         .frame(width: 560, height: 580)
@@ -383,6 +394,16 @@ struct ConnectionEditorView: View {
                     }
                     TextField("Пользователь", text: $draft.user)
                     SecureField("Пароль", text: $password)
+                    Toggle("Сохранять пароль", isOn: Binding(
+                        get: { draft.storesPassword },
+                        set: { draft.savePassword = $0 }
+                    ))
+                    .toggleStyle(.checkbox)
+                    if !draft.storesPassword {
+                        Text("Пароль будет запрашиваться при подключении и храниться только до конца сеанса.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
                     }
                 }
 
@@ -401,6 +422,11 @@ struct ConnectionEditorView: View {
                         .foregroundColor(.secondary)
                     TextField("JDBC URL (переопределить, необязательно)", text: $draft.jdbcUrl)
                         .font(.system(size: 11, design: .monospaced))
+                    if draft.jdbcURLContainsCredentials {
+                        Text("В URL указан пароль — он попадёт в profiles.json открытым текстом. Уберите его из URL и используйте поле «Пароль».")
+                            .font(.caption)
+                            .foregroundColor(.orange)
+                    }
                     if draft.kind == .oracle, draft.oracleMode == .easy {
                         Toggle("Подключаться по SID (иначе service name)", isOn: $draft.oracleSid)
                     }
@@ -508,6 +534,15 @@ struct ConnectionEditorView: View {
                     .keyboardShortcut(.cancelAction)
                     .help("Закрыть без сохранения")
                 Button("Сохранить") {
+                    if draft.jdbcURLContainsCredentials {
+                        let alert = NSAlert()
+                        alert.alertStyle = .warning
+                        alert.messageText = L10n.tr("В JDBC URL указан пароль")
+                        alert.informativeText = L10n.tr("Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль».")
+                        alert.addButton(withTitle: L10n.tr("Понятно"))
+                        alert.runModal()
+                        return
+                    }
                     if draft.name.isEmpty { draft.name = draft.suggestedName }
                     model.saveProfile(draft, password: password)
                     dismiss()
@@ -519,7 +554,7 @@ struct ConnectionEditorView: View {
         }
         .frame(width: 640, height: draft.kind.isFileBased ? 540 : 780)
         .onAppear {
-            password = model.password(for: draft.id)
+            password = draft.storesPassword ? model.password(for: draft.id) : ""
         }
         .onChange(of: draft) { _ in
             if testState != .running { testState = nil }
@@ -621,7 +656,13 @@ struct ConnectionEditorView: View {
         let candidatePassword = password
 
         Task { @MainActor in
-            let session = Session(profile: profile, password: candidatePassword)
+            // An empty field with no stored password must ask instead of
+            // trying to connect with an empty password.
+            let session = Session(
+                profile: profile,
+                password: candidatePassword.isEmpty ? nil : candidatePassword,
+                passwordProvider: { model.passwordForConnect(profile) }
+            )
             do {
                 try await session.connect()
                 let info = session.serverInfo

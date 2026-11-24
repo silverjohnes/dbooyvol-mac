@@ -4,7 +4,6 @@
 "%@ стр · %@ мс" = "%@ lignes · %@ ms";
 "(всего %@ строк)" = "(sur %@ lignes)";
 "(копия)" = "(copie)";
-"./Sidecar/build.sh — пересобирает Resources/sidecar.jar" = "./Sidecar/build.sh - reconstruit Resources/sidecar.jar";
 "1 год" = "1 an";
 "1 месяц" = "1 mois";
 "1 неделя" = "1 semaine";
@@ -16,7 +15,6 @@
 "EZ Connect (хост и сервис)" = "EZ Connect (hôte et service)";
 "JDBC URL (переопределить, необязательно)" = "URL JDBC (remplacement, facultatif)";
 "JDBC-драйвер" = "Pilote JDBC";
-"JDBC-драйверы задаются отдельно в каждом подключении (путь к jar)." = "Les pilotes JDBC sont spécifiés séparément dans chaque connexion (chemin vers jar).";
 "Java не найдена: %@. Укажите путь в настройках." = "Java introuvable : %@. Spécifiez le chemin dans les paramètres.";
 "Java-процесс завершился" = "Le processus Java est terminé";
 "LDAP-сервер" = "Serveur LDAP";
@@ -50,9 +48,12 @@
 "Бессрочно" = "Indéfiniment";
 "Браузер" = "Navigateur";
 "Буфер обмена пуст" = "Le presse-papiers est vide";
+"В JDBC URL указан пароль" = "L'URL JDBC contient un mot de passe";
+"В URL указан пароль — он попадёт в profiles.json открытым текстом. Уберите его из URL и используйте поле «Пароль»." = "L'URL contient le mot de passe - elle se retrouvera dans profiles.json en texte clair. Supprimez-le de l'URL et utilisez le champ Mot de passe.";
 "В названии столбца" = "Dans l'en-tête de la colonne";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Il y a des modifications non enregistrées dans l'éditeur : le chargement depuis le disque les remplacera.";
 "В результате нет столбца первичного ключа «%@»" = "Par conséquent, il n'y a pas de colonne de clé primaire '%@'";
+"Введите пароль от «%@»" = "Entrez le mot de passe pour \"%@\"";
 "Вернуть 200 строк на страницу" = "Renvoie 200 lignes par page";
 "Вернуть по умолчанию" = "Réinitialiser aux valeurs par défaut";
 "Вернуть прежний размер" = "Revenir à la taille précédente";
@@ -76,7 +77,6 @@
 "Выберите ячейку и нажмите «Значение»" = "Sélectionnez une cellule et ouvrez le panneau";
 "Выбрать JDBC-драйвер (.jar)" = "Sélectionnez le pilote JDBC (.jar)";
 "Выбрать всё" = "Tout sélectionner";
-"Выбрать исполняемый файл java" = "Sélectionnez l'exécutable Java";
 "Выбрать каталог с файлом config" = "Sélectionnez le répertoire avec le fichier de configuration";
 "Выбрать папку network/admin" = "Choisissez le dossier réseau/admin";
 "Выбрать файл базы SQLite" = "Sélectionnez le fichier de base de données SQLite";
@@ -109,6 +109,7 @@
 "Дублировать вкладку" = "Onglet en double";
 "Дублировать подключение" = "Connexion en double";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Si l'étiquette NULL correspond à la valeur du presse-papiers, un NULL est inséré dans la cellule. Une étiquette vide signifie une ligne vide.";
+"Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Si vous n'avez pas besoin de stocker le mot de passe de connexion, désactivez « Enregistrer le mot de passe » dans ses paramètres - il vous sera alors demandé lors de la connexion.";
 "Есть несохранённые изменения." = "Il y a des modifications non enregistrées.";
 "Завершить DBooyvol" = "Quitter DBooyvol";
 "Завершить и закрыть все окна" = "Quittez et fermez toutes les fenêtres";
@@ -181,6 +182,7 @@
 "Копировать названия столбцов" = "Copier les titres des colonnes";
 "Копировать номера строк" = "Copier les numéros de ligne";
 "Копировать…" = "Copier…";
+"Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Le login et le mot de passe de l'URL sont enregistrés en texte clair. Supprimez-les de l'URL et utilisez les champs Utilisateur et Mot de passe.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Le fichier SQLite local est ouvert directement, aucun serveur n'est nécessaire.";
 "Максимальная авто-ширина: %@ pt" = "Largeur automatique maximale : %@ pt";
 "Максимум ширины:" = "Largeur maximale :";
@@ -209,10 +211,13 @@
 "Не удалось открыть файл: %@" = "Échec de l'ouverture du fichier : %@";
 "Не удалось переименовать файл: %@" = "Échec du renommage du fichier : %@";
 "Не удалось подключиться: %@" = "Échec de la connexion : %@";
+"Не удалось получить мастер-ключ из связки ключей macOS" = "Échec de l'obtention de la clé principale à partir du trousseau macOS";
 "Не удалось получить столбцы %@" = "Échec de l'obtention des colonnes %@";
 "Не удалось прочитать %@ как текст" = "Impossible de lire %@ sous forme de texte";
+"Не удалось расшифровать сохранённый пароль — введите его заново" = "Échec du déchiffrement du mot de passe enregistré : veuillez le saisir à nouveau";
 "Не удалось создать файл: %@" = "Échec de la création du fichier : %@";
 "Не удалось сохранить: %@" = "Échec de l'enregistrement : %@";
+"Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Échec de la suppression des anciens mots de passe - autoriser l'accès dans l'invite macOS";
 "Неизвестная ошибка" = "Erreur inconnue";
 "Нет данных для вставки" = "Aucune donnée à insérer";
 "Нет данных для копирования" = "Aucune donnée à copier";
@@ -267,8 +272,13 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Dossier Instant Client : ojdbc*.jar et network/admin en sont extraits";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Dossier réseau/admin avec tnsnames.ora, ldap.ora et sqlnet.ora";
 "Папка: %@" = "Dossier : %@";
+"Пароли" = "Mots de passe";
+"Пароли перешифрованы новым мастер-ключом" = "Les mots de passe sont rechiffrés avec une nouvelle clé principale";
 "Пароли…" = "Mots de passe...";
 "Пароль" = "Mot de passe";
+"Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Le mot de passe sera demandé lors de la connexion et conservé uniquement jusqu'à la fin de la session.";
+"Пароль не введён" = "Mot de passe non saisi";
+"Пароль сохранён другим мастер-ключом — введите его заново" = "Le mot de passe est enregistré par une autre clé principale - saisissez-le à nouveau";
 "Перезапустить" = "Redémarrer";
 "Перезапустить приложение с новым языком" = "Redémarrez l'application avec une nouvelle langue";
 "Переименовать" = "Renommer";
@@ -280,6 +290,7 @@
 "Переместить и изменить размер" = "Déplacer et redimensionner";
 "Перенос строк" = "Retour à la ligne";
 "Перечитать tnsnames.ora и ldap.ora" = "Relisez tnsnames.ora et ldap.ora";
+"Перешифровать пароли" = "Rechiffrer les mots de passe";
 "По умолчанию" = "Valeurs par défaut";
 "По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое." = "La valeur par défaut est 200. S'il y a plus de lignes dans le résultat, lors du défilement jusqu'à la fin du tableau, le même nombre est automatiquement chargé. Le bouton « Charger plus » fait la même chose.";
 "По умолчанию тип показывается во всплывающей подсказке при наведении на заголовок. Можно включить оба варианта или отключить оба." = "Par défaut, le type est affiché dans une info-bulle lorsque vous survolez le titre. Vous pouvez activer les deux options ou désactiver les deux.";
@@ -315,6 +326,7 @@
 "Пользователь" = "Utilisateur";
 "Пользователь (необязательно)" = "Utilisateur (facultatif)";
 "Пользователь: %@" = "Utilisateur : %@";
+"Понятно" = "Je vois";
 "Порт" = "Port";
 "Правка" = "Modifier";
 "Предыдущая вкладка" = "Onglet précédent";
@@ -331,7 +343,6 @@
 "Пусто" = "Vide";
 "Пустой первичный ключ «%@»" = "Clé primaire vide \"%@\"";
 "Путь к jar" = "Chemin vers le pot";
-"Путь к java" = "Chemin vers Java";
 "Разделитель столбцов" = "Séparateur de colonnes";
 "Разделитель строк" = "Séparateur de lignes";
 "Размер шрифта: %@ pt" = "Taille de la police : %@ pt";
@@ -344,7 +355,6 @@
 "Результат последнего запроса" = "Résultat de la dernière demande";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Le résultat contient des colonnes de différentes tables - ne peut pas être enregistré";
 "Русский" = "Russe";
-"Сборка sidecar" = "Assemblage de side-car";
 "Сбросить вид" = "Réinitialiser la vue";
 "Сбросить поиск по истории" = "Réinitialiser la recherche dans l'historique";
 "Свернуть" = "Réduire";
@@ -384,6 +394,7 @@
 "Снизу справа" = "En bas à droite";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Le contenu de \"%@\" est différent de celui stocké sur le disque.\nDois-je charger la version depuis le disque ou laisser le texte dans l'éditeur ?";
 "Создать новое подключение…" = "Créer une nouvelle connexion...";
+"Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Créez une nouvelle clé principale et chiffrez à nouveau tous les mots de passe enregistrés";
 "Сортировка: %@ %@" = "Trier : %@ %@";
 "Сохранение изменений…" = "Enregistrement des modifications...";
 "Сохранение…" = "Sauvegarde…";
@@ -393,9 +404,12 @@
 "Сохранить" = "Enregistrer";
 "Сохранить значение в файл" = "Enregistrer la valeur dans un fichier";
 "Сохранить как…" = "Enregistrer sous...";
+"Сохранить пароль" = "Enregistrer le mot de passe";
 "Сохранить подключение" = "Enregistrer la connexion";
 "Сохранить…" = "Enregistrer…";
+"Сохранять пароль" = "Enregistrer le mot de passe";
 "Сохранять сжатое значение" = "Enregistrer la valeur minifiée";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Les mots de passe enregistrés sont cryptés avec AES-256-GCM. La clé principale est stockée dans le trousseau macOS et liée à la signature de l'application, donc une copie du dossier de données sans le trousseau est inutile.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Le mot de passe enregistré sera supprimé. Les onglets ouverts resteront.";
 "Сочетание уже используется: %@" = "Raccourci déjà utilisé : %@";
 "Способ подключения" = "Méthode de connexion";
@@ -405,6 +419,7 @@
 "Справа на экране" = "Directement sur l'écran";
 "Справка" = "Aide";
 "Справка DBooyvol" = "DBooyvol Aide";
+"Старые пароли удалены из связки ключей" = "Anciens mots de passe supprimés du trousseau";
 "Столбец: %@ %@" = "Colonne : %@ %@";
 "Столбцы переставлены" = "Colonnes réorganisées";
 "Строк за загрузку: %@" = "Lignes par chargement : %@";
@@ -429,6 +444,8 @@
 "Удалить всю историю запросов" = "Effacer tout l'historique des requêtes";
 "Удалить подключение «%@»?" = "Supprimer la connexion « %@ » ?";
 "Удалить подключение…" = "Supprimer la connexion...";
+"Удалить старые пароли из связки ключей" = "Supprimer les anciens mots de passe du trousseau";
+"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Supprimez les éléments de la version précédente (service ru.evotor.sqldesk), où les mots de passe étaient stockés en texte clair";
 "Удалить это подключение и сохранённый пароль" = "Supprimez cette connexion et le mot de passe enregistré";
 "Удалить…" = "Supprimer…";
 "Українська" = "Ukrainien";

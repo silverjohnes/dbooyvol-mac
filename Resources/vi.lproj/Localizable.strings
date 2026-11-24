@@ -4,7 +4,6 @@
 "%@ стр · %@ мс" = "%@ hàng · %@ ms";
 "(всего %@ строк)" = "(trong số %@ hàng)";
 "(копия)" = "(bản sao)";
-"./Sidecar/build.sh — пересобирает Resources/sidecar.jar" = "./Sidecar/build.sh - xây dựng lại Tài nguyên/sidecar.jar";
 "1 год" = "1 năm";
 "1 месяц" = "1 tháng";
 "1 неделя" = "1 tuần";
@@ -16,7 +15,6 @@
 "EZ Connect (хост и сервис)" = "EZ Connect (máy chủ và dịch vụ)";
 "JDBC URL (переопределить, необязательно)" = "URL JDBC (ghi đè, tùy chọn)";
 "JDBC-драйвер" = "Trình điều khiển JDBC";
-"JDBC-драйверы задаются отдельно в каждом подключении (путь к jar)." = "Trình điều khiển JDBC được chỉ định riêng trong mỗi kết nối (đường dẫn đến jar).";
 "Java не найдена: %@. Укажите путь в настройках." = "Không tìm thấy Java: %@. Chỉ định đường dẫn trong cài đặt.";
 "Java-процесс завершился" = "Quá trình Java đã kết thúc";
 "LDAP-сервер" = "Máy chủ LDAP";
@@ -50,9 +48,12 @@
 "Бессрочно" = "Vô thời hạn";
 "Браузер" = "Trình duyệt";
 "Буфер обмена пуст" = "Bảng tạm trống";
+"В JDBC URL указан пароль" = "URL JDBC chứa mật khẩu";
+"В URL указан пароль — он попадёт в profiles.json открытым текстом. Уберите его из URL и используйте поле «Пароль»." = "URL chứa mật khẩu - nó sẽ kết thúc bằng Profiles.json ở dạng văn bản rõ ràng. Xóa nó khỏi URL và sử dụng trường Mật khẩu.";
 "В названии столбца" = "Trong tiêu đề cột";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Có những thay đổi chưa được lưu trong trình chỉnh sửa: việc tải từ đĩa sẽ thay thế chúng.";
 "В результате нет столбца первичного ключа «%@»" = "Kết quả là không có cột khóa chính '%@'";
+"Введите пароль от «%@»" = "Nhập mật khẩu cho \"%@\"";
 "Вернуть 200 строк на страницу" = "Trả về 200 hàng trên mỗi trang";
 "Вернуть по умолчанию" = "Đặt lại về mặc định";
 "Вернуть прежний размер" = "Trở về kích thước trước đó";
@@ -76,7 +77,6 @@
 "Выберите ячейку и нажмите «Значение»" = "Chọn một ô và mở bảng điều khiển";
 "Выбрать JDBC-драйвер (.jar)" = "Chọn trình điều khiển JDBC (.jar)";
 "Выбрать всё" = "Chọn tất cả";
-"Выбрать исполняемый файл java" = "Chọn java thực thi";
 "Выбрать каталог с файлом config" = "Chọn thư mục chứa file config";
 "Выбрать папку network/admin" = "Chọn thư mục mạng/quản trị viên";
 "Выбрать файл базы SQLite" = "Chọn tệp cơ sở dữ liệu SQLite";
@@ -109,6 +109,7 @@
 "Дублировать вкладку" = "Tab trùng lặp";
 "Дублировать подключение" = "Kết nối trùng lặp";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Nếu nhãn NULL khớp với giá trị trên bảng ghi tạm thì NULL sẽ được chèn vào ô. Nhãn trống có nghĩa là một dòng trống.";
+"Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Nếu bạn không cần lưu mật khẩu kết nối, hãy tắt “Lưu mật khẩu” trong cài đặt của nó - khi đó mật khẩu sẽ được yêu cầu khi kết nối.";
 "Есть несохранённые изменения." = "Có những thay đổi chưa được lưu.";
 "Завершить DBooyvol" = "Thoát khỏi DBooyvol";
 "Завершить и закрыть все окна" = "Thoát và đóng tất cả các cửa sổ";
@@ -181,6 +182,7 @@
 "Копировать названия столбцов" = "Sao chép tiêu đề cột";
 "Копировать номера строк" = "Sao chép số dòng";
 "Копировать…" = "Sao chép…";
+"Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Thông tin đăng nhập và mật khẩu từ URL được lưu dưới dạng văn bản rõ ràng. Xóa chúng khỏi URL và sử dụng trường Người dùng và Mật khẩu.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Tệp SQLite cục bộ được mở trực tiếp, không cần máy chủ.";
 "Максимальная авто-ширина: %@ pt" = "Độ rộng tự động tối đa: %@ pt";
 "Максимум ширины:" = "Chiều rộng tối đa:";
@@ -209,10 +211,13 @@
 "Не удалось открыть файл: %@" = "Không mở được tập tin: %@";
 "Не удалось переименовать файл: %@" = "Không đổi tên được tập tin: %@";
 "Не удалось подключиться: %@" = "Không kết nối được: %@";
+"Не удалось получить мастер-ключ из связки ключей macOS" = "Không lấy được khóa chính từ chuỗi khóa macOS";
 "Не удалось получить столбцы %@" = "Không lấy được cột %@";
 "Не удалось прочитать %@ как текст" = "Không thể đọc %@ dưới dạng văn bản";
+"Не удалось расшифровать сохранённый пароль — введите его заново" = "Không giải mã được mật khẩu đã lưu - vui lòng nhập lại";
 "Не удалось создать файл: %@" = "Không tạo được tập tin: %@";
 "Не удалось сохранить: %@" = "Không lưu được: %@";
+"Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Không xóa được mật khẩu cũ - cho phép truy cập trong lời nhắc macOS";
 "Неизвестная ошибка" = "Lỗi không xác định";
 "Нет данных для вставки" = "Không có dữ liệu để chèn";
 "Нет данных для копирования" = "Không có dữ liệu để sao chép";
@@ -267,8 +272,13 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Thư mục Instant Client: ojdbc*.jar và network/admin được lấy từ nó";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Thư mục mạng/quản trị viên với tnsnames.ora, ldap.ora và sqlnet.ora";
 "Папка: %@" = "Thư mục: %@";
+"Пароли" = "Mật khẩu";
+"Пароли перешифрованы новым мастер-ключом" = "Mật khẩu được mã hóa lại bằng khóa chính mới";
 "Пароли…" = "Mật khẩu...";
 "Пароль" = "Mật khẩu";
+"Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Mật khẩu sẽ được yêu cầu khi kết nối và chỉ được lưu trữ cho đến khi kết thúc phiên.";
+"Пароль не введён" = "Mật khẩu chưa được nhập";
+"Пароль сохранён другим мастер-ключом — введите его заново" = "Mật khẩu được lưu bằng khóa chính khác - hãy nhập lại";
 "Перезапустить" = "Khởi động lại";
 "Перезапустить приложение с новым языком" = "Khởi động lại ứng dụng bằng ngôn ngữ mới";
 "Переименовать" = "Đổi tên";
@@ -280,6 +290,7 @@
 "Переместить и изменить размер" = "Di chuyển và thay đổi kích thước";
 "Перенос строк" = "Gói từ";
 "Перечитать tnsnames.ora и ldap.ora" = "Đọc lại tnsnames.ora và ldap.ora";
+"Перешифровать пароли" = "Mã hóa lại mật khẩu";
 "По умолчанию" = "Mặc định";
 "По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое." = "Giá trị mặc định là 200. Nếu kết quả có nhiều hàng hơn, khi cuộn đến cuối bảng, số đó sẽ tự động được tải. Nút \"Tải thêm\" cũng thực hiện tương tự.";
 "По умолчанию тип показывается во всплывающей подсказке при наведении на заголовок. Можно включить оба варианта или отключить оба." = "Theo mặc định, loại này được hiển thị trong chú giải công cụ khi di chuột qua tiêu đề. Bạn có thể kích hoạt cả hai tùy chọn hoặc vô hiệu hóa cả hai.";
@@ -315,6 +326,7 @@
 "Пользователь" = "Người dùng";
 "Пользователь (необязательно)" = "Người dùng (tùy chọn)";
 "Пользователь: %@" = "Người dùng: %@";
+"Понятно" = "Tôi thấy";
 "Порт" = "Cảng";
 "Правка" = "Chỉnh sửa";
 "Предыдущая вкладка" = "Tab trước";
@@ -331,7 +343,6 @@
 "Пусто" = "Trống";
 "Пустой первичный ключ «%@»" = "Khóa chính trống \"%@\"";
 "Путь к jar" = "Đường dẫn đến bình";
-"Путь к java" = "Đường dẫn đến java";
 "Разделитель столбцов" = "Dấu phân cách cột";
 "Разделитель строк" = "Dấu phân cách dòng";
 "Размер шрифта: %@ pt" = "Cỡ chữ: %@pt";
@@ -344,7 +355,6 @@
 "Результат последнего запроса" = "Kết quả của yêu cầu cuối cùng";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Kết quả chứa các cột từ các bảng khác nhau - không thể lưu được";
 "Русский" = "Tiếng Nga";
-"Сборка sidecar" = "Lắp ráp sidecar";
 "Сбросить вид" = "Đặt lại chế độ xem";
 "Сбросить поиск по истории" = "Đặt lại tìm kiếm lịch sử";
 "Свернуть" = "Thu gọn";
@@ -384,6 +394,7 @@
 "Снизу справа" = "Dưới cùng bên phải";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Nội dung của \"%@\" khác với nội dung được lưu trên đĩa.\nTôi nên tải phiên bản từ đĩa hay để lại văn bản trong trình chỉnh sửa?";
 "Создать новое подключение…" = "Tạo kết nối mới...";
+"Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Tạo khóa chính mới và mã hóa lại tất cả mật khẩu đã lưu";
 "Сортировка: %@ %@" = "Sắp xếp: %@ %@";
 "Сохранение изменений…" = "Đang lưu thay đổi...";
 "Сохранение…" = "Đang lưu…";
@@ -393,9 +404,12 @@
 "Сохранить" = "Lưu";
 "Сохранить значение в файл" = "Lưu giá trị vào tập tin";
 "Сохранить как…" = "Lưu dưới dạng...";
+"Сохранить пароль" = "Lưu mật khẩu";
 "Сохранить подключение" = "Lưu kết nối";
 "Сохранить…" = "Lưu…";
+"Сохранять пароль" = "Lưu mật khẩu";
 "Сохранять сжатое значение" = "Lưu giá trị rút gọn";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Mật khẩu đã lưu được mã hóa bằng AES-256-GCM. Khóa chính được lưu trữ trong Chuỗi khóa macOS và được gắn với chữ ký ứng dụng, do đó, bản sao của thư mục dữ liệu không có chuỗi khóa là vô ích.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Mật khẩu đã lưu sẽ bị xóa. Các tab đang mở sẽ vẫn còn.";
 "Сочетание уже используется: %@" = "Phím tắt đã được sử dụng: %@";
 "Способ подключения" = "Phương thức kết nối";
@@ -405,6 +419,7 @@
 "Справа на экране" = "Ngay trên màn hình";
 "Справка" = "Trợ giúp";
 "Справка DBooyvol" = "Trợ giúp DBooyvol";
+"Старые пароли удалены из связки ключей" = "Đã xóa mật khẩu cũ khỏi móc khóa";
 "Столбец: %@ %@" = "Cột: %@ %@";
 "Столбцы переставлены" = "Các cột được sắp xếp lại";
 "Строк за загрузку: %@" = "Số dòng mỗi lần tải: %@";
@@ -429,6 +444,8 @@
 "Удалить всю историю запросов" = "Xóa tất cả lịch sử truy vấn";
 "Удалить подключение «%@»?" = "Xóa kết nối \"%@\"?";
 "Удалить подключение…" = "Xóa kết nối...";
+"Удалить старые пароли из связки ключей" = "Xóa mật khẩu cũ khỏi móc khóa";
+"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Xóa các thành phần của phiên bản trước (dịch vụ ru.evotor.sqldesk), nơi mật khẩu được lưu trữ ở dạng văn bản rõ ràng";
 "Удалить это подключение и сохранённый пароль" = "Xóa kết nối này và mật khẩu đã lưu";
 "Удалить…" = "Xóa…";
 "Українська" = "Tiếng Ukraina";

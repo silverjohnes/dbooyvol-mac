@@ -33,14 +33,14 @@ bump-build:
 
 build: bump-build project
 	xcodebuild -project DBooyvol.xcodeproj -scheme DBooyvol -configuration Debug \
-		-derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+		-derivedDataPath build -allowProvisioningUpdates build
 
 run: build
 	open "$(APP)"
 
 release: bump-build project
 	xcodebuild -project DBooyvol.xcodeproj -scheme DBooyvol -configuration Release \
-		-derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+		-derivedDataPath build -allowProvisioningUpdates build
 
 clean:
 	rm -rf build DBooyvol.xcodeproj Resources/sidecar.jar Sidecar/build

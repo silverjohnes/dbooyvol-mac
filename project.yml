@@ -1,6 +1,6 @@
 name: DBooyvol
 options:
-  bundleIdPrefix: ru.evotor
+  bundleIdPrefix: silver
   deploymentTarget:
     macOS: "13.0"
   developmentLanguage: ru
@@ -12,9 +12,10 @@ settings:
     SWIFT_VERSION: "5.0"
     SWIFT_STRICT_CONCURRENCY: minimal
     MACOSX_DEPLOYMENT_TARGET: "13.0"
-    CODE_SIGN_STYLE: Manual
-    CODE_SIGN_IDENTITY: "-"
-    DEVELOPMENT_TEAM: ""
+    # Personal Team (free Apple ID). A stable signature keeps the Keychain
+    # master-key item accessible across rebuilds.
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: VWLZA3FPJX
     ENABLE_HARDENED_RUNTIME: NO
 
 targets:
@@ -27,13 +28,18 @@ targets:
         buildPhase: resources
     settings:
       base:
-        # Kept stable across the SQLDesk -> DBooyvol rename so existing
-        # UserDefaults (fonts, width settings) continue to load.
-        PRODUCT_BUNDLE_IDENTIFIER: ru.evotor.sqldesk
+        # Changing this changes the UserDefaults domain, so AppSettings
+        # migrates the settings from the previous identifier on first launch.
+        PRODUCT_BUNDLE_IDENTIFIER: silver.dbooyvol
         PRODUCT_NAME: DBooyvol
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
         MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "73"
+        CURRENT_PROJECT_VERSION: "79"
+      configs:
+        Release:
+          # No debugger entitlement in the build that holds the Keychain key.
+          CODE_SIGN_INJECT_BASE_ENTITLEMENTS: NO
+          ENABLE_HARDENED_RUNTIME: YES
     info:
       path: Info.plist
       properties:
@@ -65,7 +71,7 @@ targets:
           - sv
           - cs
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "73"
+        CFBundleVersion: "79"
         LSMinimumSystemVersion: "13.0"
         LSApplicationCategoryType: public.app-category.developer-tools
         NSHighResolutionCapable: true
