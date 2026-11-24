@@ -107,10 +107,21 @@ struct ValuePanelView: View {
     private var footer: some View {
         HStack(spacing: 8) {
             if let item {
-                Text(L10n.tr("Строка") + " \(item.rowNumber) · \(item.columnType)")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                    .lineLimit(1)
+                HStack(spacing: 4) {
+                    Text(L10n.tr("Строка") + " \(item.rowNumber) · \(item.columnType)")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                    Button {
+                        copyToPasteboard(item.columnType)
+                    } label: {
+                        Image(systemName: "doc.on.doc")
+                    }
+                    .buttonStyle(.borderless)
+                    .controlSize(.small)
+                    .disabled(item.columnType.isEmpty)
+                    .help("Скопировать тип данных")
+                }
                 if let saveMessage {
                     Text(saveMessage)
                         .font(.caption2)
@@ -121,9 +132,7 @@ struct ValuePanelView: View {
             Spacer()
             Button("Копировать") {
                 guard let item else { return }
-                let pasteboard = NSPasteboard.general
-                pasteboard.clearContents()
-                pasteboard.setString(displayText(for: item), forType: .string)
+                copyToPasteboard(displayText(for: item))
             }
             .controlSize(.small)
             .disabled(item == nil)
@@ -138,6 +147,12 @@ struct ValuePanelView: View {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 5)
+    }
+
+    private func copyToPasteboard(_ string: String) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.setString(string, forType: .string)
     }
 
     // MARK: - rendering

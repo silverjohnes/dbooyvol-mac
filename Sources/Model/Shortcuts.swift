@@ -264,7 +264,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
         case .resetFont: return ShortcutBinding(key: "0", modifiers: .command)
         case .fullScreen: return ShortcutBinding(key: "f", modifiers: [.command, .control])
         case .closeWindow: return ShortcutBinding(key: "w", modifiers: [.control, .command])
-        case .shortcutsHelp: return ShortcutBinding(key: "/", modifiers: [.command, .shift])
+        case .shortcutsHelp: return ShortcutBinding(key: "\u{F704}", modifiers: [])
         }
     }
 

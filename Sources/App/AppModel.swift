@@ -23,6 +23,13 @@ enum FocusPane {
     case result
 }
 
+extension Notification.Name {
+    /// Posted when the SQL editor takes keyboard focus. The tab strip listens
+    /// so it stops treating itself as the scroll target: after jumping to a
+    /// query from search, the wheel must scroll that query, not the tabs.
+    static let editorDidTakeFocus = Notification.Name("DBooyvol.EditorDidTakeFocus")
+}
+
 @MainActor
 final class AppModel: ObservableObject {
     static let shared = AppModel()
@@ -81,6 +88,8 @@ final class AppModel: ObservableObject {
     @Published var tabs: [QueryTab] = []
     @Published var activeTabID: UUID = UUID()
     @Published var showQuickOpen = false
+    /// True when the quick-open sheet is closing because a query was chosen.
+    private var quickOpenChoseTab = false
     @Published var inlineRenameTabID: UUID?
     @Published var showEditorSearch = false
     @Published var editorSearchQuery = ""
@@ -1494,12 +1503,33 @@ final class AppModel: ObservableObject {
     // MARK: - quick open
 
     func openQuickOpen() {
+        quickOpenChoseTab = false
         showQuickOpen = true
     }
 
     func selectTabFromSearch(_ id: UUID) {
+        quickOpenChoseTab = true
+        if id != activeTabID {
+            selectTab(id)
+        }
         showQuickOpen = false
-        selectTab(id)
+    }
+
+    /// Runs after the quick-open sheet has actually disappeared. Focusing the
+    /// editor earlier is not enough: AppKit restores the previous responder
+    /// (often the tab strip) while the sheet is still being dismissed.
+    func quickOpenDidDismiss() {
+        guard quickOpenChoseTab else { return }
+        quickOpenChoseTab = false
+        focusEditor()
+    }
+
+    /// Gives the editor the keyboard and releases the tab strip's scroll
+    /// target, so a wheel gesture right after a jump scrolls the query.
+    func focusEditor() {
+        focusedPane = .editor
+        editor.focus()
+        NotificationCenter.default.post(name: .editorDidTakeFocus, object: nil)
     }
 
     // MARK: - editor actions

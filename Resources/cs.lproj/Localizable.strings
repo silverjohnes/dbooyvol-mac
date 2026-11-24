@@ -247,7 +247,7 @@
 "Открыть" = "Otevřít";
 "Открыть в приложении" = "Otevřít v aplikaci";
 "Открыть в…" = "Otevřít v…";
-"Открыть список горячих клавиш (⇧⌘/)" = "Otevřít seznam klávesových zkratek (⇧⌘/)";
+"Открыть список горячих клавиш (%@)" = "Otevřít seznam klávesových zkratek (%@)";
 "Открыть ссылку" = "Otevřít odkaz";
 "Открыть файл…" = "Otevřít soubor...";
 "Отмена" = "Zrušit";
@@ -364,6 +364,7 @@
 "Скопировано столбцов: %@" = "Sloupce zkopírovány: %@";
 "Скопировано: %@ строк" = "Zkopírováno: %@ řádků";
 "Скопировать показанное значение" = "Zobrazená hodnota kopírování";
+"Скопировать тип данных" = "Kopírovat datový typ";
 "Скрипт: %@" = "Skript: %@";
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = "Skripty .sql se otevírají na kartě, databáze .db / .sqlite se otevírají jako připojení";
 "Скрыть DBooyvol" = "Skrýt DBooyvol";
@@ -411,7 +412,7 @@
 "Строка" = "Řádek";
 "Схема: %@" = "Schéma: %@";
 "Таблица: %@" = "Tabulka: %@";
-"Также открывается из меню «Справка» по ⇧⌘/." = "Otevírá se také z nabídky Nápověda pomocí ⇧⌘/.";
+"Также открывается из меню «Справка» по %@." = "Otevírá se také z nabídky Nápověda na %@.";
 "Текст" = "Text";
 "Тест" = "Test";
 "Тип" = "Typ";
@@ -433,6 +434,7 @@
 "Українська" = "Ukrajinský";
 "Уменьшить шрифт" = "Zmenšit písmo";
 "Уникальный ключ: %@(%@)" = "Jedinečný klíč: %@(%@)";
+"Управление" = "Ovládání";
 "Файл" = "Soubor";
 "Файл «%@» уже существует" = "Soubor \"%@\" již existuje";
 "Файл базы (.db / .sqlite)" = "Soubor databáze (.db / .sqlite)";

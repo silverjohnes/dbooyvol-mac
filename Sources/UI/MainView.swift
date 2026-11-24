@@ -76,7 +76,7 @@ struct MainView: View {
             ConnectionEditorView(profile: profile)
                 .environmentObject(model)
         }
-        .sheet(isPresented: $model.showQuickOpen) {
+        .sheet(isPresented: $model.showQuickOpen, onDismiss: { model.quickOpenDidDismiss() }) {
             QuickOpenView()
                 .environmentObject(model)
         }

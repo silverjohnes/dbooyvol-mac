@@ -247,7 +247,7 @@
 "Открыть" = "Buka";
 "Открыть в приложении" = "Buka di aplikasi";
 "Открыть в…" = "Buka di…";
-"Открыть список горячих клавиш (⇧⌘/)" = "Buka daftar hotkey (⇧⌘/)";
+"Открыть список горячих клавиш (%@)" = "Buka daftar hotkey (%@)";
 "Открыть ссылку" = "Buka tautan";
 "Открыть файл…" = "Buka berkas...";
 "Отмена" = "Batalkan";
@@ -364,6 +364,7 @@
 "Скопировано столбцов: %@" = "Kolom disalin: %@";
 "Скопировано: %@ строк" = "Disalin: %@ baris";
 "Скопировать показанное значение" = "Nilai salin ditampilkan";
+"Скопировать тип данных" = "Salin tipe data";
 "Скрипт: %@" = "Skrip: %@";
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = "Skrip .sql terbuka di tab, database .db / .sqlite terbuka sebagai koneksi";
 "Скрыть DBooyvol" = "Sembunyikan DBooyvol";
@@ -411,7 +412,7 @@
 "Строка" = "Baris";
 "Схема: %@" = "Skema: %@";
 "Таблица: %@" = "Tabel: %@";
-"Также открывается из меню «Справка» по ⇧⌘/." = "Juga terbuka dari menu Bantuan oleh ⇧⌘/.";
+"Также открывается из меню «Справка» по %@." = "Juga terbuka dari menu Bantuan di %@.";
 "Текст" = "Teks";
 "Тест" = "Tes";
 "Тип" = "Ketik";
@@ -433,6 +434,7 @@
 "Українська" = "Ukraina";
 "Уменьшить шрифт" = "Kurangi font";
 "Уникальный ключ: %@(%@)" = "Kunci unik: %@(%@)";
+"Управление" = "Kontrol";
 "Файл" = "Mengajukan";
 "Файл «%@» уже существует" = "Berkas \"%@\" sudah ada";
 "Файл базы (.db / .sqlite)" = "File basis data (.db / .sqlite)";

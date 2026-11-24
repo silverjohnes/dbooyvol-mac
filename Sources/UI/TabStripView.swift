@@ -23,7 +23,8 @@ final class TabStripContainer: NSView {
     private var scrollMonitor: Any?
     private var clickMonitor: Any?
     /// True while the tab strip is the scroll target. It survives scrolling
-    /// in other panes and is cleared only by a click outside the strip.
+    /// in other panes and is cleared by a click outside the strip or by the
+    /// editor taking focus (for example after a quick-open jump).
     private var ownsScroll = false
 
     init(model: AppModel) {
@@ -50,10 +51,16 @@ final class TabStripContainer: NSView {
         NotificationCenter.default.addObserver(
             self, selector: #selector(clipBoundsChanged),
             name: NSView.boundsDidChangeNotification, object: scroll.contentView)
+        // Focus can move to the editor without a click in it (for example
+        // after choosing a query in search). The wheel must follow the editor
+        // from that moment, so drop the sticky tab-strip scroll target.
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(editorDidTakeFocus),
+            name: .editorDidTakeFocus, object: nil)
 
         // Scrolling over the tabs makes the strip the scroll target. From
         // then on, scrolling anywhere else keeps scrolling the tabs until the
-        // user clicks another pane (which moves the focus there).
+        // user clicks another pane or the editor takes focus.
         scrollMonitor = NSEvent.addLocalMonitorForEvents(matching: .scrollWheel) { [weak self] event in
             guard let self else { return event }
             let inside = self.containsStripPoint(event)
@@ -109,6 +116,11 @@ final class TabStripContainer: NSView {
     /// else hand scrolling back to that pane.
     func noteClick(atWindowPoint point: NSPoint) {
         ownsScroll = bounds.contains(convert(point, from: nil))
+    }
+
+    /// The editor took focus, so the next wheel gesture belongs to it.
+    @objc private func editorDidTakeFocus() {
+        ownsScroll = false
     }
 
     var isScrollOwner: Bool { ownsScroll }

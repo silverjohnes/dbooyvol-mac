@@ -23,7 +23,10 @@ final class SQLTextView: NSTextView {
 
     override func becomeFirstResponder() -> Bool {
         let accepted = super.becomeFirstResponder()
-        if accepted { onFocus?() }
+        if accepted {
+            onFocus?()
+            NotificationCenter.default.post(name: .editorDidTakeFocus, object: self)
+        }
         return accepted
     }
 

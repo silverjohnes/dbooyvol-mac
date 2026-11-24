@@ -165,6 +165,7 @@ EN_OVERRIDES = {
     "В названии столбца": "In column header",
     "Данные в результате": "Result data",
     "Загрузка данных": "Loading data",
+    "Управление": "Controls",
 
     # Copy dialog.
     "Display (по умолчанию)": "Display (default)",
@@ -355,6 +356,19 @@ SHORTCUT_MANUAL = {
     "cs": {"Пробел": "Mezerník"},
 }
 for _lang, _items in SHORTCUT_MANUAL.items():
+    MANUAL.setdefault(_lang, {}).update(_items)
+
+# "Controls" is machine-translated as "checks" or "UI widgets" in some
+# languages; the settings section needs the "operation" sense.
+SECTION_MANUAL = {
+    "de": {"Управление": "Bedienung"},
+    "pl": {"Управление": "Sterowanie"},
+    "cs": {"Управление": "Ovládání"},
+    "ko": {"Управление": "제어"},
+    "sv": {"Управление": "Styrning"},
+    "tr": {"Управление": "Denetim"},
+}
+for _lang, _items in SECTION_MANUAL.items():
     MANUAL.setdefault(_lang, {}).update(_items)
 
 # SQL text must stay SQL in every language.

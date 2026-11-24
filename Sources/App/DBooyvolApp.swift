@@ -24,6 +24,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         AppModel.shared.checkForExternalChanges()
     }
 
+    /// Opens the shortcuts window from the F1 monitor. SwiftUI owns the window,
+    /// so reuse it when it already exists and otherwise activate the Help menu
+    /// item that creates it.
+    private func openShortcutsWindow() {
+        if let window = NSApp.windows.first(where: {
+            $0.frameAutosaveName == WindowLayout.shortcutsName
+        }) {
+            if window.isMiniaturized { window.deminiaturize(nil) }
+            window.makeKeyAndOrderFront(nil)
+            return
+        }
+        guard let menu = NSApp.helpMenu ?? NSApp.mainMenu?.items.last?.submenu else { return }
+        let localized = L10n.tr("Горячие клавиши")
+        guard let index = menu.items.firstIndex(where: {
+            $0.title == localized || $0.title == "Горячие клавиши"
+        }) else { return }
+        menu.performActionForItem(at: index)
+    }
+
     /// Translates the standard macOS menus that SwiftUI creates in the system
     /// language, so the whole menu bar is Russian.
     private func localizeMenus() {
@@ -149,17 +168,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         QuitGuard.shared.start()
         AppModel.shared.startWatchingExternalChanges()
 
-        // F4 edits the active connection. Handled here (not as a menu key equivalent) so it
-        // also works when F-keys are remapped and while the tree has focus.
-        functionKeyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+        // F4 edits the active connection and F1 opens the shortcuts window.
+        // Handled here (not as menu key equivalents) so they also work when
+        // F-keys are remapped and while the tree or editor has focus.
+        functionKeyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
             let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
             let extra = flags.subtracting([.function, .numericPad, .capsLock])
-            guard event.keyCode == 118, extra.isEmpty else { return event }
+            guard extra.isEmpty else { return event }
             guard NSApp.modalWindow == nil else { return event }
             if let key = NSApp.keyWindow, key.attachedSheet != nil { return event }
-            guard let profile = AppModel.shared.activeProfile else { return event }
-            AppModel.shared.editProfile(profile)
-            return nil
+            switch event.keyCode {
+            case 118:
+                guard let profile = AppModel.shared.activeProfile else { return event }
+                AppModel.shared.editProfile(profile)
+                return nil
+            case 122:
+                guard let binding = ShortcutStore.shared.binding(for: .shortcutsHelp),
+                      binding.modifiers == 0,
+                      binding.key == "\u{F704}" else { return event }
+                self?.openShortcutsWindow()
+                return nil
+            default:
+                return event
+            }
         }
 
         // Free Cmd+W for "close tab" and localize the standard macOS menus.

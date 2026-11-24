@@ -8,6 +8,7 @@ struct SettingsView: View {
     @AppStorage(AppSettings.sshDirectoryKey) private var sshDirectory = "/Users/silver/.ssh"
     @AppStorage(AppSettings.javaPathKey) private var javaPath = "/usr/bin/java"
     @AppStorage(AppSettings.autosaveTabsKey) private var autosaveTabs = true
+    @ObservedObject private var shortcuts = ShortcutStore.shared
 
     var body: some View {
         Form {
@@ -41,51 +42,12 @@ struct SettingsView: View {
                 }
             }
 
-            Section("Запросы") {
-                Toggle("Автосохранение открытых запросов между сессиями", isOn: $autosaveTabs)
-                Text("При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске.")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-
-            Section("История запросов") {
-                Picker(
-                    "Хранить историю",
-                    selection: Binding(
-                        get: { model.historyRetentionDays },
-                        set: { model.setHistoryRetentionDays($0) }
-                    )
-                ) {
-                    ForEach(HistoryRetention.allCases) { option in
-                        Text(option.title).tag(option.rawValue)
-                    }
-                }
-                Text("По умолчанию — 1 месяц. Записи старше выбранного срока удаляются автоматически при запуске и сразу при уменьшении срока; файл истории при этом сжимается.")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                HStack {
-                    Text(L10n.fmt("Записей в истории: %@", String(model.history.count)))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Button("Очистить историю", role: .destructive) {
-                        model.clearHistory()
-                    }
-                    .help("Удалить всю историю запросов")
-                }
-            }
-
-            Section("Загрузка данных") {
-                HStack {
-                    Text("Строк за одну загрузку:")
-                    TextField("", value: pageSizeBinding, format: .number)
-                        .frame(width: 80)
-                    Stepper("", value: pageSizeBinding, in: AppModel.minPageSize...AppModel.maxPageSize, step: 50)
-                        .labelsHidden()
-                    Button("По умолчанию") { model.resetPageSize() }
-                        .help("Вернуть 200 строк на страницу")
-                }
-                Text("По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое.")
+            Section("Управление") {
+                Button("Горячие клавиши…") { openWindow(id: "shortcuts") }
+                    .help(L10n.fmt("Открыть список горячих клавиш (%@)",
+                                   shortcuts.binding(for: .shortcutsHelp)?.display ?? ""))
+                Text(L10n.fmt("Также открывается из меню «Справка» по %@.",
+                              shortcuts.binding(for: .shortcutsHelp)?.display ?? ""))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -200,6 +162,55 @@ struct SettingsView: View {
                 }
             }
 
+            Section("Загрузка данных") {
+                HStack {
+                    Text("Строк за одну загрузку:")
+                    TextField("", value: pageSizeBinding, format: .number)
+                        .frame(width: 80)
+                    Stepper("", value: pageSizeBinding, in: AppModel.minPageSize...AppModel.maxPageSize, step: 50)
+                        .labelsHidden()
+                    Button("По умолчанию") { model.resetPageSize() }
+                        .help("Вернуть 200 строк на страницу")
+                }
+                Text("По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+
+            Section("Запросы") {
+                Toggle("Автосохранение открытых запросов между сессиями", isOn: $autosaveTabs)
+                Text("При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+
+            Section("История запросов") {
+                Picker(
+                    "Хранить историю",
+                    selection: Binding(
+                        get: { model.historyRetentionDays },
+                        set: { model.setHistoryRetentionDays($0) }
+                    )
+                ) {
+                    ForEach(HistoryRetention.allCases) { option in
+                        Text(option.title).tag(option.rawValue)
+                    }
+                }
+                Text("По умолчанию — 1 месяц. Записи старше выбранного срока удаляются автоматически при запуске и сразу при уменьшении срока; файл истории при этом сжимается.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                HStack {
+                    Text(L10n.fmt("Записей в истории: %@", String(model.history.count)))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Button("Очистить историю", role: .destructive) {
+                        model.clearHistory()
+                    }
+                    .help("Удалить всю историю запросов")
+                }
+            }
+
             Section("SSH") {
                 HStack {
                     TextField("Каталог ~/.ssh", text: $sshDirectory)
@@ -227,14 +238,6 @@ struct SettingsView: View {
                 Text("./Sidecar/build.sh — пересобирает Resources/sidecar.jar")
                     .font(.system(size: 11, design: .monospaced))
                     .textSelection(.enabled)
-            }
-
-            Section("Справка") {
-                Button("Горячие клавиши…") { openWindow(id: "shortcuts") }
-                    .help("Открыть список горячих клавиш (⇧⌘/)")
-                Text("Также открывается из меню «Справка» по ⇧⌘/.")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
             }
         }
         .formStyle(.grouped)

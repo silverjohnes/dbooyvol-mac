@@ -330,9 +330,9 @@ struct QuickOpenView: View {
 
     private func openSelected() {
         guard selected >= 0, selected < results.count else { return }
-        let tab = results[selected]
-        dismiss()
-        model.selectTab(tab.id)
+        // The model closes the sheet and focuses the editor in onDismiss, after
+        // AppKit has finished restoring the old first responder.
+        model.selectTabFromSearch(results[selected].id)
     }
 }
 

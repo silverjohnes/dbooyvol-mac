@@ -247,7 +247,7 @@
 "Открыть" = "Açık";
 "Открыть в приложении" = "Uygulamada aç";
 "Открыть в…" = "Şu tarihte aç:";
-"Открыть список горячих клавиш (⇧⌘/)" = "Kısayol tuşlarının listesini aç (⇧⌘/)";
+"Открыть список горячих клавиш (%@)" = "Kısayol tuşlarının listesini aç (%@)";
 "Открыть ссылку" = "Bağlantıyı aç";
 "Открыть файл…" = "Dosyayı aç...";
 "Отмена" = "İptal";
@@ -364,6 +364,7 @@
 "Скопировано столбцов: %@" = "Kopyalanan sütunlar: %@";
 "Скопировано: %@ строк" = "Kopyalandı: %@ satır";
 "Скопировать показанное значение" = "Gösterilen değeri kopyala";
+"Скопировать тип данных" = "Veri türünü kopyala";
 "Скрипт: %@" = "Komut dosyası: %@";
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = ".sql scriptleri bir sekmede açılır, .db / .sqlite veritabanları bağlantı olarak açılır";
 "Скрыть DBooyvol" = "DBooyvol'u gizle";
@@ -411,7 +412,7 @@
 "Строка" = "Satır";
 "Схема: %@" = "Şema: %@";
 "Таблица: %@" = "Tablo: %@";
-"Также открывается из меню «Справка» по ⇧⌘/." = "Ayrıca Yardım menüsünden ⇧⌘/ ile açılır.";
+"Также открывается из меню «Справка» по %@." = "Ayrıca %@ üzerindeki Yardım menüsünden de açılır.";
 "Текст" = "Metin";
 "Тест" = "Testi";
 "Тип" = "Tür";
@@ -433,6 +434,7 @@
 "Українська" = "Ukraynaca";
 "Уменьшить шрифт" = "Yazı tipini azalt";
 "Уникальный ключ: %@(%@)" = "Benzersiz anahtar: %@(%@)";
+"Управление" = "Denetim";
 "Файл" = "Dosya";
 "Файл «%@» уже существует" = "\"%@\" dosyası zaten mevcut";
 "Файл базы (.db / .sqlite)" = "Veritabanı dosyası (.db / .sqlite)";

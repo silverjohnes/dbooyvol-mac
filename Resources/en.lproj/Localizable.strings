@@ -247,7 +247,7 @@
 "Открыть" = "Open";
 "Открыть в приложении" = "Open in app";
 "Открыть в…" = "Open in…";
-"Открыть список горячих клавиш (⇧⌘/)" = "Open list of hotkeys (⇧⌘/)";
+"Открыть список горячих клавиш (%@)" = "Open list of hotkeys (%@)";
 "Открыть ссылку" = "Open link";
 "Открыть файл…" = "Open file...";
 "Отмена" = "Cancel";
@@ -364,6 +364,7 @@
 "Скопировано столбцов: %@" = "Columns copied: %@";
 "Скопировано: %@ строк" = "Copied: %@ rows";
 "Скопировать показанное значение" = "Copy value shown";
+"Скопировать тип данных" = "Copy data type";
 "Скрипт: %@" = "Script: %@";
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = ".sql scripts open in a tab, .db / .sqlite databases open as a connection";
 "Скрыть DBooyvol" = "Hide DBooyvol";
@@ -411,7 +412,7 @@
 "Строка" = "Row";
 "Схема: %@" = "Schema: %@";
 "Таблица: %@" = "Table: %@";
-"Также открывается из меню «Справка» по ⇧⌘/." = "Also opens from the Help menu by ⇧⌘/.";
+"Также открывается из меню «Справка» по %@." = "Also opens from the Help menu on %@.";
 "Текст" = "Text";
 "Тест" = "Test";
 "Тип" = "Type";
@@ -433,6 +434,7 @@
 "Українська" = "Ukrainian";
 "Уменьшить шрифт" = "Decrease font";
 "Уникальный ключ: %@(%@)" = "Unique key: %@(%@)";
+"Управление" = "Controls";
 "Файл" = "File";
 "Файл «%@» уже существует" = "File \"%@\" already exists";
 "Файл базы (.db / .sqlite)" = "Database file (.db / .sqlite)";

@@ -247,7 +247,7 @@
 "Открыть" = "Aperto";
 "Открыть в приложении" = "Apri nell'app";
 "Открыть в…" = "Aperto tra…";
-"Открыть список горячих клавиш (⇧⌘/)" = "Apri l'elenco dei tasti di scelta rapida (⇧⌘/)";
+"Открыть список горячих клавиш (%@)" = "Apri l'elenco dei tasti di scelta rapida (%@)";
 "Открыть ссылку" = "Apri collegamento";
 "Открыть файл…" = "Apri file...";
 "Отмена" = "Annulla";
@@ -364,6 +364,7 @@
 "Скопировано столбцов: %@" = "Colonne copiate: %@";
 "Скопировано: %@ строк" = "Copiato: %@ righe";
 "Скопировать показанное значение" = "Copia il valore mostrato";
+"Скопировать тип данных" = "Copia il tipo di dati";
 "Скрипт: %@" = "Copione: %@";
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = "Gli script .sql si aprono in una scheda, i database .db/.sqlite si aprono come connessione";
 "Скрыть DBooyvol" = "Nascondi DBooyvol";
@@ -411,7 +412,7 @@
 "Строка" = "Fila";
 "Схема: %@" = "Schema: %@";
 "Таблица: %@" = "Tabella: %@";
-"Также открывается из меню «Справка» по ⇧⌘/." = "Si apre anche dal menu Aiuto tramite ⇧⌘/.";
+"Также открывается из меню «Справка» по %@." = "Si apre anche dal menu Aiuto su %@.";
 "Текст" = "Testo";
 "Тест" = "Prova";
 "Тип" = "Digitare";
@@ -433,6 +434,7 @@
 "Українська" = "Ucraino";
 "Уменьшить шрифт" = "Diminuisci carattere";
 "Уникальный ключ: %@(%@)" = "Chiave univoca: %@(%@)";
+"Управление" = "Controlli";
 "Файл" = "Archivio";
 "Файл «%@» уже существует" = "Il file \"%@\" esiste già";
 "Файл базы (.db / .sqlite)" = "File di database (.db / .sqlite)";
