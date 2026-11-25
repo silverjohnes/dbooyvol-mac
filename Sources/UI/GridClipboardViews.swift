@@ -107,7 +107,7 @@ struct GridCopySettingsView: View {
             GroupBox {
                 Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 8) {
                     GridRow {
-                        Text("Value display format")
+                        Text("Формат значений")
                         Picker("", selection: $valueFormat) {
                             ForEach(GridValueFormat.allCases, id: \.self) { format in
                                 Text(format.title).tag(format)

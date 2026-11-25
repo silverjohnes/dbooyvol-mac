@@ -153,7 +153,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
     case newScript, newConnection, openFile, save, saveAs, revealTab
     case clearEditor, closeTab, closeOtherTabs, closeAllTabs
     // Правка
-    case find, toggleComment
+    case find, toggleComment, toggleMarkedComment
     // Запрос
     case runOrStop, runSelection, runAll, runUnderCursor, cancelQuery
     case loadMore, exportCSV, exportXML
@@ -185,6 +185,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
         case .closeAllTabs: return "Закрыть все вкладки"
         case .find: return "Найти"
         case .toggleComment: return "Комментировать / раскомментировать"
+        case .toggleMarkedComment: return "Комментировать по специальному ключу"
         case .runOrStop: return "Выполнить / остановить"
         case .runSelection: return "Выполнить выделение / всё"
         case .runAll: return "Выполнить всё"
@@ -237,6 +238,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
         case .closeAllTabs: return ShortcutBinding(key: "w", modifiers: [.command, .shift])
         case .find: return ShortcutBinding(key: "f", modifiers: .command)
         case .toggleComment: return ShortcutBinding(key: "/", modifiers: .command)
+        case .toggleMarkedComment: return ShortcutBinding(key: "/", modifiers: [.command, .shift])
         case .runOrStop: return ShortcutBinding(key: "r", modifiers: .command)
         case .runSelection: return ShortcutBinding(key: "\r", modifiers: .command)
         case .runAll: return ShortcutBinding(key: "\r", modifiers: [.command, .option])

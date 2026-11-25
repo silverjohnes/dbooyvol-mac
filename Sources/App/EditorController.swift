@@ -561,6 +561,90 @@ final class EditorController: ObservableObject {
         String(line.prefix { $0 == " " || $0 == "\t" })
     }
 
+    /// Cmd+Shift+/: comments or uncomments every line that ends with `marker`.
+    /// The caret position is irrelevant: the marker itself selects the lines.
+    func toggleMarkedComment(marker: String) {
+        guard let tv = textView, let storage = tv.textStorage else { return }
+        let marker = marker.trimmingCharacters(in: .whitespaces)
+        // `--` alone would match ordinary comments, so a suffix is required.
+        guard marker.count > 2 else { return }
+
+        let ns = tv.string as NSString
+        guard ns.length > 0 else { return }
+        let whole = NSRange(location: 0, length: ns.length)
+        let block = ns.substring(with: whole)
+        let hasTrailingNewline = block.hasSuffix("\n")
+        var lines = block.components(separatedBy: "\n")
+        if hasTrailingNewline { lines.removeLast() }
+
+        // A line made of nothing but the marker is ambiguous: its leading `--`
+        // is the marker itself, not a comment prefix.
+        let marked = lines.indices.filter { index in
+            let trimmed = lines[index].trimmingCharacters(in: .whitespaces)
+            guard trimmed.hasSuffix(marker) else { return false }
+            let body = trimmed.dropLast(marker.count)
+            return !body.trimmingCharacters(in: .whitespaces).isEmpty
+        }
+        guard !marked.isEmpty else { return }
+
+        let allCommented = marked.allSatisfy { Self.isLineCommented(lines[$0]) }
+        var updated = lines
+        for index in marked {
+            updated[index] = allCommented
+                ? Self.uncomment(lines[index])
+                : Self.comment(lines[index])
+        }
+
+        var replacement = updated.joined(separator: "\n")
+        if hasTrailingNewline { replacement += "\n" }
+        guard replacement != block else { return }
+
+        let before = tv.selectedRange()
+
+        var oldStarts: [Int] = []
+        var newStarts: [Int] = []
+        var newLens: [Int] = []
+        var prefixLens: [Int] = []
+        var deltas: [Int] = []
+        var oldOffset = 0
+        var newOffset = 0
+        for (old, new) in zip(lines, updated) {
+            oldStarts.append(oldOffset)
+            newStarts.append(newOffset)
+            newLens.append((new as NSString).length)
+            prefixLens.append(Self.indentPrefix(old).count)
+            deltas.append((new as NSString).length - (old as NSString).length)
+            oldOffset += (old as NSString).length + 1
+            newOffset += (new as NSString).length + 1
+        }
+
+        func map(_ location: Int) -> Int {
+            let blockLength = (block as NSString).length
+            let rel = min(max(0, location), blockLength)
+            guard !oldStarts.isEmpty else { return 0 }
+            if rel >= blockLength { return (replacement as NSString).length }
+            var index = oldStarts.count - 1
+            while index > 0, rel < oldStarts[index] { index -= 1 }
+            let inLine = rel - oldStarts[index]
+            if inLine <= prefixLens[index] { return newStarts[index] + inLine }
+            let shifted = inLine + deltas[index]
+            return newStarts[index] + min(max(prefixLens[index], shifted), newLens[index])
+        }
+
+        guard tv.shouldChangeText(in: whole, replacementString: replacement) else { return }
+        storage.replaceCharacters(in: whole, with: replacement)
+        tv.didChangeText()
+
+        let caret = map(before.location)
+        if before.length == 0 {
+            tv.setSelectedRange(NSRange(location: caret, length: 0))
+        } else {
+            let end = map(before.location + before.length)
+            tv.setSelectedRange(NSRange(location: caret, length: max(0, end - caret)))
+        }
+        tv.scrollRangeToVisible(tv.selectedRange())
+    }
+
     private static func isLineCommented(_ line: String) -> Bool {
         line.drop(while: { $0 == " " || $0 == "\t" }).hasPrefix("--")
     }

@@ -535,10 +535,7 @@ final class TabStripCanvas: NSView, NSTextFieldDelegate, NSViewToolTipOwner {
             return
         }
 
-        model.selectTab(chip.id)
-        if model.activeTabID == chip.id {
-            DispatchQueue.main.async { [weak model] in model?.editor.focus() }
-        }
+        model.clickTab(chip.id)
         dragCandidateID = chip.id
         dragStart = point
     }

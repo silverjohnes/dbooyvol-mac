@@ -12,6 +12,7 @@ import json
 import re
 import sys
 import time
+import unicodedata
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -171,10 +172,88 @@ EN_OVERRIDES = {
     "Display (по умолчанию)": "Display (default)",
     "Редактируемое": "Editable",
     "Как в базе": "Database native",
+    # Time zone cities: the picker shows the place name, so it has to be a
+    # real English name rather than a transliteration of the Russian one.
+    "Гонолулу": "Honolulu",
+    "Анкоридж": "Anchorage",
+    "Лос-Анджелес": "Los Angeles",
+    "Денвер": "Denver",
+    "Чикаго": "Chicago",
+    "Нью-Йорк": "New York",
+    "Каракас": "Caracas",
+    "Буэнос-Айрес": "Buenos Aires",
+    "Лондон": "London",
+    "Берлин": "Berlin",
+    "Каир": "Cairo",
+    "Калининград": "Kaliningrad",
+    "Москва": "Moscow",
+    "Стамбул": "Istanbul",
+    "Дубай": "Dubai",
+    "Самара": "Samara",
+    "Екатеринбург": "Yekaterinburg",
+    "Дели": "Delhi",
+    "Омск": "Omsk",
+    "Новосибирск": "Novosibirsk",
+    "Бангкок": "Bangkok",
+    "Красноярск": "Krasnoyarsk",
+    "Иркутск": "Irkutsk",
+    "Пекин": "Beijing",
+    "Якутск": "Yakutsk",
+    "Токио": "Tokyo",
+    "Владивосток": "Vladivostok",
+    "Магадан": "Magadan",
+    "Камчатка": "Kamchatka",
+    "Апиа": "Apia",
+    "Киритимати": "Kiritimati",
 }
 
 # Strings produced by computed properties rather than literal views.
 EXTRA_KEYS = ["1 неделя", "1 месяц", "3 месяца", "6 месяцев", "1 год", "Бессрочно"]
+
+# Time-zone codes from TimeZones.swift mapped to the Russian city name they
+# abbreviate. The code is a localization key: the pack for every language
+# holds the abbreviation of that language's city name.
+ZONE_CODES = {
+    "ГОН": "Гонолулу", "АНК": "Анкоридж", "ЛОС": "Лос-Анджелес",
+    "ДЕН": "Денвер", "ЧИК": "Чикаго", "НЬЮ": "Нью-Йорк",
+    "КАР": "Каракас", "БУЭ": "Буэнос-Айрес", "ЛОН": "Лондон",
+    "БЕР": "Берлин", "КАИ": "Каир", "КЛГ": "Калининград",
+    "МСК": "Москва", "СТА": "Стамбул", "ДУБ": "Дубай",
+    "САМ": "Самара", "ЕКБ": "Екатеринбург", "ДЕЛ": "Дели",
+    "ОМС": "Омск", "НСК": "Новосибирск", "БАН": "Бангкок",
+    "КРС": "Красноярск", "ИРК": "Иркутск", "ПЕК": "Пекин",
+    "ЯКТ": "Якутск", "ТОК": "Токио", "ВЛД": "Владивосток",
+    "МАГ": "Магадан", "КАМ": "Камчатка", "АПИ": "Апиа",
+    "КИР": "Киритимати",
+}
+EXTRA_KEYS += list(ZONE_CODES)
+
+# Names that are already abbreviations or proper names should not be
+# abbreviated from the first three letters.
+ZONE_ABBREV_OVERRIDES = {
+    # An article in the city name would otherwise leak into the code.
+    "es": {"КАИ": "CAI"},
+    "fr": {"КАИ": "CAI"},
+    "it": {"КАИ": "CAI"},
+    "ar": {"КАИ": "قاه"},
+    # Two cities in one language start with the same three letters.
+    "pl": {"НСК": "NWS"},
+    "pt": {"НЬЮ": "NYC"},
+    "vi": {"ЛОН": "LON"},
+    "ja": {"КЛГ": "カリ"},
+    # Thai clusters are not three code points long; the codes are written
+    # the way the city is shortened in Thai.
+    "th": {
+        "ГОН": "โฮน", "АНК": "แอง", "ЛОС": "ลอส", "ДЕН": "เดน",
+        "ЧИК": "ชิค", "НЬЮ": "นิว", "КАР": "คาร", "БУЭ": "บัว",
+        "ЛОН": "ลอน", "БЕР": "เบอ", "КАИ": "ไคร", "КЛГ": "คาล",
+        "МСК": "มอส", "СТА": "อิส", "ДУБ": "ดูไบ", "САМ": "ซาม",
+        "ЕКБ": "เยค", "ДЕЛ": "เดล", "ОМС": "ออม", "НСК": "โนโว",
+        "БАН": "กทม", "КРС": "ครส", "ИРК": "อีร์", "ПЕК": "ปัก",
+        "ЯКТ": "ยาค", "ТОК": "โตก", "ВЛД": "วลา", "МАГ": "มาก",
+        "КАМ": "คัม", "АПИ": "อาป", "КИР": "คีร",
+    },
+}
 
 # Every Cyrillic string literal is a potential UI string: SwiftUI literals
 # are looked up automatically, AppKit strings go through `L10n.tr`, and the
@@ -210,16 +289,69 @@ def strings_escape(value: str) -> str:
             .replace("\n", "\\n").replace("\t", "\\t").replace("\r", "\\r"))
 
 
+def zone_abbrev(name: str, lang: str) -> str:
+    """Three-character code made from the city name in this language.
+
+    Latin and Cyrillic names use their first three letters, CJK and Arabic
+    their first three characters, Devanagari its first two syllables. Latin
+    diacritics are dropped: a status-bar code reads better as `PEK` than as
+    `PÉK`.
+    """
+    name = name.split(" (")[0].strip()
+    if any(unicodedata.name(c, "").startswith("DEVANAGARI") for c in name):
+        clusters = []
+        i = 0
+        while i < len(name):
+            char = name[i]
+            if not (char.isalpha() or unicodedata.category(char).startswith("M")):
+                i += 1
+                continue
+            cluster = char
+            i += 1
+            while i < len(name):
+                category = unicodedata.category(name[i])
+                if not category.startswith("M"):
+                    break
+                cluster += name[i]
+                i += 1
+                # A virama joins the next consonant into the same syllable.
+                if name[i - 1] == "\u094d" and i < len(name) and name[i].isalpha():
+                    cluster += name[i]
+                    i += 1
+            clusters.append(cluster)
+        return "".join(clusters[:2]).rstrip("\u094d").upper()
+    chars = [c for c in name if c.isalpha()
+             or unicodedata.category(c).startswith("M")]
+    code = "".join(chars[:3]).upper()
+    if lang == "th":
+        return code
+    out = []
+    for char in code:
+        if unicodedata.name(char, "").startswith("LATIN"):
+            base = "".join(x for x in unicodedata.normalize("NFD", char)
+                           if not unicodedata.combining(x))
+            out.append({"Đ": "D", "Ł": "L", "Ø": "O", "Æ": "AE"}.get(base, base))
+        else:
+            out.append(char)
+    return "".join(out)
+
+
 def collect() -> list[str]:
     found: set[str] = set()
     for path in (ROOT / "Sources").rglob("*.swift"):
         text = path.read_text(encoding="utf-8")
+        # Comments contain example strings such as `"ghbkf" finds "Прила"`;
+        # they are documentation, not UI, and must not reach the packs.
+        text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+        text = re.sub(r"(?m)^\s*//.*$", "", text)
         for match in LITERAL.finditer(text):
             raw = match.group(1)
             if "\\(" in raw:
                 continue
             value = unescape(raw)
-            if not value.strip():
+            # One-character literals are the keyboard-layout tables in
+            # SearchMatcher, not labels.
+            if len(value.strip()) <= 1:
                 continue
             if not re.search(r"[А-Яа-яЁё]", value):
                 continue
@@ -232,7 +364,14 @@ def collect() -> list[str]:
 # Short labels where no single English phrase gives the right sense in every
 # language. Kept explicit so the packs read naturally.
 MANUAL = {
-    "de": {"История": "Verlauf", "История пуста": "Der Verlauf ist leer"},
+    "de": {
+        "История": "Verlauf", "История пуста": "Der Verlauf ist leer",
+        "Комментирование по специальному ключу": "Kommentieren mit einem Sonderschlüssel",
+        "Комментирование по специальному ключу включено": "Kommentieren mit einem Sonderschlüssel ist aktiviert",
+        "Комментирование по специальному ключу выключено": "Kommentieren mit einem Sonderschlüssel ist deaktiviert",
+        "Комментировать по специальному ключу": "Mit einem Sonderschlüssel kommentieren",
+        "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание.": "Der Schlüssel besteht aus einem festen „--“ und einer beliebigen Fortsetzung. Eine Zeile gilt als markiert, wenn der Schlüssel ganz am Ende der Zeile steht; eine leere Fortsetzung deaktiviert die Kombination.",
+    },
     "fr": {"История": "Historique", "История пуста": "L’historique est vide"},
     "es": {"История": "Historial", "История пуста": "El historial está vacío"},
     "it": {"История": "Cronologia", "История пуста": "La cronologia è vuota"},
@@ -241,8 +380,26 @@ MANUAL = {
     "tr": {"История": "Geçmiş", "История пуста": "Geçmiş boş"},
     "ar": {"История": "السجل", "История пуста": "السجل فارغ"},
     "hi": {"История": "इतिहास", "История пуста": "इतिहास खाली है"},
-    "zh-Hans": {"История": "历史", "История пуста": "历史为空"},
-    "zh-Hant": {"История": "歷史", "История пуста": "歷史是空的"},
+    "zh-Hans": {
+        "История": "历史", "История пуста": "历史为空",
+        "Комментирование по специальному ключу": "按特殊键注释",
+        "Комментирование по специальному ключу включено": "已启用按特殊键注释",
+        "Комментирование по специальному ключу выключено": "已关闭按特殊键注释",
+        "Комментировать по специальному ключу": "按特殊键注释",
+        "Ключ:": "键：",
+        "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт.": "可以用特殊键标记一行或多行：%@ 组合会一次性注释或取消注释所有这些行，而不影响脚本的其余部分。",
+        "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание.": "键由固定的“--”和任意后续内容组成。如果键位于行末，则该行被视为已标记；后续内容为空时会禁用该组合。",
+    },
+    "zh-Hant": {
+        "История": "歷史", "История пуста": "歷史是空的",
+        "Комментирование по специальному ключу": "使用特殊鍵加入註解",
+        "Комментирование по специальному ключу включено": "已啟用使用特殊鍵加入註解",
+        "Комментирование по специальному ключу выключено": "已關閉使用特殊鍵加入註解",
+        "Комментировать по специальному ключу": "使用特殊鍵加入註解",
+        "Ключ:": "鍵：",
+        "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт.": "您可以使用特殊鍵標記一行或多行：%@ 組合會一次註解或取消註解所有這些行，而不影響指令碼的其餘部分。",
+        "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание.": "鍵由固定的「--」和任意後續內容組成。如果鍵位於行尾，則該行視為已標記；後續內容為空時會停用該組合。",
+    },
     "ja": {"История": "履歴", "История пуста": "履歴は空です"},
     "ko": {"История": "기록", "История пуста": "기록이 비어 있습니다"},
     "id": {"История": "Riwayat", "История пуста": "Riwayat kosong"},
@@ -371,7 +528,53 @@ SECTION_MANUAL = {
 for _lang, _items in SECTION_MANUAL.items():
     MANUAL.setdefault(_lang, {}).update(_items)
 
+# City names where the machine translation picked a common noun ("anchorage"
+# → "Ankerplatz") or a grammatical case ("Berlinie"). Proper place names are
+# spelled the way each language's maps spell them.
+CITY_FIXES = {
+    "ar": {"Анкоридж": "أنكوريج"},
+    "cs": {"Анкоридж": "Anchorage"},
+    "de": {"Анкоридж": "Anchorage"},
+    "es": {"Анкоридж": "Anchorage", "Буэнос-Айрес": "Buenos Aires",
+           "Самара": "Samara"},
+    "fr": {"Анкоридж": "Anchorage"},
+    "id": {"Анкоридж": "Anchorage", "Москва": "Moskwa", "Стамбул": "Istanbul"},
+    "it": {"Анкоридж": "Anchorage"},
+    "nl": {"Анкоридж": "Anchorage"},
+    "pl": {"Анкоридж": "Anchorage", "Берлин": "Berlin"},
+    "pt": {"Анкоридж": "Anchorage"},
+    "sv": {"Анкоридж": "Anchorage"},
+    "tr": {"Анкоридж": "Anchorage", "Гонолулу": "Honolulu"},
+    "vi": {"Анкоридж": "Anchorage"},
+    "zh-Hans": {"Камчатка": "堪察加", "Владивосток": "符拉迪沃斯托克"},
+    "zh-Hant": {"Камчатка": "堪察加", "Владивосток": "符拉迪沃斯托克"},
+}
+for _lang, _items in CITY_FIXES.items():
+    MANUAL.setdefault(_lang, {}).update(_items)
+
+# "Monospaced" is a typography term machine translation renders as "equal
+# space" or "single space" in several languages.
+FONT_MANUAL = {
+    "ar": {"Системный моноширинный": "خط النظام أحادي المسافة",
+           "системный моноширинный": "خط النظام أحادي المسافة"},
+    "ja": {"Системный моноширинный": "システム等幅",
+           "системный моноширинный": "システム等幅"},
+    "pl": {"Системный моноширинный": "Systemowa czcionka o stałej szerokości",
+           "системный моноширинный": "systemowa czcionka o stałej szerokości"},
+    "th": {"Системный моноширинный": "โมโนสเปซของระบบ",
+           "системный моноширинный": "โมโนสเปซของระบบ"},
+    "tr": {"Системный моноширинный": "Sistem tek aralıklı yazı tipi",
+           "системный моноширинный": "sistem tek aralıklı yazı tipi"},
+    "vi": {"Системный моноширинный": "Monospace hệ thống",
+           "системный моноширинный": "monospace hệ thống"},
+    "sv": {"Системный моноширинный": "Systemets monospace",
+           "системный моноширинный": "systemets monospace"},
+}
+for _lang, _items in FONT_MANUAL.items():
+    MANUAL.setdefault(_lang, {}).update(_items)
+
 # SQL text must stay SQL in every language.
+# Strings that are identical in every language.
 VERBATIM = {"SELECT таблицы"}
 
 
@@ -409,7 +612,8 @@ def main() -> int:
         if code in ("ru", "uk"):
             continue
         table = cache.setdefault(code, {})
-        missing = [k for k in keys if k not in table]
+        missing = [k for k in keys if k not in table
+                   and k not in ZONE_CODES and k not in VERBATIM]
         if not missing:
             print(f"{code}: cached")
             continue
@@ -474,21 +678,32 @@ def main() -> int:
         folder = RESOURCES / f"{code}.lproj"
         folder.mkdir(parents=True, exist_ok=True)
         lines = ['/* Generated by Scripts/localize.py — do not edit by hand. */', ""]
+        resolved: dict[str, str | None] = {}
         for key in keys:
-            if code == "ru":
-                value = key
-            elif code == "uk":
+            if code in ("ru", "uk"):
                 value = key
             else:
                 value = MANUAL.get(code, {}).get(key) \
                     or cache.get("_en", {}).get(code, {}).get(key) \
                     or cache.get(code, {}).get(key)
-            if value is None:
-                continue
             if key in VERBATIM:
                 value = EN_OVERRIDES.get(key, key)
-            if key[:1].isupper() and value[:1].islower():
+            if value is not None and key[:1].isupper() and value[:1].islower():
                 value = value[:1].upper() + value[1:]
+            resolved[key] = value
+        # The city codes abbreviate the city name in the same language, so
+        # they are computed after all names are resolved.
+        for ru_code, city_key in ZONE_CODES.items():
+            if code in ("ru", "uk"):
+                resolved[ru_code] = ru_code
+                continue
+            city = resolved.get(city_key)
+            resolved[ru_code] = (ZONE_ABBREV_OVERRIDES.get(code, {}).get(ru_code)
+                                 or (zone_abbrev(city, code) if city else None))
+        for key in keys:
+            value = resolved.get(key)
+            if value is None:
+                continue
             lines.append(f'"{strings_escape(key)}" = "{strings_escape(value)}";')
         (folder / "Localizable.strings").write_text("\n".join(lines) + "\n",
                                                    encoding="utf-8")

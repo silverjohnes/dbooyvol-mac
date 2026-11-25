@@ -44,7 +44,7 @@ enum ShortcutCatalog {
             .fixed(title: "Вставить", keys: "⌘V"),
             .fixed(title: "Удалить", keys: "⌫"),
             .fixed(title: "Выбрать всё", keys: "⌘A"),
-            .action(.find), .action(.toggleComment)
+            .action(.find), .action(.toggleComment), .action(.toggleMarkedComment)
         ]),
         ShortcutSection(id: "query", title: "Запрос", items: [
             .action(.runOrStop), .action(.runSelection), .action(.runAll),

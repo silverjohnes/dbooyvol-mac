@@ -29,6 +29,9 @@ final class GridCellView: NSTableCellView, NSTextFieldDelegate {
     private var isSelectedCell = false
     private var isCurrentCell = false
     private var isEditingCell = false
+    /// True while the inline editor is open; such a view is never pooled,
+    /// because taking its editor away would abort the edit.
+    var isEditing: Bool { isEditingCell }
     private var editOriginalValue: String?
     /// Called with the new value when an inline edit is confirmed with Enter.
     var onCommitEdit: ((String?) -> Void)?
@@ -60,6 +63,13 @@ final class GridCellView: NSTableCellView, NSTextFieldDelegate {
     /// cost of rebuilding the table when a tab was switched.
     override func layout() {
         super.layout()
+        layoutContent()
+    }
+
+    /// Places the label and the link icon inside the current bounds. Called
+    /// from `layout()` and again whenever the cell is reconfigured, so a view
+    /// taken from the pool never keeps the frame it had in its previous row.
+    private func layoutContent() {
         let inset: CGFloat = 6
         let linkWidth: CGFloat = 16
         let textX = linkButton.isHidden ? inset : inset + linkWidth + 4
@@ -120,22 +130,51 @@ final class GridCellView: NSTableCellView, NSTextFieldDelegate {
             }
             return
         }
-        label.stringValue = value ?? "NULL"
-        label.font = font
-        label.alignment = numeric ? .right : .left
-        label.textColor = value == nil ? .tertiaryLabelColor : .labelColor
-        if let highlighted { label.attributedStringValue = highlighted }
+        // Always build the whole attributed string for the cell. Mixing
+        // `stringValue` with a later `attributedStringValue` (the search
+        // highlight path) leaves the field carrying attributes from the row
+        // this view was reused from: an old background, an old paragraph style
+        // and, because the vertical centring measures the attributed string, a
+        // line height that does not match the current font. That made the text
+        // of a reused cell sit a point or two below its neighbours.
+        let text = value ?? "NULL"
+        let color: NSColor = value == nil ? .tertiaryLabelColor : .labelColor
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = numeric ? .right : .left
+        paragraph.lineBreakMode = .byTruncatingTail
+        let attributed = NSMutableAttributedString(string: text, attributes: [
+            .font: font,
+            .foregroundColor: color,
+            .paragraphStyle: paragraph
+        ])
+        if let highlighted {
+            highlighted.enumerateAttribute(.backgroundColor,
+                                           in: NSRange(location: 0, length: highlighted.length)) { background, range, _ in
+                guard let background else { return }
+                attributed.addAttribute(.backgroundColor, value: background, range: range)
+            }
+        }
 
         let hasLink = link != nil
+        // A pooled cell may still be laid out for the row height or the link
+        // inset of its previous owner. Re-run `layout()` when anything it
+        // depends on changed, otherwise the label keeps the old frame and the
+        // text is drawn off centre.
+        let staleLayout = label.font != font
+            || abs(label.frame.height - bounds.height) > 0.5
+            || linkButton.isHidden == hasLink
+        label.font = font
+        label.attributedStringValue = attributed
         if linkButton.isHidden == hasLink {
             linkButton.isHidden = !hasLink
-            needsLayout = true
         }
+        if staleLayout { needsLayout = true }
         if let link {
             linkButton.url = link
             linkButton.toolTip = link.absoluteString
             linkButton.image = Self.symbol(for: font)
         }
+        layoutContent()
 
         if selected != isSelectedCell || current != isCurrentCell {
             isSelectedCell = selected
@@ -344,8 +383,32 @@ final class GridHeaderView: NSTableHeaderView {
     private var isDraggingColumns = false
     private var dragGhost: DragGhost?
 
+    /// True when the point is within the grab zone of a column divider. The
+    /// zone matches the system resize cursor, which appears a few points on
+    /// both sides of the boundary.
+    private func isOnColumnDivider(_ point: NSPoint) -> Bool {
+        guard let table = tableView else { return false }
+        let tolerance: CGFloat = 4
+        for position in 0..<table.tableColumns.count {
+            let rect = headerRect(ofColumn: position)
+            guard rect.width > 0 else { continue }
+            if abs(point.x - rect.maxX) <= tolerance { return true }
+        }
+        return false
+    }
+
     override func mouseDown(with event: NSEvent) {
         let point = convert(event.locationInWindow, from: nil)
+        // A press on the divider between headers belongs to NSTableHeaderView:
+        // it resizes the column. Handling it here swallowed the resize and
+        // started a column reorder instead, so the width could not be changed.
+        if isOnColumnDivider(point) {
+            dragStart = nil
+            isDraggingColumns = false
+            endColumnDragGhost()
+            super.mouseDown(with: event)
+            return
+        }
         let col = column(at: point)
         guard col >= 0, let data = dataIndex(forPosition: col) else {
             super.mouseDown(with: event)
@@ -1151,10 +1214,20 @@ struct ResultsView: NSViewRepresentable {
             guard visible.length > 0 else { return }
             let end = min(table.numberOfRows, visible.location + visible.length)
             guard visible.location < end else { return }
+            // Cells go back into the pool detached and only once. Keeping them
+            // in their row views meant a reload could hand the same view out
+            // again while AppKit was still showing it in the old row: the old
+            // row kept a stale copy of the text (it looked like that row had
+            // slid down), and the pool grew with duplicates on every rebuild.
+            var seen = Set(cellPool.map(ObjectIdentifier.init))
             for row in visible.location..<end {
                 guard let rowView = table.rowView(atRow: row, makeIfNecessary: false) else { continue }
                 for view in rowView.subviews {
-                    if let cell = view as? GridCellView { cellPool.append(cell) }
+                    guard let cell = view as? GridCellView, !cell.isEditing else { continue }
+                    let id = ObjectIdentifier(cell)
+                    guard seen.insert(id).inserted else { continue }
+                    cell.removeFromSuperview()
+                    cellPool.append(cell)
                 }
             }
             // Keep the pool bounded when the column count shrinks.

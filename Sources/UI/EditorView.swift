@@ -5,6 +5,8 @@ final class SQLTextView: NSTextView {
     var onCommandEnter: (() -> Void)?
     /// Cmd+/ toggles `--` comments on the caret line or selected lines.
     var onToggleComment: (() -> Void)?
+    /// Cmd+Shift+/ toggles comments on every line ending with the marker.
+    var onToggleMarkedComment: (() -> Void)?
     /// Called with a number of font-size steps when Ctrl + mouse wheel / trackpad is used.
     var onZoom: ((CGFloat) -> Void)?
     /// Called when the editor becomes the first responder.
@@ -37,8 +39,14 @@ final class SQLTextView: NSTextView {
                 onCommandEnter?()
                 return
             }
-            if event.keyCode == 44 || event.charactersIgnoringModifiers == "/" {
+            // The bindings are checked through the store, so both shortcuts
+            // follow the user's keys and work in every keyboard layout.
+            if ShortcutStore.shared.matches(event, action: .toggleComment) {
                 onToggleComment?()
+                return
+            }
+            if ShortcutStore.shared.matches(event, action: .toggleMarkedComment) {
+                onToggleMarkedComment?()
                 return
             }
         }
@@ -385,6 +393,10 @@ struct SQLEditorView: NSViewRepresentable {
         }
         tv.onToggleComment = { [weak model] in
             model?.editor.toggleComment()
+        }
+        tv.onToggleMarkedComment = { [weak model] in
+            guard let model, model.commentByMarker else { return }
+            model.editor.toggleMarkedComment(marker: model.commentMarker)
         }
         tv.onFocus = { [weak model] in
             model?.focusedPane = .editor

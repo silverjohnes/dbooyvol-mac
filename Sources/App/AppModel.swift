@@ -118,6 +118,11 @@ final class AppModel: ObservableObject {
     /// Last pane that took keyboard focus.
     @Published var focusedPane: FocusPane = .editor
     @Published var editorFontSize: CGFloat = AppSettings.editorFontSize
+    /// Enables the separate shortcut that comments every line ending with
+    /// `commentMarker`.
+    @Published var commentByMarker: Bool = AppSettings.commentByMarker
+    /// Editable part of the marker; the full marker is `--` + this string.
+    @Published var commentMarkerSuffix: String = AppSettings.commentMarkerSuffix
     @Published var resultFontSize: CGFloat = AppSettings.resultFontSize
     @Published var resultFontName: String = AppSettings.resultFontName
     @Published var autoColumnWidths: Bool = AppSettings.autoColumnWidths
@@ -518,6 +523,30 @@ final class AppModel: ObservableObject {
 
     func resetEditorFontSize() {
         setEditorFontSize(SQLHighlighter.defaultFontSize)
+    }
+
+    // MARK: - comment marker
+
+    /// Full marker: the fixed `--` plus the user's suffix.
+    var commentMarker: String { "--" + commentMarkerSuffix }
+
+    func setCommentByMarker(_ enabled: Bool) {
+        guard enabled != commentByMarker else { return }
+        commentByMarker = enabled
+        AppSettings.commentByMarker = enabled
+        status = enabled
+            ? L10n.tr("Комментирование по специальному ключу включено")
+            : L10n.tr("Комментирование по специальному ключу выключено")
+    }
+
+    func setCommentMarkerSuffix(_ suffix: String) {
+        // A newline would split the marker across lines; everything else is
+        // allowed, including an empty suffix (the shortcut then does nothing).
+        let cleaned = suffix.replacingOccurrences(of: "\n", with: "")
+            .replacingOccurrences(of: "\r", with: "")
+        guard cleaned != commentMarkerSuffix else { return }
+        commentMarkerSuffix = cleaned
+        AppSettings.commentMarkerSuffix = cleaned
     }
 
     // MARK: - result font
@@ -1314,6 +1343,12 @@ final class AppModel: ObservableObject {
     private func restoreTabs() {
         if autosaveEnabled, let snap = TabsStore.load(), !snap.tabs.isEmpty {
             tabs = snap.tabs
+            // Untitled tabs store the title in the language that was active
+            // when they were created, so switching the UI language left them
+            // in the old language (for example "SQL-Abfrage 1" on Russian).
+            // Re-render only auto-named tabs; a manual rename sets
+            // `customTitle` and is never touched.
+            localizeUntitledTitles()
             // A restored tab keeps the text it had in the previous session.
             // When disk checking is enabled, compare it with the file it was
             // opened from: the text may be an unsaved edit (or a completely
@@ -1373,6 +1408,34 @@ final class AppModel: ObservableObject {
         L10n.fmt("Запрос %@", String(number))
     }
 
+    /// Rewrites auto-generated tab titles in the current UI language. Only the
+    /// label changes; the query text is never touched. Manually renamed tabs
+    /// and tabs opened from a file keep their titles.
+    private func localizeUntitledTitles() {
+        var changed = false
+        for i in tabs.indices {
+            guard !tabs[i].customTitle, tabs[i].filePath == nil,
+                  let number = Self.trailingNumber(in: tabs[i].title) else { continue }
+            let localized = Self.untitledTitle(number)
+            if tabs[i].title != localized {
+                tabs[i].title = localized
+                changed = true
+            }
+        }
+        if changed { scheduleTabsSave() }
+    }
+
+    /// Trailing number of an auto-generated title ("Запрос 12", "SQL-Abfrage 3").
+    /// A number glued to a word is left alone, so "Query2" is not treated as
+    /// an untitled tab.
+    private static func trailingNumber(in title: String) -> Int? {
+        let digits = title.reversed().prefix { $0.isNumber }
+        guard !digits.isEmpty else { return nil }
+        let prefix = title.dropLast(digits.count)
+        guard prefix.hasSuffix(" "), let value = Int(String(digits.reversed())) else { return nil }
+        return value
+    }
+
     func selectTab(_ id: UUID) {
         guard id != activeTabID, tabs.contains(where: { $0.id == id }) else { return }
         syncActiveTab()
@@ -1386,6 +1449,21 @@ final class AppModel: ObservableObject {
         scheduleTabsSave()
         _ = checkExternalChange(for: id)
         DispatchQueue.main.async { [weak self] in self?.editor.focus() }
+    }
+
+    /// A click on a tab. When the tab is already active nothing changes — no
+    /// text reload and no focus event — so smart selection would never run.
+    /// Re-apply it explicitly so clicking the active tab focuses the filter
+    /// value again.
+    func clickTab(_ id: UUID) {
+        let wasActive = id == activeTabID
+        selectTab(id)
+        guard wasActive else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.editor.focus()
+            self.applySmartSelection()
+        }
     }
 
     /// Shows the result that belongs to the active tab.

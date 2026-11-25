@@ -3,6 +3,7 @@ import AppKit
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var functionKeyMonitor: Any?
+    private var commentMarkerMonitor: Any?
     private var menuTimer: Timer?
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -13,6 +14,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         QuitGuard.shared.stop()
         AppModel.shared.stopWatchingExternalChanges()
         if let functionKeyMonitor { NSEvent.removeMonitor(functionKeyMonitor) }
+        if let commentMarkerMonitor { NSEvent.removeMonitor(commentMarkerMonitor) }
         menuTimer?.invalidate()
         AppModel.shared.flushTabs()
         SidecarClient.shared.shutdown()
@@ -193,6 +195,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
+        // Cmd+Shift+/ is also the system Help shortcut, and AppKit's menu
+        // matching is unreliable for shifted punctuation. A local monitor
+        // runs before the menu, so the marker shortcut always reaches the
+        // editor and still works in every keyboard layout.
+        commentMarkerMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+            guard NSApp.modalWindow == nil else { return event }
+            guard let keyWindow = NSApp.keyWindow, keyWindow.attachedSheet == nil else { return event }
+            // The shortcuts window records keys itself; the settings fields
+            // must keep their own typing.
+            guard keyWindow.frameAutosaveName != WindowLayout.shortcutsName,
+                  keyWindow.frameAutosaveName != WindowLayout.settingsName else { return event }
+            guard let editorWindow = AppModel.shared.editor.textView?.window,
+                  editorWindow === keyWindow else { return event }
+            guard ShortcutStore.shared.matches(event, action: .toggleMarkedComment),
+                  AppModel.shared.commentByMarker else { return event }
+            AppModel.shared.editor.toggleMarkedComment(marker: AppModel.shared.commentMarker)
+            return nil
+        }
+
         // Free Cmd+W for "close tab" and localize the standard macOS menus.
         // SwiftUI rebuilds the menu bar shortly after launch, so keep translating
         // for the first seconds instead of relying on a single delayed pass.
@@ -331,6 +352,12 @@ struct DBooyvolApp: App {
                 Divider()
                 Button("Комментировать / раскомментировать") { model.editor.toggleComment() }
                     .appShortcut(shortcuts.binding(for: .toggleComment))
+                Button("Комментировать по специальному ключу") {
+                    guard model.commentByMarker else { return }
+                    model.editor.toggleMarkedComment(marker: model.commentMarker)
+                }
+                .appShortcut(shortcuts.binding(for: .toggleMarkedComment))
+                .disabled(!model.commentByMarker)
                 Divider()
                 Button("Экспорт CSV…") { model.exportCSV() }
                     .appShortcut(shortcuts.binding(for: .exportCSV))

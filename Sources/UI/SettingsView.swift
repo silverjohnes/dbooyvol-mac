@@ -109,6 +109,50 @@ struct SettingsView: View {
                 Text("Выделять только тогда, когда запрос открыт через поиск (⌘E).")
                     .font(.caption)
                     .foregroundColor(.secondary)
+
+                Divider()
+
+                Toggle(
+                    "Комментирование по специальному ключу",
+                    isOn: Binding(
+                        get: { model.commentByMarker },
+                        set: { model.setCommentByMarker($0) }
+                    )
+                )
+                HStack(spacing: 6) {
+                    Text("Ключ:")
+                    HStack(spacing: 0) {
+                        Text("--")
+                            .font(.system(.body, design: .monospaced))
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 3)
+                        Divider().frame(height: 16)
+                        TextField("!#", text: Binding(
+                            get: { model.commentMarkerSuffix },
+                            set: { model.setCommentMarkerSuffix($0) }
+                        ))
+                        .font(.system(.body, design: .monospaced))
+                        .textFieldStyle(.plain)
+                        .padding(.horizontal, 6)
+                        .frame(width: 120)
+                    }
+                    .background(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.secondary.opacity(0.35), lineWidth: 1)
+                    )
+                    .disabled(!model.commentByMarker)
+                    Text(L10n.fmt("По умолчанию: %@", "--" + AppSettings.defaultCommentMarkerSuffix))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                Text(L10n.fmt("Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт.",
+                              shortcuts.binding(for: .toggleMarkedComment)?.display ?? ""))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Text("Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
 
             Section("Файлы") {
@@ -223,7 +267,7 @@ struct SettingsView: View {
                     )
                 ) {
                     Text(L10n.fmt("Системный · %@", TimeZones.shortLabel(for: .current))).tag("")
-                    ForEach(TimeZones.options) { option in
+                    ForEach(TimeZones.pickerOptions(for: model.timeZoneIdentifier)) { option in
                         Text(option.name).tag(option.id)
                     }
                 }
@@ -422,7 +466,7 @@ struct ConnectionEditorView: View {
                                 .frame(width: 90)
                         }
                         TextField(
-                            draft.kind == .oracle ? "Service name / SID"
+                            draft.kind == .oracle ? L10n.tr("Имя сервиса / SID")
                                 : draft.kind == .clickhouse ? L10n.tr("База данных (database)")
                                 : L10n.tr("База данных"),
                             text: $draft.database

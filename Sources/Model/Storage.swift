@@ -145,6 +145,10 @@ enum AppSettings {
     static let showTypeOnHeaderHoverKey = "showTypeOnHeaderHover"
     static let smartSelectionKey = "smartSelection"
     static let smartSelectionOnlyInSearchKey = "smartSelectionOnlyInSearch"
+    static let commentByMarkerKey = "commentByMarker"
+    static let commentMarkerSuffixKey = "commentMarkerSuffix"
+    /// The `--` prefix is fixed; this is the part after it.
+    static let defaultCommentMarkerSuffix = "!#"
     static let timeZoneKey = "displayTimeZone"
     static let checkExternalChangesKey = "checkExternalChanges"
     static let selectedProfileIDKey = "selectedProfileID"
@@ -166,6 +170,8 @@ enum AppSettings {
             showTypeOnHeaderHoverKey: true,
             smartSelectionKey: false,
             smartSelectionOnlyInSearchKey: false,
+            commentByMarkerKey: true,
+            commentMarkerSuffixKey: "!#",
             timeZoneKey: "",
             checkExternalChangesKey: false
         ])
@@ -216,6 +222,19 @@ enum AppSettings {
         // Unset means "on".
         get { UserDefaults.standard.object(forKey: showTypeOnHeaderHoverKey) as? Bool ?? true }
         set { UserDefaults.standard.set(newValue, forKey: showTypeOnHeaderHoverKey) }
+    }
+
+    /// Whether the separate shortcut comments lines ending with the marker.
+    /// On by default: it only touches lines the user explicitly marked.
+    static var commentByMarker: Bool {
+        get { UserDefaults.standard.object(forKey: commentByMarkerKey) as? Bool ?? true }
+        set { UserDefaults.standard.set(newValue, forKey: commentByMarkerKey) }
+    }
+
+    /// The editable part of the marker; `--` is always prepended.
+    static var commentMarkerSuffix: String {
+        get { UserDefaults.standard.string(forKey: commentMarkerSuffixKey) ?? defaultCommentMarkerSuffix }
+        set { UserDefaults.standard.set(newValue, forKey: commentMarkerSuffixKey) }
     }
 
     static var resultFontName: String {
