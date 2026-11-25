@@ -407,6 +407,11 @@ struct MainView: View {
                 .foregroundColor(.secondary)
                 .fixedSize()
                 .help("Положение курсора в скрипте: строка : позиция в строке : общая позиция")
+            Text(model.displayTimeZoneLabel)
+                .font(.caption.monospacedDigit())
+                .foregroundColor(.secondary)
+                .fixedSize()
+                .help(L10n.fmt("Часовой пояс времени: %@", model.displayTimeZoneName))
             if let p = model.activeScriptProfile {
                 HStack(spacing: 5) {
                     Image(nsImage: DBIcon.image(for: p.kind, size: 12))

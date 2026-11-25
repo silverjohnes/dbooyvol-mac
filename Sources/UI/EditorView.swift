@@ -195,9 +195,13 @@ final class SQLTextView: NSTextView {
         return min(max(index, characters.location), max(characters.location, upper))
     }
 
-    /// Auto-closes `(` with `)` and keeps the caret between the pair. Typing
-    /// the closing bracket when it is already right after the caret moves over
-    /// it instead of inserting a duplicate.
+    /// Bracket pairs completed automatically. Typing an opening bracket inserts
+    /// the closing one and keeps the caret between them; typing a closing
+    /// bracket that is already right after the caret moves over it instead of
+    /// inserting a duplicate.
+    private static let bracketPairs: [String: String] = ["(": ")", "[": "]", "{": "}"]
+    private static let closingBrackets: Set<String> = [")", "]", "}"]
+
     override func insertText(_ insertString: Any, replacementRange: NSRange) {
         let text = (insertString as? String)
             ?? (insertString as? NSAttributedString)?.string
@@ -209,18 +213,30 @@ final class SQLTextView: NSTextView {
         desiredColumnX = nil
         verticalShiftAnchor = nil
 
-        if range.length == 0, text == "(" {
-            super.insertText("()", replacementRange: range)
-            setSelectedRange(NSRange(location: range.location + 1, length: 0))
+        // Only a single typed character at a caret can be paired.
+        guard range.length == 0, text.utf16.count == 1, let typed = text.utf16.first else {
+            super.insertText(insertString, replacementRange: replacementRange)
             return
         }
 
-        if range.length == 0, text == ")" {
-            let s = string as NSString
-            if range.location < s.length, s.character(at: range.location) == 41 { // ")"
-                setSelectedRange(NSRange(location: range.location + 1, length: 0))
+        let s = string as NSString
+        let caret = range.location
+        let next = caret < s.length ? s.character(at: caret) : 0
+
+        // The matching closer is already there: step over it.
+        if Self.closingBrackets.contains(text), next == typed {
+            setSelectedRange(NSRange(location: caret + 1, length: 0))
+            return
+        }
+
+        if let closer = Self.bracketPairs[text], let closing = closer.utf16.first {
+            if next == closing {
+                setSelectedRange(NSRange(location: caret + 1, length: 0))
                 return
             }
+            super.insertText(text + closer, replacementRange: range)
+            setSelectedRange(NSRange(location: caret + 1, length: 0))
+            return
         }
 
         super.insertText(insertString, replacementRange: replacementRange)
@@ -264,8 +280,7 @@ final class SQLTextView: NSTextView {
         // with .selectByParagraph; it jumps straight to the paragraph. Use the
         // caret/word placed by the previous click and select the literal instead.
         if event.clickCount == 3,
-           let inner = quotedContentsRange(at: selectedRange().location)
-               ?? parenContentsRange(at: selectedRange().location) {
+           let inner = literalContentsRange(at: selectedRange().location) {
             window?.makeFirstResponder(self)
             setSelectedRange(inner)
             return
@@ -277,7 +292,7 @@ final class SQLTextView: NSTextView {
 
     override func selectParagraph(_ sender: Any?) {
         let location = selectedRange().location
-        if let inner = quotedContentsRange(at: location) ?? parenContentsRange(at: location) {
+        if let inner = literalContentsRange(at: location) {
             setSelectedRange(inner)
             return
         }
@@ -293,7 +308,7 @@ final class SQLTextView: NSTextView {
         // Triple click keeps the old convenience: the contents of a quoted
         // literal, or of the innermost parentheses when not inside quotes.
         if granularity == .selectByParagraph,
-           let inner = quotedContentsRange(at: range.location) ?? parenContentsRange(at: range.location) {
+           let inner = literalContentsRange(at: range.location) {
             return inner
         }
         return super.selectionRange(forProposedRange: range, granularity: granularity)
@@ -305,6 +320,15 @@ final class SQLTextView: NSTextView {
 
     private func quotedContentsRange(at location: Int) -> NSRange? {
         TextSelectionRules.quotedContentsRange(in: string as NSString, at: location)
+    }
+
+    /// Triple-click target: quoted contents (without LIKE mask characters when
+    /// the literal is a LIKE/ILIKE pattern), or the innermost parentheses.
+    private func literalContentsRange(at location: Int) -> NSRange? {
+        if let quoted = quotedContentsRange(at: location) {
+            return SQLText.maskTrimmedRange(quoted, in: string)
+        }
+        return parenContentsRange(at: location)
     }
 
     private func parenContentsRange(at location: Int) -> NSRange? {
@@ -364,6 +388,7 @@ struct SQLEditorView: NSViewRepresentable {
         }
         tv.onFocus = { [weak model] in
             model?.focusedPane = .editor
+            model?.applySmartSelection()
         }
 
         scroll.documentView = tv
@@ -431,6 +456,11 @@ struct SQLEditorView: NSViewRepresentable {
             tv.undoManager?.removeAllActions()
             tv.scrollRangeToVisible(tv.selectedRange())
             isSyncing = false
+
+            // Switching tabs keeps the editor focused, so there is no focus
+            // event to hook smart selection to; apply it after the new text is
+            // in place instead.
+            model.applySmartSelection()
 
             let text = tv.string
             DispatchQueue.main.async { [weak model] in

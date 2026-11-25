@@ -169,7 +169,7 @@ struct ValuePanelView: View {
         case .binary:
             return Self.hexDump(Self.binaryData(value), encoding: model.valuePanelEncoding)
         case .text, .auto:
-            return value
+            return TimestampDisplay.formatted(value, columnType: item.columnType) ?? value
         }
     }
 

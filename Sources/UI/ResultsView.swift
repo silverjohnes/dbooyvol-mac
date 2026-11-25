@@ -888,7 +888,9 @@ struct ResultsView: NSViewRepresentable {
             let runID = result?.runID
             let queryKey = result?.queryName ?? ""
             let headerKey = "\(model.showTypeInColumnHeader)"
-            if fontKey != lastFontKey || autoKey != lastAutoKey || headerKey != lastHeaderKey {
+            let timeZoneKey = model.timeZoneIdentifier
+            if fontKey != lastFontKey || autoKey != lastAutoKey || headerKey != lastHeaderKey
+                || timeZoneKey != lastTimeZoneKey {
                 widthCache.removeAll()
             }
             let sortKey = "\(model.resultSort?.column ?? -1)#\(model.resultSort?.ascending ?? false)"
@@ -898,7 +900,7 @@ struct ResultsView: NSViewRepresentable {
             // need to be stringified on every SwiftUI update (which happens on
             // each keystroke in the editor).
             let sig = "\(runID?.uuidString ?? "-")#\(rowCount)#\(fontKey)#\(autoKey)"
-                + "#\(queryKey)#\(headerKey)#\(sortKey)#\(orderKey)"
+                + "#\(queryKey)#\(headerKey)#\(sortKey)#\(orderKey)#\(timeZoneKey)"
 
             if sig == signature {
                 // Nothing but the selection or a cell edit changed: repaint
@@ -956,6 +958,7 @@ struct ResultsView: NSViewRepresentable {
             lastAutoKey = autoKey
             lastHeaderKey = headerKey
             lastOrderKey = orderKey
+            lastTimeZoneKey = timeZoneKey
             applyFont()
             recycleCells()
             table.reloadData()
@@ -1135,6 +1138,7 @@ struct ResultsView: NSViewRepresentable {
         private var lastRunID: UUID?
         private var lastHeaderKey = ""
         private var lastOrderKey = ""
+        private var lastTimeZoneKey = ""
         private var restoringWidths = false
         /// Cell views taken from the table just before a reload. AppKit does not
         /// reuse them across `reloadData`, and creating a text field for every
@@ -1254,7 +1258,7 @@ struct ResultsView: NSViewRepresentable {
             values.reserveCapacity(rows.count)
             var needsIndividual = false
             for row in rows where index < row.count {
-                let text = row[index] ?? "NULL"
+                let text = TimestampDisplay.formatted(row[index], columnType: column.type) ?? "NULL"
                 if text.contains("\n") || text.contains("\r") {
                     needsIndividual = true
                     break
@@ -1357,10 +1361,11 @@ struct ResultsView: NSViewRepresentable {
                   row < result.rows.count else { return nil }
 
             let rowValues = result.rows[row]
-            let value: String? = idx < rowValues.count ? rowValues[idx] : nil
+            let rawValue: String? = idx < rowValues.count ? rowValues[idx] : nil
             let column = idx < result.columns.count ? result.columns[idx] : nil
+            let value = TimestampDisplay.formatted(rawValue, columnType: column?.type ?? "")
 
-            let link = linkURL(for: value)
+            let link = linkURL(for: rawValue)
             let baseFont = model.resultFont
             let cellFont = value == nil
                 ? (NSFont(name: baseFont.fontName, size: max(8, baseFont.pointSize - 0.5)) ?? baseFont)

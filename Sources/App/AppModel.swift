@@ -30,6 +30,11 @@ extension Notification.Name {
     static let editorDidTakeFocus = Notification.Name("DBooyvol.EditorDidTakeFocus")
 }
 
+/// Top-down coordinates for rows placed inside a scroll view.
+private final class FlippedContainerView: NSView {
+    override var isFlipped: Bool { true }
+}
+
 @MainActor
 final class AppModel: ObservableObject {
     static let shared = AppModel()
@@ -86,10 +91,19 @@ final class AppModel: ObservableObject {
     @Published var connected: Set<UUID> = []
     @Published var treeRefreshToken: Int = 0
     @Published var tabs: [QueryTab] = []
-    @Published var activeTabID: UUID = UUID()
+    @Published var activeTabID: UUID = UUID() {
+        didSet { recordTabSwitch(from: oldValue, to: activeTabID) }
+    }
+    /// The single tab that was active before the current one. Updated on every
+    /// switch, including switches caused by opening, closing or duplicating a
+    /// tab, so ⌘⇧T can toggle back to the tab the user came from.
+    private var previousTabID: UUID?
     @Published var showQuickOpen = false
     /// True when the quick-open sheet is closing because a query was chosen.
     private var quickOpenChoseTab = false
+    /// Set when the active tab was opened from Quick Open. Consumed by the next
+    /// editor focus, so "Только при поиске" knows where the tab came from.
+    private var focusCameFromSearch = false
     @Published var inlineRenameTabID: UUID?
     @Published var showEditorSearch = false
     @Published var editorSearchQuery = ""
@@ -110,6 +124,10 @@ final class AppModel: ObservableObject {
     @Published var maxAutoColumnWidth: CGFloat = AppSettings.maxAutoColumnWidth
     @Published var showTypeInColumnHeader: Bool = AppSettings.showTypeInColumnHeader
     @Published var showTypeOnHeaderHover: Bool = AppSettings.showTypeOnHeaderHover
+    /// Empty means the system zone. Changing it repaints the result grid.
+    @Published var timeZoneIdentifier: String = AppSettings.timeZoneIdentifier
+    /// Watches open files for changes made by other programs. Off by default.
+    @Published var checkExternalChanges: Bool = AppSettings.checkExternalChanges
     /// Value inspector on the right side of the result pane.
     @Published var showValuePanel = false
     @Published var valuePanelItem: ValuePanelItem?
@@ -146,6 +164,9 @@ final class AppModel: ObservableObject {
     /// Passwords typed for profiles that do not store one. Kept only for this
     /// run and dropped on disconnect, so the next connect asks again.
     private var sessionPasswords: [UUID: String] = [:]
+    /// Last values typed for `:name` parameters, per connection. Kept in memory
+    /// only, so a repeated run does not start from empty fields.
+    private var bindValues: [UUID: [String: Any]] = [:]
     /// Each tab runs its queries on its own JDBC connection, so two tabs can
     /// execute at the same time even when they use the same profile.
     private var tabSessions: [UUID: Session] = [:]
@@ -546,6 +567,39 @@ final class AppModel: ObservableObject {
 
     func resetResultFontSize() { setResultFontSize(12) }
 
+    // MARK: - time zone
+
+    var displayTimeZone: TimeZone { TimeZones.selected }
+
+    var displayTimeZoneLabel: String { TimeZones.shortLabel(for: displayTimeZone) }
+
+    var displayTimeZoneName: String { TimeZones.displayName(for: displayTimeZone) }
+
+    func setTimeZone(_ identifier: String) {
+        guard identifier != timeZoneIdentifier else { return }
+        timeZoneIdentifier = identifier
+        AppSettings.timeZoneIdentifier = identifier
+        status = L10n.fmt("Часовой пояс времени: %@", TimeZones.displayName(for: TimeZones.zone(for: identifier)))
+    }
+
+    // MARK: - external file checks
+
+    func setCheckExternalChanges(_ enabled: Bool) {
+        guard enabled != checkExternalChanges else { return }
+        checkExternalChanges = enabled
+        AppSettings.checkExternalChanges = enabled
+        if enabled {
+            startWatchingExternalChanges()
+            checkForExternalChanges()
+        } else {
+            stopWatchingExternalChanges()
+            tabsAwaitingDiskComparison.removeAll()
+        }
+        status = enabled
+            ? L10n.tr("Проверка изменений файлов на диске включена")
+            : L10n.tr("Проверка изменений файлов на диске выключена")
+    }
+
     // MARK: - column widths
 
     var activeQueryName: String { activeTab?.title ?? "" }
@@ -770,6 +824,77 @@ final class AppModel: ObservableObject {
 
     // MARK: - running
 
+    /// DBeaver-style prompt for `:name` values: one field per parameter, plus a
+    /// NULL checkbox. The last values are prefilled. Returns nil on cancel.
+    private func promptForBindValues(_ names: [String],
+                                     profile: ConnectionProfile) -> [String: Any]? {
+        let rowHeight: CGFloat = 30
+        let width: CGFloat = 430
+        let labelWidth: CGFloat = 150
+        let fieldWidth: CGFloat = 190
+        let height = CGFloat(names.count) * rowHeight
+
+        let content = FlippedContainerView(frame: NSRect(x: 0, y: 0, width: width, height: height))
+        var rows: [String: (field: NSTextField, isNull: NSButton)] = [:]
+        let previous = bindValues[profile.id] ?? [:]
+
+        for (index, name) in names.enumerated() {
+            let y = CGFloat(index) * rowHeight
+
+            let label = NSTextField(labelWithString: ":\(name)")
+            label.frame = NSRect(x: 0, y: y + 5, width: labelWidth - 8, height: 20)
+            label.alignment = .right
+            label.lineBreakMode = .byTruncatingMiddle
+            label.font = .monospacedSystemFont(ofSize: 12, weight: .regular)
+            label.toolTip = name
+            content.addSubview(label)
+
+            let field = NSTextField(frame: NSRect(x: labelWidth, y: y + 3,
+                                                 width: fieldWidth, height: 24))
+            field.placeholderString = L10n.tr("Значение")
+            let old = previous[name]
+            field.stringValue = (old as? String) ?? ""
+            content.addSubview(field)
+
+            let isNull = NSButton(checkboxWithTitle: "NULL", target: nil, action: nil)
+            isNull.frame = NSRect(x: labelWidth + fieldWidth + 12, y: y + 5, width: 60, height: 20)
+            isNull.state = old is NSNull ? .on : .off
+            content.addSubview(isNull)
+
+            rows[name] = (field, isNull)
+        }
+
+        let accessory: NSView
+        if height > 240 {
+            let scroll = NSScrollView(frame: NSRect(x: 0, y: 0, width: width, height: 240))
+            scroll.hasVerticalScroller = true
+            scroll.drawsBackground = false
+            scroll.documentView = content
+            accessory = scroll
+        } else {
+            accessory = content
+        }
+
+        let alert = NSAlert()
+        alert.messageText = L10n.tr("Параметры запроса")
+        alert.informativeText = profile.displayName
+        alert.addButton(withTitle: L10n.tr("Выполнить"))
+        alert.addButton(withTitle: L10n.tr("Отмена"))
+        alert.accessoryView = accessory
+        if let first = names.first, let row = rows[first] {
+            alert.window.initialFirstResponder = row.field
+        }
+        guard alert.runModal() == .alertFirstButtonReturn else { return nil }
+
+        var values: [String: Any] = [:]
+        for name in names {
+            guard let row = rows[name] else { continue }
+            values[name] = row.isNull.state == .on ? NSNull() : row.field.stringValue
+        }
+        bindValues[profile.id] = values
+        return values
+    }
+
     func runSelectionOrAll() {
         let selected = editor.selectedText()
         if let selected, !selected.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -803,6 +928,15 @@ final class AppModel: ObservableObject {
         // be running their own queries.
         guard tabRunStates[tabID] != .running else { return }
 
+        // Ask for `:name` values before switching to the running state, so the
+        // dialog is not hidden behind a spinner.
+        let parameterNames = SQLText.parameters(in: text)
+        var bindValuesForRun: [String: Any] = [:]
+        if !parameterNames.isEmpty {
+            guard let entered = promptForBindValues(parameterNames, profile: profile) else { return }
+            bindValuesForRun = entered
+        }
+
         // Pin the script to the connection it runs against, so the choice is remembered.
         if let idx = activeTabIndex, tabs[idx].profileID == nil {
             tabs[idx].profileID = profile.id
@@ -822,7 +956,7 @@ final class AppModel: ObservableObject {
         Task {
             let s = querySession(for: tabID, profile: profile)
             do {
-                var r = try await s.execute(text, pageSize: pageSize)
+                var r = try await s.execute(text, pageSize: pageSize, params: bindValuesForRun)
                 // The tab may have been closed while the query was running.
                 guard tabs.contains(where: { $0.id == tabID }) else {
                     if !r.done, let qid = r.queryId { s.cancel(qid) }
@@ -859,7 +993,8 @@ final class AppModel: ObservableObject {
                 // what was loaded.
                 if r.updateCount == nil, !r.columns.isEmpty, !r.done || r.truncated,
                    let countSQL = Self.countSQL(for: text) {
-                    countTotalRows(countSQL, originalSQL: r.sql, session: s, tabID: tabID)
+                    countTotalRows(countSQL, originalSQL: r.sql, session: s,
+                                   tabID: tabID, params: bindValuesForRun)
                 }
             } catch {
                 let cancelled = runningQueries[tabID]?.cancelled ?? false
@@ -925,9 +1060,9 @@ final class AppModel: ObservableObject {
     }
 
     private func countTotalRows(_ countSQL: String, originalSQL: String,
-                                session: Session, tabID: UUID) {
+                                session: Session, tabID: UUID, params: [String: Any] = [:]) {
         Task {
-            guard let total = try? await session.countRows(countSQL) else { return }
+            guard let total = try? await session.countRows(countSQL, params: params) else { return }
             applyTotalRows(total, originalSQL: originalSQL, tabID: tabID)
         }
     }
@@ -1180,17 +1315,20 @@ final class AppModel: ObservableObject {
         if autosaveEnabled, let snap = TabsStore.load(), !snap.tabs.isEmpty {
             tabs = snap.tabs
             // A restored tab keeps the text it had in the previous session.
-            // Compare it with the file it was opened from: the text may be an
-            // unsaved edit (or a completely different draft), and that has to
-            // be reported when the tab is opened, not silently forgotten.
-            for i in tabs.indices {
-                tabs[i].isDirty = false
-                guard let path = tabs[i].filePath,
-                      let diskText = try? String(contentsOfFile: path, encoding: .utf8) else { continue }
-                diskContents[tabs[i].id] = Self.fileState(of: path, text: diskText)
-                if tabs[i].text != diskText {
-                    tabs[i].isDirty = true
-                    tabsAwaitingDiskComparison.insert(tabs[i].id)
+            // When disk checking is enabled, compare it with the file it was
+            // opened from: the text may be an unsaved edit (or a completely
+            // different draft), and that has to be reported when the tab is
+            // opened, not silently forgotten.
+            if checkExternalChanges {
+                for i in tabs.indices {
+                    tabs[i].isDirty = false
+                    guard let path = tabs[i].filePath,
+                          let diskText = try? String(contentsOfFile: path, encoding: .utf8) else { continue }
+                    diskContents[tabs[i].id] = Self.fileState(of: path, text: diskText)
+                    if tabs[i].text != diskText {
+                        tabs[i].isDirty = true
+                        tabsAwaitingDiskComparison.insert(tabs[i].id)
+                    }
                 }
             }
             if let id = snap.activeID, tabs.contains(where: { $0.id == id }) {
@@ -1299,6 +1437,23 @@ final class AppModel: ObservableObject {
     func selectPreviousTab() {
         guard tabs.count > 1, let idx = activeTabIndex else { return }
         selectTab(tabs[(idx - 1 + tabs.count) % tabs.count].id)
+    }
+
+    /// ⌘⇧T: returns to the tab that was active before the current one. The
+    /// shortcut itself updates the remembered tab, so pressing it again goes
+    /// back, i.e. toggles between the two most recent tabs.
+    func selectPreviouslyOpenedTab() {
+        guard let id = previousTabID, id != activeTabID,
+              tabs.contains(where: { $0.id == id }) else {
+            previousTabID = nil
+            return
+        }
+        selectTab(id)
+    }
+
+    private func recordTabSwitch(from old: UUID, to new: UUID) {
+        guard old != new, tabs.contains(where: { $0.id == old }) else { return }
+        previousTabID = old
     }
 
     func closeTab(_ id: UUID) {
@@ -1578,6 +1733,7 @@ final class AppModel: ObservableObject {
 
     func selectTabFromSearch(_ id: UUID) {
         quickOpenChoseTab = true
+        focusCameFromSearch = true
         if id != activeTabID {
             selectTab(id)
         }
@@ -1599,6 +1755,36 @@ final class AppModel: ObservableObject {
         focusedPane = .editor
         editor.focus()
         NotificationCenter.default.post(name: .editorDidTakeFocus, object: nil)
+        applySmartSelection()
+    }
+
+    /// "Умное выделение": select the value of the first quoted filter
+    /// parameter in WHERE. Called when the editor gets focus and when another
+    /// tab is opened, because switching tabs keeps the editor focused and
+    /// therefore produces no focus event. Deferred by one run-loop tick, so a
+    /// mouse click that caused the focus does not move the caret back.
+    func applySmartSelection() {
+        let defaults = UserDefaults.standard
+        guard defaults.bool(forKey: AppSettings.smartSelectionKey) else {
+            focusCameFromSearch = false
+            return
+        }
+        let onlyInSearch = defaults.bool(forKey: AppSettings.smartSelectionOnlyInSearchKey)
+        let tabID = activeTabID
+        DispatchQueue.main.async { [weak self] in
+            guard let self, self.activeTabID == tabID,
+                  self.editor.displayedTabID == tabID,
+                  let tv = self.editor.textView,
+                  let range = SQLText.firstQuotedFilterValue(in: tv.string),
+                  range.length > 0 else { return }
+            // Consume the search flag only when the selection is actually
+            // applied. If the editor has not loaded the tab yet, the sync hook
+            // calls us again and the flag must still be there.
+            if onlyInSearch, !self.focusCameFromSearch { return }
+            self.focusCameFromSearch = false
+            tv.setSelectedRange(range)
+            tv.scrollRangeToVisible(range)
+        }
     }
 
     // MARK: - editor actions
@@ -1875,7 +2061,7 @@ final class AppModel: ObservableObject {
 
     /// Called when the app becomes active and when switching tabs.
     func checkForExternalChanges() {
-        guard !isCheckingExternalChanges else { return }
+        guard checkExternalChanges, !isCheckingExternalChanges else { return }
         isCheckingExternalChanges = true
         defer { isCheckingExternalChanges = false }
         syncActiveTab()
@@ -1891,7 +2077,7 @@ final class AppModel: ObservableObject {
     /// Watches open files while the app is in front, so a change made by
     /// another program is noticed without switching tabs.
     func startWatchingExternalChanges() {
-        guard externalCheckTimer == nil else { return }
+        guard checkExternalChanges, externalCheckTimer == nil else { return }
         let timer = Timer(timeInterval: 2.0, repeats: true) { [weak self] _ in
             // The timer fires on the main run loop; hop to the main actor
             // explicitly so the call is not made from a nonisolated context.
@@ -1913,6 +2099,7 @@ final class AppModel: ObservableObject {
     /// Returns false when the user chose to load the disk version.
     @discardableResult
     private func checkExternalChange(for id: UUID) -> Bool {
+        guard checkExternalChanges else { return true }
         guard let tab = tabs.first(where: { $0.id == id }),
               let path = tab.filePath else { return true }
 

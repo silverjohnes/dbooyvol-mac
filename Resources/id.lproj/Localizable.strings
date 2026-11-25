@@ -53,6 +53,7 @@
 "В названии столбца" = "Di tajuk kolom";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Ada perubahan yang belum disimpan di editor: memuat dari disk akan menggantikannya.";
 "В результате нет столбца первичного ключа «%@»" = "Akibatnya, tidak ada kolom kunci utama '%@'";
+"ВЛД" = "VLD";
 "Введите пароль от «%@»" = "Masukkan kata sandi untuk \"%@\"";
 "Вернуть 200 строк на страницу" = "Kembalikan 200 baris per halaman";
 "Вернуть по умолчанию" = "Atur ulang ke default";
@@ -64,6 +65,8 @@
 "Вид" = "Lihat";
 "Вкладки" = "Tab";
 "Во весь экран" = "Layar penuh";
+"Время" = "Waktu";
+"Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна." = "Kolom stempel waktu ditampilkan di zona ini; waktu tanpa menentukan zona dianggap UTC. Simbol sabuk pendek terlihat di garis bawah jendela.";
 "Все окна на передний план" = "Bawa semua jendela ke depan";
 "Всегда заключать в кавычки" = "Selalu mengutip";
 "Вставить" = "Tempel";
@@ -81,8 +84,10 @@
 "Выбрать папку network/admin" = "Pilih folder jaringan/admin";
 "Выбрать файл базы SQLite" = "Pilih file database SQLite";
 "Выбрать…" = "Pilih…";
+"Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Sorot hanya ketika permintaan dibuka melalui pencarian (⌘E).";
 "Выйти из полноэкранного режима" = "Keluar dari mode layar penuh";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Jalankan kueri: ⌘R atau ⌘↩ (pilihan atau seluruh skrip)";
+"Выполнить" = "Jalankan";
 "Выполнить / остановить" = "Jalankan / Hentikan";
 "Выполнить всё" = "Jalankan semua";
 "Выполнить выделение / всё" = "Jalankan seleksi / semua";
@@ -108,6 +113,7 @@
 "Дублировать" = "Duplikat";
 "Дублировать вкладку" = "Tab duplikat";
 "Дублировать подключение" = "Koneksi duplikat";
+"ЕКБ" = "EKB";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Jika label NULL cocok dengan nilai pada clipboard, NULL dimasukkan ke dalam sel. Label kosong berarti baris kosong.";
 "Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Jika Anda tidak perlu menyimpan kata sandi koneksi, matikan \"Simpan kata sandi\" di pengaturannya - maka kata sandi itu akan diminta saat menghubungkan.";
 "Есть несохранённые изменения." = "Ada perubahan yang belum disimpan.";
@@ -138,6 +144,7 @@
 "Запрос %@" = "Kueri SQL %@";
 "Запросы" = "Pertanyaan";
 "Значение" = "Nilai bidang";
+"ИРК" = "IRK";
 "Игнорировать кавычки" = "Abaikan kutipan";
 "Из папки берутся ojdbc*.jar и network/admin. Dylib-библиотеки не нужны: тонкий драйвер не грузит нативные библиотеки." = "Ojdbc*.jar dan network/admin diambil dari folder. Pustaka Dylib tidak diperlukan: driver tipis tidak memuat pustaka asli.";
 "Изменения отменены" = "Perubahan dibatalkan";
@@ -160,6 +167,9 @@
 "История пуста" = "Riwayat kosong";
 "История: %@" = "Riwayat: %@";
 "История: %@ дней" = "Riwayat: %@ hari";
+"КАМ" = "KAM";
+"КЛГ" = "KLG";
+"КРСК" = "KRSK";
 "Как в базе" = "Basis data asli";
 "Каталог ~/.ssh" = "~/.ssh direktori";
 "Ключ (необязательно)" = "Kunci (opsional)";
@@ -184,11 +194,14 @@
 "Копировать…" = "Salin…";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Login dan kata sandi dari URL disimpan dalam teks yang jelas. Hapus mereka dari URL dan gunakan bidang Pengguna dan Kata Sandi.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "File SQLite lokal dibuka langsung, tidak diperlukan server.";
+"МАГ" = "MAG";
+"МСК" = "MSK";
 "Максимальная авто-ширина: %@ pt" = "Lebar otomatis maksimum: %@ pt";
 "Максимум ширины:" = "Lebar maksimum:";
 "Масштаб" = "Skala";
 "Масштабировать все" = "Skala semua";
 "Метка NULL" = "Label NOL";
+"НСК" = "NSC";
 "Нажмите на сочетание, чтобы изменить его." = "Klik pintasan untuk mengubahnya.";
 "Нажмите сочетание…" = "Tekan pintasan…";
 "Найти" = "Temukan";
@@ -237,6 +250,7 @@
 "Новый скрипт" = "Skrip SQL baru";
 "Новый язык применится после перезапуска приложения." = "Bahasa baru akan diterapkan setelah aplikasi dimulai ulang.";
 "О программе DBooyvol" = "Tentang program DBooyvol";
+"ОМСК" = "OMSK";
 "Обновить" = "Pembaruan";
 "Обновить дерево" = "Perbarui pohon";
 "Объединить все окна" = "Gabungkan semua jendela";
@@ -272,6 +286,7 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Folder Klien Instan: ojdbc*.jar dan jaringan/admin diambil darinya";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Folder jaringan/admin dengan tnsnames.ora, ldap.ora dan sqlnet.ora";
 "Папка: %@" = "Map: %@";
+"Параметры запроса" = "Parameter permintaan";
 "Пароли" = "Kata sandi";
 "Пароли перешифрованы новым мастер-ключом" = "Kata sandi dienkripsi ulang dengan kunci master baru";
 "Пароли…" = "Kata sandi...";
@@ -330,13 +345,18 @@
 "Порт" = "Pelabuhan";
 "Правка" = "Sunting";
 "Предыдущая вкладка" = "Tab sebelumnya";
+"Предыдущая открытая вкладка" = "Tab terbuka sebelumnya";
 "Предыдущее совпадение (⇧↩)" = "Pertandingan sebelumnya (⇧↩)";
 "При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске." = "Saat diaktifkan, tab yang terbuka dan teksnya disimpan di tabs.json dan dipulihkan saat startup.";
 "При наведении на название столбца" = "Saat Anda mengarahkan kursor ke judul kolom";
+"При открытии скрипта автоматически выделять текст первого параметра в WHERE." = "Saat membuka skrip, secara otomatis menyorot teks parameter pertama di WHERE.";
 "Прила" = "Prila";
 "Пробел" = "Spasi";
 "Проверить подключение с введёнными параметрами, не сохраняя их" = "Periksa koneksi dengan parameter yang dimasukkan tanpa menyimpannya";
+"Проверка изменений файлов на диске включена" = "Memeriksa perubahan pada file pada disk diaktifkan";
+"Проверка изменений файлов на диске выключена" = "Memeriksa perubahan pada file pada disk dinonaktifkan";
 "Проверка подключения…" = "Menguji koneksi…";
+"Проверять изменения файлов на диске" = "Periksa perubahan pada file di disk";
 "Простой клиент для баз данных" = "Klien basis data sederhana";
 "Прочитать" = "Baca";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Baca ldap.ora dan sqlnet.ora dan isi kolom di bawah ini";
@@ -355,6 +375,8 @@
 "Результат последнего запроса" = "Hasil permintaan terakhir";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Hasilnya berisi kolom dari tabel berbeda - tidak dapat disimpan";
 "Русский" = "Rusia";
+"САМ" = "DIRI SENDIRI";
+"СХЛ" = "SHL";
 "Сбросить вид" = "Setel ulang tampilan";
 "Сбросить поиск по истории" = "Setel ulang pencarian riwayat";
 "Свернуть" = "Runtuh";
@@ -369,6 +391,7 @@
 "Сервисы аутентификации (необязательно)" = "Layanan otentikasi (opsional)";
 "Символ кавычек" = "Simbol kutipan";
 "Системный" = "Sistem";
+"Системный · %@" = "Sistem · %@";
 "Системный моноширинный" = "Sistem monospace";
 "Скопировано (%@): %@ строк" = "Disalin (%@): %@ baris";
 "Скопировано столбцов: %@" = "Kolom disalin: %@";
@@ -384,6 +407,7 @@
 "Слева и справа" = "Kiri dan kanan";
 "Слева и четверти" = "Kiri dan perempat";
 "Слева на экране" = "Kiri di layar";
+"Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Pantau file yang terbuka dan tawarkan untuk memuat versi dari disk jika file telah diubah oleh program lain. Saat dinonaktifkan, file pada disk tidak dibaca atau dibandingkan.";
 "Следующая вкладка" = "Tab berikutnya";
 "Следующее совпадение (↩)" = "Pertandingan berikutnya (↩)";
 "Службы" = "Layanan";
@@ -437,6 +461,7 @@
 "Тип данных столбца" = "Tipe data kolom";
 "Тип данных, перенос строк, форматирование и кодировка" = "Tipe data, pembungkusan baris, pemformatan dan pengkodean";
 "Тип: %@" = "Ketik: %@";
+"Только при поиске" = "Hanya saat mencari";
 "У таблицы %@ нет первичного ключа — изменения нельзя сохранить" = "Tabel %@ tidak mempunyai kunci utama - perubahan tidak dapat disimpan";
 "Убрать окно из набора" = "Hapus jendela dari set";
 "Увеличить шрифт" = "Tingkatkan font";
@@ -450,16 +475,20 @@
 "Удалить…" = "Hapus…";
 "Українська" = "Ukraina";
 "Уменьшить шрифт" = "Kurangi font";
+"Умное выделение" = "Pilihan cerdas";
 "Уникальный ключ: %@(%@)" = "Kunci unik: %@(%@)";
 "Управление" = "Kontrol";
 "Файл" = "Mengajukan";
 "Файл «%@» уже существует" = "Berkas \"%@\" sudah ada";
 "Файл базы (.db / .sqlite)" = "File basis data (.db / .sqlite)";
 "Файл изменён на диске" = "File diubah pada disk";
+"Файлы" = "File";
 "Хост" = "Tuan rumah";
 "Хост (алиас из ~/.ssh/config)" = "Tuan rumah (alias dari ~/.ssh/config)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "Host SSH tidak ditentukan: pengujian dan koneksi akan menghasilkan kesalahan. Tentukan host/alias atau nonaktifkan SSH.";
 "Хранить историю" = "Simpan sejarah";
+"Часовой пояс" = "Zona waktu";
+"Часовой пояс времени: %@" = "Zona waktu: %@";
 "Часть ключа:" = "Bagian dari kunci:";
 "Часть ключа: %@" = "Bagian dari kunci: %@";
 "Четверти" = "Perempat";
@@ -478,6 +507,7 @@
 "Экспорт в XML (⌥⇧⌘E)" = "Ekspor ke XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Diekspor: %@";
 "Эмодзи и символы" = "Emoji dan simbol";
+"ЯКТ" = "YKT";
 "Язык" = "Bahasa";
 "Язык интерфейса" = "Bahasa antarmuka";
 "Язык: %@ — перезапустите приложение" = "Bahasa: %@ - memulai ulang aplikasi";

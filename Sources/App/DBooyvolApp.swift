@@ -357,6 +357,8 @@ struct DBooyvolApp: App {
                     .appShortcut(shortcuts.binding(for: .nextTab))
                 Button("Предыдущая вкладка") { model.selectPreviousTab() }
                     .appShortcut(shortcuts.binding(for: .previousTab))
+                Button("Предыдущая открытая вкладка") { model.selectPreviouslyOpenedTab() }
+                    .appShortcut(shortcuts.binding(for: .previousOpenedTab))
             }
 
             CommandMenu("Подключение") {

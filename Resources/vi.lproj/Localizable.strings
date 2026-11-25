@@ -53,6 +53,7 @@
 "В названии столбца" = "Trong tiêu đề cột";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Có những thay đổi chưa được lưu trong trình chỉnh sửa: việc tải từ đĩa sẽ thay thế chúng.";
 "В результате нет столбца первичного ключа «%@»" = "Kết quả là không có cột khóa chính '%@'";
+"ВЛД" = "VLD";
 "Введите пароль от «%@»" = "Nhập mật khẩu cho \"%@\"";
 "Вернуть 200 строк на страницу" = "Trả về 200 hàng trên mỗi trang";
 "Вернуть по умолчанию" = "Đặt lại về mặc định";
@@ -64,6 +65,8 @@
 "Вид" = "Xem";
 "Вкладки" = "Tab";
 "Во весь экран" = "Toàn màn hình";
+"Время" = "Thời gian";
+"Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна." = "Các cột dấu thời gian được hiển thị trong vùng này; thời gian mà không chỉ định vùng được coi là UTC. Biểu tượng vành đai ngắn hiển thị ở dòng dưới cùng của cửa sổ.";
 "Все окна на передний план" = "Đưa tất cả các cửa sổ ra phía trước";
 "Всегда заключать в кавычки" = "Luôn trích dẫn";
 "Вставить" = "Dán";
@@ -81,8 +84,10 @@
 "Выбрать папку network/admin" = "Chọn thư mục mạng/quản trị viên";
 "Выбрать файл базы SQLite" = "Chọn tệp cơ sở dữ liệu SQLite";
 "Выбрать…" = "Chọn…";
+"Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Chỉ đánh dấu khi yêu cầu được mở thông qua tìm kiếm (⌘E).";
 "Выйти из полноэкранного режима" = "Thoát khỏi chế độ toàn màn hình";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Chạy truy vấn: ⌘R hoặc ⌘↩ (phần đã chọn hoặc toàn bộ tập lệnh)";
+"Выполнить" = "Thực hiện";
 "Выполнить / остановить" = "Chạy / Dừng";
 "Выполнить всё" = "Chạy tất cả";
 "Выполнить выделение / всё" = "Chạy lựa chọn/tất cả";
@@ -108,6 +113,7 @@
 "Дублировать" = "Trùng lặp";
 "Дублировать вкладку" = "Tab trùng lặp";
 "Дублировать подключение" = "Kết nối trùng lặp";
+"ЕКБ" = "EKB";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Nếu nhãn NULL khớp với giá trị trên bảng ghi tạm thì NULL sẽ được chèn vào ô. Nhãn trống có nghĩa là một dòng trống.";
 "Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Nếu bạn không cần lưu mật khẩu kết nối, hãy tắt “Lưu mật khẩu” trong cài đặt của nó - khi đó mật khẩu sẽ được yêu cầu khi kết nối.";
 "Есть несохранённые изменения." = "Có những thay đổi chưa được lưu.";
@@ -138,6 +144,7 @@
 "Запрос %@" = "Truy vấn SQL %@";
 "Запросы" = "Truy vấn";
 "Значение" = "Giá trị trường";
+"ИРК" = "IRK";
 "Игнорировать кавычки" = "Bỏ qua dấu ngoặc kép";
 "Из папки берутся ojdbc*.jar и network/admin. Dylib-библиотеки не нужны: тонкий драйвер не грузит нативные библиотеки." = "Ojdbc*.jar và network/admin được lấy từ thư mục. Không cần thư viện Dylib: trình điều khiển mỏng không tải thư viện gốc.";
 "Изменения отменены" = "Đã hủy thay đổi";
@@ -160,6 +167,9 @@
 "История пуста" = "Lịch sử trống";
 "История: %@" = "Lịch sử: %@";
 "История: %@ дней" = "Lịch sử: %@ ngày";
+"КАМ" = "KAM";
+"КЛГ" = "KLG";
+"КРСК" = "KRSK";
 "Как в базе" = "Cơ sở dữ liệu gốc";
 "Каталог ~/.ssh" = "Thư mục ~/.ssh";
 "Ключ (необязательно)" = "Chìa khóa (tùy chọn)";
@@ -184,11 +194,14 @@
 "Копировать…" = "Sao chép…";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Thông tin đăng nhập và mật khẩu từ URL được lưu dưới dạng văn bản rõ ràng. Xóa chúng khỏi URL và sử dụng trường Người dùng và Mật khẩu.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Tệp SQLite cục bộ được mở trực tiếp, không cần máy chủ.";
+"МАГ" = "MAG";
+"МСК" = "MSK";
 "Максимальная авто-ширина: %@ pt" = "Độ rộng tự động tối đa: %@ pt";
 "Максимум ширины:" = "Chiều rộng tối đa:";
 "Масштаб" = "Quy mô";
 "Масштабировать все" = "Chia tỷ lệ tất cả";
 "Метка NULL" = "Nhãn vô giá trị";
+"НСК" = "NSC";
 "Нажмите на сочетание, чтобы изменить его." = "Bấm vào một phím tắt để thay đổi nó.";
 "Нажмите сочетание…" = "Nhấn phím tắt…";
 "Найти" = "Tìm";
@@ -237,6 +250,7 @@
 "Новый скрипт" = "Tập lệnh SQL mới";
 "Новый язык применится после перезапуска приложения." = "Ngôn ngữ mới sẽ được áp dụng sau khi khởi động lại ứng dụng.";
 "О программе DBooyvol" = "Giới thiệu về chương trình DBooyvol";
+"ОМСК" = "OMSK";
 "Обновить" = "Cập nhật";
 "Обновить дерево" = "Cập nhật cây";
 "Объединить все окна" = "Hợp nhất tất cả các cửa sổ";
@@ -272,6 +286,7 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Thư mục Instant Client: ojdbc*.jar và network/admin được lấy từ nó";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Thư mục mạng/quản trị viên với tnsnames.ora, ldap.ora và sqlnet.ora";
 "Папка: %@" = "Thư mục: %@";
+"Параметры запроса" = "Thông số yêu cầu";
 "Пароли" = "Mật khẩu";
 "Пароли перешифрованы новым мастер-ключом" = "Mật khẩu được mã hóa lại bằng khóa chính mới";
 "Пароли…" = "Mật khẩu...";
@@ -330,13 +345,18 @@
 "Порт" = "Cảng";
 "Правка" = "Chỉnh sửa";
 "Предыдущая вкладка" = "Tab trước";
+"Предыдущая открытая вкладка" = "Tab mở trước đó";
 "Предыдущее совпадение (⇧↩)" = "Trận đấu trước (⇧↩)";
 "При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске." = "Khi được bật, các tab đang mở và văn bản của chúng sẽ được lưu trong tabs.json và được khôi phục khi khởi động.";
 "При наведении на название столбца" = "Khi bạn di chuột qua tiêu đề cột";
+"При открытии скрипта автоматически выделять текст первого параметра в WHERE." = "Khi mở tập lệnh, hãy tự động đánh dấu văn bản của tham số đầu tiên trong WHERE.";
 "Прила" = "Prila";
 "Пробел" = "Dấu cách";
 "Проверить подключение с введёнными параметрами, не сохраняя их" = "Kiểm tra kết nối với các tham số đã nhập mà không lưu chúng";
+"Проверка изменений файлов на диске включена" = "Kiểm tra các thay đổi đối với tệp trên đĩa đã được bật";
+"Проверка изменений файлов на диске выключена" = "Kiểm tra các thay đổi đối với tệp trên đĩa bị tắt";
 "Проверка подключения…" = "Đang kiểm tra kết nối…";
+"Проверять изменения файлов на диске" = "Kiểm tra các thay đổi đối với tập tin trên đĩa";
 "Простой клиент для баз данных" = "Máy khách cơ sở dữ liệu đơn giản";
 "Прочитать" = "Đọc";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Đọc ldap.ora và sqlnet.ora rồi điền vào các trường bên dưới";
@@ -355,6 +375,8 @@
 "Результат последнего запроса" = "Kết quả của yêu cầu cuối cùng";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Kết quả chứa các cột từ các bảng khác nhau - không thể lưu được";
 "Русский" = "Tiếng Nga";
+"САМ" = "CHÍNH MÌNH";
+"СХЛ" = "SHL";
 "Сбросить вид" = "Đặt lại chế độ xem";
 "Сбросить поиск по истории" = "Đặt lại tìm kiếm lịch sử";
 "Свернуть" = "Thu gọn";
@@ -369,6 +391,7 @@
 "Сервисы аутентификации (необязательно)" = "Dịch vụ xác thực (tùy chọn)";
 "Символ кавычек" = "Biểu tượng trích dẫn";
 "Системный" = "Hệ thống";
+"Системный · %@" = "Hệ thống · %@";
 "Системный моноширинный" = "Hệ thống đơn không gian";
 "Скопировано (%@): %@ строк" = "Đã sao chép (%@): %@ dòng";
 "Скопировано столбцов: %@" = "Các cột được sao chép: %@";
@@ -384,6 +407,7 @@
 "Слева и справа" = "Trái và phải";
 "Слева и четверти" = "Trái và quý";
 "Слева на экране" = "Còn lại trên màn hình";
+"Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Giám sát các tệp đang mở và đề nghị tải phiên bản từ đĩa nếu tệp đã bị chương trình khác thay đổi. Khi bị tắt, các tập tin trên đĩa sẽ không được đọc hoặc so sánh.";
 "Следующая вкладка" = "Tab tiếp theo";
 "Следующее совпадение (↩)" = "Trận tiếp theo (↩)";
 "Службы" = "Dịch vụ";
@@ -437,6 +461,7 @@
 "Тип данных столбца" = "Kiểu dữ liệu cột";
 "Тип данных, перенос строк, форматирование и кодировка" = "Kiểu dữ liệu, ngắt dòng, định dạng và mã hóa";
 "Тип: %@" = "Loại: %@";
+"Только при поиске" = "Chỉ khi tìm kiếm";
 "У таблицы %@ нет первичного ключа — изменения нельзя сохранить" = "Bảng %@ không có khóa chính - không thể lưu các thay đổi";
 "Убрать окно из набора" = "Xóa cửa sổ khỏi bộ";
 "Увеличить шрифт" = "Tăng phông chữ";
@@ -450,16 +475,20 @@
 "Удалить…" = "Xóa…";
 "Українська" = "Tiếng Ukraina";
 "Уменьшить шрифт" = "Giảm phông chữ";
+"Умное выделение" = "Lựa chọn thông minh";
 "Уникальный ключ: %@(%@)" = "Khóa duy nhất: %@(%@)";
 "Управление" = "Điều khiển";
 "Файл" = "Tập tin";
 "Файл «%@» уже существует" = "Tệp \"%@\" đã tồn tại";
 "Файл базы (.db / .sqlite)" = "Tệp cơ sở dữ liệu (.db/.sqlite)";
 "Файл изменён на диске" = "Tập tin đã thay đổi trên đĩa";
+"Файлы" = "Tập tin";
 "Хост" = "Máy chủ";
 "Хост (алиас из ~/.ssh/config)" = "Máy chủ (bí danh từ ~/.ssh/config)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "Máy chủ SSH không được chỉ định: kiểm tra và kết nối sẽ trả về lỗi. Chỉ định máy chủ/bí danh hoặc tắt SSH.";
 "Хранить историю" = "Giữ lịch sử";
+"Часовой пояс" = "Múi giờ";
+"Часовой пояс времени: %@" = "Múi giờ: %@";
 "Часть ключа:" = "Một phần của chìa khóa:";
 "Часть ключа: %@" = "Một phần của khóa: %@";
 "Четверти" = "Khu";
@@ -478,6 +507,7 @@
 "Экспорт в XML (⌥⇧⌘E)" = "Xuất sang XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Đã xuất: %@";
 "Эмодзи и символы" = "Biểu tượng cảm xúc và biểu tượng";
+"ЯКТ" = "YKT";
 "Язык" = "Ngôn ngữ";
 "Язык интерфейса" = "Ngôn ngữ giao diện";
 "Язык: %@ — перезапустите приложение" = "Ngôn ngữ: %@ - khởi động lại ứng dụng";

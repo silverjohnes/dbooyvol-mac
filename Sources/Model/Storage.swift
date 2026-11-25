@@ -143,6 +143,10 @@ enum AppSettings {
     static let historyRetentionDaysKey = "historyRetentionDays"
     static let showTypeInHeaderKey = "showTypeInColumnHeader"
     static let showTypeOnHeaderHoverKey = "showTypeOnHeaderHover"
+    static let smartSelectionKey = "smartSelection"
+    static let smartSelectionOnlyInSearchKey = "smartSelectionOnlyInSearch"
+    static let timeZoneKey = "displayTimeZone"
+    static let checkExternalChangesKey = "checkExternalChanges"
     static let selectedProfileIDKey = "selectedProfileID"
     static func treeExpandedKey(_ id: UUID) -> String { "treeExpanded.\(id.uuidString)" }
 
@@ -159,7 +163,11 @@ enum AppSettings {
             pageSizeKey: 200,
             historyRetentionDaysKey: 30,
             showTypeInHeaderKey: false,
-            showTypeOnHeaderHoverKey: true
+            showTypeOnHeaderHoverKey: true,
+            smartSelectionKey: false,
+            smartSelectionOnlyInSearchKey: false,
+            timeZoneKey: "",
+            checkExternalChangesKey: false
         ])
     }
 
@@ -213,6 +221,22 @@ enum AppSettings {
     static var resultFontName: String {
         get { UserDefaults.standard.string(forKey: resultFontNameKey) ?? "" }
         set { UserDefaults.standard.set(newValue, forKey: resultFontNameKey) }
+    }
+
+    /// Time zone used to display timestamp columns. Empty means the system
+    /// zone; an unset key must also mean the system zone, because property
+    /// initializers run before `registerDefaults()`.
+    static var timeZoneIdentifier: String {
+        get { UserDefaults.standard.string(forKey: timeZoneKey) ?? "" }
+        set { UserDefaults.standard.set(newValue, forKey: timeZoneKey) }
+    }
+
+    /// Whether open files are compared with their disk contents. Off by
+    /// default: the comparison reads files every couple of seconds and can
+    /// interrupt with a conflict dialog.
+    static var checkExternalChanges: Bool {
+        get { UserDefaults.standard.object(forKey: checkExternalChangesKey) as? Bool ?? false }
+        set { UserDefaults.standard.set(newValue, forKey: checkExternalChangesKey) }
     }
 
     static var resultFontSize: CGFloat {

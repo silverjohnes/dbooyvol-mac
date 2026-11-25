@@ -53,6 +53,7 @@
 "В названии столбца" = "Sütun başlığında";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "Düzenleyicide kaydedilmemiş değişiklikler var: diskten yükleme bunların yerini alacak.";
 "В результате нет столбца первичного ключа «%@»" = "Sonuç olarak, '%@' birincil anahtar sütunu yok";
+"ВЛД" = "VLD";
 "Введите пароль от «%@»" = "\"%@\" için şifreyi girin";
 "Вернуть 200 строк на страницу" = "Sayfa başına 200 satır döndür";
 "Вернуть по умолчанию" = "Varsayılana sıfırla";
@@ -64,6 +65,8 @@
 "Вид" = "Görüntüle";
 "Вкладки" = "Sekmeler";
 "Во весь экран" = "Tam ekran";
+"Время" = "Zaman";
+"Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна." = "Zaman damgası sütunları bu bölgede gösterilir; Bölge belirtilmeden geçen saat UTC olarak kabul edilir. Pencerenin alt satırında kısa kemer simgesi görünür.";
 "Все окна на передний план" = "Tüm pencereleri öne getir";
 "Всегда заключать в кавычки" = "Her zaman alıntı yap";
 "Вставить" = "Yapıştır";
@@ -81,8 +84,10 @@
 "Выбрать папку network/admin" = "Ağ/yönetici klasörünü seçin";
 "Выбрать файл базы SQLite" = "SQLite veritabanı dosyasını seçin";
 "Выбрать…" = "Seç…";
+"Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Yalnızca istek arama (⌘E) aracılığıyla açıldığında vurgulayın.";
 "Выйти из полноэкранного режима" = "Tam ekran modundan çık";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Sorguyu çalıştırın: ⌘R veya ⌘↩ (seçim veya tüm betik)";
+"Выполнить" = "Yürüt";
 "Выполнить / остановить" = "Çalıştır / Durdur";
 "Выполнить всё" = "Tümünü çalıştır";
 "Выполнить выделение / всё" = "Seçimi çalıştır / tümü";
@@ -108,6 +113,7 @@
 "Дублировать" = "Çoğalt";
 "Дублировать вкладку" = "Sekmeyi kopyala";
 "Дублировать подключение" = "Yinelenen bağlantı";
+"ЕКБ" = "EKB";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "NULL etiketi panodaki değerle eşleşiyorsa hücreye bir NULL eklenir. Boş bir etiket, boş bir satır anlamına gelir.";
 "Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Bağlantı şifresini saklamanız gerekmiyorsa, ayarlarında \"Şifreyi kaydet\" seçeneğini kapatın; bu durumda bağlanırken istenecektir.";
 "Есть несохранённые изменения." = "Kaydedilmemiş değişiklikler var.";
@@ -138,6 +144,7 @@
 "Запрос %@" = "SQL sorgusu %@";
 "Запросы" = "Sorgular";
 "Значение" = "Alan değeri";
+"ИРК" = "IRK";
 "Игнорировать кавычки" = "Alıntıları yoksay";
 "Из папки берутся ojdbc*.jar и network/admin. Dylib-библиотеки не нужны: тонкий драйвер не грузит нативные библиотеки." = "Ojdbc*.jar ve network/admin klasöründen alınır. Dylib kitaplıklarına gerek yoktur: İnce sürücü yerel kitaplıkları yüklemez.";
 "Изменения отменены" = "Değişiklikler iptal edildi";
@@ -160,6 +167,9 @@
 "История пуста" = "Geçmiş boş";
 "История: %@" = "Geçmiş: %@";
 "История: %@ дней" = "Geçmiş: %@ gün";
+"КАМ" = "KAM";
+"КЛГ" = "KLG";
+"КРСК" = "KRSK";
 "Как в базе" = "Veritabanı yerel";
 "Каталог ~/.ssh" = "~/.ssh dizini";
 "Ключ (необязательно)" = "Anahtar (isteğe bağlı)";
@@ -184,11 +194,14 @@
 "Копировать…" = "Kopyala…";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "URL'deki kullanıcı adı ve şifre, düz metin olarak kaydedilir. Bunları URL'den kaldırın ve Kullanıcı ve Şifre alanlarını kullanın.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Yerel SQLite dosyası doğrudan açılır, sunucuya gerek yoktur.";
+"МАГ" = "MAG";
+"МСК" = "MSK";
 "Максимальная авто-ширина: %@ pt" = "Maksimum otomatik genişlik: %@ nk";
 "Максимум ширины:" = "Maksimum genişlik:";
 "Масштаб" = "Ölçek";
 "Масштабировать все" = "Tümünü ölçeklendir";
 "Метка NULL" = "BOŞ etiket";
+"НСК" = "MGK";
 "Нажмите на сочетание, чтобы изменить его." = "Değiştirmek için bir kısayola tıklayın.";
 "Нажмите сочетание…" = "Bir kısayola basın…";
 "Найти" = "Bul";
@@ -237,6 +250,7 @@
 "Новый скрипт" = "Yeni SQL betiği";
 "Новый язык применится после перезапуска приложения." = "Uygulama yeniden başlatıldıktan sonra yeni dil uygulanacaktır.";
 "О программе DBooyvol" = "DBooyvol programı hakkında";
+"ОМСК" = "OMSK";
 "Обновить" = "Güncelleme";
 "Обновить дерево" = "Ağacı güncelle";
 "Объединить все окна" = "Tüm pencereleri birleştir";
@@ -272,6 +286,7 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client klasörü: ojdbc*.jar ve network/admin buradan alınır";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Tnsnames.ora, ldap.ora ve sqlnet.ora içeren ağ/yönetici klasörü";
 "Папка: %@" = "Klasör: %@";
+"Параметры запроса" = "Parametreleri talep et";
 "Пароли" = "Şifreler";
 "Пароли перешифрованы новым мастер-ключом" = "Parolalar yeni bir ana anahtarla yeniden şifrelenir";
 "Пароли…" = "Şifreler...";
@@ -330,13 +345,18 @@
 "Порт" = "Liman";
 "Правка" = "Düzenle";
 "Предыдущая вкладка" = "Önceki sekme";
+"Предыдущая открытая вкладка" = "Önceki açık sekme";
 "Предыдущее совпадение (⇧↩)" = "Önceki maç (⇧↩)";
 "При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске." = "Etkinleştirildiğinde, açık sekmeler ve metinleri tabs.json dosyasına kaydedilir ve başlangıçta geri yüklenir.";
 "При наведении на название столбца" = "Bir sütun başlığının üzerine geldiğinizde";
+"При открытии скрипта автоматически выделять текст первого параметра в WHERE." = "Bir komut dosyasını açarken, WHERE'deki ilk parametrenin metnini otomatik olarak vurgulayın.";
 "Прила" = "Prila";
 "Пробел" = "Boşluk";
 "Проверить подключение с введёнными параметрами, не сохраняя их" = "Girilen parametrelerle bağlantıyı kaydetmeden kontrol edin";
+"Проверка изменений файлов на диске включена" = "Diskteki dosyalarda değişiklik olup olmadığının kontrol edilmesi etkinleştirildi";
+"Проверка изменений файлов на диске выключена" = "Diskteki dosyalarda değişiklik olup olmadığının kontrol edilmesi devre dışı";
 "Проверка подключения…" = "Bağlantı test ediliyor…";
+"Проверять изменения файлов на диске" = "Diskteki dosyalarda değişiklik olup olmadığını kontrol edin";
 "Простой клиент для баз данных" = "Basit veritabanı istemcisi";
 "Прочитать" = "Oku";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Ldap.ora ve sqlnet.ora'yı okuyun ve aşağıdaki alanları doldurun";
@@ -355,6 +375,8 @@
 "Результат последнего запроса" = "Son isteğin sonucu";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Sonuç farklı tablolardan sütunlar içeriyor; kaydedilemez";
 "Русский" = "Rusça";
+"САМ" = "KENDİSİ";
+"СХЛ" = "SHL";
 "Сбросить вид" = "Görünümü sıfırla";
 "Сбросить поиск по истории" = "Geçmiş aramasını sıfırla";
 "Свернуть" = "Daralt";
@@ -369,6 +391,7 @@
 "Сервисы аутентификации (необязательно)" = "Kimlik doğrulama hizmetleri (isteğe bağlı)";
 "Символ кавычек" = "Alıntı sembolü";
 "Системный" = "Sistem";
+"Системный · %@" = "Sistem · %@";
 "Системный моноширинный" = "Sistem tek uzayı";
 "Скопировано (%@): %@ строк" = "Kopyalandı (%@): %@ satır";
 "Скопировано столбцов: %@" = "Kopyalanan sütunlar: %@";
@@ -384,6 +407,7 @@
 "Слева и справа" = "Sol ve sağ";
 "Слева и четверти" = "Sol ve çeyrekler";
 "Слева на экране" = "Ekranda kaldı";
+"Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Açık dosyaları izleyin ve dosya başka bir program tarafından değiştirilmişse diskten bir sürüm yüklemeyi önerin. Devre dışı bırakıldığında diskteki dosyalar okunmaz veya karşılaştırılmaz.";
 "Следующая вкладка" = "Sonraki sekme";
 "Следующее совпадение (↩)" = "Sonraki maç (↩)";
 "Службы" = "Hizmetler";
@@ -437,6 +461,7 @@
 "Тип данных столбца" = "Sütun veri türü";
 "Тип данных, перенос строк, форматирование и кодировка" = "Veri türü, satır kaydırma, biçimlendirme ve kodlama";
 "Тип: %@" = "Tür: %@";
+"Только при поиске" = "Yalnızca arama yaparken";
 "У таблицы %@ нет первичного ключа — изменения нельзя сохранить" = "%@ tablosunun birincil anahtarı yok - değişiklikler kaydedilemez";
 "Убрать окно из набора" = "Pencereyi kümeden kaldır";
 "Увеличить шрифт" = "Yazı tipini artır";
@@ -450,16 +475,20 @@
 "Удалить…" = "Sil…";
 "Українська" = "Ukraynaca";
 "Уменьшить шрифт" = "Yazı tipini azalt";
+"Умное выделение" = "Akıllı seçim";
 "Уникальный ключ: %@(%@)" = "Benzersiz anahtar: %@(%@)";
 "Управление" = "Denetim";
 "Файл" = "Dosya";
 "Файл «%@» уже существует" = "\"%@\" dosyası zaten mevcut";
 "Файл базы (.db / .sqlite)" = "Veritabanı dosyası (.db / .sqlite)";
 "Файл изменён на диске" = "Diskteki dosya değiştirildi";
+"Файлы" = "Dosyalar";
 "Хост" = "Sunucu";
 "Хост (алиас из ~/.ssh/config)" = "Ana Bilgisayar (~/.ssh/config adresinden takma ad)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "SSH ana bilgisayarı belirtilmedi: test et ve bağlan bir hata döndürecektir. Ana makineyi/takma adı belirtin veya SSH'yi devre dışı bırakın.";
 "Хранить историю" = "Geçmişi sakla";
+"Часовой пояс" = "Saat dilimi";
+"Часовой пояс времени: %@" = "Saat dilimi: %@";
 "Часть ключа:" = "Anahtarın bir kısmı:";
 "Часть ключа: %@" = "Anahtarın parçası: %@";
 "Четверти" = "Çeyrekler";
@@ -478,6 +507,7 @@
 "Экспорт в XML (⌥⇧⌘E)" = "XML'e aktar (⌥⇧⌘E)";
 "Экспортировано: %@" = "Dışa aktarıldı: %@";
 "Эмодзи и символы" = "Emojiler ve semboller";
+"ЯКТ" = "YKT";
 "Язык" = "Dil";
 "Язык интерфейса" = "Arayüz dili";
 "Язык: %@ — перезапустите приложение" = "Dil: %@ - uygulamayı yeniden başlatın";

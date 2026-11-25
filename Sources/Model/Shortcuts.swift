@@ -158,7 +158,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
     case runOrStop, runSelection, runAll, runUnderCursor, cancelQuery
     case loadMore, exportCSV, exportXML
     // Вкладки
-    case newQuery, duplicateTab, renameTab, quickOpen, nextTab, previousTab
+    case newQuery, duplicateTab, renameTab, quickOpen, nextTab, previousTab, previousOpenedTab
     // Подключение
     case editConnection, renameConnection, duplicateConnection, connect
     case disconnect, refreshTree, deleteConnection
@@ -199,6 +199,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
         case .quickOpen: return "Найти запрос…"
         case .nextTab: return "Следующая вкладка"
         case .previousTab: return "Предыдущая вкладка"
+        case .previousOpenedTab: return "Предыдущая открытая вкладка"
         case .editConnection: return "Изменить подключение…"
         case .renameConnection: return "Переименовать подключение…"
         case .duplicateConnection: return "Дублировать подключение"
@@ -250,6 +251,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
         case .quickOpen: return ShortcutBinding(key: "e", modifiers: .command)
         case .nextTab: return ShortcutBinding(key: "]", modifiers: [.command, .shift])
         case .previousTab: return ShortcutBinding(key: "[", modifiers: [.command, .shift])
+        case .previousOpenedTab: return ShortcutBinding(key: "t", modifiers: [.command, .shift])
         case .editConnection: return ShortcutBinding(key: "\u{F707}", modifiers: [])
         case .renameConnection: return ShortcutBinding(key: "\u{F705}", modifiers: [])
         case .duplicateConnection: return ShortcutBinding(key: "d", modifiers: [.command, .option])

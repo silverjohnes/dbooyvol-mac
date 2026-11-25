@@ -53,7 +53,8 @@ enum ShortcutCatalog {
         ]),
         ShortcutSection(id: "tabs", title: "Вкладки", items: [
             .action(.newQuery), .action(.duplicateTab), .action(.renameTab),
-            .action(.quickOpen), .action(.nextTab), .action(.previousTab)
+            .action(.quickOpen), .action(.nextTab), .action(.previousTab),
+            .action(.previousOpenedTab)
         ]),
         ShortcutSection(id: "connections", title: "Подключения и дерево", items: [
             .action(.editConnection), .action(.renameConnection),

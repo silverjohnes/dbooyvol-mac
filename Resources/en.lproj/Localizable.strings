@@ -53,6 +53,7 @@
 "В названии столбца" = "In column header";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "There are unsaved changes in the editor: loading from disk will replace them.";
 "В результате нет столбца первичного ключа «%@»" = "As a result, there is no primary key column '%@'";
+"ВЛД" = "VLD";
 "Введите пароль от «%@»" = "Enter the password for \"%@\"";
 "Вернуть 200 строк на страницу" = "Return 200 rows per page";
 "Вернуть по умолчанию" = "Reset to default";
@@ -64,6 +65,8 @@
 "Вид" = "View";
 "Вкладки" = "Tabs";
 "Во весь экран" = "Full screen";
+"Время" = "Time";
+"Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна." = "The timestamp columns are shown in this zone; time without specifying a zone is considered UTC. A short belt symbol is visible in the bottom line of the window.";
 "Все окна на передний план" = "Bring all windows to front";
 "Всегда заключать в кавычки" = "Always quote";
 "Вставить" = "Paste";
@@ -81,8 +84,10 @@
 "Выбрать папку network/admin" = "Choose the network/admin folder";
 "Выбрать файл базы SQLite" = "Select SQLite database file";
 "Выбрать…" = "Choose…";
+"Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Highlight only when the request is opened via search (⌘E).";
 "Выйти из полноэкранного режима" = "Exit full screen mode";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Run the query: ⌘R or ⌘↩ (selection or entire script)";
+"Выполнить" = "Execute";
 "Выполнить / остановить" = "Run / Stop";
 "Выполнить всё" = "Run all";
 "Выполнить выделение / всё" = "Run selection / all";
@@ -108,6 +113,7 @@
 "Дублировать" = "Duplicate";
 "Дублировать вкладку" = "Duplicate tab";
 "Дублировать подключение" = "Duplicate connection";
+"ЕКБ" = "EKB";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "If the NULL label matches the value on the clipboard, a NULL is inserted into the cell. An empty label means an empty line.";
 "Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "If you do not need to store the connection password, turn off “Save password” in its settings - then it will be requested when connecting.";
 "Есть несохранённые изменения." = "There are unsaved changes.";
@@ -138,6 +144,7 @@
 "Запрос %@" = "SQL query %@";
 "Запросы" = "Queries";
 "Значение" = "Field value";
+"ИРК" = "IRK";
 "Игнорировать кавычки" = "Ignore quotes";
 "Из папки берутся ojdbc*.jar и network/admin. Dylib-библиотеки не нужны: тонкий драйвер не грузит нативные библиотеки." = "Ojdbc*.jar and network/admin are taken from the folder. Dylib libraries are not needed: the thin driver does not load native libraries.";
 "Изменения отменены" = "Changes canceled";
@@ -160,6 +167,9 @@
 "История пуста" = "History is empty";
 "История: %@" = "History: %@";
 "История: %@ дней" = "History: %@ days";
+"КАМ" = "KAM";
+"КЛГ" = "KLG";
+"КРСК" = "KRSK";
 "Как в базе" = "Database native";
 "Каталог ~/.ssh" = "~/.ssh directory";
 "Ключ (необязательно)" = "Key (optional)";
@@ -184,11 +194,14 @@
 "Копировать…" = "Copy…";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "The login and password from the URL are saved in clear text. Remove them from the URL and use the User and Password fields.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "The local SQLite file is opened directly, no server needed.";
+"МАГ" = "MAG";
+"МСК" = "MSK";
 "Максимальная авто-ширина: %@ pt" = "Maximum auto-width: %@ pt";
 "Максимум ширины:" = "Maximum width:";
 "Масштаб" = "Scale";
 "Масштабировать все" = "Scale all";
 "Метка NULL" = "NULL label";
+"НСК" = "NSC";
 "Нажмите на сочетание, чтобы изменить его." = "Click a shortcut to change it.";
 "Нажмите сочетание…" = "Press a shortcut…";
 "Найти" = "Find";
@@ -237,6 +250,7 @@
 "Новый скрипт" = "New SQL script";
 "Новый язык применится после перезапуска приложения." = "The new language will be applied after restarting the application.";
 "О программе DBooyvol" = "About the DBooyvol program";
+"ОМСК" = "OMSK";
 "Обновить" = "Update";
 "Обновить дерево" = "Update tree";
 "Объединить все окна" = "Merge all windows";
@@ -272,6 +286,7 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client folder: ojdbc*.jar and network/admin are taken from it";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Network/admin folder with tnsnames.ora, ldap.ora and sqlnet.ora";
 "Папка: %@" = "Folder: %@";
+"Параметры запроса" = "Request parameters";
 "Пароли" = "Passwords";
 "Пароли перешифрованы новым мастер-ключом" = "Passwords are re-encrypted with a new master key";
 "Пароли…" = "Passwords...";
@@ -330,13 +345,18 @@
 "Порт" = "Port";
 "Правка" = "Edit";
 "Предыдущая вкладка" = "Previous tab";
+"Предыдущая открытая вкладка" = "Previous open tab";
 "Предыдущее совпадение (⇧↩)" = "Previous match (⇧↩)";
 "При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске." = "When enabled, open tabs and their text are saved in tabs.json and restored on startup.";
 "При наведении на название столбца" = "When you hover over a column title";
+"При открытии скрипта автоматически выделять текст первого параметра в WHERE." = "When opening a script, automatically highlight the text of the first parameter in WHERE.";
 "Прила" = "Prila";
 "Пробел" = "Space";
 "Проверить подключение с введёнными параметрами, не сохраняя их" = "Check the connection with the entered parameters without saving them";
+"Проверка изменений файлов на диске включена" = "Checking for changes to files on disk is enabled";
+"Проверка изменений файлов на диске выключена" = "Checking for changes to files on disk is disabled";
 "Проверка подключения…" = "Testing connection…";
+"Проверять изменения файлов на диске" = "Check for changes to files on disk";
 "Простой клиент для баз данных" = "Simple database client";
 "Прочитать" = "Read";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Read ldap.ora and sqlnet.ora and fill in the fields below";
@@ -355,6 +375,8 @@
 "Результат последнего запроса" = "Result of the last request";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "The result contains columns from different tables - cannot be saved";
 "Русский" = "Russian";
+"САМ" = "HIMSELF";
+"СХЛ" = "SHL";
 "Сбросить вид" = "Reset view";
 "Сбросить поиск по истории" = "Reset history search";
 "Свернуть" = "Collapse";
@@ -369,6 +391,7 @@
 "Сервисы аутентификации (необязательно)" = "Authentication services (optional)";
 "Символ кавычек" = "Quote symbol";
 "Системный" = "System";
+"Системный · %@" = "System · %@";
 "Системный моноширинный" = "System monospace";
 "Скопировано (%@): %@ строк" = "Copied (%@): %@ lines";
 "Скопировано столбцов: %@" = "Columns copied: %@";
@@ -384,6 +407,7 @@
 "Слева и справа" = "Left and right";
 "Слева и четверти" = "Left and quarters";
 "Слева на экране" = "Left on screen";
+"Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Monitor open files and offer to load a version from disk if the file has been changed by another program. When disabled, files on the disk are not read or compared.";
 "Следующая вкладка" = "Next tab";
 "Следующее совпадение (↩)" = "Next match (↩)";
 "Службы" = "Services";
@@ -437,6 +461,7 @@
 "Тип данных столбца" = "Column data type";
 "Тип данных, перенос строк, форматирование и кодировка" = "Data type, line wrapping, formatting and encoding";
 "Тип: %@" = "Type: %@";
+"Только при поиске" = "Only when searching";
 "У таблицы %@ нет первичного ключа — изменения нельзя сохранить" = "Table %@ does not have a primary key - changes cannot be saved";
 "Убрать окно из набора" = "Remove window from set";
 "Увеличить шрифт" = "Increase font";
@@ -450,16 +475,20 @@
 "Удалить…" = "Delete…";
 "Українська" = "Ukrainian";
 "Уменьшить шрифт" = "Decrease font";
+"Умное выделение" = "Smart selection";
 "Уникальный ключ: %@(%@)" = "Unique key: %@(%@)";
 "Управление" = "Controls";
 "Файл" = "File";
 "Файл «%@» уже существует" = "File \"%@\" already exists";
 "Файл базы (.db / .sqlite)" = "Database file (.db / .sqlite)";
 "Файл изменён на диске" = "File changed on disk";
+"Файлы" = "Files";
 "Хост" = "Host";
 "Хост (алиас из ~/.ssh/config)" = "Host (alias from ~/.ssh/config)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "SSH host not specified: test and connect will return an error. Specify host/alias or disable SSH.";
 "Хранить историю" = "Keep history";
+"Часовой пояс" = "Time zone";
+"Часовой пояс времени: %@" = "Time zone: %@";
 "Часть ключа:" = "Part of key:";
 "Часть ключа: %@" = "Part of key: %@";
 "Четверти" = "Quarters";
@@ -478,6 +507,7 @@
 "Экспорт в XML (⌥⇧⌘E)" = "Export to XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Exported: %@";
 "Эмодзи и символы" = "Emojis and symbols";
+"ЯКТ" = "YKT";
 "Язык" = "Language";
 "Язык интерфейса" = "Interface language";
 "Язык: %@ — перезапустите приложение" = "Language: %@ - restart the application";

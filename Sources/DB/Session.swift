@@ -158,19 +158,21 @@ final class Session {
         }
     }
 
-    func execute(_ sql: String, pageSize: Int = 200) async throws -> QueryResult {
+    func execute(_ sql: String, pageSize: Int = 200,
+                 params: [String: Any] = [:]) async throws -> QueryResult {
         do {
-            return try await executeOnce(sql, pageSize: pageSize)
+            return try await executeOnce(sql, pageSize: pageSize, params: params)
         } catch {
             // The server may have dropped an idle session (or the sidecar restarted).
             // Reconnect once and retry the same statement.
             guard (error as? SidecarError)?.isConnectionLost == true else { throw error }
             resetConnection()
-            return try await executeOnce(sql, pageSize: pageSize)
+            return try await executeOnce(sql, pageSize: pageSize, params: params)
         }
     }
 
-    private func executeOnce(_ sql: String, pageSize: Int) async throws -> QueryResult {
+    private func executeOnce(_ sql: String, pageSize: Int,
+                             params: [String: Any]) async throws -> QueryResult {
         try await connect()
         guard let connId else { throw SidecarError(message: "Нет соединения") }
         let started = Date()
@@ -178,7 +180,8 @@ final class Session {
             "connId": connId,
             "sql": sql,
             "kind": profile.kind.rawValue,
-            "count": pageSize
+            "count": pageSize,
+            "params": params
         ])
 
         var result = QueryResult()
@@ -209,10 +212,15 @@ final class Session {
 
     /// Total row count for a result, computed on a separate connection so the
     /// paging cursor of the main query can stay open.
-    func countRows(_ sql: String) async throws -> Int {
+    func countRows(_ sql: String, params: [String: Any] = [:]) async throws -> Int {
         try await connect()
         guard let connId else { throw SidecarError(message: "Нет соединения") }
-        let res = try await SidecarClient.shared.call("count", ["connId": connId, "sql": sql])
+        let res = try await SidecarClient.shared.call("count", [
+            "connId": connId,
+            "sql": sql,
+            "kind": profile.kind.rawValue,
+            "params": params
+        ])
         return (res["count"] as? NSNumber)?.intValue ?? 0
     }
 

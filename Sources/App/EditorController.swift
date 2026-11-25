@@ -90,6 +90,330 @@ enum SQLText {
         }
         return list.last?.text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
+
+    /// Named bind parameters (`:name`) outside strings and comments, in order of
+    /// first appearance. PostgreSQL casts (`::type`) and assignments (`:=`) are
+    /// not parameters.
+    static func parameters(in sql: String) -> [String] {
+        let ns = sql as NSString
+        var names: [String] = []
+        var seen = Set<String>()
+        var i = 0
+        let n = ns.length
+
+        func isWordStart(_ c: unichar) -> Bool {
+            (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95
+        }
+        func isWord(_ c: unichar) -> Bool {
+            isWordStart(c) || (c >= 48 && c <= 57) || c == 36 || c == 35
+        }
+
+        while i < n {
+            let c = ns.character(at: i)
+            if c == 45, i + 1 < n, ns.character(at: i + 1) == 45 {
+                while i < n, ns.character(at: i) != 10 { i += 1 }
+                continue
+            }
+            if c == 47, i + 1 < n, ns.character(at: i + 1) == 42 {
+                i += 2
+                while i + 1 < n, !(ns.character(at: i) == 42 && ns.character(at: i + 1) == 47) { i += 1 }
+                i = min(i + 2, n)
+                continue
+            }
+            if c == 36, let tag = dollarTag(ns, at: i) {
+                let close = "$\(tag)$"
+                let searchRange = NSRange(location: i + close.count, length: max(0, n - i - close.count))
+                let found = ns.range(of: close, options: [], range: searchRange)
+                i = found.location == NSNotFound ? n : found.location + found.length
+                continue
+            }
+            if c == 39 || c == 34 {
+                let quote = c
+                i += 1
+                while i < n {
+                    let d = ns.character(at: i)
+                    if d == quote {
+                        if i + 1 < n, ns.character(at: i + 1) == quote { i += 2; continue }
+                        i += 1
+                        break
+                    }
+                    i += 1
+                }
+                continue
+            }
+            if c == 58 { // :
+                if i + 1 < n {
+                    let next = ns.character(at: i + 1)
+                    if next == 58 || next == 61 { i += 2; continue } // :: cast, := assignment
+                    if isWordStart(next) {
+                        var j = i + 2
+                        while j < n, isWord(ns.character(at: j)) { j += 1 }
+                        let name = ns.substring(with: NSRange(location: i + 1, length: j - i - 1))
+                        if seen.insert(name.lowercased()).inserted { names.append(name) }
+                        i = j
+                        continue
+                    }
+                }
+            }
+            i += 1
+        }
+        return names
+    }
+
+    /// Words that end a WHERE clause. A quoted value after one of them belongs
+    /// to another clause (grouping, sorting, another statement) and must not be
+    /// picked by smart selection.
+    private static let clauseEndKeywords: Set<String> = [
+        "GROUP", "ORDER", "HAVING", "LIMIT", "OFFSET", "FETCH", "UNION",
+        "EXCEPT", "INTERSECT", "RETURNING", "WINDOW", "CONNECT", "START", "MODEL"
+    ]
+
+    /// Content of the first quoted value inside a WHERE clause that is not
+    /// commented out. Conditions introduced by AND/OR are part of the same
+    /// clause, so scanning from WHERE covers them without treating the AND of
+    /// a `BETWEEN … AND …` pair as a new condition.
+    static func firstQuotedFilterValue(in sql: String) -> NSRange? {
+        let ns = sql as NSString
+        let n = ns.length
+        var i = 0
+
+        while i < n {
+            let c = ns.character(at: i)
+            if c == 45, i + 1 < n, ns.character(at: i + 1) == 45 {
+                while i < n, ns.character(at: i) != 10 { i += 1 }
+                continue
+            }
+            if c == 47, i + 1 < n, ns.character(at: i + 1) == 42 {
+                i += 2
+                while i + 1 < n, !(ns.character(at: i) == 42 && ns.character(at: i + 1) == 47) { i += 1 }
+                i = min(i + 2, n)
+                continue
+            }
+            if c == 36, let tag = dollarTag(ns, at: i) {
+                let close = "$\(tag)$"
+                let searchRange = NSRange(location: i + close.count, length: max(0, n - i - close.count))
+                let found = ns.range(of: close, options: [], range: searchRange)
+                i = found.location == NSNotFound ? n : found.location + found.length
+                continue
+            }
+            if c == 39 || c == 34 {
+                skipQuoted(ns, from: i, quote: c, limit: n, index: &i)
+                continue
+            }
+            if isWordStart(c) {
+                let start = i
+                var j = i + 1
+                while j < n, isWord(ns.character(at: j)) { j += 1 }
+                let word = ns.substring(with: NSRange(location: start, length: j - start)).uppercased()
+                if word == "WHERE", let value = quotedValueInClause(ns, from: j) {
+                    return value
+                }
+                i = j
+                continue
+            }
+            i += 1
+        }
+        return nil
+    }
+
+    /// Advances `index` past a quoted string or quoted identifier.
+    private static func skipQuoted(_ ns: NSString, from index: Int, quote: unichar,
+                                   limit: Int, index out: inout Int) {
+        var i = index + 1
+        while i < limit {
+            let d = ns.character(at: i)
+            if d == quote {
+                if i + 1 < limit, ns.character(at: i + 1) == quote { i += 2; continue }
+                i += 1
+                break
+            }
+            i += 1
+        }
+        out = min(i, limit)
+    }
+
+    /// First non-empty single-quoted literal after a WHERE keyword, stopping at
+    /// the end of the statement or at the next clause. For LIKE/ILIKE the
+    /// leading and trailing mask characters (`%`, `_`) are left out, so
+    /// `LIKE '%name%'` selects `name`.
+    private static func quotedValueInClause(_ ns: NSString, from index: Int) -> NSRange? {
+        let n = ns.length
+        var i = index
+        var depth = 0
+        /// Whether the operator right before the current position is LIKE or
+        /// ILIKE. Function names and their parentheses (`upper('%x%')`) do not
+        /// reset it, so a wrapped pattern is still recognised as a mask.
+        var isLike = false
+
+        while i < n {
+            let c = ns.character(at: i)
+            if c == 45, i + 1 < n, ns.character(at: i + 1) == 45 {
+                while i < n, ns.character(at: i) != 10 { i += 1 }
+                continue
+            }
+            if c == 47, i + 1 < n, ns.character(at: i + 1) == 42 {
+                i += 2
+                while i + 1 < n, !(ns.character(at: i) == 42 && ns.character(at: i + 1) == 47) { i += 1 }
+                i = min(i + 2, n)
+                continue
+            }
+            if c == 36, let tag = dollarTag(ns, at: i) {
+                let close = "$\(tag)$"
+                let searchRange = NSRange(location: i + close.count, length: max(0, n - i - close.count))
+                let found = ns.range(of: close, options: [], range: searchRange)
+                i = found.location == NSNotFound ? n : found.location + found.length
+                continue
+            }
+            if c == 39 { // '
+                var j = i + 1
+                while j < n {
+                    let d = ns.character(at: j)
+                    if d == 39 {
+                        if j + 1 < n, ns.character(at: j + 1) == 39 { j += 2; continue }
+                        break
+                    }
+                    j += 1
+                }
+                let end = min(j, n)
+                if end > i + 1 {
+                    var range = NSRange(location: i + 1, length: end - i - 1)
+                    if isLike { range = trimmingMask(ns, range) }
+                    if range.length > 0 { return range }
+                }
+                // `''` is a valid value but selecting it shows nothing; keep
+                // looking for the next one. The same goes for a LIKE pattern
+                // that consists only of mask characters (`'%'`).
+                i = min(end + 1, n)
+                continue
+            }
+            if c == 34 {
+                skipQuoted(ns, from: i, quote: c, limit: n, index: &i)
+                continue
+            }
+            if c == 40 { depth += 1; i += 1; continue }
+            if c == 41 {
+                if depth == 0 { return nil }
+                depth -= 1
+                i += 1
+                continue
+            }
+            if c == 59, depth == 0 { return nil } // ;
+            if isWordStart(c) {
+                let start = i
+                var j = i + 1
+                while j < n, isWord(ns.character(at: j)) { j += 1 }
+                let word = ns.substring(with: NSRange(location: start, length: j - start)).uppercased()
+                if depth == 0, clauseEndKeywords.contains(word) { return nil }
+                if word == "LIKE" || word == "ILIKE" {
+                    isLike = true
+                } else if operatorResetsMaskKeywords.contains(word) {
+                    isLike = false
+                }
+                i = j
+                continue
+            }
+            // A comparison symbol means the next literal is a plain value, not
+            // a mask (`x = '%name%'` keeps its percent signs).
+            if c == 61 || c == 60 || c == 62 || c == 33 || c == 126 {
+                isLike = false
+            }
+            i += 1
+        }
+        return nil
+    }
+
+    /// Keywords that end a LIKE pattern context: the literal that follows them
+    /// belongs to another operator, so mask characters must not be stripped.
+    private static let operatorResetsMaskKeywords: Set<String> = [
+        "IN", "BETWEEN", "IS", "AND", "OR", "NOT",
+        "SIMILAR", "REGEXP", "RLIKE"
+    ]
+
+    /// Cuts leading and trailing LIKE wildcards (`%`, `_`) from a quoted value.
+    private static func trimmingMask(_ ns: NSString, _ range: NSRange) -> NSRange {
+        var start = range.location
+        var end = range.location + range.length
+        func isMask(_ index: Int) -> Bool {
+            let c = ns.character(at: index)
+            return c == 37 || c == 95 // % or _
+        }
+        while start < end, isMask(start) { start += 1 }
+        while end > start, isMask(end - 1) { end -= 1 }
+        return NSRange(location: start, length: end - start)
+    }
+
+    /// Removes LIKE mask characters from the contents of a quoted literal when
+    /// that literal is a LIKE/ILIKE pattern. Used by triple click, which
+    /// selects the whole quoted value regardless of the operator.
+    static func maskTrimmedRange(_ range: NSRange, in sql: String) -> NSRange {
+        let ns = sql as NSString
+        guard range.length > 0, range.location > 0,
+              ns.character(at: range.location - 1) == 39,
+              isLikeOperator(before: range.location - 1, in: ns) else {
+            return range
+        }
+        let trimmed = trimmingMask(ns, range)
+        // A pattern made only of masks (`'%'`) has nothing else to show.
+        return trimmed.length > 0 ? trimmed : range
+    }
+
+    /// Whether the operator immediately before `index` is LIKE/ILIKE. Scans
+    /// from the start of the text so comments, strings and nested calls are
+    /// handled the same way as in `quotedValueInClause`.
+    private static func isLikeOperator(before index: Int, in ns: NSString) -> Bool {
+        var i = 0
+        var isLike = false
+        while i < index {
+            let c = ns.character(at: i)
+            if c == 45, i + 1 < index, ns.character(at: i + 1) == 45 {
+                while i < index, ns.character(at: i) != 10 { i += 1 }
+                continue
+            }
+            if c == 47, i + 1 < index, ns.character(at: i + 1) == 42 {
+                i += 2
+                while i + 1 < index, !(ns.character(at: i) == 42 && ns.character(at: i + 1) == 47) { i += 1 }
+                i = min(i + 2, index)
+                continue
+            }
+            if c == 36, let tag = dollarTag(ns, at: i) {
+                let close = "$\(tag)$"
+                let searchRange = NSRange(location: i + close.count, length: max(0, index - i - close.count))
+                let found = ns.range(of: close, options: [], range: searchRange)
+                i = found.location == NSNotFound ? index : found.location + found.length
+                continue
+            }
+            if c == 39 || c == 34 {
+                skipQuoted(ns, from: i, quote: c, limit: index, index: &i)
+                continue
+            }
+            if isWordStart(c) {
+                let start = i
+                var j = i + 1
+                while j < index, isWord(ns.character(at: j)) { j += 1 }
+                let word = ns.substring(with: NSRange(location: start, length: j - start)).uppercased()
+                if word == "LIKE" || word == "ILIKE" {
+                    isLike = true
+                } else if operatorResetsMaskKeywords.contains(word) {
+                    isLike = false
+                }
+                i = j
+                continue
+            }
+            if c == 61 || c == 60 || c == 62 || c == 33 || c == 126 {
+                isLike = false
+            }
+            i += 1
+        }
+        return isLike
+    }
+
+    private static func isWordStart(_ c: unichar) -> Bool {
+        (c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95
+    }
+
+    private static func isWord(_ c: unichar) -> Bool {
+        isWordStart(c) || (c >= 48 && c <= 57) || c == 36 || c == 35
+    }
 }
 
 @MainActor

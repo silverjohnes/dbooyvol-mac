@@ -53,6 +53,7 @@
 "В названии столбца" = "W nagłówku kolumny";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "W edytorze znajdują się niezapisane zmiany: załadowanie z dysku zastąpi je.";
 "В результате нет столбца первичного ключа «%@»" = "W rezultacie nie ma kolumny klucza podstawowego „%@”";
+"ВЛД" = "VLD";
 "Введите пароль от «%@»" = "Wprowadź hasło dla „%@”";
 "Вернуть 200 строк на страницу" = "Zwróć 200 wierszy na stronę";
 "Вернуть по умолчанию" = "Przywróć ustawienia domyślne";
@@ -64,6 +65,8 @@
 "Вид" = "Zobacz";
 "Вкладки" = "Zakładki";
 "Во весь экран" = "Pełny ekran";
+"Время" = "Czas";
+"Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна." = "W tej strefie wyświetlane są kolumny sygnatur czasowych; czas bez określenia strefy jest uważany za UTC. W dolnej linii okna widoczny jest symbol krótkiego paska.";
 "Все окна на передний план" = "Przesuń wszystkie okna na przód";
 "Всегда заключать в кавычки" = "Zawsze cytuj";
 "Вставить" = "Wklej";
@@ -81,8 +84,10 @@
 "Выбрать папку network/admin" = "Wybierz folder sieciowy/administracyjny";
 "Выбрать файл базы SQLite" = "Wybierz plik bazy danych SQLite";
 "Выбрать…" = "Wybierz…";
+"Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Podświetl tylko wtedy, gdy żądanie jest otwierane poprzez wyszukiwanie (⌘E).";
 "Выйти из полноэкранного режима" = "Wyjdź z trybu pełnoekranowego";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Wykonaj zapytanie: ⌘R lub ⌘↩ (zaznaczenie lub cały skrypt)";
+"Выполнить" = "Wykonaj";
 "Выполнить / остановить" = "Uruchom / Zatrzymaj";
 "Выполнить всё" = "Uruchom wszystko";
 "Выполнить выделение / всё" = "Uruchom zaznaczenie / wszystko";
@@ -108,6 +113,7 @@
 "Дублировать" = "Duplikat";
 "Дублировать вкладку" = "Zduplikowana zakładka";
 "Дублировать подключение" = "Zduplikowane połączenie";
+"ЕКБ" = "EKB";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Jeśli etykieta NULL odpowiada wartości w schowku, do komórki wstawiana jest wartość NULL. Pusta etykieta oznacza pustą linię.";
 "Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Jeśli nie musisz zapisywać hasła połączenia, wyłącz w jego ustawieniach opcję „Zapisz hasło” – wówczas zostanie ono poproszony o połączenie.";
 "Есть несохранённые изменения." = "Istnieją niezapisane zmiany.";
@@ -138,6 +144,7 @@
 "Запрос %@" = "Zapytanie SQL %@";
 "Запросы" = "Zapytania";
 "Значение" = "Wartość pola";
+"ИРК" = "IRK";
 "Игнорировать кавычки" = "Ignoruj cytaty";
 "Из папки берутся ojdbc*.jar и network/admin. Dylib-библиотеки не нужны: тонкий драйвер не грузит нативные библиотеки." = "Ojdbc*.jar i network/admin są pobierane z folderu. Biblioteki Dylib nie są potrzebne: cienki sterownik nie ładuje bibliotek natywnych.";
 "Изменения отменены" = "Zmiany anulowane";
@@ -160,6 +167,9 @@
 "История пуста" = "Historia jest pusta";
 "История: %@" = "Historia: %@";
 "История: %@ дней" = "Historia: %@ dni";
+"КАМ" = "KAM";
+"КЛГ" = "KLG";
+"КРСК" = "KRSK";
 "Как в базе" = "Baza danych natywna";
 "Каталог ~/.ssh" = "Katalog ~/.ssh";
 "Ключ (необязательно)" = "Klucz (opcjonalnie)";
@@ -184,11 +194,14 @@
 "Копировать…" = "Skopiuj…";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Login i hasło z adresu URL zapisywane są w postaci zwykłego tekstu. Usuń je z adresu URL i użyj pól Użytkownik i Hasło.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Lokalny plik SQLite jest otwierany bezpośrednio, serwer nie jest potrzebny.";
+"МАГ" = "MAG";
+"МСК" = "MSK";
 "Максимальная авто-ширина: %@ pt" = "Maksymalna szerokość automatyczna: %@ pkt";
 "Максимум ширины:" = "Maksymalna szerokość:";
 "Масштаб" = "Skala";
 "Масштабировать все" = "Skaluj wszystko";
 "Метка NULL" = "Etykieta NULL";
+"НСК" = "NSC";
 "Нажмите на сочетание, чтобы изменить его." = "Kliknij skrót, aby go zmienić.";
 "Нажмите сочетание…" = "Naciśnij skrót…";
 "Найти" = "Znajdź";
@@ -237,6 +250,7 @@
 "Новый скрипт" = "Nowy skrypt SQL";
 "Новый язык применится после перезапуска приложения." = "Nowy język zostanie zastosowany po ponownym uruchomieniu aplikacji.";
 "О программе DBooyvol" = "O programie DBooyvol";
+"ОМСК" = "OMSK";
 "Обновить" = "Aktualizacja";
 "Обновить дерево" = "Aktualizuj drzewo";
 "Объединить все окна" = "Połącz wszystkie okna";
@@ -272,6 +286,7 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Folder Instant Client: z niego pobierane są ojdbc*.jar i network/admin";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Folder sieciowy/administracyjny z plikami tnsnames.ora, ldap.ora i sqlnet.ora";
 "Папка: %@" = "Folder: %@";
+"Параметры запроса" = "Parametry żądania";
 "Пароли" = "Hasła";
 "Пароли перешифрованы новым мастер-ключом" = "Hasła są ponownie szyfrowane nowym kluczem głównym";
 "Пароли…" = "Hasła...";
@@ -330,13 +345,18 @@
 "Порт" = "Portu";
 "Правка" = "Edytuj";
 "Предыдущая вкладка" = "Poprzednia zakładka";
+"Предыдущая открытая вкладка" = "Poprzednia otwarta karta";
 "Предыдущее совпадение (⇧↩)" = "Poprzedni mecz (⇧↩)";
 "При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске." = "Po włączeniu otwarte karty i ich tekst są zapisywane w pliku tabs.json i przywracane podczas uruchamiania.";
 "При наведении на название столбца" = "Po najechaniu kursorem na tytuł kolumny";
+"При открытии скрипта автоматически выделять текст первого параметра в WHERE." = "Otwierając skrypt, automatycznie podświetl tekst pierwszego parametru w WHERE.";
 "Прила" = "Priła";
 "Пробел" = "Spacja";
 "Проверить подключение с введёнными параметрами, не сохраняя их" = "Sprawdź połączenie z wprowadzonymi parametrami bez ich zapisywania";
+"Проверка изменений файлов на диске включена" = "Sprawdzanie zmian w plikach na dysku jest włączone";
+"Проверка изменений файлов на диске выключена" = "Sprawdzanie zmian w plikach na dysku jest wyłączone";
 "Проверка подключения…" = "Testuję połączenie…";
+"Проверять изменения файлов на диске" = "Sprawdź zmiany w plikach na dysku";
 "Простой клиент для баз данных" = "Prosty klient bazy danych";
 "Прочитать" = "Przeczytaj";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Przeczytaj pliki ldap.ora i sqlnet.ora i wypełnij poniższe pola";
@@ -355,6 +375,8 @@
 "Результат последнего запроса" = "Wynik ostatniego żądania";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Wynik zawiera kolumny z różnych tabel - nie można zapisać";
 "Русский" = "Rosyjski";
+"САМ" = "SAM";
+"СХЛ" = "SHL";
 "Сбросить вид" = "Zresetuj widok";
 "Сбросить поиск по истории" = "Zresetuj wyszukiwanie historii";
 "Свернуть" = "Zwiń";
@@ -369,6 +391,7 @@
 "Сервисы аутентификации (необязательно)" = "Usługi uwierzytelniania (opcjonalnie)";
 "Символ кавычек" = "Symbol cytatu";
 "Системный" = "Systemu";
+"Системный · %@" = "System · %@";
 "Системный моноширинный" = "Systemowa monoprzestrzeń";
 "Скопировано (%@): %@ строк" = "Skopiowano (%@): %@ linii";
 "Скопировано столбцов: %@" = "Skopiowano kolumny: %@";
@@ -384,6 +407,7 @@
 "Слева и справа" = "Lewy i prawy";
 "Слева и четверти" = "Lewica i ćwiartki";
 "Слева на экране" = "Pozostało na ekranie";
+"Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Monitoruj otwarte pliki i oferuj załadowanie wersji z dysku, jeśli plik został zmieniony przez inny program. Po wyłączeniu pliki na dysku nie są odczytywane ani porównywane.";
 "Следующая вкладка" = "Następna zakładka";
 "Следующее совпадение (↩)" = "Następny mecz (↩)";
 "Службы" = "Usługi";
@@ -437,6 +461,7 @@
 "Тип данных столбца" = "Typ danych kolumny";
 "Тип данных, перенос строк, форматирование и кодировка" = "Typ danych, zawijanie linii, formatowanie i kodowanie";
 "Тип: %@" = "Wpisz: %@";
+"Только при поиске" = "Tylko podczas wyszukiwania";
 "У таблицы %@ нет первичного ключа — изменения нельзя сохранить" = "Tabela %@ nie ma klucza podstawowego - zmian nie można zapisać";
 "Убрать окно из набора" = "Usuń okno z zestawu";
 "Увеличить шрифт" = "Zwiększ czcionkę";
@@ -450,16 +475,20 @@
 "Удалить…" = "Usuń…";
 "Українська" = "Ukraiński";
 "Уменьшить шрифт" = "Zmniejsz czcionkę";
+"Умное выделение" = "Inteligentny wybór";
 "Уникальный ключ: %@(%@)" = "Unikalny klucz: %@(%@)";
 "Управление" = "Sterowanie";
 "Файл" = "Plik";
 "Файл «%@» уже существует" = "Plik „%@” już istnieje";
 "Файл базы (.db / .sqlite)" = "Plik bazy danych (.db / .sqlite)";
 "Файл изменён на диске" = "Zmieniono plik na dysku";
+"Файлы" = "Pliki";
 "Хост" = "Gospodarz";
 "Хост (алиас из ~/.ssh/config)" = "Host (alias z ~/.ssh/config)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "Nie określono hosta SSH: test i połączenie zwrócą błąd. Określ host/alias lub wyłącz SSH.";
 "Хранить историю" = "Zachowaj historię";
+"Часовой пояс" = "Strefa czasowa";
+"Часовой пояс времени: %@" = "Strefa czasowa: %@";
 "Часть ключа:" = "Część klucza:";
 "Часть ключа: %@" = "Część klucza: %@";
 "Четверти" = "Ćwiartki";
@@ -478,6 +507,7 @@
 "Экспорт в XML (⌥⇧⌘E)" = "Eksportuj do XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Wyeksportowano: %@";
 "Эмодзи и символы" = "Emoji i symbole";
+"ЯКТ" = "YKT";
 "Язык" = "Język";
 "Язык интерфейса" = "Język interfejsu";
 "Язык: %@ — перезапустите приложение" = "Język: %@ - uruchom ponownie aplikację";

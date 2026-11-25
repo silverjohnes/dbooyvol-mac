@@ -53,6 +53,7 @@
 "В названии столбца" = "V záhlaví sloupce";
 "В редакторе есть несохранённые изменения: загрузка с диска их заменит." = "V editoru jsou neuložené změny: načtení z disku je nahradí.";
 "В результате нет столбца первичного ключа «%@»" = "V důsledku toho neexistuje žádný sloupec primárního klíče '%@'";
+"ВЛД" = "VLD";
 "Введите пароль от «%@»" = "Zadejte heslo pro \"%@\"";
 "Вернуть 200 строк на страницу" = "Vraťte 200 řádků na stránku";
 "Вернуть по умолчанию" = "Obnovit výchozí";
@@ -64,6 +65,8 @@
 "Вид" = "Zobrazit";
 "Вкладки" = "Karty";
 "Во весь экран" = "Celá obrazovka";
+"Время" = "Čas";
+"Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна." = "Sloupce časových razítek jsou zobrazeny v této zóně; čas bez určení zóny je považován za UTC. Ve spodním řádku okna je viditelný krátký symbol pásu.";
 "Все окна на передний план" = "Přesuňte všechna okna dopředu";
 "Всегда заключать в кавычки" = "Vždy citujte";
 "Вставить" = "Vložit";
@@ -81,8 +84,10 @@
 "Выбрать папку network/admin" = "Vyberte složku network/admin";
 "Выбрать файл базы SQLite" = "Vyberte databázový soubor SQLite";
 "Выбрать…" = "Vyberte si…";
+"Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Zvýraznit pouze při otevření požadavku pomocí vyhledávání (⌘E).";
 "Выйти из полноэкранного режима" = "Ukončete režim celé obrazovky";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Spusťte dotaz: ⌘R nebo ⌘↩ (výběr nebo celý skript)";
+"Выполнить" = "Provést";
 "Выполнить / остановить" = "Spustit / Zastavit";
 "Выполнить всё" = "Spustit všechny";
 "Выполнить выделение / всё" = "Spustit výběr / vše";
@@ -108,6 +113,7 @@
 "Дублировать" = "Duplicitní";
 "Дублировать вкладку" = "Duplicitní karta";
 "Дублировать подключение" = "Duplicitní připojení";
+"ЕКБ" = "EKB";
 "Если метка NULL совпадает со значением в буфере обмена, в ячейку вставляется NULL. Пустая метка означает пустую строку." = "Pokud se popisek NULL shoduje s hodnotou ve schránce, do buňky se vloží NULL. Prázdný štítek znamená prázdný řádek.";
 "Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении." = "Pokud nepotřebujete ukládat heslo připojení, vypněte v jeho nastavení „Uložit heslo“ - poté bude při připojování vyžadováno.";
 "Есть несохранённые изменения." = "Existují neuložené změny.";
@@ -138,6 +144,7 @@
 "Запрос %@" = "SQL dotaz %@";
 "Запросы" = "Dotazy";
 "Значение" = "Hodnota pole";
+"ИРК" = "IRK";
 "Игнорировать кавычки" = "Ignorujte uvozovky";
 "Из папки берутся ojdbc*.jar и network/admin. Dylib-библиотеки не нужны: тонкий драйвер не грузит нативные библиотеки." = "Ojdbc*.jar a network/admin jsou převzaty ze složky. Knihovny Dylib nejsou potřeba: tenký ovladač nenačte nativní knihovny.";
 "Изменения отменены" = "Změny zrušeny";
@@ -160,6 +167,9 @@
 "История пуста" = "Historie je prázdná";
 "История: %@" = "Historie: %@";
 "История: %@ дней" = "Historie: %@ dní";
+"КАМ" = "KAM";
+"КЛГ" = "KLG";
+"КРСК" = "KRSK";
 "Как в базе" = "Nativní databáze";
 "Каталог ~/.ssh" = "Adresář ~/.ssh";
 "Ключ (необязательно)" = "Klíč (volitelné)";
@@ -184,11 +194,14 @@
 "Копировать…" = "Kopírovat…";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Přihlašovací jméno a heslo z adresy URL jsou uloženy jako prostý text. Odeberte je z adresy URL a použijte pole Uživatel a Heslo.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Místní soubor SQLite se otevře přímo, není potřeba žádný server.";
+"МАГ" = "MAG";
+"МСК" = "MSK";
 "Максимальная авто-ширина: %@ pt" = "Maximální automatická šířka: %@ pt";
 "Максимум ширины:" = "Maximální šířka:";
 "Масштаб" = "Měřítko";
 "Масштабировать все" = "Měřítko všech";
 "Метка NULL" = "Štítek NULL";
+"НСК" = "NSC";
 "Нажмите на сочетание, чтобы изменить его." = "Klepnutím na zkratku ji změníte.";
 "Нажмите сочетание…" = "Stiskněte zkratku…";
 "Найти" = "Najít";
@@ -237,6 +250,7 @@
 "Новый скрипт" = "Nový SQL skript";
 "Новый язык применится после перезапуска приложения." = "Nový jazyk bude použit po restartování aplikace.";
 "О программе DBooyvol" = "O programu DBooyvol";
+"ОМСК" = "OMSK";
 "Обновить" = "Aktualizovat";
 "Обновить дерево" = "Aktualizovat strom";
 "Объединить все окна" = "Sloučit všechna okna";
@@ -272,6 +286,7 @@
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Složka Instant Client: ojdbc*.jar a síť/admin jsou převzaty z ní";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Složka Network/admin s tnsnames.ora, ldap.ora a sqlnet.ora";
 "Папка: %@" = "Složka: %@";
+"Параметры запроса" = "Parametry požadavku";
 "Пароли" = "Hesla";
 "Пароли перешифрованы новым мастер-ключом" = "Hesla jsou znovu zašifrována pomocí nového hlavního klíče";
 "Пароли…" = "Hesla...";
@@ -330,13 +345,18 @@
 "Порт" = "Port";
 "Правка" = "Upravit";
 "Предыдущая вкладка" = "Předchozí karta";
+"Предыдущая открытая вкладка" = "Předchozí otevřená karta";
 "Предыдущее совпадение (⇧↩)" = "Předchozí zápas (⇧↩)";
 "При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске." = "Když je tato možnost povolena, otevřené karty a jejich text se ukládají do souboru tabs.json a při spuštění se obnoví.";
 "При наведении на название столбца" = "Když umístíte ukazatel myši na název sloupce";
+"При открытии скрипта автоматически выделять текст первого параметра в WHERE." = "Při otevírání skriptu automaticky zvýrazněte text prvního parametru v WHERE.";
 "Прила" = "Příla";
 "Пробел" = "Mezerník";
 "Проверить подключение с введёнными параметрами, не сохраняя их" = "Zkontrolujte spojení se zadanými parametry bez jejich uložení";
+"Проверка изменений файлов на диске включена" = "Kontrola změn souborů na disku je povolena";
+"Проверка изменений файлов на диске выключена" = "Kontrola změn souborů na disku je zakázána";
 "Проверка подключения…" = "Testování připojení…";
+"Проверять изменения файлов на диске" = "Zkontrolujte změny souborů na disku";
 "Простой клиент для баз данных" = "Jednoduchý databázový klient";
 "Прочитать" = "Přečtěte si";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Přečtěte si ldap.ora a sqlnet.ora a vyplňte pole níže";
@@ -355,6 +375,8 @@
 "Результат последнего запроса" = "Výsledek posledního požadavku";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Výsledek obsahuje sloupce z různých tabulek - nelze uložit";
 "Русский" = "Ruský";
+"САМ" = "SÁM SEBE";
+"СХЛ" = "SHL";
 "Сбросить вид" = "Obnovit zobrazení";
 "Сбросить поиск по истории" = "Obnovit vyhledávání v historii";
 "Свернуть" = "Kolaps";
@@ -369,6 +391,7 @@
 "Сервисы аутентификации (необязательно)" = "Autentizační služby (volitelné)";
 "Символ кавычек" = "Citovat charakter";
 "Системный" = "Systém";
+"Системный · %@" = "Systém · %@";
 "Системный моноширинный" = "Systém monospace";
 "Скопировано (%@): %@ строк" = "Zkopírováno (%@): %@ řádků";
 "Скопировано столбцов: %@" = "Sloupce zkopírovány: %@";
@@ -384,6 +407,7 @@
 "Слева и справа" = "Vlevo a vpravo";
 "Слева и четверти" = "Vlevo a čtvrtiny";
 "Слева на экране" = "Vlevo na obrazovce";
+"Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Sledujte otevřené soubory a nabídněte načtení verze z disku, pokud byl soubor změněn jiným programem. Je-li zakázáno, soubory na disku se nečtou ani neporovnávají.";
 "Следующая вкладка" = "Další karta";
 "Следующее совпадение (↩)" = "Další zápas (↩)";
 "Службы" = "Služby";
@@ -437,6 +461,7 @@
 "Тип данных столбца" = "Datový typ sloupce";
 "Тип данных, перенос строк, форматирование и кодировка" = "Datový typ, zalamování řádků, formátování a kódování";
 "Тип: %@" = "Typ: %@";
+"Только при поиске" = "Pouze při hledání";
 "У таблицы %@ нет первичного ключа — изменения нельзя сохранить" = "Tabulka %@ nemá primární klíč – změny nelze uložit";
 "Убрать окно из набора" = "Odstraňte okno ze sady";
 "Увеличить шрифт" = "Zvětšit písmo";
@@ -450,16 +475,20 @@
 "Удалить…" = "Smazat…";
 "Українська" = "Ukrajinský";
 "Уменьшить шрифт" = "Zmenšit písmo";
+"Умное выделение" = "Chytrý výběr";
 "Уникальный ключ: %@(%@)" = "Jedinečný klíč: %@(%@)";
 "Управление" = "Ovládání";
 "Файл" = "Soubor";
 "Файл «%@» уже существует" = "Soubor \"%@\" již existuje";
 "Файл базы (.db / .sqlite)" = "Soubor databáze (.db / .sqlite)";
 "Файл изменён на диске" = "Soubor změněn na disku";
+"Файлы" = "Soubory";
 "Хост" = "Hostitel";
 "Хост (алиас из ~/.ssh/config)" = "Hostitel (alias z ~/.ssh/config)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "Hostitel SSH není zadán: test a připojení vrátí chybu. Zadejte hostitele/alias nebo deaktivujte SSH.";
 "Хранить историю" = "Uchovávejte historii";
+"Часовой пояс" = "Časové pásmo";
+"Часовой пояс времени: %@" = "Časové pásmo: %@";
 "Часть ключа:" = "Část klíče:";
 "Часть ключа: %@" = "Část klíče: %@";
 "Четверти" = "Čtvrtletí";
@@ -478,6 +507,7 @@
 "Экспорт в XML (⌥⇧⌘E)" = "Export do XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Exportováno: %@";
 "Эмодзи и символы" = "Emojis a symboly";
+"ЯКТ" = "YKT";
 "Язык" = "Jazyk";
 "Язык интерфейса" = "Jazyk rozhraní";
 "Язык: %@ — перезапустите приложение" = "Jazyk: %@ - restartujte aplikaci";

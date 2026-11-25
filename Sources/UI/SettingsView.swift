@@ -7,6 +7,8 @@ struct SettingsView: View {
     @Environment(\.openWindow) private var openWindow
     @AppStorage(AppSettings.sshDirectoryKey) private var sshDirectory = "/Users/silver/.ssh"
     @AppStorage(AppSettings.autosaveTabsKey) private var autosaveTabs = true
+    @AppStorage(AppSettings.smartSelectionKey) private var smartSelection = false
+    @AppStorage(AppSettings.smartSelectionOnlyInSearchKey) private var smartSelectionOnlyInSearch = false
     @ObservedObject private var shortcuts = ShortcutStore.shared
 
     var body: some View {
@@ -95,6 +97,29 @@ struct SettingsView: View {
                         .help("Вернуть стандартный размер шрифта редактора")
                 }
                 Text("Ctrl + колесо мыши в редакторе тоже меняет размер. Клавиши: ⌘+ / ⌘− / ⌘0 (меню «Вид»).")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                Toggle("Умное выделение", isOn: $smartSelection)
+                Text("При открытии скрипта автоматически выделять текст первого параметра в WHERE.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Toggle("Только при поиске", isOn: $smartSelectionOnlyInSearch)
+                    .disabled(!smartSelection)
+                Text("Выделять только тогда, когда запрос открыт через поиск (⌘E).")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+
+            Section("Файлы") {
+                Toggle(
+                    "Проверять изменения файлов на диске",
+                    isOn: Binding(
+                        get: { model.checkExternalChanges },
+                        set: { model.setCheckExternalChanges($0) }
+                    )
+                )
+                Text("Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются.")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -187,6 +212,24 @@ struct SettingsView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
+            }
+
+            Section("Время") {
+                Picker(
+                    "Часовой пояс",
+                    selection: Binding(
+                        get: { model.timeZoneIdentifier },
+                        set: { model.setTimeZone($0) }
+                    )
+                ) {
+                    Text(L10n.fmt("Системный · %@", TimeZones.shortLabel(for: .current))).tag("")
+                    ForEach(TimeZones.options) { option in
+                        Text(option.name).tag(option.id)
+                    }
+                }
+                Text("Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
 
             Section("Загрузка данных") {

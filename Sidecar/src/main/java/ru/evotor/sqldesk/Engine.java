@@ -498,6 +498,130 @@ public final class Engine {
 
     // ------------------------------------------------------------------ query
 
+    /** SQL with named parameters rewritten to `?`, and the names in the order
+     *  the placeholders appear. */
+    private static final class Bound {
+        final String sql;
+        final List<String> names;
+        Bound(String sql, List<String> names) {
+            this.sql = sql;
+            this.names = names;
+        }
+    }
+
+    /** Marker for a parameter the caller did not supply. */
+    private static final Object MISSING = new Object();
+
+    /**
+     * Turns `:name` into `?`, ignoring strings, quoted identifiers, comments
+     * and PostgreSQL dollar-quotes. `::type` casts and `:=` assignments are
+     * not parameters. Throws before execution when a value is missing, which
+     * is clearer than the driver's "not all variables bound".
+     */
+    private static Bound bindPlaceholders(String sql, Map<String, Object> values) throws SQLException {
+        StringBuilder out = new StringBuilder(sql.length() + 8);
+        List<String> names = new ArrayList<>();
+        int n = sql.length();
+        int i = 0;
+        while (i < n) {
+            char c = sql.charAt(i);
+            if (c == '-' && i + 1 < n && sql.charAt(i + 1) == '-') {
+                int end = sql.indexOf('\n', i);
+                if (end < 0) end = n;
+                out.append(sql, i, end);
+                i = end;
+                continue;
+            }
+            if (c == '/' && i + 1 < n && sql.charAt(i + 1) == '*') {
+                int end = sql.indexOf("*/", i + 2);
+                end = end < 0 ? n : end + 2;
+                out.append(sql, i, end);
+                i = end;
+                continue;
+            }
+            if (c == '\'' || c == '"') {
+                int end = i + 1;
+                while (end < n) {
+                    char d = sql.charAt(end);
+                    if (d == c) {
+                        if (end + 1 < n && sql.charAt(end + 1) == c) { end += 2; continue; }
+                        end++;
+                        break;
+                    }
+                    end++;
+                }
+                end = Math.min(end, n);
+                out.append(sql, i, end);
+                i = end;
+                continue;
+            }
+            if (c == '$') {
+                int tagEnd = i + 1;
+                while (tagEnd < n && (Character.isLetterOrDigit(sql.charAt(tagEnd)) || sql.charAt(tagEnd) == '_')) tagEnd++;
+                if (tagEnd < n && sql.charAt(tagEnd) == '$') {
+                    String tag = sql.substring(i, tagEnd + 1);
+                    int end = sql.indexOf(tag, tagEnd + 1);
+                    end = end < 0 ? n : end + tag.length();
+                    out.append(sql, i, end);
+                    i = end;
+                    continue;
+                }
+            }
+            if (c == ':') {
+                if (i + 1 < n && (sql.charAt(i + 1) == ':' || sql.charAt(i + 1) == '=')) {
+                    out.append(sql, i, i + 2);
+                    i += 2;
+                    continue;
+                }
+                int j = i + 1;
+                if (j < n && (Character.isLetter(sql.charAt(j)) || sql.charAt(j) == '_')) {
+                    int k = j + 1;
+                    while (k < n) {
+                        char d = sql.charAt(k);
+                        if (!(Character.isLetterOrDigit(d) || d == '_' || d == '$' || d == '#')) break;
+                        k++;
+                    }
+                    String name = sql.substring(j, k);
+                    if (lookup(values, name) == MISSING) {
+                        throw new SQLException("Не задано значение параметра :" + name);
+                    }
+                    out.append('?');
+                    names.add(name);
+                    i = k;
+                    continue;
+                }
+            }
+            out.append(c);
+            i++;
+        }
+        return new Bound(out.toString(), names);
+    }
+
+    private static Object lookup(Map<String, Object> values, String name) {
+        if (values.containsKey(name)) return values.get(name);
+        // Oracle bind names are case-insensitive; so is the prompt.
+        for (Map.Entry<String, Object> e : values.entrySet()) {
+            if (e.getKey().equalsIgnoreCase(name)) return e.getValue();
+        }
+        return MISSING;
+    }
+
+    private static void applyBinds(PreparedStatement ps, List<String> names,
+                                   Map<String, Object> values, String kind) throws SQLException {
+        for (int i = 0; i < names.size(); i++) {
+            Object v = lookup(values, names.get(i));
+            if (v == MISSING || v == null) {
+                ps.setNull(i + 1, Types.VARCHAR);
+            } else if ("postgres".equals(kind)) {
+                // Send an untyped value so PostgreSQL can infer the column type
+                // (a varchar parameter cannot be compared with a date column).
+                ps.setObject(i + 1, String.valueOf(v), Types.OTHER);
+            } else {
+                ps.setString(i + 1, String.valueOf(v));
+            }
+        }
+    }
+
     public Map<String, Object> query(Map<String, Object> p) throws Exception {
         String connId = Json.str(p.get("connId"));
         synchronized (connLock(connId)) {
@@ -508,15 +632,32 @@ public final class Engine {
     private Map<String, Object> queryLocked(Map<String, Object> p) throws Exception {
         String connId = Json.str(p.get("connId"));
         String sql = Json.str(p.get("sql"));
+        String kind = Json.str(p.get("kind"));
         Connection c = conn(connId);
 
-        Statement st = c.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-        try { st.setFetchSize("oracle".equals(Json.str(p.get("kind"))) ? 500 : 1000); } catch (Exception ignored) { }
+        Statement st;
+        boolean hasBinds;
+        try {
+            Bound bound = bindPlaceholders(sql, Json.obj(p.get("params")));
+            hasBinds = !bound.names.isEmpty();
+            if (!hasBinds) {
+                st = c.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            } else {
+                PreparedStatement ps = c.prepareStatement(
+                        bound.sql, ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+                applyBinds(ps, bound.names, Json.obj(p.get("params")), kind);
+                st = ps;
+            }
+        } catch (SQLException e) {
+            try { c.rollback(); } catch (Exception ignored) { }
+            throw e;
+        }
+        try { st.setFetchSize("oracle".equals(kind) ? 500 : 1000); } catch (Exception ignored) { }
         long started = System.currentTimeMillis();
         activeStatements.put(connId, st);
 
         try {
-        boolean hasResult = st.execute(sql);
+        boolean hasResult = hasBinds ? ((PreparedStatement) st).execute() : st.execute(sql);
         if (!hasResult) {
             int updateCount = st.getUpdateCount();
             try { c.commit(); } catch (Exception ignored) { }
@@ -579,6 +720,7 @@ public final class Engine {
     public Map<String, Object> count(Map<String, Object> p) throws Exception {
         String connId = Json.str(p.get("connId"));
         String sql = Json.str(p.get("sql"));
+        String kind = Json.str(p.get("kind"));
         Conn base = conns.get(connId);
         if (base == null) throw new SQLException("Нет соединения");
         if (isEmpty(sql)) throw new IllegalArgumentException("Пустой запрос");
@@ -587,9 +729,14 @@ public final class Engine {
         Connection c = DriverManager.getConnection(base.url, base.props);
         try {
             try { c.setReadOnly(true); } catch (Exception ignored) { }
-            try (Statement st = c.createStatement()) {
+            Bound bound = bindPlaceholders(sql, Json.obj(p.get("params")));
+            try (Statement st = bound.names.isEmpty()
+                    ? c.createStatement()
+                    : prepared(c, bound, Json.obj(p.get("params")), kind)) {
                 st.setQueryTimeout(600);
-                try (ResultSet rs = st.executeQuery(sql)) {
+                try (ResultSet rs = bound.names.isEmpty()
+                        ? st.executeQuery(sql)
+                        : ((PreparedStatement) st).executeQuery()) {
                     long rows = rs.next() ? rs.getLong(1) : 0L;
                     Map<String, Object> r = new LinkedHashMap<>();
                     r.put("count", rows);
@@ -600,6 +747,13 @@ public final class Engine {
         } finally {
             try { c.close(); } catch (Exception ignored) { }
         }
+    }
+
+    private static PreparedStatement prepared(Connection c, Bound bound,
+                                              Map<String, Object> values, String kind) throws SQLException {
+        PreparedStatement ps = c.prepareStatement(bound.sql);
+        applyBinds(ps, bound.names, values, kind);
+        return ps;
     }
 
     private static List<List<String>> readPage(Cursor cur, int count) throws SQLException {

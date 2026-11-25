@@ -34,7 +34,7 @@ targets:
         PRODUCT_NAME: DBooyvol
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
         MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "79"
+        CURRENT_PROJECT_VERSION: "91"
       configs:
         Release:
           # No debugger entitlement in the build that holds the Keychain key.
@@ -71,7 +71,7 @@ targets:
           - sv
           - cs
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "79"
+        CFBundleVersion: "91"
         LSMinimumSystemVersion: "13.0"
         LSApplicationCategoryType: public.app-category.developer-tools
         NSHighResolutionCapable: true
