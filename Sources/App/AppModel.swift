@@ -46,8 +46,22 @@ final class AppModel: ObservableObject {
             AppSettings.selectedProfileID = activeProfileID
         }
     }
-    @Published var result: QueryResult?
+    @Published var result: QueryResult? {
+        didSet { refreshDisplayedRows() }
+    }
     @Published var resultSort: ResultSort?
+    /// Local filter conditions keyed by data column index. They only hide rows
+    /// in the grid; the result itself and the SQL script stay untouched.
+    @Published var resultFilters: [Int: String] = [:]
+    /// Bumped whenever the visible row mapping changes, so the grid reloads.
+    private(set) var resultFilterRevision = 0
+    @Published var showFilterPanel = AppSettings.showFilterPanel
+    /// Replaces the grid with a vertical two-column view of one row.
+    @Published var showSingleRowResult = false
+    @Published var showCalcPanel = false
+    @Published var calcExpression = ""
+    @Published var calcResult = ""
+    @Published var calcHistory: [String] = []
     @Published var error: DBError?
     @Published var showNoConnectionAlert = false
     @Published var status: String = L10n.tr("Готово")
@@ -179,6 +193,11 @@ final class AppModel: ObservableObject {
     /// last (or an empty grid when it has never been run).
     private var resultsByTab: [UUID: QueryResult] = [:]
     private var sortsByTab: [UUID: ResultSort] = [:]
+    /// Filter conditions per tab, so switching scripts restores their own view.
+    private var filtersByTab: [UUID: [Int: String]] = [:]
+    /// nil means "show every row"; otherwise display index -> data row index.
+    private var displayedRowCache: [Int]?
+    private var filterRefreshWork: DispatchWorkItem?
     private var historyStore = HistoryStore()
     private var tabsSaveWork: DispatchWorkItem?
     private struct RunningQuery {
@@ -757,7 +776,7 @@ final class AppModel: ObservableObject {
 
     /// Selects a whole row (Shift extends, Ctrl/Cmd toggles).
     func selectResultRow(_ row: Int, extend: Bool = false, toggle: Bool = false) {
-        guard let r = result, row >= 0, row < r.rows.count else { return }
+        guard result != nil, row >= 0, row < displayedRowCount else { return }
         let wasRows = gridSelection?.kind == .rows
         var rows: Set<Int>
         if toggle {
@@ -780,9 +799,9 @@ final class AppModel: ObservableObject {
 
     /// Row-number header click: every row and every column.
     func selectEntireResult() {
-        guard let r = result, !r.rows.isEmpty, !r.columns.isEmpty else { return }
+        guard let r = result, displayedRowCount > 0, !r.columns.isEmpty else { return }
         gridSelection = GridSelection(kind: .cells,
-                                      rows: Set(0..<r.rows.count),
+                                      rows: Set(0..<displayedRowCount),
                                       cols: Set(0..<r.columns.count))
         focusedPane = .result
     }
@@ -1082,8 +1101,12 @@ final class AppModel: ObservableObject {
                 connected.insert(profile.id)
                 resultsByTab[tabID] = r
                 sortsByTab[tabID] = nil
+                filtersByTab[tabID] = nil
                 loadTableMeta(for: r)
                 if tabID == activeTabID {
+                    filterRefreshWork?.cancel()
+                    resultFilters = [:]
+                    showSingleRowResult = false
                     result = r
                     resultSort = nil
                 }
@@ -1311,6 +1334,208 @@ final class AppModel: ObservableObject {
         newTab(text: entry.sql)
     }
 
+    // MARK: - result filters and single-row view
+
+    /// Number of rows the grid currently shows after local filtering.
+    var displayedRowCount: Int {
+        displayedRowCache?.count ?? (result?.rows.count ?? 0)
+    }
+
+    /// Maps a display row to the row index in `result.rows`.
+    func dataRow(forDisplayRow row: Int) -> Int {
+        guard let cache = displayedRowCache, row >= 0, row < cache.count else { return row }
+        return cache[row]
+    }
+
+    /// Recomputes the visible rows from the active filter conditions. Called
+    /// whenever the result changes and after the filter fields settle.
+    private func refreshDisplayedRows() {
+        guard let r = result else {
+            displayedRowCache = nil
+            resultFilterRevision += 1
+            return
+        }
+        let active = resultFilters.filter {
+            !$0.value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
+        if active.isEmpty {
+            displayedRowCache = nil
+        } else {
+            displayedRowCache = r.rows.indices.filter { index in
+                ResultFilter.matches(row: r.rows[index], columns: r.columns, filters: active)
+            }
+        }
+        resultFilterRevision += 1
+    }
+
+    func setShowFilterPanel(_ enabled: Bool) {
+        guard enabled != showFilterPanel else { return }
+        showFilterPanel = enabled
+        AppSettings.showFilterPanel = enabled
+        status = enabled ? L10n.tr("Панель фильтра показана")
+            : L10n.tr("Панель фильтра скрыта")
+    }
+
+    /// Typing in a filter field updates the visible rows after a short pause,
+    /// so a large result is not rescanned on every keystroke.
+    func setResultFilter(column: Int, text: String) {
+        guard column >= 0 else { return }
+        if text.isEmpty {
+            resultFilters.removeValue(forKey: column)
+        } else {
+            resultFilters[column] = text
+        }
+        filtersByTab[activeTabID] = resultFilters.isEmpty ? nil : resultFilters
+        filterRefreshWork?.cancel()
+        let work = DispatchWorkItem { [weak self] in self?.refreshDisplayedRows() }
+        filterRefreshWork = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: work)
+    }
+
+    func clearResultFilters() {
+        filterRefreshWork?.cancel()
+        resultFilters = [:]
+        filtersByTab[activeTabID] = nil
+        refreshDisplayedRows()
+        status = L10n.tr("Фильтры очищены")
+    }
+
+    /// Tab in the grid, and the "Результат" button in the filter row.
+    func toggleSingleRowResult() {
+        guard result != nil, displayedRowCount > 0 else { return }
+        showSingleRowResult.toggle()
+        focusedPane = .result
+    }
+
+    /// Display index of the focused row, defaulting to the first one.
+    var singleRowDisplayIndex: Int {
+        let count = displayedRowCount
+        guard count > 0 else { return 0 }
+        let selected = gridSelection?.rows.sorted().first ?? 0
+        return min(max(selected, 0), count - 1)
+    }
+
+    /// Column title exactly as the result header shows it.
+    func resultHeaderTitle(for column: ColumnInfo) -> String {
+        showTypeInColumnHeader ? "\(column.name)  ·  \(column.shortType)" : column.name
+    }
+
+    // MARK: - SQL completion candidates
+
+    /// Columns offered after WHERE / AND: the loaded result first, then the
+    /// aliases parsed from the current SELECT list (so it also works before
+    /// the first run).
+    func completionColumns() -> [String] {
+        var names: [String] = []
+        if let result {
+            names.append(contentsOf: result.columns.map(\.name))
+        }
+        names.append(contentsOf: SQLCompletion.selectListColumns(in: editor.allText()))
+        return names
+    }
+
+    /// Distinct values of one column from the loaded result, formatted as SQL
+    /// literals. Used after `column =` or `column LIKE`.
+    func completionValues(for column: String) -> [String] {
+        guard let result else { return [] }
+        let wanted = column.split(separator: ".").last.map(String.init)?.lowercased()
+            ?? column.lowercased()
+        guard let index = result.columns.firstIndex(where: {
+            $0.name.lowercased() == wanted
+        }) else { return [] }
+        let numeric = result.columns[index].isNumeric
+        var seen = Set<String>()
+        var values: [String] = []
+        for row in result.rows {
+            guard index < row.count, let value = row[index], !value.isEmpty else { continue }
+            let literal = numeric && CalcEngine.isNumeric(value)
+                ? value
+                : "'" + value.replacingOccurrences(of: "'", with: "''") + "'"
+            guard seen.insert(literal).inserted else { continue }
+            values.append(literal)
+            if values.count >= 500 { break }
+        }
+        return values
+    }
+
+    /// Contents of the vertical single-row view, in the same column order and
+    /// with the same header titles as the normal grid.
+    func singleRowItems() -> [SingleRowItem] {
+        guard let r = result, displayedRowCount > 0 else { return [] }
+        let display = singleRowDisplayIndex
+        let rowIndex = dataRow(forDisplayRow: display)
+        guard rowIndex >= 0, rowIndex < r.rows.count else { return [] }
+        let values = r.rows[rowIndex]
+        return r.visualColumnOrder.compactMap { index in
+            guard index >= 0, index < r.columns.count else { return nil }
+            let column = r.columns[index]
+            let raw = index < values.count ? values[index] : nil
+            return SingleRowItem(
+                id: index,
+                title: resultHeaderTitle(for: column),
+                value: TimestampDisplay.formatted(raw, columnType: column.type)
+            )
+        }
+    }
+
+    // MARK: - calculator
+
+    func toggleCalcPanel() {
+        if showCalcPanel {
+            showCalcPanel = false
+        } else {
+            showCalcPanel = true
+            showValuePanel = false
+        }
+    }
+
+    /// Context menu entry: opens the calculator, using the clicked cell as a
+    /// starting value when it is a number.
+    func openCalc(with value: String?) {
+        showCalcPanel = true
+        showValuePanel = false
+        if let value, !value.isEmpty, CalcEngine.isNumeric(value) {
+            calcExpression = value
+            calcResult = CalcEngine.format(value)
+        }
+    }
+
+    func evaluateCalc() {
+        let expression = calcExpression.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !expression.isEmpty else { return }
+        switch CalcEngine.evaluate(expression) {
+        case .success(let value):
+            let text = CalcEngine.format(value)
+            calcResult = text
+            let line = "\(expression) = \(text)"
+            calcHistory.insert(line, at: 0)
+            if calcHistory.count > 40 { calcHistory.removeLast(calcHistory.count - 40) }
+        case .failure(let error):
+            calcResult = error.message
+        }
+    }
+
+    func clearCalcHistory() {
+        calcHistory.removeAll()
+    }
+
+    /// Inserts the focused cell's value into the calculator expression.
+    func insertSelectedValueIntoCalc() {
+        guard let r = result, displayedRowCount > 0 else { return }
+        let row = singleRowDisplayIndex
+        let dataRow = dataRow(forDisplayRow: row)
+        let col = gridSelection?.cols.sorted().first ?? 0
+        guard dataRow >= 0, dataRow < r.rows.count,
+              col >= 0, col < r.columns.count,
+              col < r.rows[dataRow].count,
+              let value = r.rows[dataRow][col], !value.isEmpty else { return }
+        if calcExpression.isEmpty {
+            calcExpression = value
+        } else {
+            calcExpression += " " + value
+        }
+    }
+
     // MARK: - value panel
 
     /// Opens the value inspector for one cell. Called from the grid context
@@ -1330,9 +1555,10 @@ final class AppModel: ObservableObject {
             return
         }
         guard let result else { return }
+        showCalcPanel = false
         let row = gridSelection?.rows.sorted().first ?? 0
         let col = gridSelection?.cols.sorted().first ?? 0
-        guard row < result.rows.count, col < result.columns.count else { return }
+        guard row < displayedRowCount, col < result.columns.count else { return }
         showValuePanel(row: row, col: col)
     }
 
@@ -1343,12 +1569,14 @@ final class AppModel: ObservableObject {
     }
 
     private func valuePanelItem(row: Int, col: Int) -> ValuePanelItem? {
-        guard let result, row >= 0, row < result.rows.count,
+        guard let result, row >= 0, row < displayedRowCount,
               col >= 0, col < result.columns.count else { return nil }
-        let values = result.rows[row]
+        let dataRow = dataRow(forDisplayRow: row)
+        guard dataRow >= 0, dataRow < result.rows.count else { return nil }
+        let values = result.rows[dataRow]
         let column = result.columns[col]
         return ValuePanelItem(
-            row: row,
+            row: dataRow,
             column: col,
             columnName: column.name,
             columnType: column.type,
@@ -1562,8 +1790,11 @@ final class AppModel: ObservableObject {
         if tabRunStates[id] == .succeeded || tabRunStates[id] == .failed {
             tabRunStates.removeValue(forKey: id)
         }
+        filterRefreshWork?.cancel()
+        resultFilters = filtersByTab[id] ?? [:]
         result = resultsByTab[id]
         resultSort = sortsByTab[id]
+        showSingleRowResult = false
         error = errorsByTab[id]
         gridSelection = nil
         if showResultSearch {
@@ -1658,6 +1889,7 @@ final class AppModel: ObservableObject {
         tabs.remove(at: idx)
         resultsByTab[id] = nil
         sortsByTab[id] = nil
+        filtersByTab[id] = nil
         diskContents[id] = nil
         if tabs.isEmpty {
             let tab = QueryTab(title: Self.untitledTitle(1), text: "")
@@ -1696,6 +1928,7 @@ final class AppModel: ObservableObject {
         tabs = tabs.filter { $0.id == id }
         resultsByTab = resultsByTab.filter { $0.key == id }
         sortsByTab = sortsByTab.filter { $0.key == id }
+        filtersByTab = filtersByTab.filter { $0.key == id }
         diskContents = diskContents.filter { $0.key == id }
         for (tabID, session) in tabSessions where tabID != id {
             session.disconnect()
@@ -2411,21 +2644,26 @@ final class AppModel: ObservableObject {
     /// Selected cells (or the whole result when nothing is selected) in the
     /// shape the clipboard formatters expect.
     func clipboardPayload() -> GridClipboardPayload? {
-        guard let r = result, !r.rows.isEmpty, !r.columns.isEmpty else { return nil }
-        var rowIdx = Array(0..<r.rows.count)
+        guard let r = result, displayedRowCount > 0, !r.columns.isEmpty else { return nil }
+        var displayRows = Array(0..<displayedRowCount)
         var colIdx = Array(0..<r.columns.count)
         if let sel = gridSelection {
-            let rows = sel.effectiveRows(total: r.rows.count).filter { $0 >= 0 && $0 < r.rows.count }
-            let cols = sel.effectiveColumns(total: r.columns.count).filter { $0 >= 0 && $0 < r.columns.count }
+            let rows = sel.effectiveRows(total: displayedRowCount)
+                .filter { $0 >= 0 && $0 < displayedRowCount }
+            let cols = sel.effectiveColumns(total: r.columns.count)
+                .filter { $0 >= 0 && $0 < r.columns.count }
             if !rows.isEmpty, !cols.isEmpty {
-                rowIdx = rows
+                displayRows = rows
                 colIdx = cols
             }
         }
-        let rows = rowIdx.map { i in colIdx.map { c in c < r.rows[i].count ? r.rows[i][c] : nil } }
+        let dataRows = displayRows.map { dataRow(forDisplayRow: $0) }
+        let rows = dataRows.map { i in
+            colIdx.map { c in c < r.rows[i].count ? r.rows[i][c] : nil }
+        }
         return GridClipboardPayload(columns: colIdx.map { r.columns[$0].name },
                                     rows: rows,
-                                    rowNumbers: rowIdx.map { $0 + 1 },
+                                    rowNumbers: displayRows.map { $0 + 1 },
                                     columnInfo: colIdx.map { r.columns[$0] })
     }
 
@@ -2564,7 +2802,9 @@ final class AppModel: ObservableObject {
         var startRow = 0
         var startCol = 0
         if let sel = gridSelection {
-            if let row = sel.effectiveRows(total: r.rows.count).first { startRow = row }
+            if let row = sel.effectiveRows(total: displayedRowCount).first {
+                startRow = dataRow(forDisplayRow: min(max(row, 0), max(0, displayedRowCount - 1)))
+            }
             if let col = sel.effectiveColumns(total: r.columns.count).first { startCol = col }
         }
 
@@ -2617,18 +2857,20 @@ final class AppModel: ObservableObject {
     func setResultCell(row: Int, column: Int, value: String?) {
         guard resultEditPhase != .saving else { return }
         guard var r = result,
-              row >= 0, row < r.rows.count,
+              row >= 0, row < displayedRowCount,
               column >= 0, column < r.columns.count else { return }
+        let dataRow = dataRow(forDisplayRow: row)
+        guard dataRow >= 0, dataRow < r.rows.count else { return }
         ensureRowIDs(&r)
-        while r.rows[row].count <= column {
-            r.rows[row].append(nil)
+        while r.rows[dataRow].count <= column {
+            r.rows[dataRow].append(nil)
         }
-        guard r.rows[row][column] != value else { return }
-        let rowID = r.rowIDs[row]
+        guard r.rows[dataRow][column] != value else { return }
+        let rowID = r.rowIDs[dataRow]
         if r.originalRows[rowID] == nil {
-            r.originalRows[rowID] = r.rows[row]
+            r.originalRows[rowID] = r.rows[dataRow]
         }
-        r.rows[row][column] = value
+        r.rows[dataRow][column] = value
         recordEdit(in: &r, rowID: rowID, column: column, newValue: value)
 
         result = r
@@ -2948,23 +3190,30 @@ final class AppModel: ObservableObject {
     /// True when the grid has a selection that does not cover the whole
     /// result, so exporting "all data" would silently ignore it.
     private func hasPartialSelection(_ r: QueryResult) -> Bool {
-        guard let sel = gridSelection, !r.rows.isEmpty, !r.columns.isEmpty else { return false }
-        let rows = sel.effectiveRows(total: r.rows.count)
+        guard let sel = gridSelection, displayedRowCount > 0, !r.columns.isEmpty else { return false }
+        let rows = sel.effectiveRows(total: displayedRowCount)
         let cols = sel.effectiveColumns(total: r.columns.count)
         guard !rows.isEmpty, !cols.isEmpty else { return false }
-        return rows.count < r.rows.count || cols.count < r.columns.count
+        return rows.count < displayedRowCount || cols.count < r.columns.count
     }
 
     private func exportPayload(_ scope: ExportScope,
                                result r: QueryResult) -> (columns: [ColumnInfo], rows: [[String?]]) {
+        let allDisplayRows = Array(0..<displayedRowCount)
         guard scope == .selection,
-              let sel = gridSelection, !r.rows.isEmpty, !r.columns.isEmpty else {
-            return (r.columns, r.rows)
+              let sel = gridSelection, displayedRowCount > 0, !r.columns.isEmpty else {
+            return (r.columns, allDisplayRows.map { r.rows[dataRow(forDisplayRow: $0)] })
         }
-        let rowIdx = sel.effectiveRows(total: r.rows.count).filter { $0 < r.rows.count }
+        let displayRows = sel.effectiveRows(total: displayedRowCount)
+            .filter { $0 >= 0 && $0 < displayedRowCount }
         let colIdx = sel.effectiveColumns(total: r.columns.count).filter { $0 < r.columns.count }
-        guard !rowIdx.isEmpty, !colIdx.isEmpty else { return (r.columns, r.rows) }
-        let subset = rowIdx.map { i in colIdx.map { c in c < r.rows[i].count ? r.rows[i][c] : nil } }
+        guard !displayRows.isEmpty, !colIdx.isEmpty else {
+            return (r.columns, allDisplayRows.map { r.rows[dataRow(forDisplayRow: $0)] })
+        }
+        let subset = displayRows.map { displayRow in
+            let i = dataRow(forDisplayRow: displayRow)
+            return colIdx.map { c in c < r.rows[i].count ? r.rows[i][c] : nil }
+        }
         return (colIdx.map { r.columns[$0] }, subset)
     }
 
@@ -3004,7 +3253,8 @@ final class AppModel: ObservableObject {
             case .loadAll:
                 loadAllAndExport(format)
             case .exportLoaded:
-                performExport(format, columns: r.columns, rows: r.rows)
+                let payload = exportPayload(.all, result: r)
+                performExport(format, columns: payload.columns, rows: payload.rows)
             case .cancel:
                 break
             }

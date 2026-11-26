@@ -11,6 +11,15 @@ final class SQLTextView: NSTextView {
     var onZoom: ((CGFloat) -> Void)?
     /// Called when the editor becomes the first responder.
     var onFocus: (() -> Void)?
+    /// Candidate column names for the SQL completion popup.
+    var completionColumns: (() -> [String])?
+    /// Candidate values of one column, used after `column =`.
+    var completionValues: ((String) -> [String])?
+    private let completionPopup = SQLCompletionPopup()
+    private var completionContext: SQLCompletion.Context?
+    /// Caret position right after a committed suggestion. Refreshes at that
+    /// exact spot are ignored so the list does not immediately reopen.
+    private var suppressRefreshAtCaret: Int?
     private var zoomAccumulator: CGFloat = 0
     private var magnifyAccumulator: CGFloat = 0
 
@@ -34,6 +43,28 @@ final class SQLTextView: NSTextView {
 
     override func keyDown(with event: NSEvent) {
         let mods = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+        // While the suggestion list is open, navigation keys belong to it.
+        if completionPopup.isVisible, mods.isEmpty || mods == .shift {
+            switch event.keyCode {
+            case 125: // down
+                completionPopup.moveSelection(by: 1)
+                return
+            case 126: // up
+                completionPopup.moveSelection(by: -1)
+                return
+            case 36, 76: // return / keypad enter
+                commitCompletion()
+                return
+            case 48: // tab
+                commitCompletion()
+                return
+            case 53: // escape
+                hideCompletion()
+                return
+            default:
+                break
+            }
+        }
         if mods.contains(.command), !mods.contains(.option), !mods.contains(.control) {
             if event.keyCode == 36 || event.keyCode == 76 {
                 onCommandEnter?()
@@ -251,6 +282,7 @@ final class SQLTextView: NSTextView {
     }
 
     override func scrollWheel(with event: NSEvent) {
+        hideCompletion()
         guard event.modifierFlags.contains(.control), let onZoom else {
             super.scrollWheel(with: event)
             return
@@ -269,6 +301,93 @@ final class SQLTextView: NSTextView {
         }
     }
 
+    // MARK: - SQL completion
+
+    /// Recomputes the suggestion list for the caret. Called by the delegate on
+    /// every text or selection change; it is cheap because it stops at the
+    /// current statement.
+    func refreshCompletions() {
+        if let suppressed = suppressRefreshAtCaret {
+            if selectedRange().location == suppressed, selectedRange().length == 0 {
+                hideCompletion()
+                return
+            }
+            suppressRefreshAtCaret = nil
+        }
+        guard let window, window.isKeyWindow, window.firstResponder === self,
+              selectedRange().length == 0 else {
+            hideCompletion()
+            return
+        }
+        let caret = selectedRange().location
+        guard let context = SQLCompletion.context(in: string as NSString, caret: caret) else {
+            hideCompletion()
+            return
+        }
+        var candidates: [String] = []
+        switch context.kind {
+        case .columns:
+            candidates = completionColumns?() ?? []
+        case .values(let column):
+            candidates = completionValues?(column) ?? []
+        }
+        let filtered = SQLCompletion.filter(candidates, prefix: context.prefix)
+        guard !filtered.isEmpty, let point = caretScreenPoint() else {
+            hideCompletion()
+            return
+        }
+        completionContext = context
+        completionPopup.onCommit = { [weak self] item in self?.insertCompletion(item) }
+        completionPopup.show(items: filtered, at: point)
+    }
+
+    private func commitCompletion() {
+        completionPopup.commitSelected()
+    }
+
+    private func insertCompletion(_ item: String) {
+        guard let context = completionContext else {
+            hideCompletion()
+            return
+        }
+        completionContext = nil
+        suppressRefreshAtCaret = context.range.location + (item as NSString).length
+        completionPopup.hide()
+        insertText(item, replacementRange: context.range)
+    }
+
+    private func hideCompletion() {
+        completionContext = nil
+        completionPopup.hide()
+    }
+
+    /// Bottom-left corner of the caret in screen coordinates, so the popup can
+    /// sit right under the typed word.
+    private func caretScreenPoint() -> NSPoint? {
+        guard let window, let lm = layoutManager, let tc = textContainer else { return nil }
+        let ns = string as NSString
+        var rect = NSRect(x: textContainerInset.width,
+                          y: textContainerInset.height,
+                          width: 1, height: 14)
+        if lm.numberOfGlyphs > 0 {
+            let caret = selectedRange().location
+            let glyph = lm.glyphIndexForCharacter(at: min(caret, max(0, ns.length - 1)))
+            let glyphRect = lm.boundingRect(forGlyphRange: NSRange(location: glyph, length: 1),
+                                            in: tc)
+            rect.origin.x = glyphRect.minX + textContainerInset.width
+            rect.origin.y = glyphRect.minY + textContainerInset.height
+            rect.size.height = max(glyphRect.height, 12)
+        }
+        // NSTextView is flipped: maxY is the lower edge of the line.
+        let inWindow = convert(NSPoint(x: rect.minX, y: rect.maxY), to: nil)
+        return window.convertPoint(toScreen: inWindow)
+    }
+
+    override func resignFirstResponder() -> Bool {
+        hideCompletion()
+        return super.resignFirstResponder()
+    }
+
     /// Trackpad pinch: positive magnification means zoom in.
     override func magnify(with event: NSEvent) {
         guard let onZoom else {
@@ -284,6 +403,7 @@ final class SQLTextView: NSTextView {
     }
 
     override func mouseDown(with event: NSEvent) {
+        hideCompletion()
         // AppKit's triple-click does not call selectionRange(forProposedRange:)
         // with .selectByParagraph; it jumps straight to the paragraph. Use the
         // caret/word placed by the previous click and select the literal instead.
@@ -408,6 +528,8 @@ struct SQLEditorView: NSViewRepresentable {
             model?.focusedPane = .editor
             model?.applySmartSelection()
         }
+        tv.completionColumns = { [weak model] in model?.completionColumns() ?? [] }
+        tv.completionValues = { [weak model] column in model?.completionValues(for: column) ?? [] }
 
         scroll.documentView = tv
         context.coordinator.textView = tv
@@ -498,12 +620,14 @@ struct SQLEditorView: NSViewRepresentable {
             model.updateCaret(location: tv.selectedRange().location, in: tv.string)
             model.editorTextChanged(tv.string)
             scheduleHighlight(tv)
+            (tv as? SQLTextView)?.refreshCompletions()
         }
 
         func textViewDidChangeSelection(_ notification: Notification) {
             guard !isSyncing, let tv = notification.object as? NSTextView else { return }
             model.editor.hasSelection = tv.selectedRange().length > 0
             model.updateCaret(location: tv.selectedRange().location, in: tv.string)
+            (tv as? SQLTextView)?.refreshCompletions()
         }
 
         private func scheduleHighlight(_ tv: NSTextView) {

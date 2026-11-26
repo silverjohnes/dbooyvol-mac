@@ -258,10 +258,21 @@ final class GridTableView: NSTableView {
     var onZoom: ((CGFloat) -> Void)?
     /// Called when the grid becomes the first responder.
     var onFocus: (() -> Void)?
+    /// Tab switches between the grid and the vertical single-row view.
+    var onToggleSingleRow: (() -> Void)?
     private var zoomAccumulator: CGFloat = 0
     private var magnifyAccumulator: CGFloat = 0
 
     override var acceptsFirstResponder: Bool { true }
+
+    override func keyDown(with event: NSEvent) {
+        let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+        if event.keyCode == 48, flags.isEmpty, let onToggleSingleRow {
+            onToggleSingleRow()
+            return
+        }
+        super.keyDown(with: event)
+    }
 
     override func becomeFirstResponder() -> Bool {
         let accepted = super.becomeFirstResponder()
@@ -677,6 +688,14 @@ final class RowNumberView: NSView, NSViewToolTipOwner {
     weak var table: NSTableView?
     weak var model: AppModel?
 
+    private static let keyImage: NSImage? = {
+        let configuration = NSImage.SymbolConfiguration(pointSize: 11, weight: .semibold)
+            .applying(NSImage.SymbolConfiguration(paletteColors: [NSColor.secondaryLabelColor]))
+        return NSImage(systemSymbolName: "key.fill",
+                       accessibilityDescription: L10n.tr("Уникальный ключ"))?
+            .withSymbolConfiguration(configuration)
+    }()
+
     override var isFlipped: Bool { true }
 
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
@@ -745,7 +764,7 @@ final class RowNumberView: NSView, NSViewToolTipOwner {
         refreshToolTips()
     }
 
-    private func refreshToolTips() {
+    func refreshToolTips() {
         removeAllToolTips()
         guard !bounds.isEmpty else { return }
         addToolTip(bounds, owner: self, userData: nil)
@@ -754,9 +773,32 @@ final class RowNumberView: NSView, NSViewToolTipOwner {
     func view(_ view: NSView, stringForToolTip tag: NSView.ToolTipTag,
               point: NSPoint, userData data: UnsafeMutableRawPointer?) -> String {
         if point.y < headerHeight {
-            return L10n.tr("Выделить весь результат")
+            return uniqueKeyTooltip()
         }
         return L10n.tr("Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон")
+    }
+
+    /// The key icon replaces the old "№" label. Its tooltip names the unique
+    /// key of the source table(s), when the driver reports one.
+    private func uniqueKeyTooltip() -> String {
+        guard let model, let result = model.result else {
+            return L10n.tr("Уникальный ключ не определён")
+        }
+        var lines: [String] = []
+        var seen = Set<String>()
+        for column in result.columns where !column.table.isEmpty {
+            guard let meta = model.tableMeta(for: column, profileID: result.profileID),
+                  !meta.primaryKey.isEmpty else { continue }
+            let table = [column.catalog, column.schema, column.table]
+                .filter { !$0.isEmpty }.joined(separator: ".")
+            let key = "\(table)(\(meta.primaryKey.joined(separator: ", ")))"
+            guard seen.insert(key).inserted else { continue }
+            lines.append(L10n.fmt("Уникальный ключ: %@(%@)", table,
+                                  meta.primaryKey.joined(separator: ", ")))
+        }
+        return lines.isEmpty
+            ? L10n.tr("Уникальный ключ не определён")
+            : lines.joined(separator: "\n")
     }
 
     private var headerHeight: CGFloat {
@@ -818,10 +860,14 @@ final class RowNumberView: NSView, NSViewToolTipOwner {
         }
         NSGraphicsContext.restoreGraphicsState()
 
-        let hash = "№" as NSString
-        let hashHeight = hash.size(withAttributes: attrs).height
-        hash.draw(in: NSRect(x: 0, y: (header - hashHeight) / 2, width: bounds.width - 7, height: hashHeight),
-                  withAttributes: attrs)
+        // Key icon in the corner, aligned with the column headers. It replaces
+        // the old "№" label; hovering it explains the unique key.
+        if let key = Self.keyImage {
+            let side = min(header - 6, 14)
+            let rect = NSRect(x: (bounds.width - side) / 2, y: (header - side) / 2,
+                              width: side, height: side)
+            key.draw(in: rect, from: .zero, operation: .sourceOver, fraction: 0.85)
+        }
 
         NSColor.separatorColor.setFill()
         NSRect(x: bounds.width - 1, y: 0, width: 1, height: bounds.height).fill()
@@ -918,6 +964,9 @@ struct ResultsView: NSViewRepresentable {
         table.onFocus = { [weak coordinator = context.coordinator] in
             coordinator?.model.focusedPane = .result
         }
+        table.onToggleSingleRow = { [weak coordinator = context.coordinator] in
+            coordinator?.model.toggleSingleRowResult()
+        }
         return ResultsPaneView(scrollView: scroll, rowNumbers: gutter)
     }
 
@@ -961,7 +1010,7 @@ struct ResultsView: NSViewRepresentable {
             guard let table else { return }
             let result = model.result
             let columns = result?.columns ?? []
-            let rowCount = result?.rows.count ?? 0
+            let rowCount = model.displayedRowCount
             // A revision counter avoids sorting (and copying) the whole
             // selection on every SwiftUI update, which matters after
             // "select all" on a large result.
@@ -972,6 +1021,7 @@ struct ResultsView: NSViewRepresentable {
             let queryKey = result?.queryName ?? ""
             let headerKey = "\(model.showTypeInColumnHeader)"
             let timeZoneKey = model.timeZoneIdentifier
+            let filterKey = "\(model.resultFilterRevision)#\(rowCount)"
             if fontKey != lastFontKey || autoKey != lastAutoKey || headerKey != lastHeaderKey
                 || timeZoneKey != lastTimeZoneKey {
                 widthCache.removeAll()
@@ -983,7 +1033,7 @@ struct ResultsView: NSViewRepresentable {
             // need to be stringified on every SwiftUI update (which happens on
             // each keystroke in the editor).
             let sig = "\(runID?.uuidString ?? "-")#\(rowCount)#\(fontKey)#\(autoKey)"
-                + "#\(queryKey)#\(headerKey)#\(sortKey)#\(orderKey)#\(timeZoneKey)"
+                + "#\(queryKey)#\(headerKey)#\(sortKey)#\(orderKey)#\(timeZoneKey)#\(filterKey)"
 
             if sig == signature {
                 // Nothing but the selection or a cell edit changed: repaint
@@ -1046,6 +1096,7 @@ struct ResultsView: NSViewRepresentable {
             recycleCells()
             table.reloadData()
             rowNumbers?.needsDisplay = true
+            rowNumbers?.refreshToolTips()
             (table.headerView as? GridHeaderView)?.refreshToolTips()
             table.headerView?.needsDisplay = true
         }
@@ -1080,7 +1131,7 @@ struct ResultsView: NSViewRepresentable {
         func syncSearch() {
             let query = model.resultSearchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
             let result = model.result
-            let key = "\(result?.runID.uuidString ?? "-")#\(result?.rows.count ?? 0)#\(result?.columns.count ?? 0)"
+            let key = "\(result?.runID.uuidString ?? "-")#\(model.displayedRowCount)#\(result?.columns.count ?? 0)#\(model.resultFilterRevision)"
             if query != lastQuery || key != lastSearchKey {
                 lastQuery = query
                 lastSearchKey = key
@@ -1130,31 +1181,35 @@ struct ResultsView: NSViewRepresentable {
             }
 
             let rows = result.rows
-            let cells = rows.reduce(0) { $0 + $1.count }
+            let displayCount = model.displayedRowCount
+            // Snapshot the display -> data mapping on the main actor so the
+            // background scan does not touch model state.
+            let mapping = (0..<displayCount).map { model.dataRow(forDisplayRow: $0) }
+            let cells = displayCount * max(1, result.columns.count)
             let scan = { () -> [GridMatch] in
                 func matches(in range: Range<Int>) -> [GridMatch] {
                     var found: [GridMatch] = []
-                    for rowIndex in range {
-                        let row = rows[rowIndex]
+                    for displayRow in range {
+                        let row = rows[mapping[displayRow]]
                         for (colIndex, value) in row.enumerated() {
                             guard let value, !value.isEmpty, prepared.matches(value) else { continue }
-                            found.append(GridMatch(row: rowIndex, col: colIndex))
+                            found.append(GridMatch(row: displayRow, col: colIndex))
                         }
                     }
                     return found
                 }
                 // Wide results are split across cores; the pieces are stitched
                 // back in row order so navigation still goes top to bottom.
-                let chunks = rows.count >= 2_000
+                let chunks = displayCount >= 2_000
                     ? min(8, max(1, ProcessInfo.processInfo.activeProcessorCount))
                     : 1
-                guard chunks > 1 else { return matches(in: 0..<rows.count) }
+                guard chunks > 1 else { return matches(in: 0..<displayCount) }
                 let lock = NSLock()
                 var pieces: [(Int, [GridMatch])] = []
                 pieces.reserveCapacity(chunks)
                 DispatchQueue.concurrentPerform(iterations: chunks) { c in
-                    let start = rows.count * c / chunks
-                    let end = rows.count * (c + 1) / chunks
+                    let start = displayCount * c / chunks
+                    let end = displayCount * (c + 1) / chunks
                     let found = matches(in: start..<end)
                     lock.lock()
                     pieces.append((c, found))
@@ -1306,7 +1361,7 @@ struct ResultsView: NSViewRepresentable {
         }
 
         private func headerTitle(for column: ColumnInfo) -> String {
-            model.showTypeInColumnHeader ? "\(column.name)  ·  \(column.shortType)" : column.name
+            model.resultHeaderTitle(for: column)
         }
 
         /// Measured widths per execution. Switching tabs asked for every width
@@ -1346,17 +1401,24 @@ struct ResultsView: NSViewRepresentable {
             // Measuring the first rows as one multi-line string returns the
             // widest line in a single call, instead of one call per value
             // (2400 text measurements made a font change feel sluggish).
-            let rows = (model.result?.rows ?? []).prefix(200)
+            let result = model.result
+            let displayCount = min(model.displayedRowCount, 200)
             var values: [String] = []
-            values.reserveCapacity(rows.count)
+            values.reserveCapacity(displayCount)
             var needsIndividual = false
-            for row in rows where index < row.count {
-                let text = TimestampDisplay.formatted(row[index], columnType: column.type) ?? "NULL"
-                if text.contains("\n") || text.contains("\r") {
-                    needsIndividual = true
-                    break
+            if let result {
+                for display in 0..<displayCount {
+                    let dataRow = model.dataRow(forDisplayRow: display)
+                    guard dataRow >= 0, dataRow < result.rows.count else { continue }
+                    let row = result.rows[dataRow]
+                    guard index < row.count else { continue }
+                    let text = TimestampDisplay.formatted(row[index], columnType: column.type) ?? "NULL"
+                    if text.contains("\n") || text.contains("\r") {
+                        needsIndividual = true
+                        break
+                    }
+                    values.append(text)
                 }
-                values.append(text)
             }
             if needsIndividual {
                 for text in values {
@@ -1444,16 +1506,18 @@ struct ResultsView: NSViewRepresentable {
         }
 
         func numberOfRows(in tableView: NSTableView) -> Int {
-            model.result?.rows.count ?? 0
+            model.displayedRowCount
         }
 
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
             guard let tableColumn,
                   let idx = columnIndex(of: tableColumn),
                   let result = model.result,
-                  row < result.rows.count else { return nil }
+                  row >= 0, row < model.displayedRowCount else { return nil }
+            let dataRow = model.dataRow(forDisplayRow: row)
+            guard dataRow >= 0, dataRow < result.rows.count else { return nil }
 
-            let rowValues = result.rows[row]
+            let rowValues = result.rows[dataRow]
             let rawValue: String? = idx < rowValues.count ? rowValues[idx] : nil
             let column = idx < result.columns.count ? result.columns[idx] : nil
             let value = TimestampDisplay.formatted(rawValue, columnType: column?.type ?? "")
@@ -1551,10 +1615,12 @@ struct ResultsView: NSViewRepresentable {
         private func beginEditing(row: Int, col: Int, position: Int) {
             guard let table,
                   let result = model.result,
-                  row < result.rows.count else { return }
+                  row >= 0, row < model.displayedRowCount else { return }
             guard let cell = table.view(atColumn: position, row: row,
                                         makeIfNecessary: true) as? GridCellView else { return }
-            let rowValues = result.rows[row]
+            let dataRow = model.dataRow(forDisplayRow: row)
+            guard dataRow >= 0, dataRow < result.rows.count else { return }
+            let rowValues = result.rows[dataRow]
             let value: String? = col < rowValues.count ? rowValues[col] : nil
             cell.onCommitEdit = { [weak self] newValue in
                 self?.model.setResultCell(row: row, column: col, value: newValue)
@@ -1588,7 +1654,7 @@ struct ResultsView: NSViewRepresentable {
                   let result = model.result else { return }
             let p = table.convert(event.locationInWindow, from: nil)
             let row = table.row(at: p)
-            guard row >= 0, row < result.rows.count,
+            guard row >= 0, row < model.displayedRowCount,
                   let col = columnIndex(ofPosition: table.column(at: p)) else { return }
             contextCell = (row, col)
             if model.gridSelection?.contains(row: row, col: col) != true {
@@ -1609,6 +1675,7 @@ struct ResultsView: NSViewRepresentable {
             menu.addItem(copy)
 
             add(to: menu, "Значение", #selector(ctxShowValue(_:)))
+            add(to: menu, "Калькулятор", #selector(ctxShowCalc(_:)))
 
             add(to: menu, "Вставить", #selector(ctxPaste(_:)), key: "v")
             let paste = NSMenuItem(title: L10n.tr("Вставить…"), action: nil, keyEquivalent: "")
@@ -1682,6 +1749,20 @@ struct ResultsView: NSViewRepresentable {
         @objc private func ctxShowValue(_ sender: Any?) {
             guard let cell = contextCell else { return }
             model.showValuePanel(row: cell.row, col: cell.col)
+        }
+
+        @objc private func ctxShowCalc(_ sender: Any?) {
+            guard let cell = contextCell, let result = model.result else {
+                model.openCalc(with: nil)
+                return
+            }
+            let dataRow = model.dataRow(forDisplayRow: cell.row)
+            var value: String?
+            if dataRow >= 0, dataRow < result.rows.count,
+               cell.col >= 0, cell.col < result.rows[dataRow].count {
+                value = result.rows[dataRow][cell.col]
+            }
+            model.openCalc(with: value)
         }
 
         @objc private func ctxCopyAs(_ sender: NSMenuItem) {

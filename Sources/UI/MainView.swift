@@ -225,7 +225,17 @@ struct MainView: View {
         } else {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
-                    ResultsView(model: model)
+                    if model.showFilterPanel {
+                        ResultFilterView()
+                            .environmentObject(model)
+                        Divider()
+                    }
+                    if model.showSingleRowResult {
+                        SingleRowResultView()
+                            .environmentObject(model)
+                    } else {
+                        ResultsView(model: model)
+                    }
                     if model.resultEditPhase != .hidden {
                         resultEditBar
                             .transition(.opacity)
@@ -239,9 +249,15 @@ struct MainView: View {
                     ValuePanelView()
                         .environmentObject(model)
                         .transition(.move(edge: .trailing))
+                } else if model.showCalcPanel {
+                    Divider()
+                    CalcPanelView()
+                        .environmentObject(model)
+                        .transition(.move(edge: .trailing))
                 }
             }
             .animation(.easeInOut(duration: 0.2), value: model.showValuePanel)
+            .animation(.easeInOut(duration: 0.2), value: model.showCalcPanel)
         }
     }
 
@@ -376,6 +392,17 @@ struct MainView: View {
                     .buttonStyle(.borderless)
                     .help("Найти в результате (⌘F при фокусе в таблице)")
                 }
+                if model.result != nil {
+                    Button {
+                        model.setShowFilterPanel(!model.showFilterPanel)
+                    } label: {
+                        Image(systemName: model.showFilterPanel
+                              ? "line.3.horizontal.decrease.circle.fill"
+                              : "line.3.horizontal.decrease.circle")
+                    }
+                    .buttonStyle(.borderless)
+                    .help(L10n.tr("Показать или скрыть панель фильтра"))
+                }
             }
 
             Divider().frame(height: 12)
@@ -431,6 +458,14 @@ struct MainView: View {
                 .controlSize(.small)
                 .disabled(model.result == nil)
                 .help("Показать значение выбранной ячейки")
+                Button {
+                    model.toggleCalcPanel()
+                } label: {
+                    Label(L10n.tr("Кальк"), systemImage: "function")
+                }
+                .controlSize(.small)
+                .disabled(model.result == nil)
+                .help(L10n.tr("Открыть калькулятор"))
             }
 
             Divider().frame(height: 12)

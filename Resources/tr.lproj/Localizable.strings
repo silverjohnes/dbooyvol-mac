@@ -27,6 +27,7 @@
 "Sidecar не запущен" = "Java işlemi çalışmıyor";
 "TNS-алиас (tnsnames.ora)" = "TNS takma adı (tnsnames.ora)";
 "TNS-алиас (из tnsnames.ora)" = "TNS takma adı (tnsnames.ora'dan)";
+"Tab — вернуться к таблице" = "Sekme — kılavuza geri dön";
 "java-процесс завершился" = "java işleminden çıkıldı";
 "ldap.ora не найден" = "ldap.ora bulunamadı";
 "sidecar не запущен" = "Java işlemi çalışmıyor";
@@ -34,6 +35,7 @@
 "sqlnet.ora не найден" = "sqlnet.ora bulunamadı";
 "tnsnames.ora есть" = "tnsnames.ora bulundu";
 "«ghbkf» находит «Прила» и наоборот" = "\"ghbkf\", \"Prila\"yı bulur ve bunun tersi de geçerlidir";
+"· %@ из %@" = "· %@ / %@";
 "· выделено %@×%@" = "· %@×%@ seçildi";
 "АНК" = "ANC";
 "АПИ" = "API";
@@ -73,6 +75,7 @@
 "Вернуть стандартную максимальную ширину столбца" = "Varsayılan maksimum sütun genişliğini döndür";
 "Вернуть стандартный размер шрифта редактора" = "Varsayılan düzenleyici yazı tipi boyutunu geri yükle";
 "Вернуть стандартный размер шрифта таблицы" = "Tablo yazı tipi boyutunu standarda sıfırla";
+"Вернуться к таблице результатов (Tab)" = "Sonuç tablosuna geri dön (Sekme)";
 "Взять ojdbc*.jar и network/admin из папки Instant Client" = "Anlık İstemci klasöründen ojdbc*.jar ve network/admin'i alın";
 "Вид" = "Görüntüle";
 "Вкладки" = "Sekmeler";
@@ -86,6 +89,7 @@
 "Вставить" = "Yapıştır";
 "Вставить без кавычек" = "Tırnak işaretleri olmadan yapıştır";
 "Вставить данные с этими настройками" = "Verileri bu ayarlarla yapıştırın";
+"Вставить значение" = "Değer ekle";
 "Вставить…" = "Yapıştır...";
 "Вставлено: %@ строк" = "Eklendi: %@ satır";
 "Вставлять NULL" = "NULL ekle";
@@ -101,7 +105,6 @@
 "Выбрать файл приватного ключа SSH" = "SSH özel anahtar dosyasını seçin";
 "Выбрать…" = "Seç…";
 "Выделена часть данных" = "Verilerin bir kısmı seçildi";
-"Выделить весь результат" = "Sonucun tamamını seç";
 "Выделять параметр только при открытии через поиск (⌘E)" = "Parametreyi yalnızca arama yoluyla açıldığında seçin (⌘E)";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Yalnızca istek arama (⌘E) aracılığıyla açıldığında vurgulayın.";
 "Выйти из полноэкранного режима" = "Tam ekran modundan çık";
@@ -113,7 +116,10 @@
 "Выполнить выделение или весь скрипт (⌘R, ⌘↩)" = "Seçimi veya tüm betiği çalıştır (⌘R, ⌘↩)";
 "Выполнить запрос под курсором" = "Sorguyu imlecin altında çalıştırın";
 "Выполняется…" = "Koşuyor…";
+"Выражение" = "İfade";
 "Вырезать" = "Kes";
+"Вычислить" = "Hesapla";
+"Вычислить выражение" = "İfadeyi değerlendirin";
 "ГОН" = "HON";
 "Гонолулу" = "Honolulu";
 "Горячие клавиши" = "Kısayol tuşları";
@@ -126,12 +132,14 @@
 "ДУБ" = "DUB";
 "Данные в результате" = "Sonuç verileri";
 "Двоичные данные" = "İkili";
+"Деление на ноль" = "Sıfıra bölme";
 "Дели" = "Delhi";
 "Денвер" = "Denver";
 "Для TNS/LDAP туннель не используется: алиас раскрывается в реальный хост, а не в localhost. Выберите EZ Connect, если нужен SSH." = "TNS/LDAP için tünel kullanılmaz: takma ad, yerel ana bilgisayara değil, gerçek ana bilgisayara genişletilir. SSH'ye ihtiyacınız varsa EZ Connect'i seçin.";
 "Для выхода зажмите CMD+Q" = "Çıkmak için CMD+Q tuşlarına basın";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Bu komut dosyası için bağlantı seçilmedi.\nSekme çubuğundan birini seçin veya yeni bir tane ekleyin (⇧⌘N).";
 "Добавить (⌘N)" = "Ekle (⌘N)";
+"Добавить значение выбранной ячейки в выражение" = "Seçilen hücre değerini ifadeye ekle";
 "Добавлять номера строк результата" = "Sonuç satır numaralarını ekle";
 "Добавлять строку с именами столбцов" = "Sütun adlarını içeren bir satır ekleyin";
 "Догрузить следующую страницу строк" = "Satırların sonraki sayfasını yükle";
@@ -169,6 +177,7 @@
 "Закрыть вкладку" = "Sekmeyi kapat";
 "Закрыть все вкладки" = "Tüm sekmeleri kapat";
 "Закрыть все окна" = "Tüm pencereleri kapat";
+"Закрыть калькулятор" = "Hesap makinesini kapat";
 "Закрыть окно" = "Pencereyi kapat";
 "Закрыть остальные" = "Diğerlerini kapat";
 "Закрыть остальные вкладки" = "Diğer sekmeleri kapat";
@@ -222,6 +231,8 @@
 "Как в базе" = "Veritabanı yerel";
 "Как форматировать NULL и пустые значения" = "NULL ve boş değerler nasıl biçimlendirilir";
 "Калининград" = "Kaliningrad";
+"Кальк" = "Hesap";
+"Калькулятор" = "Hesap Makinesi";
 "Камчатка" = "Kamçatka";
 "Каракас" = "Karakas";
 "Каталог ~/.ssh" = "~/.ssh dizini";
@@ -257,6 +268,7 @@
 "Красноярск" = "Krasnoyarsk";
 "ЛОН" = "LON";
 "ЛОС" = "LOS";
+"Лишние символы в выражении" = "İfadede beklenmeyen karakterler";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "URL'deki kullanıcı adı ve şifre, düz metin olarak kaydedilir. Bunları URL'den kaldırın ve Kullanıcı ve Şifre alanlarını kullanın.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Yerel SQLite dosyası doğrudan açılır, sunucuya gerek yoktur.";
 "Лондон" = "Londra";
@@ -283,12 +295,16 @@
 "Найти запрос (⌘E)" = "Sorgu bul (⌘E)";
 "Найти запрос…" = "Sorgu bul…";
 "Например, dc=evotor,dc=ru. cn=OracleContext добавляется автоматически." = "Örneğin, dc=evotor,dc=ru. cn=OracleContext otomatik olarak eklenir.";
+"Например: (12,5 + 3) * 2" = "Örneğin: (12,5 + 3) * 2";
+"Например: 42, > 10, LIKE '%text%', NULL. Пусто — без условия." = "Örneğin: 42, > 10, LIKE '%text%', NULL. Boş, koşul yok demektir.";
 "Настроить копирование…" = "Kopyalamayı ayarla...";
 "Настройки" = "Ayarlar";
 "Настройки…" = "Ayarlar…";
 "Начать диктовку…" = "Dikteyi başlat...";
+"Не закрыта скобка" = "Kapatılmamış parantez";
 "Не считать кавычки частью значения" = "Tırnak işaretlerini değerin bir parçası olarak değerlendirmeyin";
 "Не удалось выделить локальный порт для SSH-туннеля" = "SSH tüneli için yerel bağlantı noktası tahsis edilemedi";
+"Не удалось вычислить выражение" = "İfade değerlendirilemedi";
 "Не удалось записать файл: %@" = "Dosya yazılamadı: %@";
 "Не удалось определить подключение результата" = "Bağlantı sonucu belirlenemedi";
 "Не удалось определить таблицу результата" = "Sonuç tablosu tanımlanamadı";
@@ -304,7 +320,10 @@
 "Не удалось создать файл: %@" = "Dosya oluşturulamadı: %@";
 "Не удалось сохранить: %@" = "Kaydedilemedi: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Eski şifreler kaldırılamadı - macOS isteminde erişime izin verin";
+"Неверное число аргументов: %@" = "Yanlış sayıda bağımsız değişken: %@";
 "Неизвестная ошибка" = "Bilinmeyen hata";
+"Неизвестная функция: %@" = "Bilinmeyen işlev: %@";
+"Неизвестное имя: %@" = "Bilinmeyen ad: %@";
 "Нет" = "Hayır";
 "Нет данных для вставки" = "Eklenecek veri yok";
 "Нет данных для копирования" = "Kopyalanacak veri yok";
@@ -314,6 +333,7 @@
 "Нет подключений" = "Bağlantı yok";
 "Нет подключения" = "Bağlantı yok";
 "Нет соединения" = "Bağlantı yok";
+"Нет строк для показа" = "Gösterilecek satır yok";
 "Ничего не найдено" = "Hiçbir şey bulunamadı";
 "Новая строка не содержит значений" = "Yeni satırda değer yok";
 "Новое подключение" = "Yeni bağlantı";
@@ -332,6 +352,7 @@
 "Оборачивать в кавычки все значения без исключения" = "İstisnasız her değeri alıntılayın";
 "Оборачивать значения в кавычки при необходимости" = "Gerektiğinde değerleri teklif edin";
 "Объединить все окна" = "Tüm pencereleri birleştir";
+"Ожидалось число" = "Bir rakam bekleniyordu";
 "Окно" = "Pencere";
 "Окно и справка" = "Pencere ve Yardım";
 "Омск" = "Omsk";
@@ -347,6 +368,7 @@
 "Открыть вкладку" = "Sekmeyi aç";
 "Открыть в…" = "Şu tarihte aç:";
 "Открыть запрос в редакторе" = "Sorguyu düzenleyicide açın";
+"Открыть калькулятор" = "Hesap makinesini aç";
 "Открыть сохранённый пароль для «%@»" = "\"%@\" için kayıtlı şifreyi aç";
 "Открыть список горячих клавиш (%@)" = "Kısayol tuşlarının listesini aç (%@)";
 "Открыть ссылку" = "Bağlantıyı aç";
@@ -360,12 +382,18 @@
 "Отменить несохранённые изменения" = "Kaydedilmemiş değişiklikleri sil";
 "Отображение — как значение показано в таблице; Редактируемое — в виде, удобном для правки; Как в базе — в исходном представлении драйвера." = "Ekran - değerin tabloda nasıl gösterildiği; Düzenlenebilir - düzenlemeye uygun bir biçimde; Veritabanında olduğu gibi - sürücünün orijinal temsilinde.";
 "Очистить" = "Temizle";
+"Очистить выражение и результат" = "İfadeyi ve sonucu temizle";
 "Очистить историю" = "Geçmişi temizle";
 "Очистить редактор" = "Düzenleyiciyi temizle";
 "Ошибка" = "Hata";
 "Ошибка сохранения" = "Hatayı kaydet";
 "Ошибка: %@" = "Hata: %@";
 "ПЕК" = "PEK";
+"Панель добавляет условия к уже загруженным строкам и не меняет SQL-скрипт. Пустое поле — без условия; поддерживаются =, !=, >, <, LIKE, NULL. Tab в таблице открывает выбранную строку вертикально, повторное нажатие возвращает таблицу." = "Panel, önceden yüklenmiş satırlara koşullar ekler ve SQL komut dosyasını değiştirmez. Boş alan - koşul yok; =, !=, >, <, LIKE, NULL desteklenir. Tablodaki sekme seçilen satırı dikey olarak açar; tekrar basıldığında tabloya geri döner.";
+"Панель фильтра" = "Filtre paneli";
+"Панель фильтра показана" = "Gösterilen filtre paneli";
+"Панель фильтра результата" = "Sonuç filtre paneli";
+"Панель фильтра скрыта" = "Filtre paneli gizlendi";
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client klasörü: ojdbc*.jar ve network/admin buradan alınır";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Tnsnames.ora, ldap.ora ve sqlnet.ora içeren ağ/yönetici klasörü";
 "Папка: %@" = "Klasör: %@";
@@ -401,6 +429,7 @@
 "По центру" = "Ortalanmış";
 "Повторить" = "Tekrarla";
 "Подбирать ширину столбцов по содержимому" = "Sütun genişliklerini içeriklerine uygun hale getirin";
+"Поддерживаются + − * / % ^, скобки, sqrt, abs, sin, cos, ln, log, min, max." = "+ − * / % ^, parantez, sqrt, abs, sin, cos, ln, log, min, max'ı destekler.";
 "Подключаться к базе через SSH-туннель" = "Veritabanına SSH tüneli üzerinden bağlanın";
 "Подключаться по SID (иначе service name)" = "SID (başka bir deyişle hizmet adı) ile bağlanın";
 "Подключение" = "Bağlantı";
@@ -415,16 +444,20 @@
 "Подключено: %@" = "Bağlandı: %@";
 "Подключиться" = "Bağlan";
 "Подсказка с типом данных отключена" = "Veri türü ipucu devre dışı bırakıldı";
+"Подставить это выражение" = "Bu ifadeyi kullan";
 "Поиск по истории" = "Geçmişe göre ara";
 "Показать в Finder" = "Finder'da Göster";
 "Показать вкладку в Finder" = "Sekmeyi Finder'da göster";
 "Показать все" = "Tümünü göster";
 "Показать все вкладки" = "Tüm sekmeleri göster";
+"Показать выбранную строку вертикально (Tab)" = "Seçilen satırı dikey olarak göster (Sekme)";
 "Показать значение выбранной ячейки" = "Seçilen hücrenin değerini göster";
+"Показать или скрыть панель фильтра" = "Filtre panelini göster veya gizle";
 "Показать панель вкладок" = "Sekme çubuğunu göster";
 "Показать предыдущую вкладку" = "Önceki sekmeyi göster";
 "Показать следующую вкладку" = "Sonraki sekmeyi göster";
 "Показать/скрыть боковую панель" = "Kenar çubuğunu göster/gizle";
+"Показывать панель фильтра над таблицей результатов" = "Filtre panelini sonuç tablosunun üzerinde göster";
 "Показывать тип данных во всплывающей подсказке заголовка" = "Veri türünü sütun başlığı ipucunda göster";
 "Показывать тип данных рядом с именем столбца" = "Sütun adının yanında veri türünü göster";
 "Полноэкранная мозаика" = "Tam ekran mozaik";
@@ -472,6 +505,7 @@
 "Редактируемое" = "Düzenlenebilir";
 "Редактор" = "Editör";
 "Результат" = "Sonuç";
+"Результат не является числом" = "Sonuç bir sayı değil";
 "Результат последнего запроса" = "Son isteğin sonucu";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Sonuç farklı tablolardan sütunlar içeriyor; kaydedilemez";
 "Русский" = "Rusça";
@@ -506,6 +540,7 @@
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = ".sql scriptleri bir sekmede açılır, .db / .sqlite veritabanları bağlantı olarak açılır";
 "Скрыть DBooyvol" = "DBooyvol'u gizle";
 "Скрыть остальные" = "Diğerlerini gizle";
+"Скрыть панель фильтра (включается в настройках)" = "Filtre panelini gizle (Ayarlar'da etkindir)";
 "Скрыть сообщение об ошибке" = "Hata mesajını gizle";
 "Слева" = "Sol";
 "Слева и справа" = "Sol ve sağ";
@@ -521,6 +556,7 @@
 "Снизу и четверти" = "Alt ve çeyrekler";
 "Снизу слева" = "Sol alt";
 "Снизу справа" = "Sağ alt";
+"Снять все условия фильтра" = "Tüm filtre koşullarını kaldır";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "\"%@\" içeriği diskte depolananlardan farklı.\nSürümü diskten mi yüklemeliyim yoksa metni düzenleyicide mi bırakmalıyım?";
 "Создать новое подключение" = "Yeni bir bağlantı oluştur";
 "Создать новое подключение…" = "Yeni bir bağlantı oluştur...";
@@ -564,6 +600,8 @@
 "Строк: %@ из %@" = "Satırlar: %@ / %@";
 "Строк: %@%@" = "Satırlar: %@%@";
 "Строка" = "Satır";
+"Строка вертикально / таблица" = "Dikey olarak sıralayın / ızgara";
+"Строка №%@" = "Satır #%@";
 "Схема: %@" = "Şema: %@";
 "ТОК" = "TOK";
 "Таблица: %@" = "Tablo: %@";
@@ -587,6 +625,7 @@
 "Удалить" = "Sil";
 "Удалить всю историю запросов" = "Tüm sorgu geçmişini temizle";
 "Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Parolaların açık metin olarak saklandığı uygulamanın önceki bir sürümündeki verileri silin";
+"Удалить историю вычислений" = "Hesaplama geçmişini temizle";
 "Удалить подключение «%@»?" = "\"%@\" bağlantısı silinsin mi?";
 "Удалить подключение…" = "Bağlantıyı sil...";
 "Удалить старые пароли из связки ключей" = "Eski şifreleri anahtarlıktan kaldırın";
@@ -595,13 +634,18 @@
 "Українська" = "Ukraynaca";
 "Уменьшить шрифт" = "Yazı tipini azalt";
 "Умное выделение" = "Akıllı seçim";
+"Уникальный ключ" = "Benzersiz anahtar";
+"Уникальный ключ не определён" = "Benzersiz anahtar belirlenmedi";
 "Уникальный ключ: %@(%@)" = "Benzersiz anahtar: %@(%@)";
 "Управление" = "Denetim";
+"Условие…" = "Durum…";
 "Файл" = "Dosya";
 "Файл «%@» уже существует" = "\"%@\" dosyası zaten mevcut";
 "Файл базы (.db / .sqlite)" = "Veritabanı dosyası (.db / .sqlite)";
 "Файл изменён на диске" = "Diskteki dosya değiştirildi";
 "Файлы" = "Dosyalar";
+"Фильтр" = "Filtre";
+"Фильтры очищены" = "Filtreler temizlendi";
 "Формат значений" = "Değer Formatı";
 "Хост" = "Sunucu";
 "Хост (алиас из ~/.ssh/config)" = "Ana Bilgisayar (~/.ssh/config adresinden takma ad)";
@@ -648,6 +692,7 @@
 "встроен clickhouse-jdbc — путь можно не указывать" = "clickhouse-jdbc yerleşiktir; yolu belirtmeniz gerekmez";
 "встроен postgresql 42.7 — путь можно не указывать" = "postgresql 42.7 yerleşiktir - yol atlanabilir";
 "встроен sqlite-jdbc — путь можно не указывать" = "sqlite-jdbc yerleşiktir - yol atlanabilir";
+"из %@" = "%@'dan";
 "не найден" = "bulunamadı";
 "проверьте ~/.ssh/config" = "~/.ssh/config'i kontrol edin";
 "пусто" = "boş";

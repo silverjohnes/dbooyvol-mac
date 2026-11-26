@@ -27,6 +27,7 @@
 "Sidecar не запущен" = "Quá trình Java không chạy";
 "TNS-алиас (tnsnames.ora)" = "Bí danh TNS (tnsnames.ora)";
 "TNS-алиас (из tnsnames.ora)" = "Bí danh TNS (từ tnsnames.ora)";
+"Tab — вернуться к таблице" = "Tab - quay lại lưới";
 "java-процесс завершился" = "quá trình java đã thoát";
 "ldap.ora не найден" = "không tìm thấy ldap.ora";
 "sidecar не запущен" = "Quá trình Java không chạy";
@@ -34,6 +35,7 @@
 "sqlnet.ora не найден" = "không tìm thấy sqlnet.ora";
 "tnsnames.ora есть" = "tìm thấy tnsnames.ora";
 "«ghbkf» находит «Прила» и наоборот" = "\"ghbkf\" tìm \"Prila\" và ngược lại";
+"· %@ из %@" = "· %@ trong số %@";
 "· выделено %@×%@" = "· đã chọn %@×%@";
 "АНК" = "ANC";
 "АПИ" = "API";
@@ -73,6 +75,7 @@
 "Вернуть стандартную максимальную ширину столбца" = "Trả về chiều rộng cột tối đa mặc định";
 "Вернуть стандартный размер шрифта редактора" = "Khôi phục kích thước phông chữ của trình soạn thảo mặc định";
 "Вернуть стандартный размер шрифта таблицы" = "Đặt lại kích thước phông chữ của bảng về tiêu chuẩn";
+"Вернуться к таблице результатов (Tab)" = "Quay lại lưới kết quả (Tab)";
 "Взять ojdbc*.jar и network/admin из папки Instant Client" = "Lấy ojdbc*.jar và network/admin từ thư mục Instant Client";
 "Вид" = "Xem";
 "Вкладки" = "Tab";
@@ -86,6 +89,7 @@
 "Вставить" = "Dán";
 "Вставить без кавычек" = "Dán không có dấu ngoặc kép";
 "Вставить данные с этими настройками" = "Dán dữ liệu với các cài đặt này";
+"Вставить значение" = "Chèn giá trị";
 "Вставить…" = "Dán...";
 "Вставлено: %@ строк" = "Đã chèn: %@ hàng";
 "Вставлять NULL" = "Chèn giá trị rỗng";
@@ -101,7 +105,6 @@
 "Выбрать файл приватного ключа SSH" = "Chọn tệp khóa riêng SSH";
 "Выбрать…" = "Chọn…";
 "Выделена часть данных" = "Một phần dữ liệu được chọn";
-"Выделить весь результат" = "Chọn toàn bộ kết quả";
 "Выделять параметр только при открытии через поиск (⌘E)" = "Chỉ chọn tham số khi mở qua tìm kiếm (⌘E)";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Chỉ đánh dấu khi yêu cầu được mở thông qua tìm kiếm (⌘E).";
 "Выйти из полноэкранного режима" = "Thoát khỏi chế độ toàn màn hình";
@@ -113,7 +116,10 @@
 "Выполнить выделение или весь скрипт (⌘R, ⌘↩)" = "Chạy phần đã chọn hoặc toàn bộ tập lệnh (⌘R, ⌘↩)";
 "Выполнить запрос под курсором" = "Chạy truy vấn dưới con trỏ";
 "Выполняется…" = "Đang chạy…";
+"Выражение" = "Biểu thức";
 "Вырезать" = "Cắt";
+"Вычислить" = "Tính toán";
+"Вычислить выражение" = "Đánh giá biểu thức";
 "ГОН" = "HON";
 "Гонолулу" = "Honolulu";
 "Горячие клавиши" = "Phím nóng";
@@ -126,12 +132,14 @@
 "ДУБ" = "DUB";
 "Данные в результате" = "Dữ liệu kết quả";
 "Двоичные данные" = "Nhị phân";
+"Деление на ноль" = "Chia cho số 0";
 "Дели" = "Đê-li";
 "Денвер" = "Denver";
 "Для TNS/LDAP туннель не используется: алиас раскрывается в реальный хост, а не в localhost. Выберите EZ Connect, если нужен SSH." = "Đối với TNS/LDAP, đường hầm không được sử dụng: bí danh được mở rộng sang máy chủ thực chứ không phải tới localhost. Chọn EZ Connect nếu bạn cần SSH.";
 "Для выхода зажмите CMD+Q" = "Để thoát, nhấn CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Không có kết nối nào được chọn cho tập lệnh này.\nChọn một cái trong thanh tab hoặc thêm một cái mới (⇧⌘N).";
 "Добавить (⌘N)" = "Thêm (⌘N)";
+"Добавить значение выбранной ячейки в выражение" = "Thêm giá trị ô đã chọn vào biểu thức";
 "Добавлять номера строк результата" = "Thêm số hàng kết quả";
 "Добавлять строку с именами столбцов" = "Thêm một hàng có tên cột";
 "Догрузить следующую страницу строк" = "Tải trang tiếp theo của hàng";
@@ -169,6 +177,7 @@
 "Закрыть вкладку" = "Đóng tab";
 "Закрыть все вкладки" = "Đóng tất cả các tab";
 "Закрыть все окна" = "Đóng tất cả các cửa sổ";
+"Закрыть калькулятор" = "Đóng máy tính";
 "Закрыть окно" = "Đóng cửa sổ";
 "Закрыть остальные" = "Đóng người khác";
 "Закрыть остальные вкладки" = "Đóng các tab khác";
@@ -222,6 +231,8 @@
 "Как в базе" = "Cơ sở dữ liệu gốc";
 "Как форматировать NULL и пустые значения" = "Cách định dạng giá trị NULL và giá trị trống";
 "Калининград" = "Kaliningrad";
+"Кальк" = "Tính toán";
+"Калькулятор" = "Máy tính";
 "Камчатка" = "Kamchatka";
 "Каракас" = "Caracas";
 "Каталог ~/.ssh" = "Thư mục ~/.ssh";
@@ -257,6 +268,7 @@
 "Красноярск" = "Krasnoyarsk";
 "ЛОН" = "LON";
 "ЛОС" = "LOS";
+"Лишние символы в выражении" = "Ký tự không mong muốn trong biểu thức";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Thông tin đăng nhập và mật khẩu từ URL được lưu dưới dạng văn bản rõ ràng. Xóa chúng khỏi URL và sử dụng trường Người dùng và Mật khẩu.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Tệp SQLite cục bộ được mở trực tiếp, không cần máy chủ.";
 "Лондон" = "Luân Đôn";
@@ -283,12 +295,16 @@
 "Найти запрос (⌘E)" = "Tìm truy vấn (⌘E)";
 "Найти запрос…" = "Tìm truy vấn…";
 "Например, dc=evotor,dc=ru. cn=OracleContext добавляется автоматически." = "Ví dụ: dc=evotor,dc=ru. cn=OracleContext được thêm tự động.";
+"Например: (12,5 + 3) * 2" = "Ví dụ: (12,5 + 3) * 2";
+"Например: 42, > 10, LIKE '%text%', NULL. Пусто — без условия." = "Ví dụ: 42, > 10, THÍCH '%text%', NULL. Trống có nghĩa là không có điều kiện.";
 "Настроить копирование…" = "Thiết lập sao chép...";
 "Настройки" = "Cài đặt";
 "Настройки…" = "Cài đặt…";
 "Начать диктовку…" = "Bắt đầu đọc chính tả...";
+"Не закрыта скобка" = "Dấu ngoặc đơn không đóng";
 "Не считать кавычки частью значения" = "Không coi dấu ngoặc kép là một phần của giá trị";
 "Не удалось выделить локальный порт для SSH-туннеля" = "Không thể phân bổ cổng cục bộ cho đường hầm SSH";
+"Не удалось вычислить выражение" = "Không thể đánh giá biểu thức";
 "Не удалось записать файл: %@" = "Không ghi được tập tin: %@";
 "Не удалось определить подключение результата" = "Không thể xác định kết quả kết nối";
 "Не удалось определить таблицу результата" = "Không xác định được bảng kết quả";
@@ -304,7 +320,10 @@
 "Не удалось создать файл: %@" = "Không tạo được tập tin: %@";
 "Не удалось сохранить: %@" = "Không lưu được: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Không xóa được mật khẩu cũ - cho phép truy cập trong lời nhắc macOS";
+"Неверное число аргументов: %@" = "Số đối số sai: %@";
 "Неизвестная ошибка" = "Lỗi không xác định";
+"Неизвестная функция: %@" = "Chức năng không xác định: %@";
+"Неизвестное имя: %@" = "Tên không xác định: %@";
 "Нет" = "Không";
 "Нет данных для вставки" = "Không có dữ liệu để chèn";
 "Нет данных для копирования" = "Không có dữ liệu để sao chép";
@@ -314,6 +333,7 @@
 "Нет подключений" = "Không có kết nối";
 "Нет подключения" = "Không có kết nối";
 "Нет соединения" = "Không có kết nối";
+"Нет строк для показа" = "Không có hàng nào để hiển thị";
 "Ничего не найдено" = "Không tìm thấy gì";
 "Новая строка не содержит значений" = "Hàng mới không chứa giá trị";
 "Новое подключение" = "Kết nối mới";
@@ -332,6 +352,7 @@
 "Оборачивать в кавычки все значения без исключения" = "Trích dẫn mọi giá trị không có ngoại lệ";
 "Оборачивать значения в кавычки при необходимости" = "Trích dẫn giá trị khi cần thiết";
 "Объединить все окна" = "Hợp nhất tất cả các cửa sổ";
+"Ожидалось число" = "Một con số được mong đợi";
 "Окно" = "Cửa sổ";
 "Окно и справка" = "Cửa sổ và trợ giúp";
 "Омск" = "Omsk";
@@ -347,6 +368,7 @@
 "Открыть вкладку" = "Mở tab";
 "Открыть в…" = "Mở ở…";
 "Открыть запрос в редакторе" = "Mở truy vấn trong trình chỉnh sửa";
+"Открыть калькулятор" = "Mở máy tính";
 "Открыть сохранённый пароль для «%@»" = "Mở mật khẩu đã lưu cho \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Mở danh sách phím nóng (%@)";
 "Открыть ссылку" = "Mở liên kết";
@@ -360,12 +382,18 @@
 "Отменить несохранённые изменения" = "Hủy các thay đổi chưa được lưu";
 "Отображение — как значение показано в таблице; Редактируемое — в виде, удобном для правки; Как в базе — в исходном представлении драйвера." = "Hiển thị - cách hiển thị giá trị trong bảng; Có thể chỉnh sửa - ở dạng thuận tiện cho việc chỉnh sửa; Như trong cơ sở dữ liệu - trong bản trình bày gốc của trình điều khiển.";
 "Очистить" = "Xóa";
+"Очистить выражение и результат" = "Xóa biểu thức và kết quả";
 "Очистить историю" = "Xóa lịch sử";
 "Очистить редактор" = "Xóa trình chỉnh sửa";
 "Ошибка" = "Lỗi";
 "Ошибка сохранения" = "Lưu lỗi";
 "Ошибка: %@" = "Lỗi: %@";
 "ПЕК" = "BAC";
+"Панель добавляет условия к уже загруженным строкам и не меняет SQL-скрипт. Пустое поле — без условия; поддерживаются =, !=, >, <, LIKE, NULL. Tab в таблице открывает выбранную строку вертикально, повторное нажатие возвращает таблицу." = "Bảng điều khiển thêm điều kiện vào các hàng đã được tải và không thay đổi tập lệnh SQL. Trường trống - không có điều kiện; =, !=, >, <, THÍCH, NULL được hỗ trợ. Tab trong bảng sẽ mở hàng đã chọn theo chiều dọc, nhấn lại sẽ trả về bảng.";
+"Панель фильтра" = "Bảng lọc";
+"Панель фильтра показана" = "Bảng bộ lọc được hiển thị";
+"Панель фильтра результата" = "Bảng lọc kết quả";
+"Панель фильтра скрыта" = "Bảng bộ lọc bị ẩn";
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Thư mục Instant Client: ojdbc*.jar và network/admin được lấy từ nó";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Thư mục mạng/quản trị viên với tnsnames.ora, ldap.ora và sqlnet.ora";
 "Папка: %@" = "Thư mục: %@";
@@ -401,6 +429,7 @@
 "По центру" = "Căn giữa";
 "Повторить" = "Lặp lại";
 "Подбирать ширину столбцов по содержимому" = "Điều chỉnh độ rộng cột cho phù hợp với nội dung của chúng";
+"Поддерживаются + − * / % ^, скобки, sqrt, abs, sin, cos, ln, log, min, max." = "Hỗ trợ + − * / % ^, dấu ngoặc đơn, sqrt, abs, sin, cos, ln, log, min, max.";
 "Подключаться к базе через SSH-туннель" = "Kết nối với cơ sở dữ liệu thông qua đường hầm SSH";
 "Подключаться по SID (иначе service name)" = "Kết nối bằng SID (còn gọi là tên dịch vụ)";
 "Подключение" = "Kết nối";
@@ -415,16 +444,20 @@
 "Подключено: %@" = "Đã kết nối: %@";
 "Подключиться" = "Kết nối";
 "Подсказка с типом данных отключена" = "Gợi ý loại dữ liệu bị vô hiệu hóa";
+"Подставить это выражение" = "Sử dụng biểu thức này";
 "Поиск по истории" = "Tìm kiếm theo lịch sử";
 "Показать в Finder" = "Hiển thị trong Trình tìm kiếm";
 "Показать вкладку в Finder" = "Hiển thị tab trong Finder";
 "Показать все" = "Hiển thị tất cả";
 "Показать все вкладки" = "Hiển thị tất cả các tab";
+"Показать выбранную строку вертикально (Tab)" = "Hiển thị hàng đã chọn theo chiều dọc (Tab)";
 "Показать значение выбранной ячейки" = "Hiển thị giá trị của ô đã chọn";
+"Показать или скрыть панель фильтра" = "Hiển thị hoặc ẩn bảng bộ lọc";
 "Показать панель вкладок" = "Hiển thị thanh tab";
 "Показать предыдущую вкладку" = "Hiển thị tab trước đó";
 "Показать следующую вкладку" = "Hiển thị tab tiếp theo";
 "Показать/скрыть боковую панель" = "Hiển thị/ẩn thanh bên";
+"Показывать панель фильтра над таблицей результатов" = "Hiển thị bảng bộ lọc phía trên lưới kết quả";
 "Показывать тип данных во всплывающей подсказке заголовка" = "Hiển thị kiểu dữ liệu trong chú giải công cụ tiêu đề cột";
 "Показывать тип данных рядом с именем столбца" = "Hiển thị kiểu dữ liệu bên cạnh tên cột";
 "Полноэкранная мозаика" = "Khảm toàn màn hình";
@@ -472,6 +505,7 @@
 "Редактируемое" = "Có thể chỉnh sửa";
 "Редактор" = "Biên tập viên";
 "Результат" = "Kết quả";
+"Результат не является числом" = "Kết quả không phải là một con số";
 "Результат последнего запроса" = "Kết quả của yêu cầu cuối cùng";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Kết quả chứa các cột từ các bảng khác nhau - không thể lưu được";
 "Русский" = "Tiếng Nga";
@@ -506,6 +540,7 @@
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = "Tập lệnh .sql mở trong một tab, cơ sở dữ liệu .db/.sqlite mở dưới dạng kết nối";
 "Скрыть DBooyvol" = "Ẩn DBooyvol";
 "Скрыть остальные" = "Ẩn người khác";
+"Скрыть панель фильтра (включается в настройках)" = "Ẩn bảng bộ lọc (được bật trong Cài đặt)";
 "Скрыть сообщение об ошибке" = "Ẩn thông báo lỗi";
 "Слева" = "Trái";
 "Слева и справа" = "Trái và phải";
@@ -521,6 +556,7 @@
 "Снизу и четверти" = "Đáy và quý";
 "Снизу слева" = "Dưới cùng bên trái";
 "Снизу справа" = "Dưới cùng bên phải";
+"Снять все условия фильтра" = "Loại bỏ tất cả các điều kiện lọc";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Nội dung của \"%@\" khác với nội dung được lưu trên đĩa.\nTôi nên tải phiên bản từ đĩa hay để lại văn bản trong trình chỉnh sửa?";
 "Создать новое подключение" = "Tạo kết nối mới";
 "Создать новое подключение…" = "Tạo kết nối mới...";
@@ -564,6 +600,8 @@
 "Строк: %@ из %@" = "Hàng: %@ trong số %@";
 "Строк: %@%@" = "Hàng: %@%@";
 "Строка" = "Hàng";
+"Строка вертикально / таблица" = "Hàng dọc/lưới";
+"Строка №%@" = "Hàng #%@";
 "Схема: %@" = "Lược đồ: %@";
 "ТОК" = "TOK";
 "Таблица: %@" = "Bảng: %@";
@@ -587,6 +625,7 @@
 "Удалить" = "Xóa";
 "Удалить всю историю запросов" = "Xóa tất cả lịch sử truy vấn";
 "Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Xóa dữ liệu khỏi phiên bản trước của ứng dụng nơi mật khẩu được lưu trữ ở dạng văn bản rõ ràng";
+"Удалить историю вычислений" = "Xóa lịch sử tính toán";
 "Удалить подключение «%@»?" = "Xóa kết nối \"%@\"?";
 "Удалить подключение…" = "Xóa kết nối...";
 "Удалить старые пароли из связки ключей" = "Xóa mật khẩu cũ khỏi móc khóa";
@@ -595,13 +634,18 @@
 "Українська" = "Tiếng Ukraina";
 "Уменьшить шрифт" = "Giảm phông chữ";
 "Умное выделение" = "Lựa chọn thông minh";
+"Уникальный ключ" = "Chìa khóa duy nhất";
+"Уникальный ключ не определён" = "Khóa duy nhất chưa được xác định";
 "Уникальный ключ: %@(%@)" = "Khóa duy nhất: %@(%@)";
 "Управление" = "Điều khiển";
+"Условие…" = "Tình trạng…";
 "Файл" = "Tập tin";
 "Файл «%@» уже существует" = "Tệp \"%@\" đã tồn tại";
 "Файл базы (.db / .sqlite)" = "Tệp cơ sở dữ liệu (.db/.sqlite)";
 "Файл изменён на диске" = "Tập tin đã thay đổi trên đĩa";
 "Файлы" = "Tập tin";
+"Фильтр" = "Lọc";
+"Фильтры очищены" = "Đã xóa bộ lọc";
 "Формат значений" = "Định dạng giá trị";
 "Хост" = "Máy chủ";
 "Хост (алиас из ~/.ssh/config)" = "Máy chủ (bí danh từ ~/.ssh/config)";
@@ -648,6 +692,7 @@
 "встроен clickhouse-jdbc — путь можно не указывать" = "clickhouse-jdbc được tích hợp sẵn - bạn không cần phải chỉ định đường dẫn";
 "встроен postgresql 42.7 — путь можно не указывать" = "postgresql 42.7 được tích hợp sẵn - có thể bỏ qua đường dẫn";
 "встроен sqlite-jdbc — путь можно не указывать" = "sqlite-jdbc được tích hợp sẵn - đường dẫn có thể được bỏ qua";
+"из %@" = "của %@";
 "не найден" = "không tìm thấy";
 "проверьте ~/.ssh/config" = "kiểm tra ~/.ssh/config";
 "пусто" = "trống rỗng";

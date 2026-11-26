@@ -216,6 +216,20 @@ struct SettingsView: View {
                     .foregroundColor(.secondary)
 
                 VStack(alignment: .leading, spacing: 6) {
+                    Toggle(
+                        "Панель фильтра результата",
+                        isOn: Binding(
+                            get: { model.showFilterPanel },
+                            set: { model.setShowFilterPanel($0) }
+                        )
+                    )
+                    .help(L10n.tr("Показывать панель фильтра над таблицей результатов"))
+                    Text("Панель добавляет условия к уже загруженным строкам и не меняет SQL-скрипт. Пустое поле — без условия; поддерживаются =, !=, >, <, LIKE, NULL. Tab в таблице открывает выбранную строку вертикально, повторное нажатие возвращает таблицу.")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 6) {
                     Text("Тип данных столбца")
                         .font(.subheadline)
                         .foregroundColor(.secondary)

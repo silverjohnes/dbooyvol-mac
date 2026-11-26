@@ -65,6 +65,7 @@ enum ShortcutCatalog {
             .action(.showResult), .action(.showHistory),
             .action(.increaseFont), .action(.decreaseFont), .action(.resetFont),
             .action(.fullScreen),
+            .fixed(title: "Строка вертикально / таблица", keys: "⇥"),
             .fixed(title: "Сбросить вид", keys: "—"),
             .fixed(title: "Настройки", keys: "⌘,"),
             .fixed(title: "Свернуть окно", keys: "⌘M")

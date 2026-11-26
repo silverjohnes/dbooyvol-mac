@@ -159,6 +159,7 @@ enum AppSettings {
     static let defaultCommentMarkerSuffix = "!#"
     static let timeZoneKey = "displayTimeZone"
     static let checkExternalChangesKey = "checkExternalChanges"
+    static let showFilterPanelKey = "showFilterPanel"
     static let selectedProfileIDKey = "selectedProfileID"
     static func treeExpandedKey(_ id: UUID) -> String { "treeExpanded.\(id.uuidString)" }
 
@@ -181,7 +182,11 @@ enum AppSettings {
             commentByMarkerKey: true,
             commentMarkerSuffixKey: "!#",
             timeZoneKey: "",
-            checkExternalChangesKey: false
+            checkExternalChangesKey: false,
+            showFilterPanelKey: true,
+            // AppKit reads this hidden default when it first shows a tooltip.
+            // The system default (around 2 s) feels too slow in a data grid.
+            "NSInitialToolTipDelay": 0.75
         ])
     }
 
@@ -264,6 +269,13 @@ enum AppSettings {
     static var checkExternalChanges: Bool {
         get { UserDefaults.standard.object(forKey: checkExternalChangesKey) as? Bool ?? false }
         set { UserDefaults.standard.set(newValue, forKey: checkExternalChangesKey) }
+    }
+
+    /// Whether the local filter panel is shown above the result grid. On by
+    /// default; it does not change the SQL script, only the visible rows.
+    static var showFilterPanel: Bool {
+        get { UserDefaults.standard.object(forKey: showFilterPanelKey) as? Bool ?? true }
+        set { UserDefaults.standard.set(newValue, forKey: showFilterPanelKey) }
     }
 
     static var resultFontSize: CGFloat {

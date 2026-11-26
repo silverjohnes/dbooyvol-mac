@@ -442,6 +442,11 @@ struct DBooyvolApp: App {
                 Button("Шрифт по умолчанию") { model.resetEditorFontSize() }
                     .appShortcut(shortcuts.binding(for: .resetFont))
                 Divider()
+                Button("Строка вертикально / таблица") { model.toggleSingleRowResult() }
+                    .disabled(model.result == nil)
+                Button("Калькулятор") { model.toggleCalcPanel() }
+                Button("Панель фильтра") { model.setShowFilterPanel(!model.showFilterPanel) }
+                Divider()
                 Button("Сбросить вид") { WindowLayout.resetAll() }
                 Divider()
                 Button("Во весь экран") { NSApp.keyWindow?.toggleFullScreen(nil) }

@@ -478,6 +478,13 @@ enum ValueViewKind: String, CaseIterable, Identifiable {
     }
 }
 
+/// One row of the vertical single-row result view.
+struct SingleRowItem: Identifiable, Equatable {
+    let id: Int
+    let title: String
+    let value: String?
+}
+
 /// One cell shown in the value panel. `row` and `column` are data indices.
 struct ValuePanelItem: Equatable {
     var row: Int

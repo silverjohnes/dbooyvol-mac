@@ -27,6 +27,7 @@
 "Sidecar не запущен" = "Java-processen körs inte";
 "TNS-алиас (tnsnames.ora)" = "TNS-alias (tnsnames.ora)";
 "TNS-алиас (из tnsnames.ora)" = "TNS-alias (från tnsnames.ora)";
+"Tab — вернуться к таблице" = "Tab — tillbaka till rutnätet";
 "java-процесс завершился" = "java-processen har avslutats";
 "ldap.ora не найден" = "ldap.ora hittades inte";
 "sidecar не запущен" = "Java-processen körs inte";
@@ -34,6 +35,7 @@
 "sqlnet.ora не найден" = "sqlnet.ora hittades inte";
 "tnsnames.ora есть" = "tnsnames.ora hittat";
 "«ghbkf» находит «Прила» и наоборот" = "\"ghbkf\" hittar \"Prila\" och vice versa";
+"· %@ из %@" = "· %@ av %@";
 "· выделено %@×%@" = "· valt %@×%@";
 "АНК" = "ANC";
 "АПИ" = "API";
@@ -73,6 +75,7 @@
 "Вернуть стандартную максимальную ширину столбца" = "Återgå förinställd maximal kolumnbredd";
 "Вернуть стандартный размер шрифта редактора" = "Återställ standardredigerarens teckensnittsstorlek";
 "Вернуть стандартный размер шрифта таблицы" = "Återställ tabellens teckensnittsstorlek till standard";
+"Вернуться к таблице результатов (Tab)" = "Tillbaka till resultatrutnätet (flik)";
 "Взять ojdbc*.jar и network/admin из папки Instant Client" = "Ta ojdbc*.jar och nätverk/admin från mappen Instant Client";
 "Вид" = "Visa";
 "Вкладки" = "Flikar";
@@ -86,6 +89,7 @@
 "Вставить" = "Klistra in";
 "Вставить без кавычек" = "Klistra in utan citattecken";
 "Вставить данные с этими настройками" = "Klistra in data med dessa inställningar";
+"Вставить значение" = "Infoga värde";
 "Вставить…" = "Klistra in...";
 "Вставлено: %@ строк" = "Infogade: %@ rader";
 "Вставлять NULL" = "Sätt in NULL";
@@ -101,7 +105,6 @@
 "Выбрать файл приватного ключа SSH" = "Välj den privata SSH-nyckelfilen";
 "Выбрать…" = "Välj...";
 "Выделена часть данных" = "En del av datan väljs";
-"Выделить весь результат" = "Välj hela resultatet";
 "Выделять параметр только при открытии через поиск (⌘E)" = "Välj parametern endast när den öppnas via sökning (⌘E)";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Markera endast när begäran öppnas via sökning (⌘E).";
 "Выйти из полноэкранного режима" = "Avsluta helskärmsläge";
@@ -113,7 +116,10 @@
 "Выполнить выделение или весь скрипт (⌘R, ⌘↩)" = "Kör markering eller hela skriptet (⌘R, ⌘↩)";
 "Выполнить запрос под курсором" = "Kör frågan under markören";
 "Выполняется…" = "Kör...";
+"Выражение" = "Uttryck";
 "Вырезать" = "Klipp";
+"Вычислить" = "Beräkna";
+"Вычислить выражение" = "Utvärdera uttrycket";
 "ГОН" = "HON";
 "Гонолулу" = "Honolulu";
 "Горячие клавиши" = "Snabbtangenter";
@@ -126,12 +132,14 @@
 "ДУБ" = "DUB";
 "Данные в результате" = "Resultatdata";
 "Двоичные данные" = "Binär";
+"Деление на ноль" = "Division med noll";
 "Дели" = "Delhi";
 "Денвер" = "Denver";
 "Для TNS/LDAP туннель не используется: алиас раскрывается в реальный хост, а не в localhost. Выберите EZ Connect, если нужен SSH." = "För TNS/LDAP används inte tunneln: aliaset utökas till den verkliga värden och inte till lokalvärden. Välj EZ Connect om du behöver SSH.";
 "Для выхода зажмите CMD+Q" = "För att avsluta, tryck på CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Ingen anslutning har valts för detta skript.\nVälj en i flikfältet eller lägg till en ny (⇧⌘N).";
 "Добавить (⌘N)" = "Lägg till (⌘N)";
+"Добавить значение выбранной ячейки в выражение" = "Lägg till det markerade cellvärdet till uttrycket";
 "Добавлять номера строк результата" = "Lägg till resultatradnummer";
 "Добавлять строку с именами столбцов" = "Lägg till en rad med kolumnnamn";
 "Догрузить следующую страницу строк" = "Ladda nästa sida med rader";
@@ -169,6 +177,7 @@
 "Закрыть вкладку" = "Stäng fliken";
 "Закрыть все вкладки" = "Stäng alla flikar";
 "Закрыть все окна" = "Stäng alla fönster";
+"Закрыть калькулятор" = "Stäng miniräknare";
 "Закрыть окно" = "Stäng fönstret";
 "Закрыть остальные" = "Stäng andra";
 "Закрыть остальные вкладки" = "Stäng andra flikar";
@@ -222,6 +231,8 @@
 "Как в базе" = "Databasinfödd";
 "Как форматировать NULL и пустые значения" = "Hur man formaterar NULL och tomma värden";
 "Калининград" = "Kaliningrad";
+"Кальк" = "Beräkn";
+"Калькулятор" = "Miniräknare";
 "Камчатка" = "Kamchatka";
 "Каракас" = "Caracas";
 "Каталог ~/.ssh" = "~/.ssh-katalogen";
@@ -257,6 +268,7 @@
 "Красноярск" = "Krasnojarsk";
 "ЛОН" = "LON";
 "ЛОС" = "LOS";
+"Лишние символы в выражении" = "Oväntade tecken i uttrycket";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Inloggningen och lösenordet från URL:en sparas i klartext. Ta bort dem från URL:en och använd fälten Användare och Lösenord.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Den lokala SQLite-filen öppnas direkt, ingen server behövs.";
 "Лондон" = "London";
@@ -283,12 +295,16 @@
 "Найти запрос (⌘E)" = "Sökfråga (⌘E)";
 "Найти запрос…" = "Hitta fråga...";
 "Например, dc=evotor,dc=ru. cn=OracleContext добавляется автоматически." = "Till exempel dc=evotor,dc=ru. cn=OracleContext läggs till automatiskt.";
+"Например: (12,5 + 3) * 2" = "Till exempel: (12,5 + 3) * 2";
+"Например: 42, > 10, LIKE '%text%', NULL. Пусто — без условия." = "Till exempel: 42, > 10, LIKE '%text%', NULL. Tom betyder inget villkor.";
 "Настроить копирование…" = "Konfigurera kopiering...";
 "Настройки" = "Inställningar";
 "Настройки…" = "Inställningar...";
 "Начать диктовку…" = "Börja diktera...";
+"Не закрыта скобка" = "Ostängd parentes";
 "Не считать кавычки частью значения" = "Behandla inte citat som en del av värdet";
 "Не удалось выделить локальный порт для SSH-туннеля" = "Det gick inte att tilldela lokal port för SSH-tunneln";
+"Не удалось вычислить выражение" = "Det gick inte att utvärdera uttrycket";
 "Не удалось записать файл: %@" = "Det gick inte att skriva filen: %@";
 "Не удалось определить подключение результата" = "Det gick inte att fastställa anslutningsresultatet";
 "Не удалось определить таблицу результата" = "Det gick inte att definiera resultattabellen";
@@ -304,7 +320,10 @@
 "Не удалось создать файл: %@" = "Det gick inte att skapa filen: %@";
 "Не удалось сохранить: %@" = "Det gick inte att spara: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Det gick inte att ta bort gamla lösenord - tillåt åtkomst i macOS-prompt";
+"Неверное число аргументов: %@" = "Fel antal argument: %@";
 "Неизвестная ошибка" = "Okänt fel";
+"Неизвестная функция: %@" = "Okänd funktion: %@";
+"Неизвестное имя: %@" = "Okänt namn: %@";
 "Нет" = "Nej";
 "Нет данных для вставки" = "Inga data att infoga";
 "Нет данных для копирования" = "Inga data att kopiera";
@@ -314,6 +333,7 @@
 "Нет подключений" = "Inga anslutningar";
 "Нет подключения" = "Ingen anslutning";
 "Нет соединения" = "Ingen anslutning";
+"Нет строк для показа" = "Inga rader att visa";
 "Ничего не найдено" = "Inget hittades";
 "Новая строка не содержит значений" = "Ny rad innehåller inga värden";
 "Новое подключение" = "Ny anslutning";
@@ -332,6 +352,7 @@
 "Оборачивать в кавычки все значения без исключения" = "Citera varje värde utan undantag";
 "Оборачивать значения в кавычки при необходимости" = "Ange värden vid behov";
 "Объединить все окна" = "Slå samman alla fönster";
+"Ожидалось число" = "Ett antal förväntades";
 "Окно" = "Fönster";
 "Окно и справка" = "Fönster och Hjälp";
 "Омск" = "Omsk";
@@ -347,6 +368,7 @@
 "Открыть вкладку" = "Öppna fliken";
 "Открыть в…" = "Öppna i...";
 "Открыть запрос в редакторе" = "Öppna frågan i editorn";
+"Открыть калькулятор" = "Öppna kalkylatorn";
 "Открыть сохранённый пароль для «%@»" = "Öppna sparat lösenord för \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Öppna lista med snabbtangenter (%@)";
 "Открыть ссылку" = "Öppna länken";
@@ -360,12 +382,18 @@
 "Отменить несохранённые изменения" = "Släng osparade ändringar";
 "Отображение — как значение показано в таблице; Редактируемое — в виде, удобном для правки; Как в базе — в исходном представлении драйвера." = "Display - hur värdet visas i tabellen; Redigerbar - i en form som är lämplig för redigering; Som i databasen - i den ursprungliga representationen av föraren.";
 "Очистить" = "Rensa";
+"Очистить выражение и результат" = "Rensa uttrycket och resultatet";
 "Очистить историю" = "Rensa historik";
 "Очистить редактор" = "Rensa editor";
 "Ошибка" = "Fel";
 "Ошибка сохранения" = "Spara fel";
 "Ошибка: %@" = "Fel: %@";
 "ПЕК" = "PEK";
+"Панель добавляет условия к уже загруженным строкам и не меняет SQL-скрипт. Пустое поле — без условия; поддерживаются =, !=, >, <, LIKE, NULL. Tab в таблице открывает выбранную строку вертикально, повторное нажатие возвращает таблицу." = "Panelen lägger till villkor för redan inlästa rader och ändrar inte SQL-skriptet. Tomt fält - inget villkor; =, !=, >, <, LIKE, NULL stöds. Tabb i tabell öppnar den markerade raden vertikalt, genom att trycka igen återgår tabellen.";
+"Панель фильтра" = "Filterpanel";
+"Панель фильтра показана" = "Filterpanelen visas";
+"Панель фильтра результата" = "Resultatfilterpanel";
+"Панель фильтра скрыта" = "Filterpanelen är dold";
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client-mapp: ojdbc*.jar och nätverk/admin tas från den";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Nätverk/admin-mapp med tnsnames.ora, ldap.ora och sqlnet.ora";
 "Папка: %@" = "Mapp: %@";
@@ -401,6 +429,7 @@
 "По центру" = "Centrerad";
 "Повторить" = "Upprepa";
 "Подбирать ширину столбцов по содержимому" = "Anpassa kolumnbredder till deras innehåll";
+"Поддерживаются + − * / % ^, скобки, sqrt, abs, sin, cos, ln, log, min, max." = "Stöder + − * / % ^, parentes, sqrt, abs, sin, cos, ln, log, min, max.";
 "Подключаться к базе через SSH-туннель" = "Anslut till databasen genom en SSH-tunnel";
 "Подключаться по SID (иначе service name)" = "Anslut med SID (alias tjänstnamn)";
 "Подключение" = "Anslutning";
@@ -415,16 +444,20 @@
 "Подключено: %@" = "Ansluten: %@";
 "Подключиться" = "Anslut";
 "Подсказка с типом данных отключена" = "Tips om datatyp inaktiverad";
+"Подставить это выражение" = "Använd detta uttryck";
 "Поиск по истории" = "Sök efter historik";
 "Показать в Finder" = "Visa i Finder";
 "Показать вкладку в Finder" = "Visa fliken i Finder";
 "Показать все" = "Visa alla";
 "Показать все вкладки" = "Visa alla flikar";
+"Показать выбранную строку вертикально (Tab)" = "Visa den valda raden vertikalt (flik)";
 "Показать значение выбранной ячейки" = "Visa värdet för den valda cellen";
+"Показать или скрыть панель фильтра" = "Visa eller dölj filterpanelen";
 "Показать панель вкладок" = "Visa flikfält";
 "Показать предыдущую вкладку" = "Visa föregående flik";
 "Показать следующую вкладку" = "Visa nästa flik";
 "Показать/скрыть боковую панель" = "Visa/dölj sidofältet";
+"Показывать панель фильтра над таблицей результатов" = "Visa filterpanelen ovanför resultatrutnätet";
 "Показывать тип данных во всплывающей подсказке заголовка" = "Visa datatypen i kolumnrubrikens verktygstips";
 "Показывать тип данных рядом с именем столбца" = "Visa datatypen bredvid kolumnnamnet";
 "Полноэкранная мозаика" = "Helskärmsmosaik";
@@ -472,6 +505,7 @@
 "Редактируемое" = "Redigerbar";
 "Редактор" = "Redaktör";
 "Результат" = "Resultat";
+"Результат не является числом" = "Resultatet är inte en siffra";
 "Результат последнего запроса" = "Resultat av den senaste begäran";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Resultatet innehåller kolumner från olika tabeller - kan inte sparas";
 "Русский" = "Ryska";
@@ -506,6 +540,7 @@
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = ".sql-skript öppnas i en flik, .db/.sqlite-databaser öppnas som en anslutning";
 "Скрыть DBooyvol" = "Göm DBooyvol";
 "Скрыть остальные" = "Göm andra";
+"Скрыть панель фильтра (включается в настройках)" = "Dölj filterpanelen (aktiverad i Inställningar)";
 "Скрыть сообщение об ошибке" = "Dölj felmeddelande";
 "Слева" = "Vänster";
 "Слева и справа" = "Vänster och höger";
@@ -521,6 +556,7 @@
 "Снизу и четверти" = "Botten och fjärdedelar";
 "Снизу слева" = "Nederst till vänster";
 "Снизу справа" = "Nederst till höger";
+"Снять все условия фильтра" = "Ta bort alla filterförhållanden";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Innehållet i \"%@\" skiljer sig från det som är lagrat på disken.\nSka jag ladda versionen från disken eller lämna texten i editorn?";
 "Создать новое подключение" = "Skapa en ny anslutning";
 "Создать новое подключение…" = "Skapa en ny anslutning...";
@@ -564,6 +600,8 @@
 "Строк: %@ из %@" = "Rader: %@ av %@";
 "Строк: %@%@" = "Rader: %@%@";
 "Строка" = "Rad";
+"Строка вертикально / таблица" = "Rad vertikalt / rutnät";
+"Строка №%@" = "Rad #%@";
 "Схема: %@" = "Schema: %@";
 "ТОК" = "TOK";
 "Таблица: %@" = "Tabell: %@";
@@ -587,6 +625,7 @@
 "Удалить" = "Ta bort";
 "Удалить всю историю запросов" = "Rensa all frågehistorik";
 "Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Radera data från en tidigare version av applikationen där lösenord lagrades i klartext";
+"Удалить историю вычислений" = "Rensa beräkningshistoriken";
 "Удалить подключение «%@»?" = "Ta bort anslutningen \"%@\"?";
 "Удалить подключение…" = "Ta bort anslutning...";
 "Удалить старые пароли из связки ключей" = "Ta bort gamla lösenord från nyckelringen";
@@ -595,13 +634,18 @@
 "Українська" = "Ukrainska";
 "Уменьшить шрифт" = "Minska teckensnittet";
 "Умное выделение" = "Smart val";
+"Уникальный ключ" = "Unik nyckel";
+"Уникальный ключ не определён" = "Unik nyckel ej fastställd";
 "Уникальный ключ: %@(%@)" = "Unik nyckel: %@(%@)";
 "Управление" = "Styrning";
+"Условие…" = "Skick...";
 "Файл" = "Arkiv";
 "Файл «%@» уже существует" = "Filen \"%@\" finns redan";
 "Файл базы (.db / .sqlite)" = "Databasfil (.db / .sqlite)";
 "Файл изменён на диске" = "Fil ändrad på disk";
 "Файлы" = "Filer";
+"Фильтр" = "Filtrera";
+"Фильтры очищены" = "Filter rensade";
 "Формат значений" = "Värdeformat";
 "Хост" = "Värd";
 "Хост (алиас из ~/.ssh/config)" = "Värd (alias från ~/.ssh/config)";
@@ -648,6 +692,7 @@
 "встроен clickhouse-jdbc — путь можно не указывать" = "clickhouse-jdbc är inbyggt - du behöver inte ange sökvägen";
 "встроен postgresql 42.7 — путь можно не указывать" = "postgresql 42.7 är inbyggd - sökvägen kan utelämnas";
 "встроен sqlite-jdbc — путь можно не указывать" = "sqlite-jdbc är inbyggd - sökvägen kan utelämnas";
+"из %@" = "av %@";
 "не найден" = "hittades inte";
 "проверьте ~/.ssh/config" = "kontrollera ~/.ssh/config";
 "пусто" = "tomt";
