@@ -2,7 +2,6 @@
 
 "%@ из %@" = "%@ von %@";
 "%@ стр · %@ мс" = "%@ Zeilen · %@ ms";
-"(всего %@ строк)" = "(von %@ Zeilen)";
 "(копия)" = "(Kopie)";
 "1 год" = "1 Jahr";
 "1 месяц" = "1 Monat";
@@ -112,7 +111,7 @@
 "Горячие клавиши" = "Hotkeys";
 "Горячие клавиши…" = "Hotkeys...";
 "Готово" = "Bereit";
-"Готово: %@%@ строк · %@ мс" = "Fertig: %@%@ Zeilen · %@ ms";
+"Готово. %@ · %@ мс" = "Erledigt. %@ · %@ ms";
 "Готово: изменено строк %@ · %@ мс" = "Fertig: Zeilen geändert %@ · %@ ms";
 "ДЕЛ" = "DEL";
 "ДЕН" = "DEN";
@@ -140,8 +139,6 @@
 "Есть несохранённые изменения." = "Es gibt nicht gespeicherte Änderungen.";
 "Завершить DBooyvol" = "Beenden Sie DBooyvol";
 "Завершить и закрыть все окна" = "Beenden Sie und schließen Sie alle Fenster";
-"Загружено %@ строк" = "%@ Zeilen geladen";
-"Загружено %@ строк (всего %@ строк)" = "%@ Zeilen geladen (%@ Zeilen insgesamt)";
 "Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ von %@ Zeilen geladen. Alle Zeilen laden oder die geladenen exportieren?";
 "Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ Zeilen geladen, aber nicht alle. Alle Zeilen laden oder die geladenen exportieren?";
 "Загружено %@ строк…" = "%@ Zeilen geladen…";
@@ -509,6 +506,8 @@
 "Столбцы переставлены" = "Spalten neu angeordnet";
 "Строк за загрузку: %@" = "Zeilen pro Ladung: %@";
 "Строк за одну загрузку:" = "Zeilen pro Abruf:";
+"Строк: %@ из %@" = "Zeilen: %@ von %@";
+"Строк: %@%@" = "Zeilen: %@%@";
 "Строка" = "Reihe";
 "Схема: %@" = "Schema: %@";
 "ТОК" = "TOK";

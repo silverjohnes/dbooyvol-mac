@@ -2,7 +2,6 @@
 
 "%@ из %@" = "%@'dan %@";
 "%@ стр · %@ мс" = "%@ satır · %@ ms";
-"(всего %@ строк)" = "(%@ satırdan)";
 "(копия)" = "(kopya)";
 "1 год" = "1 yıl";
 "1 месяц" = "1 ay";
@@ -112,7 +111,7 @@
 "Горячие клавиши" = "Kısayol tuşları";
 "Горячие клавиши…" = "Kısayol tuşları...";
 "Готово" = "Hazır";
-"Готово: %@%@ строк · %@ мс" = "Tamamlandı: %@%@ satır · %@ ms";
+"Готово. %@ · %@ мс" = "Tamamlamak. %@ · %@ ms";
 "Готово: изменено строк %@ · %@ мс" = "Tamamlandı: satırlar değiştirildi %@ · %@ ms";
 "ДЕЛ" = "DEL";
 "ДЕН" = "DEN";
@@ -140,8 +139,6 @@
 "Есть несохранённые изменения." = "Kaydedilmemiş değişiklikler var.";
 "Завершить DBooyvol" = "DBooyvol'dan çık";
 "Завершить и закрыть все окна" = "Çıkın ve tüm pencereleri kapatın";
-"Загружено %@ строк" = "%@ satır yüklendi";
-"Загружено %@ строк (всего %@ строк)" = "%@ satır yüklendi (%@ toplam satır)";
 "Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ / %@ satır yüklendi. Tüm satırlar yüklensin mi yoksa yüklenenler dışa aktarılsın mı?";
 "Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ satır yüklendi, ancak tümü değil. Tüm satırlar yüklensin mi yoksa yüklenenler dışa aktarılsın mı?";
 "Загружено %@ строк…" = "%@ satır yüklendi…";
@@ -509,6 +506,8 @@
 "Столбцы переставлены" = "Sütunlar yeniden düzenlendi";
 "Строк за загрузку: %@" = "Yük başına satır sayısı: %@";
 "Строк за одну загрузку:" = "Getirme başına satır sayısı:";
+"Строк: %@ из %@" = "Satırlar: %@ / %@";
+"Строк: %@%@" = "Satırlar: %@%@";
 "Строка" = "Satır";
 "Схема: %@" = "Şema: %@";
 "ТОК" = "TOK";

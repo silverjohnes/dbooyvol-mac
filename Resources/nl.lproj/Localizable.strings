@@ -2,7 +2,6 @@
 
 "%@ из %@" = "%@ van %@";
 "%@ стр · %@ мс" = "%@ rijen · %@ ms";
-"(всего %@ строк)" = "(van %@ rijen)";
 "(копия)" = "(kopie)";
 "1 год" = "1 jaar";
 "1 месяц" = "1 maand";
@@ -112,7 +111,7 @@
 "Горячие клавиши" = "Sneltoetsen";
 "Горячие клавиши…" = "Sneltoetsen...";
 "Готово" = "Klaar";
-"Готово: %@%@ строк · %@ мс" = "Klaar: %@%@ rijen · %@ ms";
+"Готово. %@ · %@ мс" = "Klaar. %@ · %@ ms";
 "Готово: изменено строк %@ · %@ мс" = "Klaar: regels gewijzigd %@ · %@ ms";
 "ДЕЛ" = "DEL";
 "ДЕН" = "DEN";
@@ -140,8 +139,6 @@
 "Есть несохранённые изменения." = "Er zijn niet-opgeslagen wijzigingen.";
 "Завершить DBooyvol" = "Sluit DBoyvol af";
 "Завершить и закрыть все окна" = "Sluit af en sluit alle vensters";
-"Загружено %@ строк" = "%@ rijen geladen";
-"Загружено %@ строк (всего %@ строк)" = "%@ rijen geladen (%@ rijen totaal)";
 "Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ van %@ rijen geladen. Alle rijen laden of de geladen rijen exporteren?";
 "Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ rijen geladen, maar niet allemaal. Alle rijen laden of de geladen rijen exporteren?";
 "Загружено %@ строк…" = "%@ rijen geladen…";
@@ -509,6 +506,8 @@
 "Столбцы переставлены" = "Kolommen opnieuw gerangschikt";
 "Строк за загрузку: %@" = "Lijnen per lading: %@";
 "Строк за одну загрузку:" = "Rijen per ophaalactie:";
+"Строк: %@ из %@" = "Rijen: %@ van %@";
+"Строк: %@%@" = "Rijen: %@%@";
 "Строка" = "Rij";
 "Схема: %@" = "Schema: %@";
 "ТОК" = "TOK";

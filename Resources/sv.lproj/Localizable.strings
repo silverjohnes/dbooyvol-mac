@@ -2,7 +2,6 @@
 
 "%@ из %@" = "%@ från %@";
 "%@ стр · %@ мс" = "%@ rader · %@ ms";
-"(всего %@ строк)" = "(av %@ rader)";
 "(копия)" = "(kopia)";
 "1 год" = "1 år";
 "1 месяц" = "1 månad";
@@ -112,7 +111,7 @@
 "Горячие клавиши" = "Snabbtangenter";
 "Горячие клавиши…" = "Snabbtangenter...";
 "Готово" = "Klar";
-"Готово: %@%@ строк · %@ мс" = "Klart: %@%@ rader · %@ ms";
+"Готово. %@ · %@ мс" = "Gjort. %@ · %@ ms";
 "Готово: изменено строк %@ · %@ мс" = "Klart: rader ändrade %@ · %@ ms";
 "ДЕЛ" = "DEL";
 "ДЕН" = "DEN";
@@ -140,8 +139,6 @@
 "Есть несохранённые изменения." = "Det finns ändringar som inte har sparats.";
 "Завершить DBooyvol" = "Avsluta DBooyvol";
 "Завершить и закрыть все окна" = "Avsluta och stäng alla fönster";
-"Загружено %@ строк" = "%@ rader laddade";
-"Загружено %@ строк (всего %@ строк)" = "%@ rader laddade (%@ rader totalt)";
 "Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ av %@ rader laddade. Ladda alla rader eller exportera de inlästa?";
 "Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ rader laddade, men inte alla. Ladda alla rader eller exportera de inlästa?";
 "Загружено %@ строк…" = "%@ rader laddade...";
@@ -509,6 +506,8 @@
 "Столбцы переставлены" = "Kolumner omarrangerade";
 "Строк за загрузку: %@" = "Rader per laddning: %@";
 "Строк за одну загрузку:" = "Rader per hämtning:";
+"Строк: %@ из %@" = "Rader: %@ av %@";
+"Строк: %@%@" = "Rader: %@%@";
 "Строка" = "Rad";
 "Схема: %@" = "Schema: %@";
 "ТОК" = "TOK";

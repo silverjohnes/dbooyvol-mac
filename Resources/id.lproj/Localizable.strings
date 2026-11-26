@@ -2,7 +2,6 @@
 
 "%@ из %@" = "%@ dari %@";
 "%@ стр · %@ мс" = "%@ baris · %@ ms";
-"(всего %@ строк)" = "(dari %@ baris)";
 "(копия)" = "(salinan)";
 "1 год" = "1 tahun";
 "1 месяц" = "1 bulan";
@@ -112,7 +111,7 @@
 "Горячие клавиши" = "Tombol pintas";
 "Горячие клавиши…" = "Tombol pintas...";
 "Готово" = "Siap";
-"Готово: %@%@ строк · %@ мс" = "Selesai: %@%@ baris · %@ ms";
+"Готово. %@ · %@ мс" = "Selesai. %@ · %@ ms";
 "Готово: изменено строк %@ · %@ мс" = "Selesai: baris diubah %@ · %@ ms";
 "ДЕЛ" = "DEL";
 "ДЕН" = "DEN";
@@ -140,8 +139,6 @@
 "Есть несохранённые изменения." = "Ada perubahan yang belum disimpan.";
 "Завершить DBooyvol" = "Keluar dari DBooyvol";
 "Завершить и закрыть все окна" = "Keluar dan tutup semua jendela";
-"Загружено %@ строк" = "%@ baris dimuat";
-"Загружено %@ строк (всего %@ строк)" = "%@ baris dimuat (%@ total baris)";
 "Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ dari %@ baris dimuat. Muat semua baris atau ekspor yang dimuat?";
 "Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ baris dimuat, tetapi tidak semua. Muat semua baris atau ekspor yang dimuat?";
 "Загружено %@ строк…" = "%@ baris dimuat…";
@@ -509,6 +506,8 @@
 "Столбцы переставлены" = "Kolom disusun ulang";
 "Строк за загрузку: %@" = "Baris per muatan: %@";
 "Строк за одну загрузку:" = "Baris per pengambilan:";
+"Строк: %@ из %@" = "Baris: %@ dari %@";
+"Строк: %@%@" = "Baris: %@%@";
 "Строка" = "Baris";
 "Схема: %@" = "Skema: %@";
 "ТОК" = "TOK";

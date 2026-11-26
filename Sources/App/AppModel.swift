@@ -1058,14 +1058,12 @@ final class AppModel: ObservableObject {
         }
     }
 
-    /// "Готово: 200+ строк · 737 мс (всего 12 345 строк)".
+    /// "Готово. Строк: 12 345 из 50 000 · 737 мс".
     static func runStatus(rows: Int, done: Bool, durationMs: Int, total: Int?) -> String {
-        var text = L10n.fmt("Готово: %@%@ строк · %@ мс",
-                            String(rows), done ? "" : "+", String(durationMs))
-        if let total {
-            text += " " + L10n.fmt("(всего %@ строк)", String(total))
-        }
-        return text
+        let count = total.map {
+            L10n.fmt("Строк: %@ из %@", String(rows), String($0))
+        } ?? L10n.fmt("Строк: %@%@", String(rows), done ? "" : "+")
+        return L10n.fmt("Готово. %@ · %@ мс", count, String(durationMs))
     }
 
     /// Wraps the first statement of the script into `select count(*) from (…)`.
@@ -1172,10 +1170,11 @@ final class AppModel: ObservableObject {
                 if tabID == activeTabID {
                     result = updated
                     if let total = updated.totalRows {
-                        status = L10n.fmt("Загружено %@ строк (всего %@ строк)",
+                        status = L10n.fmt("Строк: %@ из %@",
                                           String(updated.rows.count), String(total))
                     } else {
-                        status = L10n.fmt("Загружено %@ строк", String(updated.rows.count))
+                        status = L10n.fmt("Строк: %@%@", String(updated.rows.count),
+                                          updated.done ? "" : "+")
                     }
                 }
                 setRunState(.succeeded, for: tabID)

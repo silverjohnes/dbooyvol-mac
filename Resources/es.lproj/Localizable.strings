@@ -2,7 +2,6 @@
 
 "%@ из %@" = "%@ de %@";
 "%@ стр · %@ мс" = "%@ filas · %@ ms";
-"(всего %@ строк)" = "(de %@ filas)";
 "(копия)" = "(copiar)";
 "1 год" = "1 año";
 "1 месяц" = "1 mes";
@@ -112,7 +111,7 @@
 "Горячие клавиши" = "Teclas de acceso rápido";
 "Горячие клавиши…" = "Teclas de acceso rápido...";
 "Готово" = "Listo";
-"Готово: %@%@ строк · %@ мс" = "Listo: %@%@ filas · %@ ms";
+"Готово. %@ · %@ мс" = "Hecho. %@ · %@ ms";
 "Готово: изменено строк %@ · %@ мс" = "Listo: líneas cambiadas %@ · %@ ms";
 "ДЕЛ" = "DEL";
 "ДЕН" = "DEN";
@@ -140,8 +139,6 @@
 "Есть несохранённые изменения." = "Hay cambios no guardados.";
 "Завершить DBooyvol" = "Salir de DBooyvol";
 "Завершить и закрыть все окна" = "Sal y cierra todas las ventanas.";
-"Загружено %@ строк" = "%@ filas cargadas";
-"Загружено %@ строк (всего %@ строк)" = "%@ filas cargadas (%@ filas en total)";
 "Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ de %@ filas cargadas. ¿Cargar todas las filas o exportar las cargadas?";
 "Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ filas cargadas, pero no todas. ¿Cargar todas las filas o exportar las cargadas?";
 "Загружено %@ строк…" = "%@ filas cargadas…";
@@ -509,6 +506,8 @@
 "Столбцы переставлены" = "Columnas reorganizadas";
 "Строк за загрузку: %@" = "Líneas por carga: %@";
 "Строк за одну загрузку:" = "Filas por recuperación:";
+"Строк: %@ из %@" = "Filas: %@ de %@";
+"Строк: %@%@" = "Filas: %@%@";
 "Строка" = "Fila";
 "Схема: %@" = "Esquema: %@";
 "ТОК" = "TOK";
