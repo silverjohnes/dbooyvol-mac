@@ -125,6 +125,7 @@
 "Для выхода зажмите CMD+Q" = "Untuk keluar, tekan CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Tidak ada koneksi yang dipilih untuk skrip ini.\nPilih salah satu di bilah tab atau tambahkan yang baru (⇧⌘N).";
 "Добавить (⌘N)" = "Tambahkan (⌘N)";
+"Догрузить следующую страницу строк" = "Muat halaman baris berikutnya";
 "Дополнительная вставка" = "Tempel tingkat lanjut";
 "Дополнительная вставка…" = "Tempel tingkat lanjut…";
 "Другое приложение…" = "Aplikasi lainnya…";
@@ -146,6 +147,8 @@
 "Загружено %@ строк…" = "%@ baris dimuat…";
 "Загружено с диска: %@" = "Dimuat dari disk: %@";
 "Загружены не все данные" = "Tidak semua data dimuat";
+"Загрузить все" = "Muat semua";
+"Загрузить все оставшиеся строки" = "Muat semua baris yang tersisa";
 "Загрузить ещё" = "Muat lebih banyak";
 "Загрузить полностью" = "Muat semua baris";
 "Загрузить с диска" = "Muat dari disk";

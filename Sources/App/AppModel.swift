@@ -1133,6 +1133,13 @@ final class AppModel: ObservableObject {
         status = L10n.tr("Отмена…")
     }
 
+    /// The status bar offers "Загрузить все" only while the cursor still has
+    /// rows and no query is running.
+    var canLoadAllResult: Bool {
+        guard let r = result else { return false }
+        return !r.done && !isRunning
+    }
+
     func loadMore() {
         let tabID = activeTabID
         guard let r = resultsByTab[tabID], let qid = r.queryId, !r.done,
@@ -2967,15 +2974,21 @@ final class AppModel: ObservableObject {
         }
     }
 
-    /// Reads the remaining pages into the tab, then opens the save panel with
-    /// the complete result. The run state is set so the progress card and the
-    /// Stop button behave as they do for a query.
+    /// Reads the remaining pages into the tab. With a format, it then opens
+    /// the save panel with the complete result; without one it just fills the
+    /// grid (the status-bar "Загрузить все" button).
+    func loadAllRows() { loadAll(thenExport: nil) }
+
     private func loadAllAndExport(_ format: ExportFormat) {
+        loadAll(thenExport: format)
+    }
+
+    private func loadAll(thenExport format: ExportFormat?) {
         let tabID = activeTabID
         guard let r = resultsByTab[tabID], !r.done, let qid = r.queryId,
               tabRunStates[tabID] != .running,
               let profile = profiles.first(where: { $0.id == r.profileID }) ?? activeScriptProfile else {
-            if let r = resultsByTab[tabID] {
+            if let format, let r = resultsByTab[tabID] {
                 performExport(format, columns: r.columns, rows: r.rows)
             }
             return
@@ -3039,7 +3052,9 @@ final class AppModel: ObservableObject {
                                         durationMs: updated.durationMs, total: updated.totalRows)
             }
             setRunState(.succeeded, for: tabID)
-            performExport(format, columns: updated.columns, rows: updated.rows)
+            if let format {
+                performExport(format, columns: updated.columns, rows: updated.rows)
+            }
         }
     }
 

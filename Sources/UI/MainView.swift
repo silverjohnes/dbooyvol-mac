@@ -388,6 +388,18 @@ struct MainView: View {
                 .lineLimit(1)
                 .truncationMode(.tail)
 
+            if model.bottomTab == .result, model.result != nil {
+                if let r = model.result, !r.done {
+                    Button("Загрузить ещё") { model.loadMore() }
+                        .controlSize(.small)
+                        .help("Догрузить следующую страницу строк")
+                }
+                Button("Загрузить все") { model.loadAllRows() }
+                    .controlSize(.small)
+                    .disabled(!model.canLoadAllResult)
+                    .help("Загрузить все оставшиеся строки")
+            }
+
             Spacer(minLength: 8)
 
             if model.bottomTab == .result, let r = model.result {
@@ -398,10 +410,6 @@ struct MainView: View {
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .fixedSize()
-                }
-                if !r.done {
-                    Button("Загрузить ещё") { model.loadMore() }
-                        .controlSize(.small)
                 }
                 Button("CSV") { model.exportCSV() }
                     .controlSize(.small)

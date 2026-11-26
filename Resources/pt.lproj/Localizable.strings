@@ -125,6 +125,7 @@
 "Для выхода зажмите CMD+Q" = "Para sair, pressione CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Nenhuma conexão está selecionada para este script.\nEscolha um na barra de guias ou adicione um novo (⇧⌘N).";
 "Добавить (⌘N)" = "Adicionar (⌘N)";
+"Догрузить следующую страницу строк" = "Carregue a próxima página de linhas";
 "Дополнительная вставка" = "Colar avançado";
 "Дополнительная вставка…" = "Colar avançado…";
 "Другое приложение…" = "Outra aplicação…";
@@ -146,6 +147,8 @@
 "Загружено %@ строк…" = "%@ linhas carregadas…";
 "Загружено с диска: %@" = "Carregado do disco: %@";
 "Загружены не все данные" = "Nem todos os dados são carregados";
+"Загрузить все" = "Carregar tudo";
+"Загрузить все оставшиеся строки" = "Carregar todas as linhas restantes";
 "Загрузить ещё" = "Carregar mais";
 "Загрузить полностью" = "Carregar todas as linhas";
 "Загрузить с диска" = "Carregar do disco";

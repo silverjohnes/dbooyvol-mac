@@ -125,6 +125,7 @@
 "Для выхода зажмите CMD+Q" = "Çıkmak için CMD+Q tuşlarına basın";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Bu komut dosyası için bağlantı seçilmedi.\nSekme çubuğundan birini seçin veya yeni bir tane ekleyin (⇧⌘N).";
 "Добавить (⌘N)" = "Ekle (⌘N)";
+"Догрузить следующую страницу строк" = "Satırların sonraki sayfasını yükle";
 "Дополнительная вставка" = "Gelişmiş yapıştırma";
 "Дополнительная вставка…" = "Gelişmiş yapıştırma…";
 "Другое приложение…" = "Diğer uygulama…";
@@ -146,6 +147,8 @@
 "Загружено %@ строк…" = "%@ satır yüklendi…";
 "Загружено с диска: %@" = "Diskten yüklendi: %@";
 "Загружены не все данные" = "Tüm veriler yüklenmedi";
+"Загрузить все" = "Tümünü yükle";
+"Загрузить все оставшиеся строки" = "Kalan tüm satırları yükle";
 "Загрузить ещё" = "Daha fazlasını yükle";
 "Загрузить полностью" = "Tüm satırları yükle";
 "Загрузить с диска" = "Diskten yükle";

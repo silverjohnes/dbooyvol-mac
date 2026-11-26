@@ -125,6 +125,7 @@
 "Для выхода зажмите CMD+Q" = "För att avsluta, tryck på CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Ingen anslutning har valts för detta skript.\nVälj en i flikfältet eller lägg till en ny (⇧⌘N).";
 "Добавить (⌘N)" = "Lägg till (⌘N)";
+"Догрузить следующую страницу строк" = "Ladda nästa sida med rader";
 "Дополнительная вставка" = "Avancerad pasta";
 "Дополнительная вставка…" = "Avancerad klistra in...";
 "Другое приложение…" = "Annan applikation...";
@@ -146,6 +147,8 @@
 "Загружено %@ строк…" = "%@ rader laddade...";
 "Загружено с диска: %@" = "Laddade från disk: %@";
 "Загружены не все данные" = "Inte all data laddas";
+"Загрузить все" = "Ladda alla";
+"Загрузить все оставшиеся строки" = "Ladda alla återstående rader";
 "Загрузить ещё" = "Ladda mer";
 "Загрузить полностью" = "Ladda alla rader";
 "Загрузить с диска" = "Ladda från disk";

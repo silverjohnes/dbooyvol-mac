@@ -125,6 +125,7 @@
 "Для выхода зажмите CMD+Q" = "Druk op CMD+Q om af te sluiten";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Er is geen verbinding geselecteerd voor dit script.\nKies er een in de tabbladbalk of voeg een nieuwe toe (⇧⌘N).";
 "Добавить (⌘N)" = "Toevoegen (⌘N)";
+"Догрузить следующую страницу строк" = "Laad de volgende pagina met rijen";
 "Дополнительная вставка" = "Geavanceerde pasta";
 "Дополнительная вставка…" = "Geavanceerd plakken…";
 "Другое приложение…" = "Andere toepassing…";
@@ -146,6 +147,8 @@
 "Загружено %@ строк…" = "%@ rijen geladen…";
 "Загружено с диска: %@" = "Geladen vanaf schijf: %@";
 "Загружены не все данные" = "Niet alle gegevens worden geladen";
+"Загрузить все" = "Laad alles";
+"Загрузить все оставшиеся строки" = "Laad alle resterende rijen";
 "Загрузить ещё" = "Laad meer";
 "Загрузить полностью" = "Laad alle rijen";
 "Загрузить с диска" = "Laden vanaf schijf";

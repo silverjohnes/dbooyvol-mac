@@ -125,6 +125,7 @@
 "Для выхода зажмите CMD+Q" = "Pro ukončení stiskněte CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Pro tento skript není vybráno žádné připojení.\nVyberte jeden na liště karet nebo přidejte nový (⇧⌘N).";
 "Добавить (⌘N)" = "Přidat (⌘N)";
+"Догрузить следующую страницу строк" = "Načtěte další stránku řádků";
 "Дополнительная вставка" = "Pokročilá pasta";
 "Дополнительная вставка…" = "Pokročilá pasta…";
 "Другое приложение…" = "Další aplikace…";
@@ -146,6 +147,8 @@
 "Загружено %@ строк…" = "%@ řádků načteno…";
 "Загружено с диска: %@" = "Načteno z disku: %@";
 "Загружены не все данные" = "Nejsou načtena všechna data";
+"Загрузить все" = "Načíst vše";
+"Загрузить все оставшиеся строки" = "Načtěte všechny zbývající řádky";
 "Загрузить ещё" = "Načíst více";
 "Загрузить полностью" = "Načíst všechny řádky";
 "Загрузить с диска" = "Načíst z disku";
