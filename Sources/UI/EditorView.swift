@@ -331,12 +331,18 @@ final class SQLTextView: NSTextView {
     }
 
     /// Triple-click target: quoted contents (without LIKE mask characters when
-    /// the literal is a LIKE/ILIKE pattern), or the innermost parentheses.
+    /// the literal is a LIKE/ILIKE pattern, and without `%` wildcards), the
+    /// innermost parentheses, or the text between `%` delimiters.
     private func literalContentsRange(at location: Int) -> NSRange? {
+        let ns = string as NSString
         if let quoted = quotedContentsRange(at: location) {
-            return SQLText.maskTrimmedRange(quoted, in: string)
+            let maskTrimmed = SQLText.maskTrimmedRange(quoted, in: string)
+            return TextSelectionRules.trimmingPercent(maskTrimmed, in: ns)
         }
-        return parenContentsRange(at: location)
+        if let paren = parenContentsRange(at: location) {
+            return TextSelectionRules.trimmingPercent(paren, in: ns)
+        }
+        return TextSelectionRules.percentContentsRange(in: ns, at: location)
     }
 
     private func parenContentsRange(at location: Int) -> NSRange? {

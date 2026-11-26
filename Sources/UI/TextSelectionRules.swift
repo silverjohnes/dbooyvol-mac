@@ -3,7 +3,8 @@ import AppKit
 /// Text selection rules shared by the SQL editor and the value inspector, so
 /// double and triple click behave the same in both: a word keeps dots and
 /// underscores but stops at `-`, and a triple click selects the contents of a
-/// quoted literal or of the innermost parentheses.
+/// quoted literal, of the innermost parentheses, or between `%` wildcards,
+/// without the delimiters themselves.
 enum TextSelectionRules {
     static func isWordChar(_ c: unichar) -> Bool {
         if c == 95 || c == 36 || c == 46 { return true } // _ $ .
@@ -124,6 +125,67 @@ enum TextSelectionRules {
 
     /// The range a triple click should select, if any.
     static func literalContentsRange(in s: NSString, at location: Int) -> NSRange? {
-        quotedContentsRange(in: s, at: location) ?? parenContentsRange(in: s, at: location)
+        if let quoted = quotedContentsRange(in: s, at: location) {
+            return trimmingPercent(quoted, in: s)
+        }
+        if let paren = parenContentsRange(in: s, at: location) {
+            return trimmingPercent(paren, in: s)
+        }
+        return percentContentsRange(in: s, at: location)
+    }
+
+    /// Cuts leading and trailing `%` characters, so a LIKE wildcard is not
+    /// included when a value is selected by triple click. A value made only of
+    /// `%` keeps its original range instead of becoming an empty selection.
+    static func trimmingPercent(_ range: NSRange, in s: NSString) -> NSRange {
+        var start = range.location
+        var end = range.location + range.length
+        while start < end, s.character(at: start) == 37 { start += 1 }
+        while end > start, s.character(at: end - 1) == 37 { end -= 1 }
+        let trimmed = NSRange(location: start, length: end - start)
+        return trimmed.length > 0 ? trimmed : range
+    }
+
+    /// Text between the nearest `%` before and after the caret on the same
+    /// line. Used for unquoted values such as `%ПРИЛА%`, where `%` acts as a
+    /// delimiter like a quote. The wildcards themselves are not selected.
+    static func percentContentsRange(in s: NSString, at location: Int) -> NSRange? {
+        guard s.length > 0 else { return nil }
+        let pos = min(max(location, 0), s.length - 1)
+
+        var lineStart = 0
+        var lineEnd = 0
+        var contentsEnd = 0
+        s.getLineStart(&lineStart, end: &lineEnd, contentsEnd: &contentsEnd,
+                       for: NSRange(location: pos, length: 0))
+
+        var masks: [Int] = []
+        var i = lineStart
+        while i < contentsEnd {
+            if s.character(at: i) == 37 { masks.append(i) }
+            i += 1
+        }
+        guard masks.count >= 2 else { return nil }
+
+        var open: Int?
+        var close: Int?
+        if masks.contains(pos) {
+            // The caret sits on a wildcard: use it as the opening delimiter
+            // when a closing one follows, otherwise as the closing one.
+            if let next = masks.first(where: { $0 > pos }) {
+                open = pos
+                close = next
+            } else if let prev = masks.last(where: { $0 < pos }) {
+                open = prev
+                close = pos
+            }
+        } else {
+            open = masks.last(where: { $0 < pos })
+            close = masks.first(where: { $0 > pos })
+        }
+        guard let start = open, let end = close, end > start else { return nil }
+
+        let trimmed = trimmingPercent(NSRange(location: start + 1, length: end - start - 1), in: s)
+        return trimmed.length > 0 ? trimmed : nil
     }
 }

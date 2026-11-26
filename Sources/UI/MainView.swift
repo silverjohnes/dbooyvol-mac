@@ -205,13 +205,20 @@ struct MainView: View {
     @ViewBuilder
     private var resultContent: some View {
         if model.result == nil {
-            VStack(spacing: 6) {
-                Image(systemName: "tablecells")
-                    .font(.system(size: 22))
-                    .foregroundColor(.secondary)
-                Text("Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)")
-                    .font(.callout)
-                    .foregroundColor(.secondary)
+            ZStack {
+                // While the first query of a tab runs, the hint would sit
+                // behind the progress card, so only the card is shown.
+                if !model.isRunning {
+                    VStack(spacing: 6) {
+                        Image(systemName: "tablecells")
+                            .font(.system(size: 22))
+                            .foregroundColor(.secondary)
+                        Text("Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)")
+                            .font(.callout)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                executionOverlay
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
@@ -223,6 +230,7 @@ struct MainView: View {
                             .transition(.opacity)
                     }
                 }
+                .overlay { executionOverlay }
                 .animation(.easeInOut(duration: 0.3), value: model.resultEditPhase)
 
                 if model.showValuePanel {
@@ -233,6 +241,17 @@ struct MainView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.2), value: model.showValuePanel)
+        }
+    }
+
+    /// A subdued spinner in the middle of the result grid while the active tab
+    /// is executing. It never takes clicks, so the run can still be cancelled.
+    @ViewBuilder
+    private var executionOverlay: some View {
+        if model.isRunning {
+            ExecutionIndicator()
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 0.18), value: model.isRunning)
         }
     }
 
@@ -432,5 +451,45 @@ struct MainView: View {
     private var isConnected: Bool {
         guard let id = model.activeScriptProfileID else { return false }
         return model.connected.contains(id)
+    }
+}
+
+/// Quiet progress card shown over the result grid while a query runs: a thin
+/// rotating arc on a material background, with the same caption as the status
+/// bar. Intentionally low contrast so it does not distract from the data.
+private struct ExecutionIndicator: View {
+    @State private var spinning = false
+
+    var body: some View {
+        VStack(spacing: 8) {
+            ZStack {
+                Circle()
+                    .stroke(Color.secondary.opacity(0.15), lineWidth: 3)
+                Circle()
+                    .trim(from: 0, to: 0.22)
+                    .stroke(Color.secondary.opacity(0.65),
+                            style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                    .rotationEffect(.degrees(spinning ? 360 : 0))
+                    .animation(.linear(duration: 0.9).repeatForever(autoreverses: false),
+                               value: spinning)
+            }
+            .frame(width: 26, height: 26)
+
+            Text(L10n.tr("Выполняется…"))
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .padding(.horizontal, 18)
+        .padding(.vertical, 14)
+        .background(.regularMaterial,
+                    in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .strokeBorder(Color.primary.opacity(0.06))
+        }
+        .shadow(color: .black.opacity(0.10), radius: 8, y: 2)
+        .onAppear { spinning = true }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 }
