@@ -91,7 +91,7 @@ struct ShortcutsView: View {
                 Spacer(minLength: 12)
                 Button("По умолчанию") { resetAll() }
                     .disabled(!store.hasOverrides)
-                    .help(L10n.tr("Сбросить все сочетания к стандартным"))
+                    .appToolTip(L10n.tr("Сбросить все сочетания к стандартным"))
             }
             .padding(.horizontal, 18)
             .padding(.top, 14)
@@ -183,7 +183,7 @@ struct ShortcutsView: View {
                     }
                     .buttonStyle(.plain)
                     .foregroundColor(.secondary)
-                    .help(L10n.tr("Вернуть по умолчанию"))
+                    .appToolTip(L10n.tr("Вернуть по умолчанию"))
                 }
                 recorderButton(for: action)
             }
@@ -217,7 +217,7 @@ struct ShortcutsView: View {
                 )
         }
         .buttonStyle(.plain)
-        .help(L10n.tr("Изменить сочетание"))
+        .appToolTip(L10n.tr("Изменить сочетание"))
     }
 
     private func keyBadge(_ keys: String) -> some View {

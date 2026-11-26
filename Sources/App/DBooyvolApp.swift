@@ -10,6 +10,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         true
     }
 
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        TooltipCenter.shared.start()
+    }
+
     func applicationWillTerminate(_ notification: Notification) {
         QuitGuard.shared.stop()
         AppModel.shared.stopWatchingExternalChanges()
@@ -444,7 +448,6 @@ struct DBooyvolApp: App {
                 Divider()
                 Button("Строка вертикально / таблица") { model.toggleSingleRowResult() }
                     .disabled(model.result == nil)
-                Button("Калькулятор") { model.toggleCalcPanel() }
                 Button("Панель фильтра") { model.setShowFilterPanel(!model.showFilterPanel) }
                 Divider()
                 Button("Сбросить вид") { WindowLayout.resetAll() }

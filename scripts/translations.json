@@ -758,7 +758,11 @@
   "Снять все условия фильтра": "Clear all filter conditions",
   "Строка вертикально / таблица": "Row vertically / table",
   "Строка №%@": "Line #%@",
-  "Удалить историю вычислений": "Delete calculation history"
+  "Удалить историю вычислений": "Delete calculation history",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "One filter line to already loaded lines; The SQL script does not change. Empty string - no filter. You can search for text in all columns or write conditions like amount > 10, name LIKE 'A%'. Tab in a table opens a row vertically, pressing it again returns the table.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "One line: text is searched in all columns; you can specify a column and condition, such as amount > 10 or name LIKE 'A%'.",
+  "Снять фильтр": "Remove filter",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: text, column > 10, LIKE %…%"
  },
  "es": {
   "Вернуть стандартную максимальную ширину столбца": "Devuelve el ancho máximo de columna predeterminado",
@@ -1519,7 +1523,11 @@
   "Снять все условия фильтра": "Borrar todas las condiciones del filtro",
   "Строка вертикально / таблица": "Fila vertical / mesa",
   "Строка №%@": "Línea #%@",
-  "Удалить историю вычислений": "Eliminar historial de cálculo"
+  "Удалить историю вычислений": "Eliminar historial de cálculo",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Una línea de filtro para líneas ya cargadas; El script SQL no cambia. Cadena vacía: sin filtro. Puede buscar texto en todas las columnas o escribir condiciones como cantidad > 10, nombre COMO 'A%'. La pestaña en una tabla abre una fila verticalmente, al presionarla nuevamente se devuelve la tabla.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Una línea: se busca texto en todas las columnas; puede especificar una columna y una condición, como cantidad > 10 o nombre COMO 'A%'.",
+  "Снять фильтр": "Quitar filtro",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filtro: texto, columna > 10, ME GUSTA %…%"
  },
  "pt": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) páginas (entry.durationMs) ms",
@@ -2280,7 +2288,11 @@
   "Снять все условия фильтра": "Limpar todas as condições de filtro",
   "Строка вертикально / таблица": "Linha verticalmente / tabela",
   "Строка №%@": "Linha #%@",
-  "Удалить историю вычислений": "Excluir histórico de cálculo"
+  "Удалить историю вычислений": "Excluir histórico de cálculo",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Uma linha de filtro para linhas já carregadas; O script SQL não muda. String vazia - sem filtro. Você pode pesquisar texto em todas as colunas ou escrever condições como quantidade> 10, nome LIKE 'A%'. Tab em uma tabela abre uma linha verticalmente, pressioná-la novamente retorna a tabela.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Uma linha: o texto é pesquisado em todas as colunas; você pode especificar uma coluna e uma condição, como valor > 10 ou nome LIKE 'A%'.",
+  "Снять фильтр": "Remover filtro",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filtro: texto, coluna > 10, LIKE %…%"
  },
  "fr": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) pages (entry.durationMs) ms",
@@ -3041,7 +3053,11 @@
   "Снять все условия фильтра": "Supprimer toutes les conditions de filtrage",
   "Строка вертикально / таблица": "Rangée verticalement / tableau",
   "Строка №%@": "Ligne #%@",
-  "Удалить историю вычислений": "Supprimer l'historique des calculs"
+  "Удалить историю вычислений": "Supprimer l'historique des calculs",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Une ligne de filtre sur les lignes déjà chargées ; Le script SQL ne change pas. Chaîne vide - pas de filtre. Vous pouvez rechercher du texte dans toutes les colonnes ou écrire des conditions telles que montant > 10, nom LIKE 'A%'. L'onglet dans un tableau ouvre une ligne verticalement, appuyer à nouveau dessus renvoie le tableau.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Une ligne : le texte est recherché dans toutes les colonnes ; vous pouvez spécifier une colonne et une condition, telles que montant > 10 ou nom LIKE 'A%'.",
+  "Снять фильтр": "Supprimer le filtre",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filtre : texte, colonne > 10, LIKE %…%"
  },
  "de": {
   "Вернуть стандартную максимальную ширину столбца": "Gibt die standardmäßige maximale Spaltenbreite zurück",
@@ -3802,7 +3818,11 @@
   "Снять все условия фильтра": "Löschen Sie alle Filterbedingungen",
   "Строка вертикально / таблица": "Vertikale Zeile / Tabelle",
   "Строка №%@": "Zeile #%@",
-  "Удалить историю вычислений": "Berechnungsverlauf löschen"
+  "Удалить историю вычислений": "Berechnungsverlauf löschen",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Eine Filterzeile zu bereits geladenen Zeilen; Das SQL-Skript ändert sich nicht. Leere Zeichenfolge – kein Filter. Sie können in allen Spalten nach Text suchen oder Bedingungen wie Menge > 10, Name WIE „A %“ eingeben. Mit der Tabulatortaste in einer Tabelle wird eine Zeile vertikal geöffnet. Durch erneutes Drücken wird die Tabelle wieder geöffnet.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Eine Zeile: Der Text wird in allen Spalten durchsucht; Sie können eine Spalte und eine Bedingung angeben, z. B. Betrag > 10 oder einen Namen wie „A %“.",
+  "Снять фильтр": "Filter entfernen",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: Text, Spalte > 10, LIKE %…%"
  },
  "it": {
   "Выполнить всё": "Completa tutto",
@@ -4563,7 +4583,11 @@
   "Снять все условия фильтра": "Cancella tutte le condizioni del filtro",
   "Строка вертикально / таблица": "Riga verticalmente/tabella",
   "Строка №%@": "Linea #%@",
-  "Удалить историю вычислений": "Elimina la cronologia dei calcoli"
+  "Удалить историю вычислений": "Elimina la cronologia dei calcoli",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Una linea di filtro su linee già caricate; Lo script SQL non cambia. Stringa vuota: nessun filtro. Puoi cercare il testo in tutte le colonne o scrivere condizioni come importo > 10, nome COME 'A%'. La scheda in una tabella apre una riga verticalmente, premendola nuovamente si ritorna alla tabella.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Una riga: il testo viene cercato in tutte le colonne; puoi specificare una colonna e una condizione, ad esempio importo > 10 o nome LIKE 'A%'.",
+  "Снять фильтр": "Rimuovi il filtro",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filtro: testo, colonna > 10, MI PIACE %…%"
  },
  "nl": {
   "Вернуть стандартную максимальную ширину столбца": "Retourneert de standaard maximale kolombreedte",
@@ -5324,7 +5348,11 @@
   "Не удалось вычислить выражение": "Kan expressie niet evalueren",
   "Неверное число аргументов: %@": "Ongeldig aantal argumenten: %@",
   "Неизвестная функция: %@": "Onbekende functie: %@",
-  "Неизвестное имя: %@": "Onbekende naam: %@"
+  "Неизвестное имя: %@": "Onbekende naam: %@",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Eén filterregel voor reeds geladen regels; Het SQL-script verandert niet. Lege tekenreeks - geen filter. U kunt in alle kolommen naar tekst zoeken of voorwaarden schrijven zoals bedrag > 10, naam LIKE 'A%'. Met de tab in een tabel wordt een rij verticaal geopend. Als u er nogmaals op drukt, wordt de tabel geretourneerd.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Eén regel: tekst wordt in alle kolommen doorzocht; u kunt een kolom en voorwaarde opgeven, zoals bedrag > 10 of naam LIKE 'A%'.",
+  "Снять фильтр": "Filter verwijderen",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: tekst, kolom > 10, LIKE %…%"
  },
  "pl": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) strony (entry.durationMs) ms",
@@ -6085,7 +6113,11 @@
   "Снять все условия фильтра": "Wyczyść wszystkie warunki filtra",
   "Строка вертикально / таблица": "Rząd pionowo / stół",
   "Строка №%@": "Linia #%@",
-  "Удалить историю вычислений": "Usuń historię obliczeń"
+  "Удалить историю вычислений": "Usuń historię obliczeń",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Jedna linia filtrująca do już załadowanych linii; Skrypt SQL nie ulega zmianie. Pusty ciąg znaków — brak filtra. Możesz wyszukiwać tekst we wszystkich kolumnach lub wpisać warunki, takie jak kwota > 10, nazwa JAK „A%”. Tab w tabeli otwiera wiersz w pionie, ponowne naciśnięcie powoduje powrót do tabeli.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Jedna linia: tekst jest przeszukiwany we wszystkich kolumnach; możesz określić kolumnę i warunek, na przykład kwotę > 10 lub nazwę LIKE „A%”.",
+  "Снять фильтр": "Usuń filtr",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filtr: tekst, kolumna > 10, LIKE %…%"
  },
  "tr": {
   "Выполнить всё": "Her şeyi tamamla",
@@ -6846,7 +6878,11 @@
   "Не удалось вычислить выражение": "İfade değerlendirilemedi",
   "Неверное число аргументов: %@": "Geçersiz bağımsız değişken sayısı: %@",
   "Неизвестная функция: %@": "Bilinmeyen işlev: %@",
-  "Неизвестное имя: %@": "Bilinmeyen ad: %@"
+  "Неизвестное имя: %@": "Bilinmeyen ad: %@",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Zaten yüklenmiş satırlara bir filtre satırı; SQL betiği değişmez. Boş dize - filtre yok. Tüm sütunlarda metin arayabilir veya miktar > 10, ad LIKE 'A%' gibi koşulları yazabilirsiniz. Bir tablodaki sekme, bir satırı dikey olarak açar; buna tekrar basıldığında tablo geri döner.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Tek satır: metin tüm sütunlarda aranır; miktar > 10 veya LIKE 'A%' gibi bir sütun ve koşul belirtebilirsiniz.",
+  "Снять фильтр": "Filtreyi kaldır",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filtre: metin, sütun > 10, %…% gibi"
  },
  "ar": {
   "Заключать значения в кавычки": "أرفق القيم بين علامات الاقتباس",
@@ -7607,7 +7643,11 @@
   "Снять все условия фильтра": "قم بمسح كافة شروط التصفية",
   "Строка вертикально / таблица": "صف عموديا / الجدول",
   "Строка №%@": "السطر #%@",
-  "Удалить историю вычислений": "حذف سجل الحساب"
+  "Удалить историю вычислений": "حذف سجل الحساب",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "خط مرشح واحد للخطوط المحملة بالفعل؛ لا يتغير البرنامج النصي SQL. سلسلة فارغة - لا يوجد مرشح. يمكنك البحث عن نص في جميع الأعمدة أو كتابة شروط مثل المبلغ > 10، الاسم مثل \"A%\". تفتح علامة التبويب الموجودة في الجدول صفًا عموديًا، ويؤدي الضغط عليها مرة أخرى إلى إرجاع الجدول.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "سطر واحد: يتم البحث عن النص في جميع الأعمدة؛ يمكنك تحديد عمود وشرط، مثل المبلغ > 10 أو الاسم مثل \"A%\".",
+  "Снять фильтр": "قم بإزالة الفلتر",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "عامل التصفية: نص، عمود > 10، LIKE %…%"
  },
  "hi": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) पेज (entry.durationMs) एमएस",
@@ -8368,7 +8408,11 @@
   "Условие…": "शर्त...",
   "Фильтр": "फ़िल्टर करें",
   "Фильтры очищены": "फिल्टर साफ़ किये जाते हैं",
-  "из %@": "%@ से"
+  "из %@": "%@ से",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "पहले से लोड की गई लाइनों के लिए एक फ़िल्टर लाइन; SQL स्क्रिप्ट नहीं बदलती. खाली स्ट्रिंग - कोई फ़िल्टर नहीं. आप सभी कॉलमों में टेक्स्ट खोज सकते हैं या राशि > 10, नाम जैसे 'ए%' जैसी शर्तें लिख सकते हैं। किसी तालिका में टैब एक पंक्ति को लंबवत रूप से खोलता है, उसे दोबारा दबाने पर तालिका वापस आ जाती है।",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "एक पंक्ति: पाठ सभी स्तंभों में खोजा जाता है; आप एक कॉलम और शर्त निर्दिष्ट कर सकते हैं, जैसे राशि > 10 या 'ए%' जैसा नाम।",
+  "Снять фильтр": "फ़िल्टर हटाएँ",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "फ़िल्टर: टेक्स्ट, कॉलम > 10, पसंद %…%"
  },
  "zh-Hans": {
   "Вернуть стандартную максимальную ширину столбца": "返回默认最大列宽",
@@ -9129,7 +9173,11 @@
   "Условие…": "条件...",
   "Фильтр": "过滤器",
   "Фильтры очищены": "过滤器已清洁",
-  "из %@": "来自%@"
+  "из %@": "来自%@",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "一根过滤线连接到已加载的线； SQL 脚本不会改变。空字符串 - 无过滤器。您可以搜索所有列中的文本或编写条件，例如金额 > 10、名称如“A%”。表格中的 Tab 垂直打开一行，再次按下它返回表格。",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "一行：在所有列中搜索文本；您可以指定列和条件，例如金额 > 10 或名称 LIKE 'A%'。",
+  "Снять фильтр": "移除过滤器",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "过滤器：文本、列 > 10、LIKE %…%"
  },
  "zh-Hant": {
   "Вернуть стандартную максимальную ширину столбца": "傳回預設最大列寬",
@@ -9890,7 +9938,11 @@
   "Условие…": "條件...",
   "Фильтр": "過濾器",
   "Фильтры очищены": "過濾器已清潔",
-  "из %@": "來自%@"
+  "из %@": "來自%@",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "一條過濾線連接到已載入的線； SQL 腳本不會改變。空字串 - 無過濾器。您可以搜尋所有欄位中的文字或編寫條件，例如金額 > 10、名稱如「A%」。表格中的 Tab 垂直開啟一行，再次按下它返回表格。",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "一行：在所有欄位中搜尋文字；您可以指定欄位和條件，例如金額 > 10 或名稱 LIKE 'A%'。",
+  "Снять фильтр": "移除過濾器",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "過濾器：文字、列 > 10、LIKE %…%"
  },
  "ja": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) ページ (entry.durationMs) ミリ秒",
@@ -10651,7 +10703,11 @@
   "Снять все условия фильтра": "すべてのフィルター条件をクリア",
   "Строка вертикально / таблица": "縦に並べる / テーブル",
   "Строка №%@": "行番号%@",
-  "Удалить историю вычислений": "計算履歴の削除"
+  "Удалить историю вычислений": "計算履歴の削除",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "すでにロードされている行に対して 1 つのフィルター行。 SQL スクリプトは変更されません。空の文字列 - フィルターなし。すべての列のテキストを検索したり、金額 > 10、名前「A%」などの条件を記述したりできます。表内の Tab キーを押すと垂直方向に行が開き、もう一度押すと表に戻ります。",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "1 行: テキストはすべての列で検索されます。列と条件 (金額 > 10 など) や名前 (「A%」など) を指定できます。",
+  "Снять фильтр": "フィルターを削除する",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "フィルタ: テキスト、列 > 10、LIKE %…%"
  },
  "ko": {
   "Вернуть стандартную максимальную ширину столбца": "기본 최대 열 너비 반환",
@@ -11412,7 +11468,11 @@
   "Не удалось вычислить выражение": "표현식을 평가하지 못했습니다.",
   "Неверное число аргументов: %@": "잘못된 인수 개수: %@",
   "Неизвестная функция: %@": "알 수 없는 기능: %@",
-  "Неизвестное имя: %@": "알 수 없는 이름: %@"
+  "Неизвестное имя: %@": "알 수 없는 이름: %@",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "이미 로드된 라인에 하나의 필터 라인을 추가합니다. SQL 스크립트는 변경되지 않습니다. 빈 문자열 - 필터가 없습니다. 모든 열에서 텍스트를 검색하거나 금액 > 10, 이름 LIKE 'A%'와 같은 조건을 작성할 수 있습니다. 테이블의 탭은 행을 세로로 열고, 다시 누르면 테이블이 반환됩니다.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "한 줄: 모든 열에서 텍스트가 검색됩니다. 금액 > 10 또는 이름 LIKE 'A%'와 같은 열 및 조건을 지정할 수 있습니다.",
+  "Снять фильтр": "필터 제거",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "필터: 텍스트, 열 > 10, LIKE %...%"
  },
  "id": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) halaman (entry.durationMs) ms",
@@ -12173,7 +12233,11 @@
   "Снять все условия фильтра": "Hapus semua kondisi filter",
   "Строка вертикально / таблица": "Baris vertikal / tabel",
   "Строка №%@": "Baris #%@",
-  "Удалить историю вычислений": "Hapus riwayat perhitungan"
+  "Удалить историю вычислений": "Hapus riwayat perhitungan",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Satu baris filter ke baris yang sudah dimuat; Skrip SQL tidak berubah. String kosong - tanpa filter. Anda dapat mencari teks di semua kolom atau menulis ketentuan seperti jumlah > 10, nama LIKE 'A%'. Tab dalam tabel membuka baris secara vertikal, menekannya lagi akan mengembalikan tabel.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Satu baris: teks dicari di semua kolom; Anda dapat menentukan kolom dan ketentuan, seperti jumlah > 10 atau nama LIKE 'A%'.",
+  "Снять фильтр": "Hapus penyaring",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: teks, kolom > 10, LIKE %…%"
  },
  "vi": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) trang (entry.durationMs) mili giây",
@@ -12934,7 +12998,11 @@
   "Не удалось вычислить выражение": "Không thể đánh giá biểu thức",
   "Неверное число аргументов: %@": "Số đối số không hợp lệ: %@",
   "Неизвестная функция: %@": "Chức năng không xác định: %@",
-  "Неизвестное имя: %@": "Tên không xác định: %@"
+  "Неизвестное имя: %@": "Tên không xác định: %@",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Một dòng lọc cho các dòng đã được tải; Tập lệnh SQL không thay đổi. Chuỗi trống - không có bộ lọc. Bạn có thể tìm kiếm văn bản ở tất cả các cột hoặc viết điều kiện như số tiền > 10, đặt tên THÍCH 'A%'. Tab trong bảng sẽ mở một hàng theo chiều dọc, nhấn lại vào bảng sẽ trả về bảng.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Một dòng: văn bản được tìm kiếm trong tất cả các cột; bạn có thể chỉ định một cột và điều kiện, chẳng hạn như số tiền > 10 hoặc đặt tên THÍCH 'A%'.",
+  "Снять фильтр": "Xóa bộ lọc",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Bộ lọc: văn bản, cột > 10, THÍCH %…%"
  },
  "th": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) หน้า (entry.durationMs) มิลลิวินาที",
@@ -13695,7 +13763,11 @@
   "Снять все условия фильтра": "ล้างเงื่อนไขตัวกรองทั้งหมด",
   "Строка вертикально / таблица": "แถวแนวตั้ง / ตาราง",
   "Строка №%@": "ไลน์ #%@",
-  "Удалить историю вычислений": "ลบประวัติการคำนวณ"
+  "Удалить историю вычислений": "ลบประวัติการคำนวณ",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "หนึ่งบรรทัดตัวกรองถึงบรรทัดที่โหลดแล้ว สคริปต์ SQL จะไม่เปลี่ยนแปลง สตริงว่าง - ไม่มีตัวกรอง คุณสามารถค้นหาข้อความในทุกคอลัมน์หรือเขียนเงื่อนไข เช่น จำนวน > 10 ชื่อ LIKE 'A%' แท็บในตารางจะเปิดแถวในแนวตั้ง เมื่อกดอีกครั้งก็จะคืนตาราง",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "หนึ่งบรรทัด: ค้นหาข้อความในทุกคอลัมน์ คุณสามารถระบุคอลัมน์และเงื่อนไข เช่น จำนวน > 10 หรือชื่อ LIKE 'A%'",
+  "Снять фильтр": "ลบตัวกรอง",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "ตัวกรอง: ข้อความ คอลัมน์ > 10, LIKE %…%"
  },
  "sv": {
   "Заключать значения в кавычки": "Bifoga värden inom citattecken",
@@ -14456,7 +14528,11 @@
   "Не удалось вычислить выражение": "Det gick inte att utvärdera uttrycket",
   "Неверное число аргументов: %@": "Ogiltigt antal argument: %@",
   "Неизвестная функция: %@": "Okänd funktion: %@",
-  "Неизвестное имя: %@": "Okänt namn: %@"
+  "Неизвестное имя: %@": "Okänt namn: %@",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "En filterlinje till redan laddade linjer; SQL-skriptet ändras inte. Tom sträng - inget filter. Du kan söka efter text i alla kolumner eller skriva villkor som mängd > 10, namn LIKE 'A%'. Tabb i en tabell öppnar en rad vertikalt, genom att trycka på den igen returneras tabellen.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "En rad: text söks i alla kolumner; du kan ange en kolumn och ett villkor, till exempel belopp > 10 eller namn som \"A%\".",
+  "Снять фильтр": "Ta bort filtret",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: text, kolumn > 10, LIKE %…%"
  },
  "cs": {
   "Заключать значения в кавычки": "Uzavřete hodnoty do uvozovek",
@@ -15217,7 +15293,11 @@
   "Снять все условия фильтра": "Vymažte všechny podmínky filtru",
   "Строка вертикально / таблица": "Řádek svisle / stůl",
   "Строка №%@": "Řádek #%@",
-  "Удалить историю вычислений": "Smazat historii výpočtů"
+  "Удалить историю вычислений": "Smazat historii výpočtů",
+  "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Jeden řádek filtru k již načteným řádkům; SQL skript se nemění. Prázdný řetězec – žádný filtr. Můžete hledat text ve všech sloupcích nebo napsat podmínky jako částka > 10, název LIKE 'A%'. Tabulátor v tabulce otevře řádek svisle, dalším stisknutím se tabulka vrátí.",
+  "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Jeden řádek: text se hledá ve všech sloupcích; můžete zadat sloupec a podmínku, například částku > 10 nebo název LIKE 'A%'.",
+  "Снять фильтр": "Odstraňte filtr",
+  "Фильтр: текст, столбец > 10, LIKE %…%": "Filtr: text, sloupec > 10, LIKE %…%"
  },
  "_en": {
   "en": {
@@ -15492,7 +15572,11 @@
    "Не закрыта скобка": "Unclosed parenthesis",
    "Неизвестное имя: %@": "Unknown name: %@",
    "Неизвестная функция: %@": "Unknown function: %@",
-   "Неверное число аргументов: %@": "Wrong number of arguments: %@"
+   "Неверное число аргументов: %@": "Wrong number of arguments: %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: text, column > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "One line: text searches every column; you can also use a column and condition, e.g. amount > 10 or name LIKE 'A%'.",
+   "Снять фильтр": "Clear filter",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "One filter line over the rows already loaded; the SQL script is never changed. An empty line means no filter. Type text to search all columns, or a condition such as amount > 10 or name LIKE 'A%'. Tab in the grid opens the row vertically; Tab again returns to the table."
   },
   "es": {
    "Новый запрос": "Nueva consulta",
@@ -15766,7 +15850,11 @@
    "Показать выбранную строку вертикально (Tab)": "Mostrar la fila seleccionada verticalmente (Tab)",
    "Строка вертикально / таблица": "Fila vertical / cuadrícula",
    "Строка №%@": "Fila #%@",
-   "из %@": "de %@"
+   "из %@": "de %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filtro: texto, columna > 10, ME GUSTA %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Una línea: el texto busca en cada columna; también puede utilizar una columna y una condición, p. cantidad > 10 o nombre COMO 'A%'.",
+   "Снять фильтр": "Limpiar filtro",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Una línea de filtro sobre las filas ya cargadas; el script SQL nunca se cambia. Una línea vacía significa que no hay filtro. Escriba texto para buscar en todas las columnas, o una condición como cantidad > 10 o nombre COMO 'A%'. La pestaña en la cuadrícula abre la fila verticalmente; Tab vuelve nuevamente a la mesa."
   },
   "pt": {
    "Новый запрос": "Nova consulta",
@@ -16040,7 +16128,11 @@
    "Не закрыта скобка": "Parênteses não fechados",
    "Неизвестное имя: %@": "Nome desconhecido: %@",
    "Неизвестная функция: %@": "Função desconhecida: %@",
-   "Неверное число аргументов: %@": "Número errado de argumentos: %@"
+   "Неверное число аргументов: %@": "Número errado de argumentos: %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filtro: texto, coluna > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Uma linha: o texto pesquisa todas as colunas; você também pode usar uma coluna e uma condição, por exemplo. valor> 10 ou nome LIKE 'A%'.",
+   "Снять фильтр": "Limpar filtro",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Uma linha de filtro sobre as linhas já carregadas; o script SQL nunca é alterado. Uma linha vazia significa que não há filtro. Digite o texto para pesquisar todas as colunas ou uma condição como valor > 10 ou nome LIKE 'A%'. Tab na grade abre a linha verticalmente; Tab novamente retorna à tabela."
   },
   "fr": {
    "Новый запрос": "Nouvelle requête",
@@ -16314,7 +16406,11 @@
    "Не закрыта скобка": "Parenthèse non fermée",
    "Неизвестное имя: %@": "Nom inconnu : %@",
    "Неизвестная функция: %@": "Fonction inconnue : %@",
-   "Неверное число аргументов: %@": "Nombre d'arguments incorrect : %@"
+   "Неверное число аргументов: %@": "Nombre d'arguments incorrect : %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filtre : texte, colonne > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Une ligne : le texte recherche dans chaque colonne ; vous pouvez également utiliser une colonne et une condition, par ex. montant > 10 ou nom LIKE 'A%'.",
+   "Снять фильтр": "Effacer le filtre",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Une ligne de filtre sur les lignes déjà chargées ; le script SQL n'est jamais modifié. Une ligne vide signifie aucun filtre. Tapez du texte pour rechercher dans toutes les colonnes, ou une condition telle que montant > 10 ou nom LIKE 'A%'. L'onglet dans la grille ouvre la ligne verticalement ; Tab revient à nouveau au tableau."
   },
   "de": {
    "Новый запрос": "Neue Abfrage",
@@ -16588,7 +16684,11 @@
    "Вернуться к таблице результатов (Tab)": "Zurück zum Ergebnisraster (Tab)",
    "Tab — вернуться к таблице": "Tab – zurück zum Raster",
    "Уникальный ключ": "Einzigartiger Schlüssel",
-   "Уникальный ключ не определён": "Eindeutiger Schlüssel nicht bestimmt"
+   "Уникальный ключ не определён": "Eindeutiger Schlüssel nicht bestimmt",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: Text, Spalte > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Eine Zeile: Text durchsucht jede Spalte; Sie können auch eine Spalte und eine Bedingung verwenden, z. Betrag > 10 oder Name LIKE 'A%'.",
+   "Снять фильтр": "Filter löschen",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Eine Filterzeile über den bereits geladenen Zeilen; Das SQL-Skript wird nie geändert. Eine leere Zeile bedeutet keinen Filter. Geben Sie Text ein, um alle Spalten zu durchsuchen, oder eine Bedingung wie „Betrag > 10“ oder „Name WIE „A %“. Tab im Raster öffnet die Zeile vertikal; Tab kehrt wieder zur Tabelle zurück."
   },
   "it": {
    "Новый запрос": "Nuova interrogazione",
@@ -16862,7 +16962,11 @@
    "Показать выбранную строку вертикально (Tab)": "Mostra la riga selezionata verticalmente (Tab)",
    "Строка вертикально / таблица": "Riga verticalmente/griglia",
    "Строка №%@": "Riga #%@",
-   "из %@": "di %@"
+   "из %@": "di %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filtro: testo, colonna > 10, MI PIACE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Una riga: il testo cerca in ogni colonna; puoi anche utilizzare una colonna e una condizione, ad es. importo > 10 o nome COME 'A%'.",
+   "Снять фильтр": "Cancella filtro",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Una linea di filtro sopra le righe già caricate; lo script SQL non viene mai modificato. Una riga vuota significa nessun filtro. Digita il testo per cercare in tutte le colonne o una condizione come importo > 10 o nome COME \"A%\". La scheda nella griglia apre la riga verticalmente; Tab ritorna nuovamente alla tabella."
   },
   "nl": {
    "Новый запрос": "Nieuwe zoekopdracht",
@@ -17136,7 +17240,11 @@
    "Вернуться к таблице результатов (Tab)": "Terug naar het resultatenraster (tabblad)",
    "Tab — вернуться к таблице": "Tabblad — terug naar het raster",
    "Уникальный ключ": "Unieke sleutel",
-   "Уникальный ключ не определён": "Unieke sleutel niet bepaald"
+   "Уникальный ключ не определён": "Unieke sleutel niet bepaald",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: tekst, kolom > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Eén regel: tekst doorzoekt elke kolom; u kunt ook een kolom en voorwaarde gebruiken, b.v. bedrag > 10 of naam LIKE 'A%'.",
+   "Снять фильтр": "Filter wissen",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Eén filterlijn over de reeds geladen rijen; het SQL-script wordt nooit gewijzigd. Een lege regel betekent dat er geen filter is. Typ tekst om in alle kolommen te zoeken, of een voorwaarde zoals bedrag > 10 of naam LIKE 'A%'. Met het tabblad in het raster wordt de rij verticaal geopend; Tab keert opnieuw terug naar de tabel."
   },
   "pl": {
    "Новый запрос": "Nowe zapytanie",
@@ -17410,7 +17518,11 @@
    "Показать выбранную строку вертикально (Tab)": "Pokaż wybrany wiersz w pionie (Tab)",
    "Строка вертикально / таблица": "Rząd pionowo / siatka",
    "Строка №%@": "Wiersz #%@",
-   "из %@": "z %@"
+   "из %@": "z %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filtr: tekst, kolumna > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Jedna linia: tekst przeszukuje każdą kolumnę; możesz także użyć kolumny i warunku, np. kwota > 10 lub nazwa JAK „A%”.",
+   "Снять фильтр": "Wyczyść filtr",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Jedna linia filtra nad już załadowanymi wierszami; skrypt SQL nigdy nie jest zmieniany. Pusta linia oznacza brak filtra. Wpisz tekst, aby przeszukać wszystkie kolumny, lub warunek, taki jak kwota > 10 lub nazwa JAK „A%”. Zakładka w siatce otwiera wiersz w pionie; Tab ponownie powraca do tabeli."
   },
   "tr": {
    "Подключение": "Bağlantı",
@@ -17684,7 +17796,11 @@
    "Показать выбранную строку вертикально (Tab)": "Seçilen satırı dikey olarak göster (Sekme)",
    "Строка вертикально / таблица": "Dikey olarak sıralayın / ızgara",
    "Строка №%@": "Satır #%@",
-   "из %@": "%@'dan"
+   "из %@": "%@'dan",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filtre: metin, sütun > 10, %…% gibi",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Tek satır: metin her sütunda arama yapar; ayrıca bir sütun ve koşul da kullanabilirsiniz; miktar > 10 veya 'A%' gibi bir ad.",
+   "Снять фильтр": "Filtreyi temizle",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Zaten yüklenmiş satırların üzerinde bir filtre satırı; SQL betiği asla değişmez. Boş bir satır filtre olmadığı anlamına gelir. Tüm sütunlarda arama yapmak için metni veya miktar > 10 gibi bir koşulu veya 'A%' gibi bir adı yazın. Izgaradaki sekme satırı dikey olarak açar; Sekme tekrar tabloya döner."
   },
   "ar": {
    "Новый запрос": "استعلام جديد",
@@ -17958,7 +18074,11 @@
    "Не закрыта скобка": "قوسين غير مغلقين",
    "Неизвестное имя: %@": "اسم غير معروف: %@",
    "Неизвестная функция: %@": "دالة غير معروفة: %@",
-   "Неверное число аргументов: %@": "عدد خاطئ من الوسائط: %@"
+   "Неверное число аргументов: %@": "عدد خاطئ من الوسائط: %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "عامل التصفية: نص، عمود > 10، LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "سطر واحد: النص يبحث في كل عمود؛ يمكنك أيضًا استخدام عمود وشرط، على سبيل المثال. المبلغ > 10 أو الاسم مثل \"A%\".",
+   "Снять фильтр": "مسح الفلتر",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "خط مرشح واحد فوق الصفوف التي تم تحميلها بالفعل؛ لا يتم تغيير البرنامج النصي SQL أبدًا. السطر الفارغ يعني عدم وجود مرشح. اكتب نصًا للبحث في جميع الأعمدة، أو شرطًا مثل المبلغ > 10 أو اسم مثل \"A%\". تعمل علامة التبويب الموجودة في الشبكة على فتح الصف عموديًا؛ تعود علامة التبويب مرة أخرى إلى الجدول."
   },
   "hi": {
    "Новый запрос": "नई क्वेरी",
@@ -18232,7 +18352,11 @@
    "Показать выбранную строку вертикально (Tab)": "चयनित पंक्ति को लंबवत दिखाएँ (टैब)",
    "Строка вертикально / таблица": "पंक्ति लंबवत / ग्रिड",
    "Строка №%@": "पंक्ति #%@",
-   "из %@": "%@ का"
+   "из %@": "%@ का",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "फ़िल्टर: टेक्स्ट, कॉलम > 10, पसंद %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "एक पंक्ति: पाठ प्रत्येक स्तंभ को खोजता है; आप किसी कॉलम और शर्त का भी उपयोग कर सकते हैं, उदा. राशि > 10 या 'ए%' जैसा नाम।",
+   "Снять фильтр": "फ़िल्टर साफ़ करें",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "पहले से लोड की गई पंक्तियों पर एक फ़िल्टर लाइन; SQL स्क्रिप्ट कभी नहीं बदली जाती. खाली लाइन का मतलब कोई फ़िल्टर नहीं है। सभी कॉलम खोजने के लिए टेक्स्ट टाइप करें, या कोई शर्त जैसे राशि > 10 या नाम जैसे 'ए%'। ग्रिड में टैब पंक्ति को लंबवत रूप से खोलता है; टैब फिर से टेबल पर लौट आता है."
   },
   "zh-Hans": {
    "Подключение": "连接方式",
@@ -18506,7 +18630,11 @@
    "Показать выбранную строку вертикально (Tab)": "垂直显示所选行（Tab）",
    "Строка вертикально / таблица": "垂直行/网格",
    "Строка №%@": "行#%@",
-   "из %@": "%@ 的"
+   "из %@": "%@ 的",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "过滤器：文本、列 > 10、LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "一行：文本搜索每一列；您还可以使用列和条件，例如金额 > 10 或名称如“A%”。",
+   "Снять фильтр": "清除过滤器",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "已加载的行上有一根过滤线； SQL 脚本永远不会改变。空行表示没有过滤器。键入文本以搜索所有列，或输入条件（例如金额 > 10 或名称 LIKE 'A%'）。网格中的选项卡垂直打开行；再次按 Tab 键返回到表格。"
   },
   "zh-Hant": {
    "Новый запрос": "新查詢",
@@ -18780,7 +18908,11 @@
    "Показать выбранную строку вертикально (Tab)": "垂直顯示所選行（Tab）",
    "Строка вертикально / таблица": "垂直行/網格",
    "Строка №%@": "行#%@",
-   "из %@": "%@ 的"
+   "из %@": "%@ 的",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "過濾器：文字、列 > 10、LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "一行：文字搜尋每一列；您也可以使用列和條件，例如金額 > 10 或名稱如「A%」。",
+   "Снять фильтр": "清除過濾器",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "已載入的行上有一條過濾線； SQL 腳本永遠不會改變。空白行表示沒有過濾器。鍵入文字以搜尋所有列，或輸入條件（例如金額 > 10 或名稱 LIKE 'A%'）。網格中的選項卡垂直開啟行；再次按 Tab 鍵返回表格。"
   },
   "ja": {
    "Подключение": "接続",
@@ -19054,7 +19186,11 @@
    "Вернуться к таблице результатов (Tab)": "結果グリッドに戻る (タブ)",
    "Tab — вернуться к таблице": "タブ — グリッドに戻ります",
    "Уникальный ключ": "一意のキー",
-   "Уникальный ключ не определён": "一意のキーが決定されていません"
+   "Уникальный ключ не определён": "一意のキーが決定されていません",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "フィルタ: テキスト、列 > 10、LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "1 行: テキストはすべての列を検索します。列と条件を使用することもできます。量 > 10、または「A%」のような名前。",
+   "Снять фильтр": "クリアフィルター",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "すでにロードされている行の上に 1 つのフィルター行。 SQL スクリプトは決して変更されません。空行はフィルターがないことを意味します。すべての列を検索するにはテキストを入力するか、金額 > 10 や名前 (「A%」など) などの条件を入力します。グリッド内のタブを押すと行が垂直に開きます。 Tab キーを再度押すと表に戻ります。"
   },
   "ko": {
    "Подключение": "연결",
@@ -19328,7 +19464,11 @@
    "Не закрыта скобка": "닫히지 않은 괄호",
    "Неизвестное имя: %@": "알 수 없는 이름: %@",
    "Неизвестная функция: %@": "알 수 없는 기능: %@",
-   "Неверное число аргументов: %@": "잘못된 인수 개수: %@"
+   "Неверное число аргументов: %@": "잘못된 인수 개수: %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "필터: 텍스트, 열 > 10, LIKE %...%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "한 줄: 텍스트는 모든 열을 검색합니다. 열과 조건을 사용할 수도 있습니다. 금액 > 10 또는 'A%'와 같은 이름입니다.",
+   "Снять фильтр": "필터 지우기",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "이미 로드된 행 위에 하나의 필터 줄이 있습니다. SQL 스크립트는 변경되지 않습니다. 빈 줄은 필터가 없음을 의미합니다. 모든 열을 검색하려면 텍스트를 입력하거나 금액 > 10 또는 이름 LIKE 'A%'와 같은 조건을 입력하세요. 그리드의 탭은 행을 수직으로 엽니다. Tab은 다시 테이블로 돌아갑니다."
   },
   "id": {
    "Подключение": "Koneksi",
@@ -19602,7 +19742,11 @@
    "Не закрыта скобка": "Tanda kurung tidak tertutup",
    "Неизвестное имя: %@": "Nama tidak dikenal: %@",
    "Неизвестная функция: %@": "Fungsi tidak diketahui: %@",
-   "Неверное число аргументов: %@": "Jumlah argumen salah: %@"
+   "Неверное число аргументов: %@": "Jumlah argumen salah: %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: teks, kolom > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Satu baris: pencarian teks di setiap kolom; Anda juga dapat menggunakan kolom dan kondisi, mis. jumlah > 10 atau beri nama SEPERTI 'A%'.",
+   "Снять фильтр": "Hapus penyaring",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Satu garis filter di atas baris yang sudah dimuat; skrip SQL tidak pernah berubah. Baris kosong berarti tidak ada filter. Ketik teks untuk mencari semua kolom, atau kondisi seperti jumlah > 10 atau nama LIKE 'A%'. Tab di kisi membuka baris secara vertikal; Tab kembali lagi ke tabel."
   },
   "vi": {
    "Новый запрос": "Truy vấn mới",
@@ -19876,7 +20020,11 @@
    "Показать выбранную строку вертикально (Tab)": "Hiển thị hàng đã chọn theo chiều dọc (Tab)",
    "Строка вертикально / таблица": "Hàng dọc/lưới",
    "Строка №%@": "Hàng #%@",
-   "из %@": "của %@"
+   "из %@": "của %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Bộ lọc: văn bản, cột > 10, THÍCH %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Một dòng: văn bản tìm kiếm mọi cột; bạn cũng có thể sử dụng cột và điều kiện, ví dụ: số tiền > 10 hoặc đặt tên THÍCH 'A%'.",
+   "Снять фильтр": "Xóa bộ lọc",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Một dòng lọc trên các hàng đã được tải; tập lệnh SQL không bao giờ thay đổi. Một dòng trống có nghĩa là không có bộ lọc. Nhập văn bản để tìm kiếm tất cả các cột hoặc một điều kiện chẳng hạn như số tiền > 10 hoặc tên THÍCH 'A%'. Tab trong lưới sẽ mở hàng theo chiều dọc; Tab lại quay trở lại bảng."
   },
   "th": {
    "Новый запрос": "แบบสอบถามใหม่",
@@ -20150,7 +20298,11 @@
    "Показать выбранную строку вертикально (Tab)": "แสดงแถวที่เลือกในแนวตั้ง (Tab)",
    "Строка вертикально / таблица": "แถวแนวตั้ง/ตาราง",
    "Строка №%@": "แถว #%@",
-   "из %@": "ของ %@"
+   "из %@": "ของ %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "ตัวกรอง: ข้อความ คอลัมน์ > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "หนึ่งบรรทัด: ข้อความค้นหาทุกคอลัมน์ คุณยังสามารถใช้คอลัมน์และเงื่อนไขได้ เช่น จำนวน > 10 หรือชื่อ LIKE 'A%'",
+   "Снять фильтр": "ล้างตัวกรอง",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "มีบรรทัดตัวกรองหนึ่งบรรทัดเหนือแถวที่โหลดแล้ว สคริปต์ SQL จะไม่มีการเปลี่ยนแปลง บรรทัดว่างหมายความว่าไม่มีตัวกรอง พิมพ์ข้อความเพื่อค้นหาทุกคอลัมน์ หรือเงื่อนไข เช่น จำนวน > 10 หรือชื่อ LIKE 'A%' แท็บในตารางจะเปิดแถวในแนวตั้ง Tab กลับไปที่ตารางอีกครั้ง"
   },
   "sv": {
    "Новый запрос": "Ny fråga",
@@ -20424,7 +20576,11 @@
    "Показать выбранную строку вертикально (Tab)": "Visa den valda raden vertikalt (flik)",
    "Строка вертикально / таблица": "Rad vertikalt / rutnät",
    "Строка №%@": "Rad #%@",
-   "из %@": "av %@"
+   "из %@": "av %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filter: text, kolumn > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "En rad: text söker igenom varje kolumn; du kan också använda en kolumn och villkor, t.ex. belopp > 10 eller namn SOM \"A%\".",
+   "Снять фильтр": "Rensa filter",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "En filterlinje över de redan laddade raderna; SQL-skriptet ändras aldrig. En tom rad betyder inget filter. Skriv text för att söka i alla kolumner, eller ett villkor som mängd > 10 eller namn SOM \"A%\". Fliken i rutnätet öppnar raden vertikalt; Tab återgår till tabellen."
   },
   "cs": {
    "Новый запрос": "Nový dotaz",
@@ -20698,7 +20854,11 @@
    "Показать выбранную строку вертикально (Tab)": "Zobrazit vybraný řádek svisle (Tab)",
    "Строка вертикально / таблица": "Řádek svisle / mřížka",
    "Строка №%@": "Řádek #%@",
-   "из %@": "z %@"
+   "из %@": "z %@",
+   "Фильтр: текст, столбец > 10, LIKE %…%": "Filtr: text, sloupec > 10, LIKE %…%",
+   "Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'.": "Jeden řádek: text prohledává každý sloupec; můžete také použít sloupec a podmínku, např. částka > 10 nebo název LIKE 'A%'.",
+   "Снять фильтр": "Vymazat filtr",
+   "Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.": "Jeden řádek filtru přes již načtené řádky; SQL skript se nikdy nezmění. Prázdný řádek znamená žádný filtr. Zadejte text pro vyhledávání ve všech sloupcích nebo podmínku, jako je částka > 10 nebo název LIKE 'A%'. Tab v mřížce otevře řádek svisle; Tab se znovu vrátí do tabulky."
   }
  }
 }

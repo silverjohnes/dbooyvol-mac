@@ -171,7 +171,7 @@ final class GridCellView: NSTableCellView, NSTextFieldDelegate {
         if staleLayout { needsLayout = true }
         if let link {
             linkButton.url = link
-            linkButton.toolTip = link.absoluteString
+            linkButton.appTooltipText = link.absoluteString
             linkButton.image = Self.symbol(for: font)
         }
         layoutContent()
@@ -340,21 +340,16 @@ final class GridTableView: NSTableView {
 /// right sorts it (first click descending, then ascending, and so on).
 final class GridHeaderView: NSTableHeaderView {
     weak var model: AppModel?
-    private var tipTag: NSView.ToolTipTag?
-    private var tipBounds: NSRect = .zero
     private let arrowHitWidth: CGFloat = 22
 
     func refreshToolTips() {
         guard let model else { return }
         if model.showTypeOnHeaderHover {
-            if tipTag == nil || tipBounds != bounds {
-                if let tipTag { removeToolTip(tipTag) }
-                tipBounds = bounds
-                tipTag = addToolTip(bounds, owner: self, userData: nil)
+            appTooltipProvider = { [weak self] point in
+                self?.tooltip(at: point)
             }
-        } else if let tipTag {
-            removeToolTip(tipTag)
-            self.tipTag = nil
+        } else {
+            appTooltipProvider = nil
         }
     }
 
@@ -629,12 +624,7 @@ final class GridHeaderView: NSTableHeaderView {
         }
     }
 
-    override func view(
-        _ view: NSView,
-        stringForToolTip tag: NSView.ToolTipTag,
-        point: NSPoint,
-        userData data: UnsafeMutableRawPointer?
-    ) -> String {
+    func tooltip(at point: NSPoint) -> String {
         guard let model, model.showTypeOnHeaderHover else { return "" }
         let col = column(at: point)
         guard col >= 0, let index = dataIndex(forPosition: col),
@@ -684,7 +674,7 @@ final class GridScrollView: NSScrollView {
 
 /// Frozen row-number gutter drawn next to the grid. It is a sibling of the
 /// scroll view, so horizontal scrolling never moves it.
-final class RowNumberView: NSView, NSViewToolTipOwner {
+final class RowNumberView: NSView {
     weak var table: NSTableView?
     weak var model: AppModel?
 
@@ -765,13 +755,12 @@ final class RowNumberView: NSView, NSViewToolTipOwner {
     }
 
     func refreshToolTips() {
-        removeAllToolTips()
-        guard !bounds.isEmpty else { return }
-        addToolTip(bounds, owner: self, userData: nil)
+        appTooltipProvider = { [weak self] point in
+            self?.tooltip(at: point)
+        }
     }
 
-    func view(_ view: NSView, stringForToolTip tag: NSView.ToolTipTag,
-              point: NSPoint, userData data: UnsafeMutableRawPointer?) -> String {
+    func tooltip(at point: NSPoint) -> String {
         if point.y < headerHeight {
             return uniqueKeyTooltip()
         }
@@ -966,6 +955,23 @@ struct ResultsView: NSViewRepresentable {
         }
         table.onToggleSingleRow = { [weak coordinator = context.coordinator] in
             coordinator?.model.toggleSingleRowResult()
+        }
+        // Coming back from the single-row view: give Tab back to the table,
+        // otherwise the next Tab walks the window's key view loop into the
+        // connection list.
+        if model.consumeResultFocusRequest() {
+            DispatchQueue.main.async { [weak table] in
+                guard let table else { return }
+                if let window = table.window {
+                    window.makeFirstResponder(table)
+                } else {
+                    // The grid may be inserted into its window one run-loop
+                    // later when the single-row view is being replaced.
+                    DispatchQueue.main.async { [weak table] in
+                        table?.window?.makeFirstResponder(table)
+                    }
+                }
+            }
         }
         return ResultsPaneView(scrollView: scroll, rowNumbers: gutter)
     }
@@ -1675,7 +1681,6 @@ struct ResultsView: NSViewRepresentable {
             menu.addItem(copy)
 
             add(to: menu, "Значение", #selector(ctxShowValue(_:)))
-            add(to: menu, "Калькулятор", #selector(ctxShowCalc(_:)))
 
             add(to: menu, "Вставить", #selector(ctxPaste(_:)), key: "v")
             let paste = NSMenuItem(title: L10n.tr("Вставить…"), action: nil, keyEquivalent: "")
@@ -1749,20 +1754,6 @@ struct ResultsView: NSViewRepresentable {
         @objc private func ctxShowValue(_ sender: Any?) {
             guard let cell = contextCell else { return }
             model.showValuePanel(row: cell.row, col: cell.col)
-        }
-
-        @objc private func ctxShowCalc(_ sender: Any?) {
-            guard let cell = contextCell, let result = model.result else {
-                model.openCalc(with: nil)
-                return
-            }
-            let dataRow = model.dataRow(forDisplayRow: cell.row)
-            var value: String?
-            if dataRow >= 0, dataRow < result.rows.count,
-               cell.col >= 0, cell.col < result.rows[dataRow].count {
-                value = result.rows[dataRow][cell.col]
-            }
-            model.openCalc(with: value)
         }
 
         @objc private func ctxCopyAs(_ sender: NSMenuItem) {

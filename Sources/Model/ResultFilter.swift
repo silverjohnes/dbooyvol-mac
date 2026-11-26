@@ -1,26 +1,64 @@
 import Foundation
 
 /// Local, DBeaver-style filter applied to the rows already loaded in the grid.
+/// The filter is a single line of text:
+///
+/// - free text keeps rows where any visible cell contains it;
+/// - `column <condition>` filters one column (`age > 10`, `name LIKE 'a%'`);
+/// - a leading operator applies to every column (`> 10`, `LIKE %text%`).
+///
 /// It never touches the SQL script or the stored result: only the visible rows
-/// change. An empty condition means "no filter" for that column.
+/// change.
 enum ResultFilter {
-    /// True when the row passes every condition. Conditions are combined with
-    /// AND, exactly like additional predicates in a WHERE clause.
-    static func matches(row: [String?],
-                        columns: [ColumnInfo],
-                        filters: [Int: String]) -> Bool {
-        for (column, raw) in filters {
-            let condition = raw.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard !condition.isEmpty, column >= 0, column < columns.count else { continue }
-            let value = column < row.count ? row[column] : nil
-            if !matches(value: value, condition: condition,
-                        numeric: columns[column].isNumeric) {
-                return false
+    // MARK: - Row matching
+
+    /// True when the row passes the one-line filter. An empty query means
+    /// "no filter".
+    static func matches(row: [String?], columns: [ColumnInfo], query: String) -> Bool {
+        let text = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty else { return true }
+        let lower = text.lowercased()
+
+        // Explicit NULL filters across all columns.
+        if lower == "null" || lower == "is null" {
+            return row.contains { $0 == nil }
+        }
+        if lower == "is not null" {
+            return row.contains { $0 != nil }
+        }
+
+        // `column <condition>`.
+        if let parsed = parseColumnCondition(text, columns: columns) {
+            let value = parsed.column < row.count ? row[parsed.column] : nil
+            return matches(value: value, condition: parsed.condition,
+                           numeric: columns[parsed.column].isNumeric)
+        }
+
+        // A leading operator (`> 10`, `LIKE %x%`) applies to every column:
+        // the row passes when at least one cell satisfies it.
+        if startsWithOperator(text) {
+            for (index, column) in columns.enumerated() {
+                let value = index < row.count ? row[index] : nil
+                if matches(value: value, condition: text, numeric: column.isNumeric) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        // Free text: case-insensitive substring in any cell.
+        for value in row {
+            guard let value, !value.isEmpty else { continue }
+            if value.range(of: text,
+                           options: [.caseInsensitive, .diacriticInsensitive]) != nil {
+                return true
             }
         }
-        return true
+        return false
     }
 
+    /// Matches one cell against a condition that starts with an operator
+    /// (`= 1`, `LIKE %x%`, `IS NULL`, …) or is bare text.
     static func matches(value: String?, condition: String, numeric: Bool) -> Bool {
         let text = condition.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return true }
@@ -58,6 +96,155 @@ enum ResultFilter {
         // substring match. `*`/`%` are accepted as wildcards.
         return like(value: value, pattern: text, defaultContains: true)
     }
+
+    // MARK: - Parsing the one-line query
+
+    private static func parseColumnCondition(
+        _ text: String,
+        columns: [ColumnInfo]
+    ) -> (column: Int, condition: String)? {
+        let ordered = columns.enumerated()
+            .sorted { $0.element.name.count > $1.element.name.count }
+        for (index, column) in ordered {
+            let name = column.name
+            guard !name.isEmpty, text.count > name.count else { continue }
+            guard text.prefix(name.count).caseInsensitiveCompare(name) == .orderedSame else {
+                continue
+            }
+            let tail = String(text.dropFirst(name.count))
+            guard let first = tail.first, first.isWhitespace else { continue }
+            let rest = tail.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !rest.isEmpty else { continue }
+            guard startsWithOperator(rest) else { continue }
+            return (index, rest)
+        }
+        return nil
+    }
+
+    private static let operatorPrefixes = [
+        "!=", "<>", ">=", "<=", "=", ">", "<", "~", "!~", "^", "$"
+    ]
+
+    private static func startsWithOperator(_ text: String) -> Bool {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let lower = trimmed.lowercased()
+        if operatorPrefixes.contains(where: { trimmed.hasPrefix($0) }) { return true }
+        let keywords = ["like ", "ilike ", "not like ", "not ilike ",
+                        "in ", "not in ", "is null", "is not null"]
+        return keywords.contains { lower.hasPrefix($0) }
+    }
+
+    // MARK: - Suggestions for the filter field
+
+    struct SuggestionContext {
+        enum Kind {
+            case columns
+            case operators
+            case values(String)
+        }
+        var range: NSRange
+        var prefix: String
+        var kind: Kind
+    }
+
+    /// What the user is likely to type at the caret. Returns nil for free
+    /// text in the middle of the field, so the popup does not get in the way.
+    static func suggestionContext(
+        in text: NSString,
+        caret: Int,
+        columns: [String]
+    ) -> SuggestionContext? {
+        guard caret >= 0, caret <= text.length, !columns.isEmpty else { return nil }
+        var range = SQLCompletion.wordRange(in: text, at: caret)
+        let prefix = text.substring(with: range)
+        let before = text.substring(to: range.location)
+        let trimmed = before.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if trimmed.isEmpty {
+            return SuggestionContext(range: range, prefix: prefix, kind: .columns)
+        }
+
+        if columns.contains(where: { $0.caseInsensitiveCompare(trimmed) == .orderedSame }) {
+            return SuggestionContext(range: range, prefix: prefix, kind: .operators)
+        }
+
+        guard let parsed = columnAndOperator(in: trimmed, columns: columns) else {
+            return nil
+        }
+        guard !parsed.isNull else { return nil }
+        if parsed.rest.isEmpty || !prefix.isEmpty {
+            // Replace the whole quoted literal, not just the word before the
+            // caret, so a value with spaces is inserted as one piece.
+            if let quote = openQuote(in: text, before: range.location) {
+                let start = quote + 1
+                let inner = text.substring(with: NSRange(location: start,
+                                                         length: max(0, caret - start)))
+                return SuggestionContext(range: NSRange(location: quote,
+                                                        length: caret - quote),
+                                         prefix: inner,
+                                         kind: .values(parsed.column))
+            }
+            return SuggestionContext(range: range, prefix: prefix, kind: .values(parsed.column))
+        }
+        return nil
+    }
+
+    /// Position of the quote that opens the literal the caret is inside, if
+    /// any. Scans back on the current line only.
+    private static func openQuote(in text: NSString, before index: Int) -> Int? {
+        var cursor = index - 1
+        while cursor >= 0 {
+            let character = text.character(at: cursor)
+            if character == 10 || character == 13 { return nil }
+            if character == 39 || character == 34 {
+                // A doubled quote is an escaped quote, not a delimiter.
+                if cursor > 0, text.character(at: cursor - 1) == character {
+                    cursor -= 2
+                    continue
+                }
+                return cursor
+            }
+            cursor -= 1
+        }
+        return nil
+    }
+
+    private static func columnAndOperator(
+        in text: String,
+        columns: [String]
+    ) -> (column: String, rest: String, isNull: Bool)? {
+        let operators = ["!=", "<>", ">=", "<=", "=", ">", "<",
+                         "not like", "not ilike", "like", "ilike",
+                         "not in", "in", "is not null", "is null"]
+        for column in columns.sorted(by: { $0.count > $1.count }) {
+            guard text.count > column.count else { continue }
+            guard text.prefix(column.count).caseInsensitiveCompare(column) == .orderedSame else {
+                continue
+            }
+            let tail = String(text.dropFirst(column.count))
+            guard let first = tail.first, first.isWhitespace else { continue }
+            var rest = tail.trimmingCharacters(in: .whitespacesAndNewlines)
+            let lower = rest.lowercased()
+            guard let op = operators.first(where: { lower.hasPrefix($0) }) else { continue }
+            rest = String(rest.dropFirst(op.count))
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            if rest.hasPrefix("'") || rest.hasPrefix("\"") {
+                rest.removeFirst()
+            }
+            let isNull = op == "is null" || op == "is not null"
+            return (column, rest, isNull)
+        }
+        return nil
+    }
+
+    /// Operators offered after a column name, with a trailing space so the
+    /// next suggestion (a value) opens immediately.
+    static let operatorSuggestions = [
+        "= ", "!= ", "> ", "< ", ">= ", "<= ",
+        "LIKE ", "IN ", "IS NULL"
+    ]
+
+    // MARK: - Comparison helpers
 
     private static func compare(value: String?, operand: String,
                                 operator op: String, numeric: Bool) -> Bool {

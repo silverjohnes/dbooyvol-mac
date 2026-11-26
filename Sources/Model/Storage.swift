@@ -183,10 +183,7 @@ enum AppSettings {
             commentMarkerSuffixKey: "!#",
             timeZoneKey: "",
             checkExternalChangesKey: false,
-            showFilterPanelKey: true,
-            // AppKit reads this hidden default when it first shows a tooltip.
-            // The system default (around 2 s) feels too slow in a data grid.
-            "NSInitialToolTipDelay": 0.75
+            showFilterPanelKey: true
         ])
     }
 

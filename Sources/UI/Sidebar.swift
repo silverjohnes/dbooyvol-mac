@@ -325,9 +325,9 @@ struct SidebarView: NSViewRepresentable {
                 let tip = L10n.fmt("Имя: %@", profile.displayName) + "\n"
                     + L10n.fmt("URL: %@", profile.displayURL) + "\n"
                     + L10n.fmt("Пользователь: %@", profile.user)
-                cell.toolTip = tip
-                stack.toolTip = tip
-                label.toolTip = tip
+                cell.appTooltipText = tip
+                stack.appTooltipText = tip
+                label.appTooltipText = tip
             }
 
             cell.addSubview(stack)

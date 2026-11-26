@@ -18,7 +18,7 @@ struct TabBarView: View {
                     .font(.system(size: 11, weight: .medium))
             }
             .buttonStyle(.plain)
-            .help("Новый запрос (⌘T)")
+            .appToolTip("Новый запрос (⌘T)")
             .padding(.horizontal, 7)
 
             Button {
@@ -28,7 +28,7 @@ struct TabBarView: View {
                     .font(.system(size: 11, weight: .medium))
             }
             .buttonStyle(.plain)
-            .help("Найти запрос (⌘E)")
+            .appToolTip("Найти запрос (⌘E)")
             .padding(.trailing, 8)
         }
         .frame(height: 32)
@@ -70,7 +70,7 @@ struct ScriptConnectionPicker: View {
             .frame(maxWidth: 170, alignment: .trailing)
         }
         .menuStyle(.borderlessButton)
-        .help("Подключение для текущего скрипта")
+        .appToolTip("Подключение для текущего скрипта")
         .padding(.trailing, 4)
     }
 }

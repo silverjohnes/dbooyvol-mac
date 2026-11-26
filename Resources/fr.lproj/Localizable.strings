@@ -89,7 +89,6 @@
 "Вставить" = "Coller";
 "Вставить без кавычек" = "Coller sans guillemets";
 "Вставить данные с этими настройками" = "Collez les données avec ces paramètres";
-"Вставить значение" = "Insérer une valeur";
 "Вставить…" = "Coller...";
 "Вставлено: %@ строк" = "Inséré : %@ lignes";
 "Вставлять NULL" = "Insérer NULL";
@@ -116,10 +115,7 @@
 "Выполнить выделение или весь скрипт (⌘R, ⌘↩)" = "Exécuter la sélection ou tout le script (⌘R, ⌘↩)";
 "Выполнить запрос под курсором" = "Exécutez la requête sous le curseur";
 "Выполняется…" = "Courir…";
-"Выражение" = "Expression";
 "Вырезать" = "Couper";
-"Вычислить" = "Calculer";
-"Вычислить выражение" = "Évaluer l'expression";
 "ГОН" = "HON";
 "Гонолулу" = "Honolulu";
 "Горячие клавиши" = "Raccourcis clavier";
@@ -132,14 +128,12 @@
 "ДУБ" = "DUB";
 "Данные в результате" = "Données de résultat";
 "Двоичные данные" = "Binaire";
-"Деление на ноль" = "Division par zéro";
 "Дели" = "Delhi";
 "Денвер" = "Denver";
 "Для TNS/LDAP туннель не используется: алиас раскрывается в реальный хост, а не в localhost. Выберите EZ Connect, если нужен SSH." = "Pour TNS/LDAP, le tunnel n'est pas utilisé : l'alias est étendu à l'hôte réel, et non à localhost. Sélectionnez EZ Connect si vous avez besoin de SSH.";
 "Для выхода зажмите CMD+Q" = "Pour quitter, appuyez sur CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Aucune connexion n'est sélectionnée pour ce script.\nChoisissez-en un dans la barre d'onglets ou ajoutez-en un nouveau (⇧⌘N).";
 "Добавить (⌘N)" = "Ajouter (⌘N)";
-"Добавить значение выбранной ячейки в выражение" = "Ajouter la valeur de la cellule sélectionnée à l'expression";
 "Добавлять номера строк результата" = "Ajouter des numéros de lignes de résultats";
 "Добавлять строку с именами столбцов" = "Ajouter une ligne avec des noms de colonnes";
 "Догрузить следующую страницу строк" = "Charger la page de lignes suivante";
@@ -177,7 +171,6 @@
 "Закрыть вкладку" = "Fermer l'onglet";
 "Закрыть все вкладки" = "Fermez tous les onglets";
 "Закрыть все окна" = "Fermez toutes les fenêtres";
-"Закрыть калькулятор" = "Fermer le calculateur";
 "Закрыть окно" = "Fermer la fenêtre";
 "Закрыть остальные" = "Fermer les autres";
 "Закрыть остальные вкладки" = "Fermer les autres onglets";
@@ -231,8 +224,6 @@
 "Как в базе" = "Base de données native";
 "Как форматировать NULL и пустые значения" = "Comment formater les valeurs NULL et vides";
 "Калининград" = "Kaliningrad";
-"Кальк" = "Calculer";
-"Калькулятор" = "Calculatrice";
 "Камчатка" = "Kamtchatka";
 "Каракас" = "Caracas";
 "Каталог ~/.ssh" = "~/.ssh répertoire";
@@ -268,7 +259,6 @@
 "Красноярск" = "Krasnoïarsk";
 "ЛОН" = "LON";
 "ЛОС" = "LOS";
-"Лишние символы в выражении" = "Caractères inattendus dans l'expression";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Le login et le mot de passe de l'URL sont enregistrés en texte clair. Supprimez-les de l'URL et utilisez les champs Utilisateur et Mot de passe.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Le fichier SQLite local est ouvert directement, aucun serveur n'est nécessaire.";
 "Лондон" = "Londres";
@@ -295,16 +285,12 @@
 "Найти запрос (⌘E)" = "Rechercher une requête (⌘E)";
 "Найти запрос…" = "Rechercher une requête…";
 "Например, dc=evotor,dc=ru. cn=OracleContext добавляется автоматически." = "Par exemple, dc=evotor,dc=ru. cn=OracleContext est ajouté automatiquement.";
-"Например: (12,5 + 3) * 2" = "Par exemple : (12,5 + 3) * 2";
-"Например: 42, > 10, LIKE '%text%', NULL. Пусто — без условия." = "Par exemple : 42, > 10, LIKE '%text%', NULL. Vide signifie aucune condition.";
 "Настроить копирование…" = "Configurer la copie...";
 "Настройки" = "Paramètres";
 "Настройки…" = "Paramètres…";
 "Начать диктовку…" = "Démarrer la dictée...";
-"Не закрыта скобка" = "Parenthèse non fermée";
 "Не считать кавычки частью значения" = "Ne traitez pas les guillemets comme faisant partie de la valeur";
 "Не удалось выделить локальный порт для SSH-туннеля" = "Échec de l'allocation du port local pour le tunnel SSH";
-"Не удалось вычислить выражение" = "Impossible d'évaluer l'expression";
 "Не удалось записать файл: %@" = "Échec de l'écriture du fichier : %@";
 "Не удалось определить подключение результата" = "Échec de la détermination du résultat de la connexion";
 "Не удалось определить таблицу результата" = "Échec de la définition du tableau des résultats";
@@ -320,10 +306,7 @@
 "Не удалось создать файл: %@" = "Échec de la création du fichier : %@";
 "Не удалось сохранить: %@" = "Échec de l'enregistrement : %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Échec de la suppression des anciens mots de passe - autoriser l'accès dans l'invite macOS";
-"Неверное число аргументов: %@" = "Nombre d'arguments incorrect : %@";
 "Неизвестная ошибка" = "Erreur inconnue";
-"Неизвестная функция: %@" = "Fonction inconnue : %@";
-"Неизвестное имя: %@" = "Nom inconnu : %@";
 "Нет" = "Non";
 "Нет данных для вставки" = "Aucune donnée à insérer";
 "Нет данных для копирования" = "Aucune donnée à copier";
@@ -352,7 +335,8 @@
 "Оборачивать в кавычки все значения без исключения" = "Citez chaque valeur sans exception";
 "Оборачивать значения в кавычки при необходимости" = "Citer les valeurs si nécessaire";
 "Объединить все окна" = "Fusionner toutes les fenêtres";
-"Ожидалось число" = "Un numéro était attendu";
+"Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу." = "Une ligne de filtre sur les lignes déjà chargées ; le script SQL n'est jamais modifié. Une ligne vide signifie aucun filtre. Tapez du texte pour rechercher dans toutes les colonnes, ou une condition telle que montant > 10 ou nom LIKE 'A%'. L'onglet dans la grille ouvre la ligne verticalement ; Tab revient à nouveau au tableau.";
+"Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'." = "Une ligne : le texte recherche dans chaque colonne ; vous pouvez également utiliser une colonne et une condition, par ex. montant > 10 ou nom LIKE 'A%'.";
 "Окно" = "Fenêtre";
 "Окно и справка" = "Fenêtre et aide";
 "Омск" = "Omsk";
@@ -368,7 +352,6 @@
 "Открыть вкладку" = "Ouvrir l'onglet";
 "Открыть в…" = "Ouvert dans…";
 "Открыть запрос в редакторе" = "Ouvrir la requête sous l'éditeur";
-"Открыть калькулятор" = "Ouvrir la calculatrice";
 "Открыть сохранённый пароль для «%@»" = "Ouvrir le mot de passe enregistré pour \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Ouvrir la liste des raccourcis clavier (%@)";
 "Открыть ссылку" = "Ouvrir le lien";
@@ -382,14 +365,12 @@
 "Отменить несохранённые изменения" = "Supprimer les modifications non enregistrées";
 "Отображение — как значение показано в таблице; Редактируемое — в виде, удобном для правки; Как в базе — в исходном представлении драйвера." = "Affichage - comment la valeur est affichée dans le tableau ; Modifiable - sous une forme pratique pour l'édition ; Comme dans la base de données - dans la représentation originale du conducteur.";
 "Очистить" = "Effacer";
-"Очистить выражение и результат" = "Effacer l'expression et le résultat";
 "Очистить историю" = "Effacer l'historique";
 "Очистить редактор" = "Effacer l'éditeur";
 "Ошибка" = "Erreur";
 "Ошибка сохранения" = "Enregistrer l'erreur";
 "Ошибка: %@" = "Erreur : %@";
 "ПЕК" = "PEK";
-"Панель добавляет условия к уже загруженным строкам и не меняет SQL-скрипт. Пустое поле — без условия; поддерживаются =, !=, >, <, LIKE, NULL. Tab в таблице открывает выбранную строку вертикально, повторное нажатие возвращает таблицу." = "Le panneau ajoute des conditions aux lignes déjà chargées et ne modifie pas le script SQL. Champ vide - aucune condition ; =, !=, >, <, LIKE, NULL sont pris en charge. L'onglet dans le tableau ouvre la ligne sélectionnée verticalement, un nouvel appui renvoie le tableau.";
 "Панель фильтра" = "Panneau de filtre";
 "Панель фильтра показана" = "Panneau de filtre illustré";
 "Панель фильтра результата" = "Panneau de filtrage des résultats";
@@ -429,7 +410,6 @@
 "По центру" = "Centré";
 "Повторить" = "Répéter";
 "Подбирать ширину столбцов по содержимому" = "Ajuster la largeur des colonnes à leur contenu";
-"Поддерживаются + − * / % ^, скобки, sqrt, abs, sin, cos, ln, log, min, max." = "Prend en charge + − * / % ^, parenthèses, sqrt, abs, sin, cos, ln, log, min, max.";
 "Подключаться к базе через SSH-туннель" = "Connectez-vous à la base de données via un tunnel SSH";
 "Подключаться по SID (иначе service name)" = "Connectez-vous par SID (alias nom du service)";
 "Подключение" = "Connexion";
@@ -444,7 +424,6 @@
 "Подключено: %@" = "Connecté : %@";
 "Подключиться" = "Se connecter";
 "Подсказка с типом данных отключена" = "Indice de type de données désactivé";
-"Подставить это выражение" = "Utilisez cette expression";
 "Поиск по истории" = "Recherche par historique";
 "Показать в Finder" = "Afficher dans le Finder";
 "Показать вкладку в Finder" = "Afficher l'onglet dans le Finder";
@@ -505,7 +484,6 @@
 "Редактируемое" = "Modifiable";
 "Редактор" = "Éditeur";
 "Результат" = "Résultat";
-"Результат не является числом" = "Le résultat n'est pas un nombre";
 "Результат последнего запроса" = "Résultat de la dernière demande";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Le résultat contient des colonnes de différentes tables - ne peut pas être enregistré";
 "Русский" = "Russe";
@@ -556,7 +534,7 @@
 "Снизу и четверти" = "Bas et quartiers";
 "Снизу слева" = "En bas à gauche";
 "Снизу справа" = "En bas à droite";
-"Снять все условия фильтра" = "Supprimer toutes les conditions de filtre";
+"Снять фильтр" = "Effacer le filtre";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Le contenu de \"%@\" est différent de celui stocké sur le disque.\nDois-je charger la version depuis le disque ou laisser le texte dans l'éditeur ?";
 "Создать новое подключение" = "Créer une nouvelle connexion";
 "Создать новое подключение…" = "Créer une nouvelle connexion...";
@@ -625,7 +603,6 @@
 "Удалить" = "Supprimer";
 "Удалить всю историю запросов" = "Effacer tout l'historique des requêtes";
 "Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Supprimer les données d'une version précédente de l'application où les mots de passe étaient stockés en texte clair";
-"Удалить историю вычислений" = "Effacer l'historique des calculs";
 "Удалить подключение «%@»?" = "Supprimer la connexion « %@ » ?";
 "Удалить подключение…" = "Supprimer la connexion...";
 "Удалить старые пароли из связки ключей" = "Supprimer les anciens mots de passe du trousseau";
@@ -638,13 +615,13 @@
 "Уникальный ключ не определён" = "Clé unique non déterminée";
 "Уникальный ключ: %@(%@)" = "Clé unique : %@(%@)";
 "Управление" = "Contrôles";
-"Условие…" = "État…";
 "Файл" = "Fichier";
 "Файл «%@» уже существует" = "Le fichier \"%@\" existe déjà";
 "Файл базы (.db / .sqlite)" = "Fichier de base de données (.db / .sqlite)";
 "Файл изменён на диске" = "Fichier modifié sur le disque";
 "Файлы" = "Fichiers";
 "Фильтр" = "Filtrer";
+"Фильтр: текст, столбец > 10, LIKE %…%" = "Filtre : texte, colonne > 10, LIKE %…%";
 "Фильтры очищены" = "Filtres effacés";
 "Формат значений" = "Format de valeur";
 "Хост" = "Hôte";

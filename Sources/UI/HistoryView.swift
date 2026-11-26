@@ -17,18 +17,18 @@ struct HistoryView: View {
                 Image(systemName: "magnifyingglass").foregroundColor(.secondary)
                 TextField("Поиск по истории", text: $query)
                     .textFieldStyle(.plain)
-                    .help(L10n.tr("Искать по тексту запроса или имени подключения"))
+                    .appToolTip(L10n.tr("Искать по тексту запроса или имени подключения"))
                 if !query.isEmpty {
                     Button { query = "" } label: { Image(systemName: "xmark.circle.fill") }
                         .buttonStyle(.plain)
-                        .help("Сбросить поиск по истории")
+                        .appToolTip("Сбросить поиск по истории")
                 }
                 Spacer()
                 Text("\(filtered.count)").font(.caption).foregroundColor(.secondary)
                 Button("Очистить") { model.clearHistory() }
                     .buttonStyle(.borderless)
                     .font(.caption)
-                    .help("Удалить всю историю запросов")
+                    .appToolTip("Удалить всю историю запросов")
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
@@ -41,7 +41,7 @@ struct HistoryView: View {
                     HistoryRow(entry: entry)
                         .contentShape(Rectangle())
                         .onTapGesture { model.loadHistoryIntoEditor(entry) }
-                        .help(L10n.tr("Открыть запрос в редакторе"))
+                        .appToolTip(L10n.tr("Открыть запрос в редакторе"))
                         .listRowInsets(EdgeInsets(top: 4, leading: 10, bottom: 4, trailing: 10))
                 }
                 .listStyle(.plain)

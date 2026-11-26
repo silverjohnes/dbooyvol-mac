@@ -38,7 +38,7 @@ struct SingleRowResultView: View {
                 Label(L10n.tr("Результат"), systemImage: "tablecells")
             }
             .buttonStyle(.borderless)
-            .help(L10n.tr("Вернуться к таблице результатов (Tab)"))
+            .appToolTip(L10n.tr("Вернуться к таблице результатов (Tab)"))
             Divider().frame(height: 14)
             Text(L10n.fmt("Строка №%@", String(model.singleRowDisplayIndex + 1)))
                 .font(.system(size: 12, weight: .semibold))
@@ -118,7 +118,10 @@ private struct TabKeyCatcher: NSViewRepresentable {
                       event.modifierFlags.intersection(.deviceIndependentFlagsMask).isEmpty,
                       NSApp.keyWindow?.attachedSheet == nil else { return event }
                 let responder = view.window?.firstResponder
-                if responder is NSTextView || responder is NSTextField { return event }
+                // Editable fields (filter, search) keep Tab for focus moves;
+                // the read-only text selection in the row view does not.
+                if let textView = responder as? NSTextView, textView.isEditable { return event }
+                if let textField = responder as? NSTextField, textField.isEditable { return event }
                 self.action()
                 return nil
             }

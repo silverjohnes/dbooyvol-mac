@@ -89,7 +89,6 @@
 "Вставить" = "Vložit";
 "Вставить без кавычек" = "Vložit bez uvozovek";
 "Вставить данные с этими настройками" = "Vložte data s těmito nastaveními";
-"Вставить значение" = "Vložte hodnotu";
 "Вставить…" = "Vložit...";
 "Вставлено: %@ строк" = "Vloženo: %@ řádků";
 "Вставлять NULL" = "Vložte NULL";
@@ -116,10 +115,7 @@
 "Выполнить выделение или весь скрипт (⌘R, ⌘↩)" = "Spustit výběr nebo celý skript (⌘R, ⌘↩)";
 "Выполнить запрос под курсором" = "Spusťte dotaz pod kurzorem";
 "Выполняется…" = "Běží…";
-"Выражение" = "Výraz";
 "Вырезать" = "Střih";
-"Вычислить" = "Vypočítejte";
-"Вычислить выражение" = "Vyhodnoťte výraz";
 "ГОН" = "HON";
 "Гонолулу" = "Honolulu";
 "Горячие клавиши" = "Klávesové zkratky";
@@ -132,14 +128,12 @@
 "ДУБ" = "DUB";
 "Данные в результате" = "Údaje o výsledku";
 "Двоичные данные" = "Binární";
-"Деление на ноль" = "Dělení nulou";
 "Дели" = "Dillí";
 "Денвер" = "Denver";
 "Для TNS/LDAP туннель не используется: алиас раскрывается в реальный хост, а не в localhost. Выберите EZ Connect, если нужен SSH." = "Pro TNS/LDAP se tunel nepoužívá: alias je rozšířen na skutečného hostitele, nikoli na localhost. Pokud potřebujete SSH, vyberte EZ Connect.";
 "Для выхода зажмите CMD+Q" = "Pro ukončení stiskněte CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Pro tento skript není vybráno žádné připojení.\nVyberte jeden na liště karet nebo přidejte nový (⇧⌘N).";
 "Добавить (⌘N)" = "Přidat (⌘N)";
-"Добавить значение выбранной ячейки в выражение" = "Přidejte hodnotu vybrané buňky do výrazu";
 "Добавлять номера строк результата" = "Přidejte čísla řádků výsledků";
 "Добавлять строку с именами столбцов" = "Přidejte řádek s názvy sloupců";
 "Догрузить следующую страницу строк" = "Načtěte další stránku řádků";
@@ -177,7 +171,6 @@
 "Закрыть вкладку" = "Zavřít kartu";
 "Закрыть все вкладки" = "Zavřete všechny karty";
 "Закрыть все окна" = "Zavřete všechna okna";
-"Закрыть калькулятор" = "Zavřít kalkulačku";
 "Закрыть окно" = "Zavřít okno";
 "Закрыть остальные" = "Zavřete ostatní";
 "Закрыть остальные вкладки" = "Zavřete ostatní karty";
@@ -231,8 +224,6 @@
 "Как в базе" = "Nativní databáze";
 "Как форматировать NULL и пустые значения" = "Jak formátovat hodnoty NULL a prázdné";
 "Калининград" = "Kaliningrad";
-"Кальк" = "Calc";
-"Калькулятор" = "Kalkulačka";
 "Камчатка" = "Kamčatka";
 "Каракас" = "Caracas";
 "Каталог ~/.ssh" = "Adresář ~/.ssh";
@@ -268,7 +259,6 @@
 "Красноярск" = "Krasnojarsk";
 "ЛОН" = "LON";
 "ЛОС" = "LOS";
-"Лишние символы в выражении" = "Neočekávané znaky ve výrazu";
 "Логин и пароль из URL сохраняются открытым текстом. Уберите их из URL и используйте поля «Пользователь» и «Пароль»." = "Přihlašovací jméno a heslo z adresy URL jsou uloženy jako prostý text. Odeberte je z adresy URL a použijte pole Uživatel a Heslo.";
 "Локальный файл SQLite открывается напрямую, сервер не нужен." = "Místní soubor SQLite se otevře přímo, není potřeba žádný server.";
 "Лондон" = "Londýn";
@@ -295,16 +285,12 @@
 "Найти запрос (⌘E)" = "Najít dotaz (⌘E)";
 "Найти запрос…" = "Najít dotaz…";
 "Например, dc=evotor,dc=ru. cn=OracleContext добавляется автоматически." = "Například dc=evotor,dc=ru. cn=OracleContext je přidán automaticky.";
-"Например: (12,5 + 3) * 2" = "Například: (12,5 + 3) * 2";
-"Например: 42, > 10, LIKE '%text%', NULL. Пусто — без условия." = "Například: 42, > 10, LIKE '%text%', NULL. Prázdný znamená bez podmínek.";
 "Настроить копирование…" = "Nastavit kopírování...";
 "Настройки" = "Nastavení";
 "Настройки…" = "Nastavení…";
 "Начать диктовку…" = "Začít diktovat...";
-"Не закрыта скобка" = "Neuzavřená závorka";
 "Не считать кавычки частью значения" = "Nepovažujte kotace za součást hodnoty";
 "Не удалось выделить локальный порт для SSH-туннеля" = "Nepodařilo se přidělit místní port pro tunel SSH";
-"Не удалось вычислить выражение" = "Výraz nelze vyhodnotit";
 "Не удалось записать файл: %@" = "Nepodařilo se zapsat soubor: %@";
 "Не удалось определить подключение результата" = "Nepodařilo se určit výsledek připojení";
 "Не удалось определить таблицу результата" = "Definování výsledkové tabulky se nezdařilo";
@@ -320,10 +306,7 @@
 "Не удалось создать файл: %@" = "Nepodařilo se vytvořit soubor: %@";
 "Не удалось сохранить: %@" = "Nepodařilo se uložit: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Nepodařilo se odstranit stará hesla – povolte přístup ve výzvě macOS";
-"Неверное число аргументов: %@" = "Nesprávný počet argumentů: %@";
 "Неизвестная ошибка" = "Neznámá chyba";
-"Неизвестная функция: %@" = "Neznámá funkce: %@";
-"Неизвестное имя: %@" = "Neznámé jméno: %@";
 "Нет" = "Ne";
 "Нет данных для вставки" = "Žádná data k vložení";
 "Нет данных для копирования" = "Žádná data ke kopírování";
@@ -352,7 +335,8 @@
 "Оборачивать в кавычки все значения без исключения" = "Uveďte každou hodnotu bez výjimky";
 "Оборачивать значения в кавычки при необходимости" = "V případě potřeby uvádějte hodnoty";
 "Объединить все окна" = "Sloučit všechna okna";
-"Ожидалось число" = "Čekalo se číslo";
+"Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу." = "Jeden řádek filtru přes již načtené řádky; SQL skript se nikdy nezmění. Prázdný řádek znamená žádný filtr. Zadejte text pro vyhledávání ve všech sloupcích nebo podmínku, jako je částka > 10 nebo název LIKE 'A%'. Tab v mřížce otevře řádek svisle; Tab se znovu vrátí do tabulky.";
+"Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'." = "Jeden řádek: text prohledává každý sloupec; můžete také použít sloupec a podmínku, např. částka > 10 nebo název LIKE 'A%'.";
 "Окно" = "Okno";
 "Окно и справка" = "Okno a nápověda";
 "Омск" = "Omsk";
@@ -368,7 +352,6 @@
 "Открыть вкладку" = "Otevřete kartu";
 "Открыть в…" = "Otevřít v…";
 "Открыть запрос в редакторе" = "Otevřete dotaz v editoru";
-"Открыть калькулятор" = "Otevřete kalkulačku";
 "Открыть сохранённый пароль для «%@»" = "Otevřít uložené heslo pro \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Otevřít seznam klávesových zkratek (%@)";
 "Открыть ссылку" = "Otevřít odkaz";
@@ -382,14 +365,12 @@
 "Отменить несохранённые изменения" = "Zahodit neuložené změny";
 "Отображение — как значение показано в таблице; Редактируемое — в виде, удобном для правки; Как в базе — в исходном представлении драйвера." = "Zobrazení - jak je hodnota zobrazena v tabulce; Editovatelné - ve formě vhodné pro editaci; Stejně jako v databázi - v originální reprezentaci řidiče.";
 "Очистить" = "Jasný";
-"Очистить выражение и результат" = "Vymažte výraz a výsledek";
 "Очистить историю" = "Vymazat historii";
 "Очистить редактор" = "Přehledný editor";
 "Ошибка" = "Chyba";
 "Ошибка сохранения" = "Chyba uložení";
 "Ошибка: %@" = "Chyba: %@";
 "ПЕК" = "PEK";
-"Панель добавляет условия к уже загруженным строкам и не меняет SQL-скрипт. Пустое поле — без условия; поддерживаются =, !=, >, <, LIKE, NULL. Tab в таблице открывает выбранную строку вертикально, повторное нажатие возвращает таблицу." = "Panel přidává podmínky do již načtených řádků a nemění SQL skript. Prázdné pole – žádná podmínka; =, !=, >, <, LIKE, NULL jsou podporovány. Tab v tabulce otevře vybraný řádek svisle, dalším stisknutím se tabulka vrátí.";
 "Панель фильтра" = "Panel filtru";
 "Панель фильтра показана" = "Zobrazen panel filtru";
 "Панель фильтра результата" = "Panel filtru výsledků";
@@ -429,7 +410,6 @@
 "По центру" = "Na střed";
 "Повторить" = "Opakujte";
 "Подбирать ширину столбцов по содержимому" = "Přizpůsobte šířky sloupců jejich obsahu";
-"Поддерживаются + − * / % ^, скобки, sqrt, abs, sin, cos, ln, log, min, max." = "Podporuje + − * / % ^, závorky, sqrt, abs, sin, cos, ln, log, min, max.";
 "Подключаться к базе через SSH-туннель" = "Připojte se k databázi pomocí tunelu SSH";
 "Подключаться по SID (иначе service name)" = "Připojit podle SID (neboli název služby)";
 "Подключение" = "Připojení";
@@ -444,7 +424,6 @@
 "Подключено: %@" = "Připojeno: %@";
 "Подключиться" = "Připojte se";
 "Подсказка с типом данных отключена" = "Nápověda k datovému typu zakázána";
-"Подставить это выражение" = "Použijte tento výraz";
 "Поиск по истории" = "Vyhledávání podle historie";
 "Показать в Finder" = "Zobrazit ve Finderu";
 "Показать вкладку в Finder" = "Zobrazit kartu ve Finderu";
@@ -505,7 +484,6 @@
 "Редактируемое" = "Upravitelné";
 "Редактор" = "Redaktor";
 "Результат" = "Výsledek";
-"Результат не является числом" = "Výsledek není číslo";
 "Результат последнего запроса" = "Výsledek posledního požadavku";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Výsledek obsahuje sloupce z různých tabulek - nelze uložit";
 "Русский" = "Ruský";
@@ -556,7 +534,7 @@
 "Снизу и четверти" = "Dno a čtvrtky";
 "Снизу слева" = "Vlevo dole";
 "Снизу справа" = "Vpravo dole";
-"Снять все условия фильтра" = "Odstraňte všechny podmínky filtru";
+"Снять фильтр" = "Vymazat filtr";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Obsah \"%@\" se liší od obsahu uloženého na disku.\nMám načíst verzi z disku nebo nechat text v editoru?";
 "Создать новое подключение" = "Vytvořte nové připojení";
 "Создать новое подключение…" = "Vytvořit nové připojení...";
@@ -625,7 +603,6 @@
 "Удалить" = "Smazat";
 "Удалить всю историю запросов" = "Vymazat celou historii dotazů";
 "Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Odstraňte data z předchozí verze aplikace, kde byla hesla uložena jako prostý text";
-"Удалить историю вычислений" = "Vymažte historii výpočtů";
 "Удалить подключение «%@»?" = "Smazat připojení \"%@\"?";
 "Удалить подключение…" = "Smazat připojení...";
 "Удалить старые пароли из связки ключей" = "Odstraňte stará hesla z klíčenky";
@@ -638,13 +615,13 @@
 "Уникальный ключ не определён" = "Jedinečný klíč nebyl určen";
 "Уникальный ключ: %@(%@)" = "Jedinečný klíč: %@(%@)";
 "Управление" = "Ovládání";
-"Условие…" = "Podmínka…";
 "Файл" = "Soubor";
 "Файл «%@» уже существует" = "Soubor \"%@\" již existuje";
 "Файл базы (.db / .sqlite)" = "Soubor databáze (.db / .sqlite)";
 "Файл изменён на диске" = "Soubor změněn na disku";
 "Файлы" = "Soubory";
 "Фильтр" = "Filtr";
+"Фильтр: текст, столбец > 10, LIKE %…%" = "Filtr: text, sloupec > 10, LIKE %…%";
 "Фильтры очищены" = "Filtry vymazány";
 "Формат значений" = "Formát hodnoty";
 "Хост" = "Hostitel";

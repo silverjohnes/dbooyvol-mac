@@ -214,7 +214,7 @@ struct QuickOpenView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(index == selected ? Color.accentColor.opacity(0.18) : Color.clear)
         .contentShape(Rectangle())
-        .help(L10n.tr("Открыть вкладку"))
+        .appToolTip(L10n.tr("Открыть вкладку"))
         .onTapGesture {
             selected = index
             openSelected()

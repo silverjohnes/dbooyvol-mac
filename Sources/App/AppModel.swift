@@ -50,18 +50,14 @@ final class AppModel: ObservableObject {
         didSet { refreshDisplayedRows() }
     }
     @Published var resultSort: ResultSort?
-    /// Local filter conditions keyed by data column index. They only hide rows
-    /// in the grid; the result itself and the SQL script stay untouched.
-    @Published var resultFilters: [Int: String] = [:]
+    /// One-line local filter for the result grid. Empty means "show every
+    /// row"; it only hides rows and never edits the SQL script or the result.
+    @Published var resultFilterText: String = ""
     /// Bumped whenever the visible row mapping changes, so the grid reloads.
-    private(set) var resultFilterRevision = 0
+    @Published private(set) var resultFilterRevision = 0
     @Published var showFilterPanel = AppSettings.showFilterPanel
     /// Replaces the grid with a vertical two-column view of one row.
     @Published var showSingleRowResult = false
-    @Published var showCalcPanel = false
-    @Published var calcExpression = ""
-    @Published var calcResult = ""
-    @Published var calcHistory: [String] = []
     @Published var error: DBError?
     @Published var showNoConnectionAlert = false
     @Published var status: String = L10n.tr("Готово")
@@ -193,11 +189,19 @@ final class AppModel: ObservableObject {
     /// last (or an empty grid when it has never been run).
     private var resultsByTab: [UUID: QueryResult] = [:]
     private var sortsByTab: [UUID: ResultSort] = [:]
-    /// Filter conditions per tab, so switching scripts restores their own view.
-    private var filtersByTab: [UUID: [Int: String]] = [:]
+    /// One filter line per tab, so switching scripts restores their own view.
+    private var filtersByTab: [UUID: String] = [:]
     /// nil means "show every row"; otherwise display index -> data row index.
     private var displayedRowCache: [Int]?
     private var filterRefreshWork: DispatchWorkItem?
+    /// Distinct values per column, built lazily for filter suggestions.
+    private var filterValueCache: [String: [String]] = [:]
+    private var filterValueCacheToken: UUID?
+    /// One-shot request to put the keyboard back into the result grid after
+    /// Tab returns from the vertical single-row view. Without it AppKit's key
+    /// view loop moves focus to the sidebar on the next Tab.
+    private var resultFocusRequest = 0
+    private var resultFocusConsumed = 0
     private var historyStore = HistoryStore()
     private var tabsSaveWork: DispatchWorkItem?
     private struct RunningQuery {
@@ -977,7 +981,7 @@ final class AppModel: ObservableObject {
             label.alignment = .right
             label.lineBreakMode = .byTruncatingMiddle
             label.font = .monospacedSystemFont(ofSize: 12, weight: .regular)
-            label.toolTip = name
+            label.appTooltipText = name
             content.addSubview(label)
 
             let field = NSTextField(frame: NSRect(x: labelWidth, y: y + 3,
@@ -1105,7 +1109,7 @@ final class AppModel: ObservableObject {
                 loadTableMeta(for: r)
                 if tabID == activeTabID {
                     filterRefreshWork?.cancel()
-                    resultFilters = [:]
+                    resultFilterText = ""
                     showSingleRowResult = false
                     result = r
                     resultSort = nil
@@ -1347,22 +1351,20 @@ final class AppModel: ObservableObject {
         return cache[row]
     }
 
-    /// Recomputes the visible rows from the active filter conditions. Called
-    /// whenever the result changes and after the filter fields settle.
+    /// Recomputes the visible rows from the one-line filter. Called whenever
+    /// the result changes and after the filter text settles.
     private func refreshDisplayedRows() {
         guard let r = result else {
             displayedRowCache = nil
             resultFilterRevision += 1
             return
         }
-        let active = resultFilters.filter {
-            !$0.value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        }
-        if active.isEmpty {
+        let query = resultFilterText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if query.isEmpty {
             displayedRowCache = nil
         } else {
             displayedRowCache = r.rows.indices.filter { index in
-                ResultFilter.matches(row: r.rows[index], columns: r.columns, filters: active)
+                ResultFilter.matches(row: r.rows[index], columns: r.columns, query: query)
             }
         }
         resultFilterRevision += 1
@@ -1376,28 +1378,49 @@ final class AppModel: ObservableObject {
             : L10n.tr("Панель фильтра скрыта")
     }
 
-    /// Typing in a filter field updates the visible rows after a short pause,
+    /// Typing in the filter line updates the visible rows after a short pause,
     /// so a large result is not rescanned on every keystroke.
-    func setResultFilter(column: Int, text: String) {
-        guard column >= 0 else { return }
-        if text.isEmpty {
-            resultFilters.removeValue(forKey: column)
-        } else {
-            resultFilters[column] = text
-        }
-        filtersByTab[activeTabID] = resultFilters.isEmpty ? nil : resultFilters
+    func setResultFilterText(_ text: String) {
+        guard text != resultFilterText else { return }
+        resultFilterText = text
+        filtersByTab[activeTabID] = text.isEmpty ? nil : text
         filterRefreshWork?.cancel()
         let work = DispatchWorkItem { [weak self] in self?.refreshDisplayedRows() }
         filterRefreshWork = work
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: work)
     }
 
-    func clearResultFilters() {
+    func clearResultFilter() {
         filterRefreshWork?.cancel()
-        resultFilters = [:]
+        resultFilterText = ""
         filtersByTab[activeTabID] = nil
         refreshDisplayedRows()
         status = L10n.tr("Фильтры очищены")
+    }
+
+    /// Distinct values of one column for the filter suggestions. Cached per
+    /// result, because scanning a large grid on every keystroke is wasteful.
+    func filterValueCandidates(for column: String) -> [String] {
+        guard let r = result else { return [] }
+        if filterValueCacheToken != r.runID {
+            filterValueCache.removeAll()
+            filterValueCacheToken = r.runID
+        }
+        let key = column.lowercased()
+        if let cached = filterValueCache[key] { return cached }
+        guard let index = r.columns.firstIndex(where: { $0.name.lowercased() == key }) else {
+            return []
+        }
+        var seen = Set<String>()
+        var values: [String] = []
+        for row in r.rows {
+            guard index < row.count, let value = row[index], !value.isEmpty else { continue }
+            guard seen.insert(value).inserted else { continue }
+            values.append(value)
+            if values.count >= 200 { break }
+        }
+        filterValueCache[key] = values
+        return values
     }
 
     /// Tab in the grid, and the "Результат" button in the filter row.
@@ -1405,6 +1428,18 @@ final class AppModel: ObservableObject {
         guard result != nil, displayedRowCount > 0 else { return }
         showSingleRowResult.toggle()
         focusedPane = .result
+        if !showSingleRowResult {
+            resultFocusRequest += 1
+        }
+    }
+
+    /// Called by the grid when it is built. Returns true once for every
+    /// request, so a view that is rebuilt for an unrelated reason does not
+    /// steal focus from the editor.
+    func consumeResultFocusRequest() -> Bool {
+        guard resultFocusRequest > resultFocusConsumed else { return false }
+        resultFocusConsumed = resultFocusRequest
+        return true
     }
 
     /// Display index of the focused row, defaulting to the first one.
@@ -1448,7 +1483,7 @@ final class AppModel: ObservableObject {
         var values: [String] = []
         for row in result.rows {
             guard index < row.count, let value = row[index], !value.isEmpty else { continue }
-            let literal = numeric && CalcEngine.isNumeric(value)
+            let literal = numeric && NumericText.isNumeric(value)
                 ? value
                 : "'" + value.replacingOccurrences(of: "'", with: "''") + "'"
             guard seen.insert(literal).inserted else { continue }
@@ -1478,64 +1513,6 @@ final class AppModel: ObservableObject {
         }
     }
 
-    // MARK: - calculator
-
-    func toggleCalcPanel() {
-        if showCalcPanel {
-            showCalcPanel = false
-        } else {
-            showCalcPanel = true
-            showValuePanel = false
-        }
-    }
-
-    /// Context menu entry: opens the calculator, using the clicked cell as a
-    /// starting value when it is a number.
-    func openCalc(with value: String?) {
-        showCalcPanel = true
-        showValuePanel = false
-        if let value, !value.isEmpty, CalcEngine.isNumeric(value) {
-            calcExpression = value
-            calcResult = CalcEngine.format(value)
-        }
-    }
-
-    func evaluateCalc() {
-        let expression = calcExpression.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !expression.isEmpty else { return }
-        switch CalcEngine.evaluate(expression) {
-        case .success(let value):
-            let text = CalcEngine.format(value)
-            calcResult = text
-            let line = "\(expression) = \(text)"
-            calcHistory.insert(line, at: 0)
-            if calcHistory.count > 40 { calcHistory.removeLast(calcHistory.count - 40) }
-        case .failure(let error):
-            calcResult = error.message
-        }
-    }
-
-    func clearCalcHistory() {
-        calcHistory.removeAll()
-    }
-
-    /// Inserts the focused cell's value into the calculator expression.
-    func insertSelectedValueIntoCalc() {
-        guard let r = result, displayedRowCount > 0 else { return }
-        let row = singleRowDisplayIndex
-        let dataRow = dataRow(forDisplayRow: row)
-        let col = gridSelection?.cols.sorted().first ?? 0
-        guard dataRow >= 0, dataRow < r.rows.count,
-              col >= 0, col < r.columns.count,
-              col < r.rows[dataRow].count,
-              let value = r.rows[dataRow][col], !value.isEmpty else { return }
-        if calcExpression.isEmpty {
-            calcExpression = value
-        } else {
-            calcExpression += " " + value
-        }
-    }
-
     // MARK: - value panel
 
     /// Opens the value inspector for one cell. Called from the grid context
@@ -1555,7 +1532,6 @@ final class AppModel: ObservableObject {
             return
         }
         guard let result else { return }
-        showCalcPanel = false
         let row = gridSelection?.rows.sorted().first ?? 0
         let col = gridSelection?.cols.sorted().first ?? 0
         guard row < displayedRowCount, col < result.columns.count else { return }
@@ -1791,7 +1767,7 @@ final class AppModel: ObservableObject {
             tabRunStates.removeValue(forKey: id)
         }
         filterRefreshWork?.cancel()
-        resultFilters = filtersByTab[id] ?? [:]
+        resultFilterText = filtersByTab[id] ?? ""
         result = resultsByTab[id]
         resultSort = sortsByTab[id]
         showSingleRowResult = false

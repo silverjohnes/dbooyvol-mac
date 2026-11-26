@@ -122,7 +122,7 @@ private final class RunAccessoryController: NSTitlebarAccessoryViewController {
         let configuration = NSImage.SymbolConfiguration(pointSize: 11, weight: .semibold)
         button.image = NSImage(systemSymbolName: symbol, accessibilityDescription: nil)?
             .withSymbolConfiguration(configuration)
-        button.toolTip = isRunning
+        button.appTooltipText = isRunning
             ? L10n.tr("Отменить запрос (⌘R)")
             : L10n.tr("Выполнить выделение или весь скрипт (⌘R, ⌘↩)")
         button.isEnabled = enabled || isRunning

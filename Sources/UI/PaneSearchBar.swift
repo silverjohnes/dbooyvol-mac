@@ -42,21 +42,21 @@ struct PaneSearchBar: View {
             }
             .buttonStyle(.borderless)
             .disabled(count == 0)
-            .help("Предыдущее совпадение (⇧↩)")
+            .appToolTip("Предыдущее совпадение (⇧↩)")
 
             Button { onSubmit(true) } label: {
                 Image(systemName: "chevron.down")
             }
             .buttonStyle(.borderless)
             .disabled(count == 0)
-            .help("Следующее совпадение (↩)")
+            .appToolTip("Следующее совпадение (↩)")
 
             Button { onClose() } label: {
                 Image(systemName: "xmark.circle.fill")
             }
             .buttonStyle(.borderless)
             .foregroundColor(.secondary)
-            .help("Закрыть поиск (esc)")
+            .appToolTip("Закрыть поиск (esc)")
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 5)

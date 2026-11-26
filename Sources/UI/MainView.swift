@@ -20,7 +20,7 @@ struct MainView: View {
                                 Text("Нет подключений").foregroundColor(.secondary)
                                 Button("Добавить (⌘N)") { model.addProfile() }
                                     .controlSize(.small)
-                                    .help(L10n.tr("Создать новое подключение"))
+                                    .appToolTip(L10n.tr("Создать новое подключение"))
                             }
                         }
                     }
@@ -114,7 +114,7 @@ struct MainView: View {
                     Image(systemName: "plus")
                 }
                 .buttonStyle(.borderless)
-                .help("Новое подключение (⌘N)")
+                .appToolTip("Новое подключение (⌘N)")
                 Spacer()
             }
             .padding(.horizontal, 8)
@@ -143,7 +143,7 @@ struct MainView: View {
                         .frame(width: 26, height: 26)
                 }
                 .buttonStyle(.plain)
-                .help("О программе DBooyvol")
+                .appToolTip("О программе DBooyvol")
                 .accessibilityLabel("О программе DBooyvol")
             }
             .padding(.trailing, 4)
@@ -249,15 +249,9 @@ struct MainView: View {
                     ValuePanelView()
                         .environmentObject(model)
                         .transition(.move(edge: .trailing))
-                } else if model.showCalcPanel {
-                    Divider()
-                    CalcPanelView()
-                        .environmentObject(model)
-                        .transition(.move(edge: .trailing))
                 }
             }
             .animation(.easeInOut(duration: 0.2), value: model.showValuePanel)
-            .animation(.easeInOut(duration: 0.2), value: model.showCalcPanel)
         }
     }
 
@@ -286,7 +280,7 @@ struct MainView: View {
                 }
             }
             .disabled(!model.canSaveResultEdits)
-            .help("Записать изменения в базу данных")
+            .appToolTip("Записать изменения в базу данных")
 
             Button {
                 model.cancelResultEdits()
@@ -298,7 +292,7 @@ struct MainView: View {
                 }
             }
             .disabled(!model.canCancelResultEdits)
-            .help("Отменить несохранённые изменения")
+            .appToolTip("Отменить несохранённые изменения")
 
             if !model.resultEditMessage.isEmpty {
                 Text(model.resultEditMessage)
@@ -330,7 +324,7 @@ struct MainView: View {
                 Image(systemName: "xmark")
             }
             .buttonStyle(.plain)
-            .help("Скрыть сообщение об ошибке")
+            .appToolTip("Скрыть сообщение об ошибке")
         }
         .padding(8)
         .background(Color.orange.opacity(0.12))
@@ -359,7 +353,7 @@ struct MainView: View {
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .help(tab == .result
+                .appToolTip(tab == .result
                       ? L10n.tr("Результат последнего запроса")
                       : L10n.tr("История выполненных запросов"))
             }
@@ -390,7 +384,7 @@ struct MainView: View {
                         Image(systemName: "magnifyingglass")
                     }
                     .buttonStyle(.borderless)
-                    .help("Найти в результате (⌘F при фокусе в таблице)")
+                    .appToolTip("Найти в результате (⌘F при фокусе в таблице)")
                 }
                 if model.result != nil {
                     Button {
@@ -401,7 +395,7 @@ struct MainView: View {
                               : "line.3.horizontal.decrease.circle")
                     }
                     .buttonStyle(.borderless)
-                    .help(L10n.tr("Показать или скрыть панель фильтра"))
+                    .appToolTip(L10n.tr("Показать или скрыть панель фильтра"))
                 }
             }
 
@@ -410,24 +404,24 @@ struct MainView: View {
             Circle()
                 .fill(isConnected ? Color.green : Color.secondary.opacity(0.5))
                 .frame(width: 7, height: 7)
-                .help(L10n.tr("Подключение к базе: зелёный — активно, серый — нет"))
+                .appToolTip(L10n.tr("Подключение к базе: зелёный — активно, серый — нет"))
             Text(model.status)
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .lineLimit(1)
                 .truncationMode(.tail)
-                .help(L10n.tr("Состояние выполнения: готово, выполняется, ошибка"))
+                .appToolTip(L10n.tr("Состояние выполнения: готово, выполняется, ошибка"))
 
             if model.bottomTab == .result, model.result != nil {
                 if let r = model.result, !r.done {
                     Button("Загрузить ещё") { model.loadMore() }
                         .controlSize(.small)
-                        .help(L10n.tr("Догрузить следующую страницу строк"))
+                        .appToolTip(L10n.tr("Догрузить следующую страницу строк"))
                 }
                 Button("Загрузить все") { model.loadAllRows() }
                     .controlSize(.small)
                     .disabled(!model.canLoadAllResult)
-                    .help(L10n.tr("Загрузить все строки"))
+                    .appToolTip(L10n.tr("Загрузить все строки"))
             }
 
             Spacer(minLength: 8)
@@ -443,13 +437,13 @@ struct MainView: View {
                 }
                 Button("CSV") { model.exportCSV() }
                     .controlSize(.small)
-                    .help("Экспорт в CSV (⇧⌘E)")
+                    .appToolTip("Экспорт в CSV (⇧⌘E)")
                 Button("XML") { model.exportXML() }
                     .controlSize(.small)
-                    .help("Экспорт в XML (⌥⇧⌘E)")
+                    .appToolTip("Экспорт в XML (⌥⇧⌘E)")
                 Button("XLSX") { model.exportXLSX() }
                     .controlSize(.small)
-                    .help("Экспорт в XLSX (⌃⇧⌘E)")
+                    .appToolTip("Экспорт в XLSX (⌃⇧⌘E)")
                 Button {
                     model.toggleValuePanel()
                 } label: {
@@ -457,15 +451,7 @@ struct MainView: View {
                 }
                 .controlSize(.small)
                 .disabled(model.result == nil)
-                .help("Показать значение выбранной ячейки")
-                Button {
-                    model.toggleCalcPanel()
-                } label: {
-                    Label(L10n.tr("Кальк"), systemImage: "function")
-                }
-                .controlSize(.small)
-                .disabled(model.result == nil)
-                .help(L10n.tr("Открыть калькулятор"))
+                .appToolTip("Показать значение выбранной ячейки")
             }
 
             Divider().frame(height: 12)
@@ -474,12 +460,12 @@ struct MainView: View {
                 .font(.caption.monospacedDigit())
                 .foregroundColor(.secondary)
                 .fixedSize()
-                .help("Положение курсора в скрипте: строка : позиция в строке : общая позиция")
+                .appToolTip("Положение курсора в скрипте: строка : позиция в строке : общая позиция")
             Text(model.displayTimeZoneLabel)
                 .font(.caption.monospacedDigit())
                 .foregroundColor(.secondary)
                 .fixedSize()
-                .help(L10n.fmt("Часовой пояс времени: %@", model.displayTimeZoneName))
+                .appToolTip(L10n.fmt("Часовой пояс времени: %@", model.displayTimeZoneName))
             if let p = model.activeScriptProfile {
                 HStack(spacing: 5) {
                     Image(nsImage: DBIcon.image(for: p.kind, size: 12))
@@ -488,7 +474,7 @@ struct MainView: View {
                 }
                 .font(.caption)
                 .foregroundColor(.secondary)
-                .help(L10n.tr("Текущее подключение скрипта: имя и тип базы"))
+                .appToolTip(L10n.tr("Текущее подключение скрипта: имя и тип базы"))
             }
         }
         .padding(.horizontal, 10)

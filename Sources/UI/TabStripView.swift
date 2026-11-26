@@ -187,7 +187,7 @@ final class TabStripScrollView: NSScrollView {
     }
 }
 
-final class TabStripCanvas: NSView, NSTextFieldDelegate, NSViewToolTipOwner {
+final class TabStripCanvas: NSView, NSTextFieldDelegate {
     private let model: AppModel
     weak var scrollView: NSScrollView?
 
@@ -353,9 +353,8 @@ final class TabStripCanvas: NSView, NSTextFieldDelegate, NSViewToolTipOwner {
         chips = result
         contentWidth = chips.isEmpty ? leftPadding * 2 : x - chipSpacing + leftPadding
 
-        removeAllToolTips()
-        for chip in chips {
-            addToolTip(chip.frame, owner: self, userData: nil)
+        appTooltipProvider = { [weak self] point in
+            self?.tooltip(at: point)
         }
         window?.invalidateCursorRects(for: self)
         if let id = editingTabID,
@@ -711,8 +710,7 @@ final class TabStripCanvas: NSView, NSTextFieldDelegate, NSViewToolTipOwner {
 
     // MARK: - tooltips
 
-    func view(_ view: NSView, stringForToolTip tag: NSView.ToolTipTag,
-              point: NSPoint, userData data: UnsafeMutableRawPointer?) -> String {
+    func tooltip(at point: NSPoint) -> String {
         guard let chip = chip(at: point),
               let tab = model.tabs.first(where: { $0.id == chip.id }) else { return "" }
         var parts: [String] = []

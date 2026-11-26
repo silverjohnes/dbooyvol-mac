@@ -50,7 +50,7 @@ struct ValuePanelView: View {
                 Image(systemName: "xmark")
             }
             .buttonStyle(.borderless)
-            .help("Закрыть панель значения")
+            .appToolTip("Закрыть панель значения")
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 5)
@@ -82,7 +82,7 @@ struct ValuePanelView: View {
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
         .fixedSize()
-        .help("Тип данных, перенос строк, форматирование и кодировка")
+        .appToolTip("Тип данных, перенос строк, форматирование и кодировка")
     }
 
     @ViewBuilder
@@ -120,7 +120,7 @@ struct ValuePanelView: View {
                     .buttonStyle(.borderless)
                     .controlSize(.small)
                     .disabled(item.columnType.isEmpty)
-                    .help("Скопировать тип данных")
+                    .appToolTip("Скопировать тип данных")
                 }
                 if let saveMessage {
                     Text(saveMessage)
@@ -136,14 +136,14 @@ struct ValuePanelView: View {
             }
             .controlSize(.small)
             .disabled(item == nil)
-            .help("Скопировать показанное значение")
+            .appToolTip("Скопировать показанное значение")
 
             Button("Сохранить…") {
                 save()
             }
             .controlSize(.small)
             .disabled(item == nil)
-            .help("Сохранить значение в файл")
+            .appToolTip("Сохранить значение в файл")
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 5)

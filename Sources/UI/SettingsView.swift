@@ -26,7 +26,7 @@ struct SettingsView: View {
                         Text(language.nativeName).tag(language)
                     }
                 }
-                .help(L10n.tr("Язык интерфейса; применяется после перезапуска"))
+                .appToolTip(L10n.tr("Язык интерфейса; применяется после перезапуска"))
                 if model.languageNeedsRestart {
                     HStack {
                         Text("Новый язык применится после перезапуска приложения.")
@@ -35,7 +35,7 @@ struct SettingsView: View {
                         Spacer()
                         Button("Перезапустить") { model.relaunchForLanguage() }
                             .controlSize(.small)
-                            .help("Перезапустить приложение с новым языком")
+                            .appToolTip("Перезапустить приложение с новым языком")
                     }
                 } else {
                     Text("По умолчанию — язык системы. Украинский пока показывает русские тексты.")
@@ -46,7 +46,7 @@ struct SettingsView: View {
 
             Section("Управление") {
                 Button("Горячие клавиши…") { openWindow(id: "shortcuts") }
-                    .help(L10n.fmt("Открыть список горячих клавиш (%@)",
+                    .appToolTip(L10n.fmt("Открыть список горячих клавиш (%@)",
                                    shortcuts.binding(for: .shortcutsHelp)?.display ?? ""))
                 Text(L10n.fmt("Также открывается из меню «Справка» по %@.",
                               shortcuts.binding(for: .shortcutsHelp)?.display ?? ""))
@@ -67,7 +67,7 @@ struct SettingsView: View {
                             model.status = error.localizedDescription
                         }
                     }
-                    .help("Создать новый мастер-ключ и заново зашифровать все сохранённые пароли")
+                    .appToolTip("Создать новый мастер-ключ и заново зашифровать все сохранённые пароли")
                     Spacer()
                 }
                 Text("Если пароль подключения не нужно хранить, выключите «Сохранять пароль» в его настройках — тогда он запрашивается при подключении.")
@@ -79,7 +79,7 @@ struct SettingsView: View {
                         ? L10n.tr("Старые пароли удалены из связки ключей")
                         : L10n.tr("Не удалось удалить старые пароли — разрешите доступ в запросе macOS")
                 }
-                .help("Удалить данные прежней версии приложения, где пароли хранились открытым текстом")
+                .appToolTip("Удалить данные прежней версии приложения, где пароли хранились открытым текстом")
             }
 
             Section("Редактор") {
@@ -94,22 +94,22 @@ struct SettingsView: View {
                     ) {
                         Text(L10n.fmt("Размер шрифта: %@ pt", String(Int(model.editorFontSize))))
                     }
-                    .help(L10n.tr("Размер шрифта в редакторе SQL"))
+                    .appToolTip(L10n.tr("Размер шрифта в редакторе SQL"))
                     Button("По умолчанию") { model.resetEditorFontSize() }
-                        .help("Вернуть стандартный размер шрифта редактора")
+                        .appToolTip("Вернуть стандартный размер шрифта редактора")
                 }
                 Text("Ctrl + колесо мыши в редакторе тоже меняет размер. Клавиши: ⌘+ / ⌘− / ⌘0 (меню «Вид»).")
                     .font(.caption)
                     .foregroundColor(.secondary)
 
                 Toggle("Умное выделение", isOn: $smartSelection)
-                    .help(L10n.tr("Автоматически выделять первый параметр в WHERE при открытии скрипта"))
+                    .appToolTip(L10n.tr("Автоматически выделять первый параметр в WHERE при открытии скрипта"))
                 Text("При открытии скрипта автоматически выделять текст первого параметра в WHERE.")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 Toggle("Только при поиске", isOn: $smartSelectionOnlyInSearch)
                     .disabled(!smartSelection)
-                    .help(L10n.tr("Выделять параметр только при открытии через поиск (⌘E)"))
+                    .appToolTip(L10n.tr("Выделять параметр только при открытии через поиск (⌘E)"))
                 Text("Выделять только тогда, когда запрос открыт через поиск (⌘E).")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -123,7 +123,7 @@ struct SettingsView: View {
                         set: { model.setCommentByMarker($0) }
                     )
                 )
-                .help(L10n.tr("Включает комментирование строк по ключу в конце строки"))
+                .appToolTip(L10n.tr("Включает комментирование строк по ключу в конце строки"))
                 HStack(spacing: 6) {
                     Text("Ключ:")
                     HStack(spacing: 0) {
@@ -141,7 +141,7 @@ struct SettingsView: View {
                         .textFieldStyle(.plain)
                         .padding(.horizontal, 6)
                         .frame(width: 120)
-                        .help(L10n.tr("Продолжение ключа после «--»; пустое значение отключает комбинацию"))
+                        .appToolTip(L10n.tr("Продолжение ключа после «--»; пустое значение отключает комбинацию"))
                     }
                     .background(
                         RoundedRectangle(cornerRadius: 5)
@@ -169,7 +169,7 @@ struct SettingsView: View {
                         set: { model.setCheckExternalChanges($0) }
                     )
                 )
-                .help(L10n.tr("Следить за изменениями открытых файлов и предлагать перезагрузить версию с диска"))
+                .appToolTip(L10n.tr("Следить за изменениями открытых файлов и предлагать перезагрузить версию с диска"))
                 Text("Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются.")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -195,7 +195,7 @@ struct SettingsView: View {
                             .tag(entry.postScriptName)
                     }
                 }
-                .help(L10n.tr("Шрифт таблицы результатов"))
+                .appToolTip(L10n.tr("Шрифт таблицы результатов"))
                 HStack {
                     Stepper(
                         value: Binding(
@@ -207,9 +207,9 @@ struct SettingsView: View {
                     ) {
                         Text(L10n.fmt("Размер: %@ pt", String(Int(model.resultFontSize))))
                     }
-                    .help(L10n.tr("Размер шрифта таблицы результатов"))
+                    .appToolTip(L10n.tr("Размер шрифта таблицы результатов"))
                     Button("По умолчанию") { model.resetResultFontSize() }
-                        .help("Вернуть стандартный размер шрифта таблицы")
+                        .appToolTip("Вернуть стандартный размер шрифта таблицы")
                 }
                 Text("Ctrl + колесо мыши и pinch на тачпаде меняют размер шрифта в таблице результатов.")
                     .font(.caption)
@@ -223,8 +223,8 @@ struct SettingsView: View {
                             set: { model.setShowFilterPanel($0) }
                         )
                     )
-                    .help(L10n.tr("Показывать панель фильтра над таблицей результатов"))
-                    Text("Панель добавляет условия к уже загруженным строкам и не меняет SQL-скрипт. Пустое поле — без условия; поддерживаются =, !=, >, <, LIKE, NULL. Tab в таблице открывает выбранную строку вертикально, повторное нажатие возвращает таблицу.")
+                    .appToolTip(L10n.tr("Показывать панель фильтра над таблицей результатов"))
+                    Text("Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу.")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -240,7 +240,7 @@ struct SettingsView: View {
                             set: { model.setShowTypeInColumnHeader($0) }
                         )
                     )
-                    .help(L10n.tr("Показывать тип данных рядом с именем столбца"))
+                    .appToolTip(L10n.tr("Показывать тип данных рядом с именем столбца"))
                     Toggle(
                         "При наведении на название столбца",
                         isOn: Binding(
@@ -248,7 +248,7 @@ struct SettingsView: View {
                             set: { model.setShowTypeOnHeaderHover($0) }
                         )
                     )
-                    .help(L10n.tr("Показывать тип данных во всплывающей подсказке заголовка"))
+                    .appToolTip(L10n.tr("Показывать тип данных во всплывающей подсказке заголовка"))
                     Text("По умолчанию тип показывается во всплывающей подсказке при наведении на заголовок. Можно включить оба варианта или отключить оба.")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -261,19 +261,19 @@ struct SettingsView: View {
                         set: { model.setAutoColumnWidths($0) }
                     )
                 )
-                .help(L10n.tr("Подбирать ширину столбцов по содержимому"))
+                .appToolTip(L10n.tr("Подбирать ширину столбцов по содержимому"))
                 if model.autoColumnWidths {
                     HStack {
                         Text("Максимум ширины:")
                         TextField("", value: maxAutoWidth, format: .number)
                             .frame(width: 80)
-                            .help(L10n.tr("Предел автоматической ширины столбца в pt"))
+                            .appToolTip(L10n.tr("Предел автоматической ширины столбца в pt"))
                         Text("pt")
                         Stepper("", value: maxAutoWidth, in: 60...1000, step: 10)
                             .labelsHidden()
-                            .help(L10n.tr("Изменить предел ширины столбца"))
+                            .appToolTip(L10n.tr("Изменить предел ширины столбца"))
                         Button("По умолчанию") { model.resetMaxAutoColumnWidth() }
-                            .help("Вернуть стандартную максимальную ширину столбца")
+                            .appToolTip("Вернуть стандартную максимальную ширину столбца")
                     }
                     Text(L10n.fmt("Ширина подстраивается под данные до %@ pt, более длинные значения обрезаются. Ориентир: 280 pt ≈ 38–40 символов при 12 pt.",
                                   String(Int(model.maxAutoColumnWidth))))
@@ -299,7 +299,7 @@ struct SettingsView: View {
                         Text(option.name).tag(option.id)
                     }
                 }
-                .help(L10n.tr("Пояс, в котором показываются значения timestamp"))
+                .appToolTip(L10n.tr("Пояс, в котором показываются значения timestamp"))
                 Text("Время в столбцах timestamp показывается в этом поясе; время без указания пояса считается UTC. Короткое обозначение пояса видно в нижней строке окна.")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -310,12 +310,12 @@ struct SettingsView: View {
                     Text("Строк за одну загрузку:")
                     TextField("", value: pageSizeBinding, format: .number)
                         .frame(width: 80)
-                        .help(L10n.tr("Сколько строк запрашивать за один раз"))
+                        .appToolTip(L10n.tr("Сколько строк запрашивать за один раз"))
                     Stepper("", value: pageSizeBinding, in: AppModel.minPageSize...AppModel.maxPageSize, step: 50)
                         .labelsHidden()
-                        .help(L10n.tr("Изменить размер страницы"))
+                        .appToolTip(L10n.tr("Изменить размер страницы"))
                     Button("По умолчанию") { model.resetPageSize() }
-                        .help("Вернуть 200 строк на страницу")
+                        .appToolTip("Вернуть 200 строк на страницу")
                 }
                 Text("По умолчанию 200. Если строк в результате больше, при прокрутке до конца таблицы автоматически загружается ещё столько же. Кнопка «Загрузить ещё» делает то же самое.")
                     .font(.caption)
@@ -324,7 +324,7 @@ struct SettingsView: View {
 
             Section("Запросы") {
                 Toggle("Автосохранение открытых запросов между сессиями", isOn: $autosaveTabs)
-                    .help(L10n.tr("Сохранять вкладки и их текст в tabs.json между запусками"))
+                    .appToolTip(L10n.tr("Сохранять вкладки и их текст в tabs.json между запусками"))
                 Text("При включении открытые вкладки и их текст сохраняются в tabs.json и восстанавливаются при запуске.")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -342,7 +342,7 @@ struct SettingsView: View {
                         Text(option.title).tag(option.rawValue)
                     }
                 }
-                .help(L10n.tr("Срок хранения истории запросов"))
+                .appToolTip(L10n.tr("Срок хранения истории запросов"))
                 Text("По умолчанию — 1 месяц. Записи старше выбранного срока удаляются автоматически при запуске и сразу при уменьшении срока; файл истории при этом сжимается.")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -354,16 +354,16 @@ struct SettingsView: View {
                     Button("Очистить историю", role: .destructive) {
                         model.clearHistory()
                     }
-                    .help("Удалить всю историю запросов")
+                    .appToolTip("Удалить всю историю запросов")
                 }
             }
 
             Section("SSH") {
                 HStack {
                     TextField("Каталог ~/.ssh", text: $sshDirectory)
-                        .help(L10n.tr("Каталог с файлом config для SSH-подключений"))
+                        .appToolTip(L10n.tr("Каталог с файлом config для SSH-подключений"))
                     Button("Выбрать…") { chooseDirectory { sshDirectory = $0 } }
-                        .help("Выбрать каталог с файлом config")
+                        .appToolTip("Выбрать каталог с файлом config")
                 }
                 Text(L10n.fmt("Используется файл config из этого каталога: %@",
                               AppSettings.sshConfigPath ?? L10n.tr("не найден")))
@@ -470,7 +470,7 @@ struct ConnectionEditorView: View {
                             .tag(kind)
                         }
                     }
-                    .help(L10n.tr("Тип базы данных"))
+                    .appToolTip(L10n.tr("Тип базы данных"))
                     .onChange(of: draft.kind) { newKind in
                         draft.port = newKind.defaultPort
                     }
@@ -481,7 +481,7 @@ struct ConnectionEditorView: View {
                         HStack {
                             TextField("Файл базы (.db / .sqlite)", text: $draft.database)
                             Button("Выбрать…") { chooseDatabaseFile { draft.database = $0 } }
-                                .help("Выбрать файл базы SQLite")
+                                .appToolTip("Выбрать файл базы SQLite")
                         }
                         Text("Локальный файл SQLite открывается напрямую, сервер не нужен.")
                             .font(.caption)
@@ -493,14 +493,14 @@ struct ConnectionEditorView: View {
                                 Text(mode.title).tag(mode)
                             }
                         }
-                        .help(L10n.tr("EZ Connect, TNS или LDAP"))
+                        .appToolTip(L10n.tr("EZ Connect, TNS или LDAP"))
                     }
                     if draft.kind != .oracle || draft.oracleMode == .easy {
                         HStack {
                             TextField("Хост", text: $draft.host)
                             TextField("Порт", value: $draft.port, format: .number)
                                 .frame(width: 90)
-                                .help(L10n.tr("Порт сервера базы данных"))
+                                .appToolTip(L10n.tr("Порт сервера базы данных"))
                         }
                         TextField(
                             draft.kind == .oracle ? L10n.tr("Имя сервиса / SID")
@@ -517,15 +517,15 @@ struct ConnectionEditorView: View {
                         )
                     }
                     TextField("Пользователь", text: $draft.user)
-                        .help(L10n.tr("Имя пользователя базы данных"))
+                        .appToolTip(L10n.tr("Имя пользователя базы данных"))
                     SecureField("Пароль", text: $password)
-                        .help(L10n.tr("Пароль пользователя базы данных"))
+                        .appToolTip(L10n.tr("Пароль пользователя базы данных"))
                     Toggle("Сохранять пароль", isOn: Binding(
                         get: { draft.storesPassword },
                         set: { draft.savePassword = $0 }
                     ))
                     .toggleStyle(.checkbox)
-                    .help(L10n.tr("Хранить пароль в зашифрованном виде в связке ключей"))
+                    .appToolTip(L10n.tr("Хранить пароль в зашифрованном виде в связке ключей"))
                     if !draft.storesPassword {
                         Text("Пароль будет запрашиваться при подключении и храниться только до конца сеанса.")
                             .font(.caption)
@@ -542,7 +542,7 @@ struct ConnectionEditorView: View {
                     HStack {
                         TextField("Путь к jar", text: $draft.driverPath)
                         Button("Выбрать…") { chooseJar { draft.driverPath = $0 } }
-                            .help("Выбрать JDBC-драйвер (.jar)")
+                            .appToolTip("Выбрать JDBC-драйвер (.jar)")
                     }
                     Text(draft.kind.defaultDriverHint)
                         .font(.caption)
@@ -556,12 +556,12 @@ struct ConnectionEditorView: View {
                     }
                     if draft.kind == .oracle, draft.oracleMode == .easy {
                         Toggle("Подключаться по SID (иначе service name)", isOn: $draft.oracleSid)
-                            .help(L10n.tr("Использовать SID вместо имени сервиса"))
+                            .appToolTip(L10n.tr("Использовать SID вместо имени сервиса"))
                     }
                     if draft.kind == .oracle {
                         HStack {
                             TextField("Instant Client", text: $draft.instantClientDir)
-                                .help("Папка Instant Client: из неё берутся ojdbc*.jar и network/admin")
+                                .appToolTip("Папка Instant Client: из неё берутся ojdbc*.jar и network/admin")
                             Button {
                                 chooseDirectory {
                                     draft.instantClientDir = $0
@@ -570,7 +570,7 @@ struct ConnectionEditorView: View {
                             } label: {
                                 Image(systemName: "folder")
                             }
-                            .help("Взять ojdbc*.jar и network/admin из папки Instant Client")
+                            .appToolTip("Взять ojdbc*.jar и network/admin из папки Instant Client")
                         }
                         Text("Из папки берутся ojdbc*.jar и network/admin. Dylib-библиотеки не нужны: тонкий драйвер не грузит нативные библиотеки.")
                             .font(.caption)
@@ -581,7 +581,7 @@ struct ConnectionEditorView: View {
                 if !draft.kind.isFileBased {
                 Section("SSH-туннель") {
                     Toggle("Использовать SSH", isOn: $draft.ssh.enabled)
-                        .help(L10n.tr("Подключаться к базе через SSH-туннель"))
+                        .appToolTip(L10n.tr("Подключаться к базе через SSH-туннель"))
                     if draft.kind == .oracle && draft.oracleMode != .easy {
                         Text("Для TNS/LDAP туннель не используется: алиас раскрывается в реальный хост, а не в localhost. Выберите EZ Connect, если нужен SSH.")
                             .font(.caption)
@@ -601,7 +601,7 @@ struct ConnectionEditorView: View {
                         HStack {
                             TextField("Ключ (необязательно)", text: $draft.ssh.keyPath)
                             Button("Выбрать…") { chooseKey { draft.ssh.keyPath = $0 } }
-                                .help(L10n.tr("Выбрать файл приватного ключа SSH"))
+                                .appToolTip(L10n.tr("Выбрать файл приватного ключа SSH"))
                         }
                         Text("config: \(AppSettings.sshConfigPath ?? "не найден — проверьте настройки")")
                             .font(.caption)
@@ -643,7 +643,7 @@ struct ConnectionEditorView: View {
                     dismiss()
                 }
                 .foregroundColor(.red)
-                .help("Удалить это подключение и сохранённый пароль")
+                .appToolTip("Удалить это подключение и сохранённый пароль")
                 .disabled(!model.profiles.contains(where: { $0.id == draft.id }))
 
                 Button {
@@ -657,12 +657,12 @@ struct ConnectionEditorView: View {
                     }
                 }
                 .disabled(testState == .running || !canTest)
-                .help("Проверить подключение с введёнными параметрами, не сохраняя их")
+                .appToolTip("Проверить подключение с введёнными параметрами, не сохраняя их")
 
                 Spacer()
                 Button("Отмена") { dismiss() }
                     .keyboardShortcut(.cancelAction)
-                    .help("Закрыть без сохранения")
+                    .appToolTip("Закрыть без сохранения")
                 Button("Сохранить") {
                     if draft.jdbcURLContainsCredentials {
                         let alert = NSAlert()
@@ -678,7 +678,7 @@ struct ConnectionEditorView: View {
                     dismiss()
                 }
                 .keyboardShortcut(.defaultAction)
-                .help("Сохранить подключение")
+                .appToolTip("Сохранить подключение")
             }
             .padding(12)
         }
@@ -697,17 +697,17 @@ struct ConnectionEditorView: View {
             if draft.oracleMode != .easy {
                 HStack {
                     TextField("TNS_ADMIN", text: $draft.tnsAdmin)
-                        .help("Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora")
+                        .appToolTip("Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora")
                     Button {
                         chooseDirectory { draft.tnsAdmin = $0; readOracleConfig() }
                     } label: {
                         Image(systemName: "folder")
                     }
-                    .help("Выбрать папку network/admin")
+                    .appToolTip("Выбрать папку network/admin")
                     Button("Прочитать") { readOracleConfig() }
-                        .help("Перечитать tnsnames.ora и ldap.ora")
+                        .appToolTip("Перечитать tnsnames.ora и ldap.ora")
                         .disabled(draft.tnsAdmin.isEmpty)
-                        .help("Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже")
+                        .appToolTip("Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже")
                 }
                 if let hint = oracleConfigHint {
                     Text(hint)
@@ -722,7 +722,7 @@ struct ConnectionEditorView: View {
                     TextField("Порт", value: $draft.ldapPort, format: .number)
                         .frame(width: 90)
                     Toggle("SSL", isOn: $draft.ldapSSL)
-                        .help(L10n.tr("Использовать SSL для LDAP"))
+                        .appToolTip(L10n.tr("Использовать SSL для LDAP"))
                 }
                 TextField("DEFAULT_ADMIN_CONTEXT", text: $draft.ldapContext)
                 Text("Например, dc=evotor,dc=ru. cn=OracleContext добавляется автоматически.")
