@@ -254,8 +254,8 @@
 "Нажмите на сочетание, чтобы изменить его." = "Click a shortcut to change it.";
 "Нажмите сочетание…" = "Press a shortcut…";
 "Найти" = "Find";
+"Найти в результате" = "Search in result";
 "Найти в результате (⌘F при фокусе в таблице)" = "Find in result (⌘F when the table has focus)";
-"Найти в результате — раскладка не важна" = "Find as a result - layout is not important";
 "Найти в скрипте — раскладка не важна" = "Find in the script - layout is not important";
 "Найти запрос (⌘E)" = "Find query (⌘E)";
 "Найти запрос…" = "Find query…";

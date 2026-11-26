@@ -359,7 +359,7 @@ struct MainView: View {
                 if model.showResultSearch {
                     PaneSearchBar(
                         query: $model.resultSearchQuery,
-                        placeholder: L10n.tr("Найти в результате — раскладка не важна"),
+                        placeholder: L10n.tr("Найти в результате"),
                         count: model.resultSearchCount,
                         focusToken: model.resultSearchFocusToken,
                         onSubmit: { model.stepResultSearch(forward: $0) },
