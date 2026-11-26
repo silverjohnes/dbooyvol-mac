@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "Akibatnya, tidak ada kolom kunci utama '%@'";
 "ВЛД" = "VLA";
 "Введите пароль от «%@»" = "Masukkan kata sandi untuk \"%@\"";
+"Ввод пароля отменён" = "Entri kata sandi dibatalkan";
 "Вернуть 200 строк на страницу" = "Kembalikan 200 baris per halaman";
 "Вернуть по умолчанию" = "Atur ulang ke default";
 "Вернуть прежний размер" = "Kembali ke ukuran sebelumnya";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Muat halaman baris berikutnya";
 "Дополнительная вставка" = "Tempel tingkat lanjut";
 "Дополнительная вставка…" = "Tempel tingkat lanjut…";
+"Доступ к сохранённым паролям не разрешён" = "Akses ke kata sandi yang disimpan tidak diperbolehkan";
 "Другое приложение…" = "Aplikasi lainnya…";
 "Дубай" = "Dubai";
 "Дублировать" = "Duplikat";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Kunci (opsional)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Kuncinya terdiri dari \"--\" tetap dan kelanjutan apa pun. Suatu garis dianggap ditandai jika kuncinya berada di ujung garis; kelanjutan yang kosong akan menonaktifkan kombinasi tersebut.";
+"Ключ шифрования изменился" = "Kunci enkripsi telah berubah";
 "Ключ:" = "Kunci:";
 "Кодировка…" = "Pengkodean…";
 "Комментирование по специальному ключу" = "Mengomentari menggunakan kunci khusus";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Lebar otomatis maksimum: %@ pt";
 "Максимум ширины:" = "Lebar maksimum:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "Kunci master tidak ditemukan di gantungan kunci - harap masukkan kembali kata sandi Anda";
 "Масштаб" = "Skala";
 "Масштабировать все" = "Skala semua";
 "Метка NULL" = "Label NOL";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Gagal menentukan tabel hasil";
 "Не удалось открыть %@" = "Gagal membuka %@";
 "Не удалось открыть %@: %@" = "Gagal membuka %@: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Gagal membuka Rantai Kunci macOS: %@";
 "Не удалось открыть файл: %@" = "Gagal membuka berkas: %@";
 "Не удалось переименовать файл: %@" = "Gagal mengganti nama berkas: %@";
 "Не удалось подключиться: %@" = "Gagal terhubung: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Gagal mendapatkan kunci master dari MacOS Keychain";
 "Не удалось получить столбцы %@" = "Gagal mendapatkan kolom %@";
 "Не удалось прочитать %@ как текст" = "Tidak dapat membaca %@ sebagai teks";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Gagal mendekripsi kata sandi yang disimpan - silakan masukkan lagi";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Buka tabnya";
 "Открыть в…" = "Buka di…";
 "Открыть запрос в редакторе" = "Buka kueri di editor";
+"Открыть сохранённый пароль для «%@»" = "Buka kata sandi tersimpan untuk \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Buka daftar hotkey (%@)";
 "Открыть ссылку" = "Buka tautan";
 "Открыть файл…" = "Buka berkas...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Parameter permintaan";
 "Пароли" = "Kata sandi";
 "Пароли перешифрованы новым мастер-ключом" = "Kata sandi dienkripsi ulang dengan kunci master baru";
+"Пароли сохранены заново" = "Kata sandi disimpan lagi";
 "Пароли…" = "Kata sandi...";
 "Пароль" = "Kata sandi";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Kata sandi akan diminta saat koneksi dan disimpan hanya sampai akhir sesi.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Ukuran font kisi hasil";
 "Размер шрифта: %@ pt" = "Ukuran font: %@ pt";
 "Размер: %@ pt" = "Ukuran: %@ pt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Izinkan akses DBooyvol ke kata sandi yang disimpan";
 "Разрешить вставку нескольких строк за один раз" = "Izinkan menyisipkan beberapa baris sekaligus";
 "Расположить" = "Posisi";
 "Расположить на переднем плане" = "Tempatkan di depan";
@@ -528,13 +535,15 @@
 "Сохранить" = "Simpan";
 "Сохранить значение в файл" = "Simpan nilai ke file";
 "Сохранить как…" = "Simpan sebagai...";
+"Сохранить пароли" = "Simpan kata sandi";
 "Сохранить пароль" = "Simpan kata sandi";
 "Сохранить подключение" = "Simpan koneksi";
 "Сохранить…" = "Simpan…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Simpan tab dan teksnya ke tabs.json di antara peluncuran";
 "Сохранять пароль" = "Simpan kata sandi";
 "Сохранять сжатое значение" = "Simpan nilai yang diperkecil";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Kata sandi yang disimpan dienkripsi dengan AES-256-GCM. Kunci master disimpan di Rantai Kunci macOS dan diikat ke tanda tangan aplikasi, jadi salinan folder data tanpa rantai kunci tidak ada gunanya.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Kata sandi yang disimpan tidak dapat didekripsi dengan kunci sebelumnya. Masukkan lagi - Anda hanya perlu melakukannya sekali. Akses lebih lanjut akan dikonfirmasi oleh Touch ID.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Kata sandi yang disimpan dienkripsi dengan AES-256-GCM. Kunci master disimpan di Rantai Kunci macOS; akses ke sana dikonfirmasi oleh Touch ID atau kata sandi pengguna. Salinan folder data tanpa gantungan kunci tidak ada gunanya.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Kata sandi yang disimpan akan dihapus. Tab yang terbuka akan tetap ada.";
 "Сочетание уже используется: %@" = "Pintasan sudah digunakan: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "Anda dapat menandai satu atau beberapa baris dengan kunci khusus: kombinasi %@ mengomentari dan menghapus komentar pada semua baris tersebut sekaligus, tanpa memengaruhi skrip lainnya.";

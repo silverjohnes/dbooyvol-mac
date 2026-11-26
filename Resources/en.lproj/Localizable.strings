@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "As a result, there is no primary key column '%@'";
 "ВЛД" = "VLA";
 "Введите пароль от «%@»" = "Enter the password for \"%@\"";
+"Ввод пароля отменён" = "Password entry canceled";
 "Вернуть 200 строк на страницу" = "Return 200 rows per page";
 "Вернуть по умолчанию" = "Reset to default";
 "Вернуть прежний размер" = "Return to previous size";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Load the next page of rows";
 "Дополнительная вставка" = "Advanced paste";
 "Дополнительная вставка…" = "Advanced paste…";
+"Доступ к сохранённым паролям не разрешён" = "Access to saved passwords is not allowed";
 "Другое приложение…" = "Other application…";
 "Дубай" = "Dubai";
 "Дублировать" = "Duplicate";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Key (optional)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "The key consists of a fixed \"--\" and any continuation. A line is considered marked if the key is at the very end of the line; an empty continuation disables the combination.";
+"Ключ шифрования изменился" = "The encryption key has changed";
 "Ключ:" = "Key:";
 "Кодировка…" = "Encoding…";
 "Комментирование по специальному ключу" = "Commenting using a special key";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Maximum auto-width: %@ pt";
 "Максимум ширины:" = "Maximum width:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "The master key was not found in the keychain - please re-enter your passwords";
 "Масштаб" = "Scale";
 "Масштабировать все" = "Scale all";
 "Метка NULL" = "NULL label";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Failed to define result table";
 "Не удалось открыть %@" = "Failed to open %@";
 "Не удалось открыть %@: %@" = "Failed to open %@: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Failed to open macOS Keychain: %@";
 "Не удалось открыть файл: %@" = "Failed to open file: %@";
 "Не удалось переименовать файл: %@" = "Failed to rename file: %@";
 "Не удалось подключиться: %@" = "Failed to connect: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Failed to get master key from macOS Keychain";
 "Не удалось получить столбцы %@" = "Failed to get columns %@";
 "Не удалось прочитать %@ как текст" = "Could not read %@ as text";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Failed to decrypt the saved password - please enter it again";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Open the tab";
 "Открыть в…" = "Open in…";
 "Открыть запрос в редакторе" = "Open the query in the editor";
+"Открыть сохранённый пароль для «%@»" = "Open saved password for \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Open list of hotkeys (%@)";
 "Открыть ссылку" = "Open link";
 "Открыть файл…" = "Open file...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Request parameters";
 "Пароли" = "Passwords";
 "Пароли перешифрованы новым мастер-ключом" = "Passwords are re-encrypted with a new master key";
+"Пароли сохранены заново" = "Passwords saved again";
 "Пароли…" = "Passwords...";
 "Пароль" = "Password";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "The password will be requested upon connection and stored only until the end of the session.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Result grid font size";
 "Размер шрифта: %@ pt" = "Font size: %@ pt";
 "Размер: %@ pt" = "Size: %@ pt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Allow DBooyvol access to saved passwords";
 "Разрешить вставку нескольких строк за один раз" = "Allow inserting multiple rows at once";
 "Расположить" = "Position";
 "Расположить на переднем плане" = "Place in front";
@@ -528,13 +535,15 @@
 "Сохранить" = "Save";
 "Сохранить значение в файл" = "Save value to file";
 "Сохранить как…" = "Save as...";
+"Сохранить пароли" = "Save passwords";
 "Сохранить пароль" = "Save password";
 "Сохранить подключение" = "Save connection";
 "Сохранить…" = "Save…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Save tabs and their text to tabs.json between launches";
 "Сохранять пароль" = "Save password";
 "Сохранять сжатое значение" = "Save minified value";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Saved passwords are encrypted with AES-256-GCM. The master key is stored in the macOS Keychain and tied to the app signature, so a copy of the data folder without the keychain is useless.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Saved passwords cannot be decrypted with the previous key. Enter them again - you only need to do this once. Further access will be confirmed by Touch ID.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Saved passwords are encrypted with AES-256-GCM. The master key is stored in macOS Keychain; access to it is confirmed by Touch ID or user password. A copy of the data folder without a keychain is useless.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "The saved password will be deleted. Open tabs will remain.";
 "Сочетание уже используется: %@" = "Shortcut already in use: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "You can mark a line or lines with a special key: the %@ combination comments and uncomments all such lines at once, without affecting the rest of the script.";

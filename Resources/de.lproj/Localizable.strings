@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "Daher gibt es keine Primärschlüsselspalte „%@“.";
 "ВЛД" = "WLA";
 "Введите пароль от «%@»" = "Geben Sie das Passwort für „%@“ ein.";
+"Ввод пароля отменён" = "Passworteingabe abgebrochen";
 "Вернуть 200 строк на страницу" = "Gibt 200 Zeilen pro Seite zurück";
 "Вернуть по умолчанию" = "Auf Standard zurücksetzen";
 "Вернуть прежний размер" = "Zurück zur vorherigen Größe";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Laden Sie die nächste Seite mit Zeilen";
 "Дополнительная вставка" = "Erweitertes Einfügen";
 "Дополнительная вставка…" = "Erweitertes Einfügen…";
+"Доступ к сохранённым паролям не разрешён" = "Der Zugriff auf gespeicherte Passwörter ist nicht gestattet";
 "Другое приложение…" = "Andere Anwendung…";
 "Дубай" = "Dubai";
 "Дублировать" = "Duplizieren";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Schlüssel (optional)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Der Schlüssel besteht aus einem festen „--“ und einer beliebigen Fortsetzung. Eine Zeile gilt als markiert, wenn der Schlüssel ganz am Ende der Zeile steht; eine leere Fortsetzung deaktiviert die Kombination.";
+"Ключ шифрования изменился" = "Der Verschlüsselungsschlüssel hat sich geändert";
 "Ключ:" = "Schlüssel:";
 "Кодировка…" = "Kodierung…";
 "Комментирование по специальному ключу" = "Kommentieren mit einem Sonderschlüssel";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Maximale automatische Breite: %@ pt";
 "Максимум ширины:" = "Maximale Breite:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "Der Hauptschlüssel wurde im Schlüsselbund nicht gefunden. Bitte geben Sie Ihre Passwörter erneut ein";
 "Масштаб" = "Maßstab";
 "Масштабировать все" = "Alles skalieren";
 "Метка NULL" = "NULL-Label";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Ergebnistabelle konnte nicht definiert werden";
 "Не удалось открыть %@" = "%@ konnte nicht geöffnet werden";
 "Не удалось открыть %@: %@" = "%@ konnte nicht geöffnet werden: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Der macOS-Schlüsselbund konnte nicht geöffnet werden: %@";
 "Не удалось открыть файл: %@" = "Datei konnte nicht geöffnet werden: %@";
 "Не удалось переименовать файл: %@" = "Datei konnte nicht umbenannt werden: %@";
 "Не удалось подключиться: %@" = "Verbindung fehlgeschlagen: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Der Hauptschlüssel konnte nicht vom macOS-Schlüsselbund abgerufen werden";
 "Не удалось получить столбцы %@" = "Spalten %@ konnten nicht abgerufen werden";
 "Не удалось прочитать %@ как текст" = "%@ konnte nicht als Text gelesen werden";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Das gespeicherte Passwort konnte nicht entschlüsselt werden. Bitte geben Sie es erneut ein";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Öffnen Sie die Registerkarte";
 "Открыть в…" = "Geöffnet in…";
 "Открыть запрос в редакторе" = "Öffnen Sie die Abfrage im Editor";
+"Открыть сохранённый пароль для «%@»" = "Gespeichertes Passwort für „%@“ öffnen";
 "Открыть список горячих клавиш (%@)" = "Liste der Hotkeys öffnen (%@)";
 "Открыть ссылку" = "Link öffnen";
 "Открыть файл…" = "Datei öffnen...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Parameter anfordern";
 "Пароли" = "Passwörter";
 "Пароли перешифрованы новым мастер-ключом" = "Passwörter werden mit einem neuen Hauptschlüssel neu verschlüsselt";
+"Пароли сохранены заново" = "Passwörter erneut gespeichert";
 "Пароли…" = "Passwörter...";
 "Пароль" = "Passwort";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Das Passwort wird beim Verbindungsaufbau abgefragt und nur bis zum Ende der Sitzung gespeichert.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Schriftgröße des Ergebnisrasters";
 "Размер шрифта: %@ pt" = "Schriftgröße: %@ pt";
 "Размер: %@ pt" = "Größe: %@ pt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Erlauben Sie DBooyvol den Zugriff auf gespeicherte Passwörter";
 "Разрешить вставку нескольких строк за один раз" = "Erlauben Sie das gleichzeitige Einfügen mehrerer Zeilen";
 "Расположить" = "Position";
 "Расположить на переднем плане" = "Vorne platzieren";
@@ -528,13 +535,15 @@
 "Сохранить" = "Speichern";
 "Сохранить значение в файл" = "Wert in Datei speichern";
 "Сохранить как…" = "Speichern unter...";
+"Сохранить пароли" = "Passwörter speichern";
 "Сохранить пароль" = "Passwort speichern";
 "Сохранить подключение" = "Verbindung speichern";
 "Сохранить…" = "Speichern…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Speichern Sie Tabs und ihren Text zwischen den Starts in tabs.json";
 "Сохранять пароль" = "Passwort speichern";
 "Сохранять сжатое значение" = "Minimierten Wert speichern";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Gespeicherte Passwörter werden mit AES-256-GCM verschlüsselt. Der Hauptschlüssel wird im macOS-Schlüsselbund gespeichert und an die App-Signatur gebunden, sodass eine Kopie des Datenordners ohne Schlüsselbund nutzlos ist.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Gespeicherte Passwörter können mit dem bisherigen Schlüssel nicht entschlüsselt werden. Geben Sie diese erneut ein – Sie müssen dies nur einmal tun. Der weitere Zugriff wird per Touch ID bestätigt.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Gespeicherte Passwörter werden mit AES-256-GCM verschlüsselt. Der Hauptschlüssel wird im macOS-Schlüsselbund gespeichert; Der Zugriff darauf wird durch Touch ID oder Benutzerpasswort bestätigt. Eine Kopie des Datenordners ohne Schlüsselbund ist nutzlos.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Das gespeicherte Passwort wird gelöscht. Offene Tabs bleiben bestehen.";
 "Сочетание уже используется: %@" = "Verknüpfung bereits verwendet: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "Sie können eine oder mehrere Zeilen mit einem Sonderschlüssel markieren: Die %@-Kombination kommentiert und entkommentiert alle Zeilen gleichzeitig, ohne dass sich dies auf den Rest des Skripts auswirkt.";

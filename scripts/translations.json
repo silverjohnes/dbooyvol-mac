@@ -699,7 +699,18 @@
   "Как форматировать NULL и пустые значения": "How to format NULL and empty values",
   "Каталог с файлом config для SSH-подключений": "Directory with the config file for SSH connections",
   "Копировать в формате HTML для вставки в таблицы": "Copy in HTML format for pasting into tables",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Click to highlight a line; ⌘ — add, ⇧ — range"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Click to highlight a line; ⌘ — add, ⇧ — range",
+  "Ввод пароля отменён": "Password entry canceled",
+  "Доступ к сохранённым паролям не разрешён": "Access to saved passwords is not allowed",
+  "Ключ шифрования изменился": "The encryption key has changed",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "The master key was not found in the keychain - please re-enter your passwords",
+  "Не удалось открыть связку ключей macOS: %@": "Failed to open macOS Keychain: %@",
+  "Открыть сохранённый пароль для «%@»": "Open saved password for \"%@\"",
+  "Пароли сохранены заново": "Passwords saved again",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Allow DBooyvol access to saved passwords",
+  "Сохранить пароли": "Save passwords",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Saved passwords cannot be decrypted with the previous key. Enter them again - you only need to do this once. Further access will be confirmed by Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Saved passwords are encrypted with AES-256-GCM. The master key is stored in macOS Keychain; access to it is confirmed by Touch ID or user password. A copy of the data folder without a keychain is useless."
  },
  "es": {
   "Вернуть стандартную максимальную ширину столбца": "Devuelve el ancho máximo de columna predeterminado",
@@ -1401,7 +1412,18 @@
   "Размер шрифта в редакторе SQL": "Tamaño de fuente en el editor SQL",
   "Размер шрифта таблицы результатов": "Tamaño de fuente de la tabla de resultados",
   "Разрешить вставку нескольких строк за один раз": "Permitir insertar varias filas a la vez",
-  "Сбросить все сочетания к стандартным": "Restablecer todas las combinaciones a los valores predeterminados"
+  "Сбросить все сочетания к стандартным": "Restablecer todas las combinaciones a los valores predeterminados",
+  "Ввод пароля отменён": "Entrada de contraseña cancelada",
+  "Доступ к сохранённым паролям не разрешён": "No se permite el acceso a las contraseñas guardadas",
+  "Ключ шифрования изменился": "La clave de cifrado ha cambiado.",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "La clave maestra no se encontró en el llavero; vuelva a ingresar sus contraseñas",
+  "Не удалось открыть связку ключей macOS: %@": "No se pudo abrir el llavero de macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "Abrir la contraseña guardada para \"%@\"",
+  "Пароли сохранены заново": "Contraseñas guardadas nuevamente",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Permitir que DBooyvol acceda a las contraseñas guardadas",
+  "Сохранить пароли": "guardar contraseñas",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Las contraseñas guardadas no se pueden descifrar con la clave anterior. Ingreselos nuevamente; solo necesita hacerlo una vez. El acceso adicional será confirmado mediante Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Las contraseñas guardadas están cifradas con AES-256-GCM. La clave maestra se almacena en macOS Keychain; el acceso al mismo se confirma mediante Touch ID o contraseña de usuario. Una copia de la carpeta de datos sin llavero es inútil."
  },
  "pt": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) páginas (entry.durationMs) ms",
@@ -2103,7 +2125,18 @@
   "Размер шрифта в редакторе SQL": "Tamanho da fonte no editor SQL",
   "Размер шрифта таблицы результатов": "Tamanho da fonte da tabela de resultados",
   "Разрешить вставку нескольких строк за один раз": "Permitir a inserção de várias linhas de uma vez",
-  "Сбросить все сочетания к стандартным": "Redefinir todas as combinações para o padrão"
+  "Сбросить все сочетания к стандартным": "Redefinir todas as combinações para o padrão",
+  "Ввод пароля отменён": "Entrada de senha cancelada",
+  "Доступ к сохранённым паролям не разрешён": "O acesso às senhas salvas não é permitido",
+  "Ключ шифрования изменился": "A chave de criptografia mudou",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "A chave mestra não foi encontrada no chaveiro - digite novamente suas senhas",
+  "Не удалось открыть связку ключей macOS: %@": "Falha ao abrir as Chaves do macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "Abra a senha salva para \"%@\"",
+  "Пароли сохранены заново": "Senhas salvas novamente",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Permitir acesso do DBooyvol às senhas salvas",
+  "Сохранить пароли": "Salvar senhas",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "As senhas salvas não podem ser descriptografadas com a chave anterior. Insira-os novamente - você só precisa fazer isso uma vez. O acesso posterior será confirmado pelo Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "As senhas salvas são criptografadas com AES-256-GCM. A chave mestra é armazenada no macOS Keychain; o acesso a ele é confirmado por Touch ID ou senha de usuário. Uma cópia da pasta de dados sem chaveiro é inútil."
  },
  "fr": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) pages (entry.durationMs) ms",
@@ -2805,7 +2838,18 @@
   "Как форматировать NULL и пустые значения": "Comment formater les valeurs NULL et vides",
   "Каталог с файлом config для SSH-подключений": "Répertoire avec le fichier de configuration pour les connexions SSH",
   "Копировать в формате HTML для вставки в таблицы": "Copier au format HTML pour coller dans des tableaux",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Cliquez pour mettre une ligne en surbrillance ; ⌘ — ajouter, ⇧ — plage"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Cliquez pour mettre une ligne en surbrillance ; ⌘ — ajouter, ⇧ — plage",
+  "Ввод пароля отменён": "Saisie du mot de passe annulée",
+  "Доступ к сохранённым паролям не разрешён": "L'accès aux mots de passe enregistrés n'est pas autorisé",
+  "Ключ шифрования изменился": "La clé de cryptage a changé",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "La clé principale n'a pas été trouvée dans le trousseau - veuillez saisir à nouveau vos mots de passe",
+  "Не удалось открыть связку ключей macOS: %@": "Échec de l'ouverture du trousseau macOS : %@",
+  "Открыть сохранённый пароль для «%@»": "Ouvrir le mot de passe enregistré pour \"%@\"",
+  "Пароли сохранены заново": "Mots de passe enregistrés à nouveau",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Autoriser DBooyvol à accéder aux mots de passe enregistrés",
+  "Сохранить пароли": "Enregistrer les mots de passe",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Les mots de passe enregistrés ne peuvent pas être déchiffrés avec la clé précédente. Saisissez-les à nouveau - vous ne devez le faire qu'une seule fois. L'accès ultérieur sera confirmé par Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Les mots de passe enregistrés sont cryptés avec AES-256-GCM. La clé principale est stockée dans le trousseau macOS ; l'accès à celui-ci est confirmé par Touch ID ou par mot de passe utilisateur. Une copie du dossier de données sans trousseau est inutile."
  },
  "de": {
   "Вернуть стандартную максимальную ширину столбца": "Gibt die standardmäßige maximale Spaltenbreite zurück",
@@ -3507,7 +3551,18 @@
   "Как форматировать NULL и пустые значения": "So formatieren Sie NULL- und leere Werte",
   "Каталог с файлом config для SSH-подключений": "Verzeichnis mit der Konfigurationsdatei für SSH-Verbindungen",
   "Копировать в формате HTML для вставки в таблицы": "Kopieren Sie es im HTML-Format zum Einfügen in Tabellen",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klicken Sie, um eine Zeile hervorzuheben. ⌘ – hinzufügen, ⇧ – Bereich"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klicken Sie, um eine Zeile hervorzuheben. ⌘ – hinzufügen, ⇧ – Bereich",
+  "Ввод пароля отменён": "Passworteingabe abgebrochen",
+  "Доступ к сохранённым паролям не разрешён": "Der Zugriff auf gespeicherte Passwörter ist nicht gestattet",
+  "Ключ шифрования изменился": "Der Verschlüsselungsschlüssel hat sich geändert",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "Der Hauptschlüssel wurde im Schlüsselbund nicht gefunden. Bitte geben Sie Ihre Passwörter erneut ein",
+  "Не удалось открыть связку ключей macOS: %@": "Der macOS-Schlüsselbund konnte nicht geöffnet werden: %@",
+  "Открыть сохранённый пароль для «%@»": "Gespeichertes Passwort für „%@“ öffnen",
+  "Пароли сохранены заново": "Passwörter erneut gespeichert",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Erlauben Sie DBooyvol den Zugriff auf gespeicherte Passwörter",
+  "Сохранить пароли": "Passwörter speichern",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Gespeicherte Passwörter können mit dem bisherigen Schlüssel nicht entschlüsselt werden. Geben Sie diese erneut ein – Sie müssen dies nur einmal tun. Der weitere Zugriff wird per Touch ID bestätigt.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Gespeicherte Passwörter werden mit AES-256-GCM verschlüsselt. Der Hauptschlüssel wird im macOS-Schlüsselbund gespeichert; Der Zugriff darauf wird durch Touch ID oder Benutzerpasswort bestätigt. Eine Kopie des Datenordners ohne Schlüsselbund ist nutzlos."
  },
  "it": {
   "Выполнить всё": "Completa tutto",
@@ -4209,7 +4264,18 @@
   "Как форматировать NULL и пустые значения": "Come formattare NULL e valori vuoti",
   "Каталог с файлом config для SSH-подключений": "Directory con il file di configurazione per le connessioni SSH",
   "Копировать в формате HTML для вставки в таблицы": "Copia in formato HTML per incollarlo nelle tabelle",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Fare clic per evidenziare una linea; ⌘ — aggiungi, ⇧ — intervallo"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Fare clic per evidenziare una linea; ⌘ — aggiungi, ⇧ — intervallo",
+  "Ввод пароля отменён": "Inserimento della password annullato",
+  "Доступ к сохранённым паролям не разрешён": "Non è consentito l'accesso alle password salvate",
+  "Ключ шифрования изменился": "La chiave di crittografia è cambiata",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "La chiave principale non è stata trovata nel portachiavi: inserisci nuovamente le password",
+  "Не удалось открыть связку ключей macOS: %@": "Impossibile aprire il portachiavi macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "Apri la password salvata per \"%@\"",
+  "Пароли сохранены заново": "Password salvate di nuovo",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Consenti a DBooyvol l'accesso alle password salvate",
+  "Сохранить пароли": "Salva password",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Le password salvate non possono essere decrittografate con la chiave precedente. Inseriscili di nuovo: devi farlo solo una volta. Ulteriori accessi verranno confermati tramite Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Le password salvate vengono crittografate con AES-256-GCM. La chiave principale è archiviata nel portachiavi macOS; l'accesso allo stesso è confermato dal Touch ID o dalla password dell'utente. Una copia della cartella dati senza portachiavi è inutile."
  },
  "nl": {
   "Вернуть стандартную максимальную ширину столбца": "Retourneert de standaard maximale kolombreedte",
@@ -4911,7 +4977,18 @@
   "Как форматировать NULL и пустые значения": "NULL- en lege waarden formatteren",
   "Каталог с файлом config для SSH-подключений": "Directory met het configuratiebestand voor SSH-verbindingen",
   "Копировать в формате HTML для вставки в таблицы": "Kopieer in HTML-formaat om in tabellen te plakken",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klik om een lijn te markeren; ⌘ — optellen, ⇧ — bereik"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klik om een lijn te markeren; ⌘ — optellen, ⇧ — bereik",
+  "Ввод пароля отменён": "Wachtwoordinvoer geannuleerd",
+  "Доступ к сохранённым паролям не разрешён": "Toegang tot opgeslagen wachtwoorden is niet toegestaan",
+  "Ключ шифрования изменился": "De coderingssleutel is gewijzigd",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "De hoofdsleutel is niet gevonden in de sleutelhanger. Voer uw wachtwoorden opnieuw in",
+  "Не удалось открыть связку ключей macOS: %@": "Kan macOS-sleutelhanger niet openen: %@",
+  "Открыть сохранённый пароль для «%@»": "Open het opgeslagen wachtwoord voor \"%@\"",
+  "Пароли сохранены заново": "Wachtwoorden opnieuw opgeslagen",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Geef DBooyvol toegang tot opgeslagen wachtwoorden",
+  "Сохранить пароли": "Bewaar wachtwoorden",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Opgeslagen wachtwoorden kunnen niet worden gedecodeerd met de vorige sleutel. Voer ze opnieuw in. Dit hoeft u maar één keer te doen. Verdere toegang wordt bevestigd door Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Opgeslagen wachtwoorden worden gecodeerd met AES-256-GCM. De hoofdsleutel wordt opgeslagen in macOS-sleutelhanger; toegang daartoe wordt bevestigd door Touch ID of gebruikerswachtwoord. Een kopie van de gegevensmap zonder sleutelhanger is nutteloos."
  },
  "pl": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) strony (entry.durationMs) ms",
@@ -5613,7 +5690,18 @@
   "Размер шрифта в редакторе SQL": "Rozmiar czcionki w edytorze SQL",
   "Размер шрифта таблицы результатов": "Rozmiar czcionki tabeli wyników",
   "Разрешить вставку нескольких строк за один раз": "Zezwalaj na wstawianie wielu wierszy jednocześnie",
-  "Сбросить все сочетания к стандартным": "Zresetuj wszystkie kombinacje do ustawień domyślnych"
+  "Сбросить все сочетания к стандартным": "Zresetuj wszystkie kombinacje do ustawień domyślnych",
+  "Ввод пароля отменён": "Wprowadzanie hasła anulowane",
+  "Доступ к сохранённым паролям не разрешён": "Dostęp do zapisanych haseł jest zabroniony",
+  "Ключ шифрования изменился": "Klucz szyfrowania został zmieniony",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "W pęku kluczy nie znaleziono klucza głównego — wprowadź ponownie hasła",
+  "Не удалось открыть связку ключей macOS: %@": "Nie udało się otworzyć pęku kluczy macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "Otwórz zapisane hasło dla „%@”",
+  "Пароли сохранены заново": "Hasła zostały ponownie zapisane",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Zezwól DBooyvol na dostęp do zapisanych haseł",
+  "Сохранить пароли": "Zapisz hasła",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Zapisanych haseł nie można odszyfrować przy użyciu poprzedniego klucza. Wpisz je ponownie – wystarczy, że zrobisz to tylko raz. Dalszy dostęp zostanie potwierdzony Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Zapisane hasła są szyfrowane za pomocą AES-256-GCM. Klucz główny jest przechowywany w pęku kluczy macOS; dostęp do niego potwierdzany jest Touch ID lub hasłem użytkownika. Kopia folderu danych bez pęku kluczy jest bezużyteczna."
  },
  "tr": {
   "Выполнить всё": "Her şeyi tamamla",
@@ -6315,7 +6403,18 @@
   "Размер шрифта в редакторе SQL": "SQL düzenleyicide yazı tipi boyutu",
   "Размер шрифта таблицы результатов": "Sonuçlar tablosu yazı tipi boyutu",
   "Разрешить вставку нескольких строк за один раз": "Aynı anda birden fazla satır eklenmesine izin ver",
-  "Сбросить все сочетания к стандартным": "Tüm kombinasyonları varsayılana sıfırla"
+  "Сбросить все сочетания к стандартным": "Tüm kombinasyonları varsayılana sıfırla",
+  "Ввод пароля отменён": "Şifre girişi iptal edildi",
+  "Доступ к сохранённым паролям не разрешён": "Kayıtlı şifrelere erişime izin verilmiyor",
+  "Ключ шифрования изменился": "Şifreleme anahtarı değişti",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "Ana anahtar anahtarlıkta bulunamadı - lütfen şifrelerinizi tekrar girin",
+  "Не удалось открыть связку ключей macOS: %@": "macOS Anahtar Zinciri açılamadı: %@",
+  "Открыть сохранённый пароль для «%@»": "\"%@\" için kayıtlı şifreyi aç",
+  "Пароли сохранены заново": "Şifreler tekrar kaydedildi",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "DBooyvol'un kayıtlı şifrelere erişmesine izin ver",
+  "Сохранить пароли": "Şifreleri kaydet",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Kaydedilen şifrelerin şifresi önceki anahtarla çözülemez. Bunları tekrar girin; bunu yalnızca bir kez yapmanız yeterlidir. Daha fazla erişim Touch ID ile onaylanacaktır.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Kaydedilen şifreler AES-256-GCM ile şifrelenir. Ana anahtar, macOS Anahtar Zinciri'nde saklanır; erişim Touch ID veya kullanıcı şifresi ile onaylanır. Veri klasörünün anahtarlıksız bir kopyası işe yaramaz."
  },
  "ar": {
   "Заключать значения в кавычки": "أرفق القيم بين علامات الاقتباس",
@@ -7017,7 +7116,18 @@
   "Размер шрифта в редакторе SQL": "حجم الخط في محرر SQL",
   "Размер шрифта таблицы результатов": "حجم خط جدول النتائج",
   "Разрешить вставку нескольких строк за один раз": "السماح بإدراج صفوف متعددة في وقت واحد",
-  "Сбросить все сочетания к стандартным": "إعادة تعيين جميع المجموعات إلى الوضع الافتراضي"
+  "Сбросить все сочетания к стандартным": "إعادة تعيين جميع المجموعات إلى الوضع الافتراضي",
+  "Ввод пароля отменён": "تم إلغاء إدخال كلمة المرور",
+  "Доступ к сохранённым паролям не разрешён": "غير مسموح بالوصول إلى كلمات المرور المحفوظة",
+  "Ключ шифрования изменился": "لقد تغير مفتاح التشفير",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "لم يتم العثور على المفتاح الرئيسي في سلسلة المفاتيح - يرجى إعادة إدخال كلمات المرور الخاصة بك",
+  "Не удалось открыть связку ключей macOS: %@": "فشل في فتح سلسلة مفاتيح macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "فتح كلمة المرور المحفوظة لـ \"%@\"",
+  "Пароли сохранены заново": "تم حفظ كلمات المرور مرة أخرى",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "السماح لـ DBooyvol بالوصول إلى كلمات المرور المحفوظة",
+  "Сохранить пароли": "حفظ كلمات المرور",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "لا يمكن فك تشفير كلمات المرور المحفوظة باستخدام المفتاح السابق. أدخلها مرة أخرى - ما عليك سوى القيام بذلك مرة واحدة. سيتم تأكيد الوصول الإضافي عن طريق Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "يتم تشفير كلمات المرور المحفوظة باستخدام AES-256-GCM. يتم تخزين المفتاح الرئيسي في macOS Keychain؛ يتم تأكيد الوصول إليه عن طريق Touch ID أو كلمة مرور المستخدم. نسخة من مجلد البيانات بدون سلسلة المفاتيح غير مجدية."
  },
  "hi": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) पेज (entry.durationMs) एमएस",
@@ -7719,7 +7829,18 @@
   "Размер шрифта в редакторе SQL": "SQL संपादक में फ़ॉन्ट आकार",
   "Размер шрифта таблицы результатов": "परिणाम तालिका फ़ॉन्ट आकार",
   "Разрешить вставку нескольких строк за один раз": "एक साथ अनेक पंक्तियाँ सम्मिलित करने की अनुमति दें",
-  "Сбросить все сочетания к стандартным": "सभी संयोजनों को डिफ़ॉल्ट पर रीसेट करें"
+  "Сбросить все сочетания к стандартным": "सभी संयोजनों को डिफ़ॉल्ट पर रीसेट करें",
+  "Ввод пароля отменён": "पासवर्ड प्रविष्टि रद्द कर दी गई",
+  "Доступ к сохранённым паролям не разрешён": "सहेजे गए पासवर्ड तक पहुंच की अनुमति नहीं है",
+  "Ключ шифрования изменился": "एन्क्रिप्शन कुंजी बदल गई है",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "किचेन में मास्टर कुंजी नहीं मिली - कृपया अपने पासवर्ड पुनः दर्ज करें",
+  "Не удалось открыть связку ключей macOS: %@": "MacOS किचेन खोलने में विफल: %@",
+  "Открыть сохранённый пароль для «%@»": "\"%@\" के लिए सहेजा गया पासवर्ड खोलें",
+  "Пароли сохранены заново": "पासवर्ड फिर से सहेजे गए",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "DBooyvol को सहेजे गए पासवर्ड तक पहुंच की अनुमति दें",
+  "Сохранить пароли": "पासवर्ड सहेजें",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "सहेजे गए पासवर्ड को पिछली कुंजी से डिक्रिप्ट नहीं किया जा सकता है। उन्हें दोबारा दर्ज करें - आपको ऐसा केवल एक बार करना होगा। आगे की पहुंच की पुष्टि टच आईडी द्वारा की जाएगी।",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "सहेजे गए पासवर्ड AES-256-GCM के साथ एन्क्रिप्ट किए गए हैं। मास्टर कुंजी macOS किचेन में संग्रहीत है; इस तक पहुंच की पुष्टि टच आईडी या उपयोगकर्ता पासवर्ड द्वारा की जाती है। किचेन के बिना डेटा फ़ोल्डर की कॉपी बेकार है।"
  },
  "zh-Hans": {
   "Вернуть стандартную максимальную ширину столбца": "返回默认最大列宽",
@@ -8421,7 +8542,18 @@
   "Как форматировать NULL и пустые значения": "如何格式化 NULL 和空值",
   "Каталог с файлом config для SSH-подключений": "包含 SSH 连接配置文件的目录",
   "Копировать в формате HTML для вставки в таблицы": "以 HTML 格式复制以粘贴到表格中",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "单击以突出显示一条线； ⌘ — 添加，⇧ — 范围"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "单击以突出显示一条线； ⌘ — 添加，⇧ — 范围",
+  "Ввод пароля отменён": "密码输入已取消",
+  "Доступ к сохранённым паролям не разрешён": "不允许访问已保存的密码",
+  "Ключ шифрования изменился": "加密密钥已更改",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "在钥匙串中找不到主钥匙 - 请重新输入您的密码",
+  "Не удалось открыть связку ключей macOS: %@": "无法打开 macOS 钥匙串：%@",
+  "Открыть сохранённый пароль для «%@»": "打开“%@”保存的密码",
+  "Пароли сохранены заново": "密码已再次保存",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "允许 DBooyvol 访问已保存的密码",
+  "Сохранить пароли": "保存密码",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "保存的密码无法使用以前的密钥解密。再次输入它们 - 您只需执行一次。进一步的访问将通过 Touch ID 确认。",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "保存的密码使用 AES-256-GCM 加密。主密钥存储在 macOS Keychain 中；通过 Touch ID 或用户密码确认对其的访问。没有钥匙串的数据文件夹副本是没有用的。"
  },
  "zh-Hant": {
   "Вернуть стандартную максимальную ширину столбца": "傳回預設最大列寬",
@@ -9123,7 +9255,18 @@
   "Как форматировать NULL и пустые значения": "如何格式化 NULL 和空值",
   "Каталог с файлом config для SSH-подключений": "包含 SSH 連線設定檔的目錄",
   "Копировать в формате HTML для вставки в таблицы": "以 HTML 格式複製以貼上到表格中",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "按一下以反白顯示一條線； ⌘ — 添加，⇧ — 範圍"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "按一下以反白顯示一條線； ⌘ — 添加，⇧ — 範圍",
+  "Ввод пароля отменён": "密碼輸入已取消",
+  "Доступ к сохранённым паролям не разрешён": "不允許存取已儲存的密碼",
+  "Ключ шифрования изменился": "加密密鑰已更改",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "在鑰匙圈中找不到主鑰匙 - 請重新輸入您的密碼",
+  "Не удалось открыть связку ключей macOS: %@": "無法開啟 macOS 鑰匙圈：%@",
+  "Открыть сохранённый пароль для «%@»": "開啟“%@”儲存的密碼",
+  "Пароли сохранены заново": "密碼已再次儲存",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "允許 DBooyvol 存取已儲存的密碼",
+  "Сохранить пароли": "儲存密碼",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "儲存的密碼無法使用先前的金鑰解密。再次輸入它們 - 您只需執行一次。進一步的存取將透過 Touch ID 確認。",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "儲存的密碼使用 AES-256-GCM 加密。主密鑰儲存在 macOS Keychain 中；透過 Touch ID 或使用者密碼確認對其的存取。沒有鑰匙圈的資料資料夾副本是沒有用的。"
  },
  "ja": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) ページ (entry.durationMs) ミリ秒",
@@ -9825,7 +9968,18 @@
   "Как форматировать NULL и пустые значения": "NULL 値と空の値をフォーマットする方法",
   "Каталог с файлом config для SSH-подключений": "SSH接続用の構成ファイルが含まれるディレクトリ",
   "Копировать в формате HTML для вставки в таблицы": "HTML 形式でコピーして表に貼り付ける",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "クリックして行を強調表示します。 ⌘ — 追加、⇧ — 範囲"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "クリックして行を強調表示します。 ⌘ — 追加、⇧ — 範囲",
+  "Ввод пароля отменён": "パスワード入力がキャンセルされました",
+  "Доступ к сохранённым паролям не разрешён": "保存されたパスワードへのアクセスは許可されません",
+  "Ключ шифрования изменился": "暗号化キーが変更されました",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "マスターキーがキーチェーン内に見つかりませんでした - パスワードを再入力してください",
+  "Не удалось открыть связку ключей macOS: %@": "macOS キーチェーンを開けませんでした: %@",
+  "Открыть сохранённый пароль для «%@»": "「%@」の保存されたパスワードを開く",
+  "Пароли сохранены заново": "パスワードが再度保存されました",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "DBooyvol に保存されたパスワードへのアクセスを許可する",
+  "Сохранить пароли": "パスワードを保存する",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "保存されたパスワードは、以前のキーでは復号化できません。もう一度入力してください。これは 1 回だけ行う必要があります。以降のアクセスは Touch ID によって確認されます。",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "保存されたパスワードは AES-256-GCM で暗号化されます。マスター キーは macOS キーチェーンに保存されます。アクセスは Touch ID またはユーザー パスワードによって確認されます。キーチェーンのないデータ フォルダーのコピーは役に立ちません。"
  },
  "ko": {
   "Вернуть стандартную максимальную ширину столбца": "기본 최대 열 너비 반환",
@@ -10527,7 +10681,18 @@
   "Тип базы данных": "데이터베이스 유형",
   "Хранить пароль в зашифрованном виде в связке ключей": "키체인에 암호화된 비밀번호를 저장하세요",
   "Шрифт таблицы результатов": "결과표 글꼴",
-  "Язык интерфейса; применяется после перезапуска": "인터페이스 언어; 재시작 후 적용"
+  "Язык интерфейса; применяется после перезапуска": "인터페이스 언어; 재시작 후 적용",
+  "Ввод пароля отменён": "비밀번호 입력이 취소되었습니다.",
+  "Доступ к сохранённым паролям не разрешён": "저장된 비밀번호에 대한 접근은 허용되지 않습니다",
+  "Ключ шифрования изменился": "암호화 키가 변경되었습니다.",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "키체인에서 마스터 키를 찾을 수 없습니다. 비밀번호를 다시 입력하세요.",
+  "Не удалось открыть связку ключей macOS: %@": "macOS 키체인을 열지 못했습니다: %@",
+  "Открыть сохранённый пароль для «%@»": "\"%@\"에 대해 저장된 비밀번호 열기",
+  "Пароли сохранены заново": "비밀번호가 다시 저장되었습니다.",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "저장된 비밀번호에 대한 DBooyvol 액세스 허용",
+  "Сохранить пароли": "비밀번호 저장",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "저장된 비밀번호는 이전 키로 복호화할 수 없습니다. 다시 입력하세요. 이 작업은 한 번만 수행하면 됩니다. 추가 액세스는 Touch ID를 통해 확인됩니다.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "저장된 비밀번호는 AES-256-GCM으로 암호화됩니다. 마스터 키는 macOS 키체인에 저장됩니다. 이에 대한 액세스는 Touch ID 또는 사용자 비밀번호로 확인됩니다. 키체인이 없는 데이터 폴더의 복사본은 쓸모가 없습니다."
  },
  "id": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) halaman (entry.durationMs) ms",
@@ -11229,7 +11394,18 @@
   "Как форматировать NULL и пустые значения": "Cara memformat nilai NULL dan kosong",
   "Каталог с файлом config для SSH-подключений": "Direktori dengan file konfigurasi untuk koneksi SSH",
   "Копировать в формате HTML для вставки в таблицы": "Salin dalam format HTML untuk ditempelkan ke tabel",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klik untuk menyorot sebuah garis; ⌘ — tambahkan, ⇧ — rentang"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klik untuk menyorot sebuah garis; ⌘ — tambahkan, ⇧ — rentang",
+  "Ввод пароля отменён": "Entri kata sandi dibatalkan",
+  "Доступ к сохранённым паролям не разрешён": "Akses ke kata sandi yang disimpan tidak diperbolehkan",
+  "Ключ шифрования изменился": "Kunci enkripsi telah berubah",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "Kunci master tidak ditemukan di gantungan kunci - harap masukkan kembali kata sandi Anda",
+  "Не удалось открыть связку ключей macOS: %@": "Gagal membuka Rantai Kunci macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "Buka kata sandi tersimpan untuk \"%@\"",
+  "Пароли сохранены заново": "Kata sandi disimpan lagi",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Izinkan akses DBooyvol ke kata sandi yang disimpan",
+  "Сохранить пароли": "Simpan kata sandi",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Kata sandi yang disimpan tidak dapat didekripsi dengan kunci sebelumnya. Masukkan lagi - Anda hanya perlu melakukannya sekali. Akses lebih lanjut akan dikonfirmasi oleh Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Kata sandi yang disimpan dienkripsi dengan AES-256-GCM. Kunci master disimpan di Rantai Kunci macOS; akses ke sana dikonfirmasi oleh Touch ID atau kata sandi pengguna. Salinan folder data tanpa gantungan kunci tidak ada gunanya."
  },
  "vi": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) trang (entry.durationMs) mili giây",
@@ -11931,7 +12107,18 @@
   "Как форматировать NULL и пустые значения": "Cách định dạng giá trị NULL và giá trị trống",
   "Каталог с файлом config для SSH-подключений": "Thư mục chứa tệp cấu hình cho kết nối SSH",
   "Копировать в формате HTML для вставки в таблицы": "Sao chép ở định dạng HTML để dán vào bảng",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Bấm để đánh dấu một dòng; ⌘ — cộng, ⇧ — phạm vi"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Bấm để đánh dấu một dòng; ⌘ — cộng, ⇧ — phạm vi",
+  "Ввод пароля отменён": "Đã hủy mục nhập mật khẩu",
+  "Доступ к сохранённым паролям не разрешён": "Không được phép truy cập vào mật khẩu đã lưu",
+  "Ключ шифрования изменился": "Khóa mã hóa đã thay đổi",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "Không tìm thấy khóa chính trong móc khóa - vui lòng nhập lại mật khẩu của bạn",
+  "Не удалось открыть связку ключей macOS: %@": "Không mở được chuỗi khóa macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "Mở mật khẩu đã lưu cho \"%@\"",
+  "Пароли сохранены заново": "Đã lưu lại mật khẩu",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Cho phép DBooyvol truy cập vào mật khẩu đã lưu",
+  "Сохранить пароли": "Lưu mật khẩu",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Mật khẩu đã lưu không thể được giải mã bằng khóa trước đó. Nhập lại chúng - bạn chỉ cần thực hiện việc này một lần. Quyền truy cập sâu hơn sẽ được xác nhận bằng Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Mật khẩu đã lưu được mã hóa bằng AES-256-GCM. Khóa chính được lưu trữ trong Chuỗi khóa macOS; quyền truy cập vào nó được xác nhận bằng Touch ID hoặc mật khẩu người dùng. Một bản sao của thư mục dữ liệu không có móc khóa là vô ích."
  },
  "th": {
   "(entry.rowCount) стр · (entry.durationMs) мс": "(entry.rowCount) หน้า (entry.durationMs) มิลลิวินาที",
@@ -12633,7 +12820,18 @@
   "Размер шрифта в редакторе SQL": "ขนาดตัวอักษรในตัวแก้ไข SQL",
   "Размер шрифта таблицы результатов": "ขนาดตัวอักษรของตารางผลลัพธ์",
   "Разрешить вставку нескольких строк за один раз": "อนุญาตให้แทรกหลายแถวพร้อมกัน",
-  "Сбросить все сочетания к стандартным": "รีเซ็ตชุดค่าผสมทั้งหมดเป็นค่าเริ่มต้น"
+  "Сбросить все сочетания к стандартным": "รีเซ็ตชุดค่าผสมทั้งหมดเป็นค่าเริ่มต้น",
+  "Ввод пароля отменён": "การป้อนรหัสผ่านถูกยกเลิก",
+  "Доступ к сохранённым паролям не разрешён": "ไม่อนุญาตให้เข้าถึงรหัสผ่านที่บันทึกไว้",
+  "Ключ шифрования изменился": "คีย์การเข้ารหัสมีการเปลี่ยนแปลง",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "ไม่พบคีย์หลักในพวงกุญแจ - โปรดป้อนรหัสผ่านของคุณอีกครั้ง",
+  "Не удалось открыть связку ключей macOS: %@": "ไม่สามารถเปิดพวงกุญแจ macOS: %@",
+  "Открыть сохранённый пароль для «%@»": "เปิดรหัสผ่านที่บันทึกไว้สำหรับ \"%@\"",
+  "Пароли сохранены заново": "บันทึกรหัสผ่านอีกครั้ง",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "อนุญาตให้ DBooyvol เข้าถึงรหัสผ่านที่บันทึกไว้",
+  "Сохранить пароли": "บันทึกรหัสผ่าน",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "รหัสผ่านที่บันทึกไว้ไม่สามารถถอดรหัสด้วยคีย์ก่อนหน้าได้ ป้อนอีกครั้ง - คุณต้องทำสิ่งนี้เพียงครั้งเดียวเท่านั้น การเข้าถึงเพิ่มเติมจะได้รับการยืนยันโดย Touch ID",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "รหัสผ่านที่บันทึกไว้จะถูกเข้ารหัสด้วย AES-256-GCM คีย์หลักจะถูกจัดเก็บไว้ในพวงกุญแจ macOS การเข้าถึงได้รับการยืนยันด้วย Touch ID หรือรหัสผ่านผู้ใช้ การคัดลอกโฟลเดอร์ข้อมูลที่ไม่มีพวงกุญแจจะไม่มีประโยชน์"
  },
  "sv": {
   "Заключать значения в кавычки": "Bifoga värden inom citattecken",
@@ -13335,7 +13533,18 @@
   "Тип базы данных": "Databastyp",
   "Хранить пароль в зашифрованном виде в связке ключей": "Lagra lösenordet krypterat i nyckelringen",
   "Шрифт таблицы результатов": "Typsnitt för resultattabell",
-  "Язык интерфейса; применяется после перезапуска": "Gränssnittsspråk; tillämpas efter omstart"
+  "Язык интерфейса; применяется после перезапуска": "Gränssnittsspråk; tillämpas efter omstart",
+  "Ввод пароля отменён": "Lösenordsinmatningen avbröts",
+  "Доступ к сохранённым паролям не разрешён": "Åtkomst till sparade lösenord är inte tillåten",
+  "Ключ шифрования изменился": "Krypteringsnyckeln har ändrats",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "Huvudnyckeln hittades inte i nyckelringen - vänligen ange dina lösenord igen",
+  "Не удалось открыть связку ключей macOS: %@": "Det gick inte att öppna macOS-nyckelring: %@",
+  "Открыть сохранённый пароль для «%@»": "Öppna sparat lösenord för \"%@\"",
+  "Пароли сохранены заново": "Lösenord sparade igen",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Tillåt DBooyvol åtkomst till sparade lösenord",
+  "Сохранить пароли": "Spara lösenord",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Sparade lösenord kan inte dekrypteras med föregående nyckel. Ange dem igen - du behöver bara göra detta en gång. Ytterligare åtkomst kommer att bekräftas av Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Sparade lösenord krypteras med AES-256-GCM. Huvudnyckeln lagras i macOS Keychain; åtkomst till den bekräftas med Touch ID eller användarlösenord. En kopia av datamappen utan nyckelring är värdelös."
  },
  "cs": {
   "Заключать значения в кавычки": "Uzavřete hodnoty do uvozovek",
@@ -14037,7 +14246,18 @@
   "Как форматировать NULL и пустые значения": "Jak formátovat hodnoty NULL a prázdné",
   "Каталог с файлом config для SSH-подключений": "Adresář s konfiguračním souborem pro připojení SSH",
   "Копировать в формате HTML для вставки в таблицы": "Kopírování ve formátu HTML pro vkládání do tabulek",
-  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klepnutím zvýrazněte řádek; ⌘ — přidat, ⇧ — rozsah"
+  "Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон": "Klepnutím zvýrazněte řádek; ⌘ — přidat, ⇧ — rozsah",
+  "Ввод пароля отменён": "Zadání hesla bylo zrušeno",
+  "Доступ к сохранённым паролям не разрешён": "Přístup k uloženým heslům není povolen",
+  "Ключ шифрования изменился": "Šifrovací klíč se změnil",
+  "Мастер-ключ не найден в связке ключей — введите пароли заново": "Hlavní klíč nebyl v klíčence nalezen – zadejte prosím znovu svá hesla",
+  "Не удалось открыть связку ключей macOS: %@": "Nepodařilo se otevřít macOS Keychain: %@",
+  "Открыть сохранённый пароль для «%@»": "Otevřít uložené heslo pro \"%@\"",
+  "Пароли сохранены заново": "Hesla znovu uložena",
+  "Разрешить DBooyvol доступ к сохранённым паролям": "Povolte DBooyvol přístup k uloženým heslům",
+  "Сохранить пароли": "Uložte hesla",
+  "Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.": "Uložená hesla nelze dešifrovat pomocí předchozího klíče. Zadejte je znovu – stačí to udělat jednou. Další přístup bude potvrzen Touch ID.",
+  "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна.": "Uložená hesla jsou šifrována pomocí AES-256-GCM. Hlavní klíč je uložen v macOS Keychain; přístup k němu je potvrzen Touch ID nebo uživatelským heslem. Kopie datové složky bez klíčenky je k ničemu."
  },
  "_en": {
   "en": {

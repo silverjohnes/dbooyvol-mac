@@ -385,6 +385,15 @@ final class AppModel: ObservableObject {
         if profile.kind.isFileBased { return "" }
         if let cached = sessionPasswords[profile.id] { return cached }
 
+        // If the master key changed, offer one dialog for every affected
+        // connection instead of failing each one separately.
+        let storedAccounts = profiles
+            .filter { $0.storesPassword && !$0.kind.isFileBased }
+            .map { $0.id.uuidString }
+        if SecretStore.hasStaleSecrets(storedAccounts) {
+            return recoverStaleSecrets(for: profile)
+        }
+
         let alert = NSAlert()
         alert.messageText = L10n.fmt("Введите пароль от «%@»", profile.displayName)
         alert.addButton(withTitle: L10n.tr("Подключиться"))
@@ -423,6 +432,80 @@ final class AppModel: ObservableObject {
             sessionPasswords[profile.id] = password
         }
         return password
+    }
+
+    /// One dialog for every stored password that can no longer be decrypted
+    /// because the master key changed. Returns the password for the requested
+    /// profile; nil means the user cancelled the connection.
+    private func recoverStaleSecrets(for requested: ConnectionProfile) -> String? {
+        let stored = profiles.filter { $0.storesPassword && !$0.kind.isFileBased }
+        let stale = Set(SecretStore.staleAccounts(stored.map { $0.id.uuidString }))
+        let affected = stored.filter { stale.contains($0.id.uuidString) }
+        guard !affected.isEmpty else { return nil }
+
+        let width: CGFloat = 420
+        let rowHeight: CGFloat = 50
+        let contentHeight = max(CGFloat(affected.count) * rowHeight, 1)
+        let visibleHeight = min(contentHeight, 320)
+        let container = FlippedContainerView(
+            frame: NSRect(x: 0, y: 0, width: width, height: contentHeight))
+        var fields: [UUID: NSSecureTextField] = [:]
+        for (index, profile) in affected.enumerated() {
+            let top = CGFloat(index) * rowHeight
+            let label = NSTextField(labelWithString: profile.displayName)
+            label.font = .systemFont(ofSize: 12, weight: .semibold)
+            label.frame = NSRect(x: 0, y: top + 2, width: width, height: 16)
+            let field = NSSecureTextField(frame: NSRect(x: 0, y: top + 21, width: width, height: 22))
+            field.placeholderString = L10n.tr("Пароль")
+            field.stringValue = sessionPasswords[profile.id] ?? ""
+            container.addSubview(label)
+            container.addSubview(field)
+            fields[profile.id] = field
+        }
+
+        let scroll = NSScrollView(frame: NSRect(x: 0, y: 0, width: width, height: visibleHeight))
+        scroll.hasVerticalScroller = contentHeight > visibleHeight
+        scroll.autohidesScrollers = true
+        scroll.drawsBackground = false
+        scroll.borderType = .noBorder
+        scroll.documentView = container
+
+        let alert = NSAlert()
+        alert.messageText = L10n.tr("Ключ шифрования изменился")
+        alert.informativeText = L10n.tr("Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.")
+        alert.addButton(withTitle: L10n.tr("Сохранить пароли"))
+        alert.addButton(withTitle: L10n.tr("Отмена"))
+        alert.accessoryView = scroll
+        if let first = fields[requested.id] ?? fields.values.first {
+            alert.window.initialFirstResponder = first
+        }
+        guard alert.runModal() == .alertFirstButtonReturn else { return nil }
+
+        // Drop every stale ciphertext first. The first save then creates a new
+        // master key only if the old one is really gone; the rest reuse it.
+        for account in stale { SecretStore.delete(account) }
+        var requestedPassword: String?
+        for profile in affected {
+            let password = fields[profile.id]?.stringValue ?? ""
+            if password.isEmpty {
+                SecretStore.delete(profile.id.uuidString)
+                sessionPasswords[profile.id] = nil
+            } else {
+                do {
+                    try SecretStore.save(password, for: profile.id.uuidString)
+                    sessionPasswords[profile.id] = password
+                } catch {
+                    status = error.localizedDescription
+                }
+            }
+            if profile.id == requested.id {
+                requestedPassword = password.isEmpty ? nil : password
+            }
+        }
+        if requestedPassword != nil {
+            status = L10n.tr("Пароли сохранены заново")
+        }
+        return requestedPassword
     }
 
     // MARK: - sessions

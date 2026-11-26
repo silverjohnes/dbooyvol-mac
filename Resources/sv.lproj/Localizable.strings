@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "Som ett resultat finns det ingen primärnyckelkolumn '%@'";
 "ВЛД" = "VLA";
 "Введите пароль от «%@»" = "Ange lösenordet för \"%@\"";
+"Ввод пароля отменён" = "Lösenordsinmatningen avbröts";
 "Вернуть 200 строк на страницу" = "Returnera 200 rader per sida";
 "Вернуть по умолчанию" = "Återställ till standard";
 "Вернуть прежний размер" = "Återgå till föregående storlek";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Ladda nästa sida med rader";
 "Дополнительная вставка" = "Avancerad pasta";
 "Дополнительная вставка…" = "Avancerad klistra in...";
+"Доступ к сохранённым паролям не разрешён" = "Åtkomst till sparade lösenord är inte tillåten";
 "Другое приложение…" = "Annan applikation...";
 "Дубай" = "Dubai";
 "Дублировать" = "Duplicera";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Nyckel (valfritt)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Nyckeln består av ett fast \"--\" och valfri fortsättning. En linje anses vara markerad om nyckeln är i slutet av raden; en tom fortsättning inaktiverar kombinationen.";
+"Ключ шифрования изменился" = "Krypteringsnyckeln har ändrats";
 "Ключ:" = "Nyckel:";
 "Кодировка…" = "Kodar...";
 "Комментирование по специальному ключу" = "Kommentera med en speciell nyckel";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Maximal automatisk bredd: %@ pt";
 "Максимум ширины:" = "Maximal bredd:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "Huvudnyckeln hittades inte i nyckelringen - vänligen ange dina lösenord igen";
 "Масштаб" = "Skala";
 "Масштабировать все" = "Skala alla";
 "Метка NULL" = "NULL-etikett";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Det gick inte att definiera resultattabellen";
 "Не удалось открыть %@" = "Det gick inte att öppna %@";
 "Не удалось открыть %@: %@" = "Det gick inte att öppna %@: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Det gick inte att öppna macOS-nyckelring: %@";
 "Не удалось открыть файл: %@" = "Det gick inte att öppna filen: %@";
 "Не удалось переименовать файл: %@" = "Det gick inte att byta namn på filen: %@";
 "Не удалось подключиться: %@" = "Det gick inte att ansluta: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Det gick inte att hämta huvudnyckeln från macOS-nyckelring";
 "Не удалось получить столбцы %@" = "Det gick inte att hämta kolumner %@";
 "Не удалось прочитать %@ как текст" = "Kunde inte läsa %@ som text";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Det gick inte att dekryptera det sparade lösenordet - vänligen ange det igen";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Öppna fliken";
 "Открыть в…" = "Öppna i...";
 "Открыть запрос в редакторе" = "Öppna frågan i editorn";
+"Открыть сохранённый пароль для «%@»" = "Öppna sparat lösenord för \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Öppna lista med snabbtangenter (%@)";
 "Открыть ссылку" = "Öppna länken";
 "Открыть файл…" = "Öppna fil...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Begär parametrar";
 "Пароли" = "Lösenord";
 "Пароли перешифрованы новым мастер-ключом" = "Lösenord krypteras om med en ny huvudnyckel";
+"Пароли сохранены заново" = "Lösenord sparade igen";
 "Пароли…" = "Lösenord...";
 "Пароль" = "Lösenord";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Lösenordet kommer att begäras vid anslutning och lagras endast till slutet av sessionen.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Teckenstorlek för resultatrutnät";
 "Размер шрифта: %@ pt" = "Teckenstorlek: %@ pt";
 "Размер: %@ pt" = "Storlek: %@ pt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Tillåt DBooyvol åtkomst till sparade lösenord";
 "Разрешить вставку нескольких строк за один раз" = "Tillåt att infoga flera rader samtidigt";
 "Расположить" = "Position";
 "Расположить на переднем плане" = "Placera framför";
@@ -528,13 +535,15 @@
 "Сохранить" = "Spara";
 "Сохранить значение в файл" = "Spara värde till fil";
 "Сохранить как…" = "Spara som...";
+"Сохранить пароли" = "Spara lösenord";
 "Сохранить пароль" = "Spara lösenord";
 "Сохранить подключение" = "Spara anslutning";
 "Сохранить…" = "Spara...";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Spara flikar och deras text till tabs.json mellan lanseringar";
 "Сохранять пароль" = "Spara lösenord";
 "Сохранять сжатое значение" = "Spara förminskat värde";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Sparade lösenord krypteras med AES-256-GCM. Huvudnyckeln lagras i macOS-nyckelringen och knuten till app-signaturen, så en kopia av datamappen utan nyckelringen är värdelös.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Sparade lösenord kan inte dekrypteras med föregående nyckel. Ange dem igen - du behöver bara göra detta en gång. Ytterligare åtkomst kommer att bekräftas av Touch ID.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Sparade lösenord krypteras med AES-256-GCM. Huvudnyckeln lagras i macOS Keychain; åtkomst till den bekräftas med Touch ID eller användarlösenord. En kopia av datamappen utan nyckelring är värdelös.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Det sparade lösenordet kommer att raderas. Öppna flikar kommer att finnas kvar.";
 "Сочетание уже используется: %@" = "Genväg används redan: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "Du kan markera en rad eller rader med en speciell nyckel: %@-kombinationen kommenterar och avkommentar alla sådana rader på en gång, utan att påverka resten av skriptet.";

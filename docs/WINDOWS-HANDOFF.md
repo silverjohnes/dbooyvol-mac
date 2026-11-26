@@ -59,7 +59,7 @@ Windows-версия обязана сохранить:
 |---|---|
 | SwiftUI + AppKit | WinUI 3 / WPF / Avalonia (рекомендуется WinUI 3 или Avalonia) |
 | `NSTextView`, `NSTableView`, `NSOutlineView` | `RichEditBox`/ScintillaNET/AvalonEdit, DataGrid/ListView, TreeView |
-| Keychain + CryptoKit AES-GCM | DPAPI (или Credential Manager) + AES-GCM |
+| Keychain + Touch ID + CryptoKit AES-GCM | DPAPI/Credential Manager + Windows Hello + AES-GCM |
 | `NSSavePanel`, `NSOpenPanel`, `NSAlert` | `FileSavePicker`, `FileOpenPicker`, `ContentDialog` |
 | Carbon `UCKeyTranslate`, `NSEvent` | Win32 `ToUnicodeEx`, `KeyDown`/`PreviewKeyDown` |
 | `NSFontManager` | `InstalledFontCollection` / `System.Drawing.Text` |
@@ -454,6 +454,25 @@ macOS: `secrets.json` + мастер-ключ 256 бит в Keychain
 (`service=silver.dbooyvol.secret-store`, `account=master-key-v2`). Шифрование
 AES-256-GCM; формат `enc2:<keyid>:<base64(nonce+ciphertext+tag)>`.
 
+Доступ к мастер-ключу подтверждается системным запросом **Touch ID** (на Mac
+без биометрии — паролем пользователя) один раз за запуск приложения
+(`LAContext.evaluatePolicy(.deviceOwnerAuthentication)`). После подтверждения
+все сохранённые пароли читаются без отдельных запросов.
+
+Критично для надёжности:
+
+- ошибка чтения Keychain (`errSecAuthFailed`, `errSecInteractionNotAllowed`,
+  `errSecNotAvailable`) **не** означает «ключа нет»; её нельзя путать с
+  `errSecItemNotFound`;
+- новый ключ создаётся только если элемент действительно отсутствует **и**
+  `secrets.json` пуст; при наличии шифротекста отсутствие ключа — это
+  `keyMissing`/`wrongKey`, а не повод перезаписать элемент;
+- обычное чтение никогда не делает `SecItemUpdate`; замена ключа — только
+  явная операция «Перешифровать пароли»;
+- если ключ всё же изменился, показывается один общий диалог для всех
+  пострадавших подключений, а не отдельная ошибка на каждое;
+- `enc2:<keyid>` позволяет сравнить ключ с шифротекстом без расшифровки.
+
 Windows-реализация:
 
 - мастер-ключ 32 байта, защищённый DPAPI (`CryptProtectData` с
@@ -463,7 +482,13 @@ Windows-реализация:
   `DBooyvol/<profile UUID>`;
 - AES-GCM можно оставить, чтобы `secrets.json` имел тот же формат;
 - привязка к пользователю Windows, а не к подписи приложения;
-- операции: сохранить/загрузить/удалить, «перешифровать все», очистить legacy.
+- перед чтением — **Windows Hello** (`UserConsentVerifier` или
+  `KeyCredentialManager`), один раз за запуск; без биометрии — PIN/пароль;
+- операции: сохранить/загрузить/удалить, «перешифровать все», очистить legacy;
+- различать «элемент не найден» и «доступ запрещён»; при ошибке доступа
+  показывать системный запрос и никогда не создавать новый ключ поверх
+  существующего;
+- при смене ключа — один общий диалог повторного ввода паролей.
 
 Пароль в открытом виде живёт только до `connect`; после — уничтожается.
 
@@ -1198,7 +1223,12 @@ make release                # bump-build + Release
     ссылку на установку OpenSSH Client.
 29. **DPAPI** привязан к пользователю; при переносе `secrets.json` на другую
     машину пароли не расшифруются — это ожидаемо.
-30. **Не логировать SQL с паролями** и содержимое `secrets.json`.
+30. **Ошибка доступа к хранилищу ключа — не «ключа нет»**. Один раз это уже
+    привело к перезаписи мастер-ключа и потере сохранённых паролей: новый ключ
+    создавался после неудачного чтения. Создавать ключ можно только при
+    `not found` и пустом `secrets.json`; при `access denied` — показать
+    системный запрос, при `wrongKey` — общий диалог повторного ввода.
+31. **Не логировать SQL с паролями** и содержимое `secrets.json`.
 
 ---
 

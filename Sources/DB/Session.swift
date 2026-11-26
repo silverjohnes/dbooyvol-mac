@@ -45,6 +45,13 @@ final class Session {
     private func connectNow() async throws {
         if isConnected, connId != nil { return }
 
+        // One system prompt (Touch ID, or the login password on Macs without
+        // biometrics) unlocks all stored passwords for this app run.
+        if profile.storesPassword && !profile.kind.isFileBased && passwordOverride == nil {
+            try await SecretStore.authenticate(
+                reason: L10n.fmt("Открыть сохранённый пароль для «%@»", profile.displayName))
+        }
+
         let password = try resolvePassword()
 
         var host = profile.host
@@ -102,8 +109,16 @@ final class Session {
         if profile.kind.isFileBased { return "" }
         if let passwordOverride { return passwordOverride }
         if profile.storesPassword {
-            let stored = try SecretStore.load(profile.id.uuidString)
-            if !stored.isEmpty { return stored }
+            do {
+                let stored = try SecretStore.load(profile.id.uuidString)
+                if !stored.isEmpty { return stored }
+            } catch SecretStoreError.wrongKey {
+                // The master key changed. Fall through: the provider offers one
+                // dialog to re-enter every affected password, instead of a
+                // separate error for each connection.
+            } catch SecretStoreError.keyMissing {
+                // Same recovery path: no key, but ciphertext still exists.
+            }
         }
         // Nothing stored: ask. This also covers a profile whose password was
         // deliberately not saved.

@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "Sonuç olarak, '%@' birincil anahtar sütunu yok";
 "ВЛД" = "VLA";
 "Введите пароль от «%@»" = "\"%@\" için şifreyi girin";
+"Ввод пароля отменён" = "Şifre girişi iptal edildi";
 "Вернуть 200 строк на страницу" = "Sayfa başına 200 satır döndür";
 "Вернуть по умолчанию" = "Varsayılana sıfırla";
 "Вернуть прежний размер" = "Önceki boyuta dön";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Satırların sonraki sayfasını yükle";
 "Дополнительная вставка" = "Gelişmiş yapıştırma";
 "Дополнительная вставка…" = "Gelişmiş yapıştırma…";
+"Доступ к сохранённым паролям не разрешён" = "Kayıtlı şifrelere erişime izin verilmiyor";
 "Другое приложение…" = "Diğer uygulama…";
 "Дубай" = "Dubai";
 "Дублировать" = "Çoğalt";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Anahtar (isteğe bağlı)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Anahtar, sabit bir \"--\" ve herhangi bir devamdan oluşur. Anahtar satırın en sonundaysa satır işaretlenmiş sayılır; boş bir devam, kombinasyonu devre dışı bırakır.";
+"Ключ шифрования изменился" = "Şifreleme anahtarı değişti";
 "Ключ:" = "Anahtar:";
 "Кодировка…" = "Kodlanıyor…";
 "Комментирование по специальному ключу" = "Özel bir anahtar kullanarak yorum yapma";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Maksimum otomatik genişlik: %@ nk";
 "Максимум ширины:" = "Maksimum genişlik:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "Ana anahtar anahtarlıkta bulunamadı - lütfen şifrelerinizi tekrar girin";
 "Масштаб" = "Ölçek";
 "Масштабировать все" = "Tümünü ölçeklendir";
 "Метка NULL" = "BOŞ etiket";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Sonuç tablosu tanımlanamadı";
 "Не удалось открыть %@" = "%@ açılamadı";
 "Не удалось открыть %@: %@" = "%@ açılamadı: %@";
+"Не удалось открыть связку ключей macOS: %@" = "MacOS Anahtar Zinciri açılamadı: %@";
 "Не удалось открыть файл: %@" = "Dosya açılamadı: %@";
 "Не удалось переименовать файл: %@" = "Dosya yeniden adlandırılamadı: %@";
 "Не удалось подключиться: %@" = "Bağlantı başarısız oldu: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "MacOS Anahtar Zincirinden ana anahtar alınamadı";
 "Не удалось получить столбцы %@" = "%@ sütunları alınamadı";
 "Не удалось прочитать %@ как текст" = "%@ metin olarak okunamadı";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Kaydedilen şifrenin şifresi çözülemedi - lütfen tekrar girin";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Sekmeyi aç";
 "Открыть в…" = "Şu tarihte aç:";
 "Открыть запрос в редакторе" = "Sorguyu düzenleyicide açın";
+"Открыть сохранённый пароль для «%@»" = "\"%@\" için kayıtlı şifreyi aç";
 "Открыть список горячих клавиш (%@)" = "Kısayol tuşlarının listesini aç (%@)";
 "Открыть ссылку" = "Bağlantıyı aç";
 "Открыть файл…" = "Dosyayı aç...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Parametreleri talep et";
 "Пароли" = "Şifreler";
 "Пароли перешифрованы новым мастер-ключом" = "Parolalar yeni bir ana anahtarla yeniden şifrelenir";
+"Пароли сохранены заново" = "Şifreler tekrar kaydedildi";
 "Пароли…" = "Şifreler...";
 "Пароль" = "Şifre";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Şifre bağlantı sırasında istenecek ve yalnızca oturumun sonuna kadar saklanacaktır.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Sonuç ızgarası yazı tipi boyutu";
 "Размер шрифта: %@ pt" = "Yazı tipi boyutu: %@ nk";
 "Размер: %@ pt" = "Boyut: %@ nk";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "DBooyvol'un kayıtlı şifrelere erişmesine izin ver";
 "Разрешить вставку нескольких строк за один раз" = "Aynı anda birden fazla satır eklenmesine izin ver";
 "Расположить" = "Pozisyon";
 "Расположить на переднем плане" = "Öne yerleştirin";
@@ -528,13 +535,15 @@
 "Сохранить" = "Kaydet";
 "Сохранить значение в файл" = "Değeri dosyaya kaydet";
 "Сохранить как…" = "Farklı kaydet...";
+"Сохранить пароли" = "Şifreleri kaydet";
 "Сохранить пароль" = "Şifreyi kaydet";
 "Сохранить подключение" = "Bağlantıyı kaydet";
 "Сохранить…" = "Kaydet…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Sekmeleri ve metinlerini başlatmalar arasında tabs.json dosyasına kaydedin";
 "Сохранять пароль" = "Şifreyi kaydet";
 "Сохранять сжатое значение" = "Küçültülmüş değeri kaydet";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Kaydedilen şifreler AES-256-GCM ile şifrelenir. Ana anahtar, macOS Anahtar Zincirinde saklanır ve uygulama imzasına bağlanır; dolayısıyla veri klasörünün anahtarlık olmadan bir kopyası işe yaramaz.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Kaydedilen şifrelerin şifresi önceki anahtarla çözülemez. Bunları tekrar girin; bunu yalnızca bir kez yapmanız yeterlidir. Daha fazla erişim Touch ID ile onaylanacaktır.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Kaydedilen şifreler AES-256-GCM ile şifrelenir. Ana anahtar, macOS Anahtar Zinciri'nde saklanır; erişim Touch ID veya kullanıcı şifresi ile onaylanır. Veri klasörünün anahtarlıksız bir kopyası işe yaramaz.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Kaydedilen şifre silinecektir. Açık sekmeler kalacak.";
 "Сочетание уже используется: %@" = "Kısayol zaten kullanımda: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "Bir satırı veya satırları özel bir tuşla işaretleyebilirsiniz: %@ kombinasyonu, betiğin geri kalanını etkilemeden bu tür satırların tümünü aynı anda yorumlar ve yorumları kaldırır.";

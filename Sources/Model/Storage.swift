@@ -364,14 +364,24 @@ enum AppSettings {
 /// folder is useless without the login keychain. Entries record the key id
 /// (`enc2:<id>:…`), so a stale key is reported instead of silently failing.
 enum SecretStoreError: LocalizedError {
-    case keychainUnavailable
+    case keychainUnavailable(OSStatus)
+    case accessDenied
+    case cancelled
+    case keyMissing
     case wrongKey
     case corrupted
 
     var errorDescription: String? {
         switch self {
-        case .keychainUnavailable:
-            return L10n.tr("Не удалось получить мастер-ключ из связки ключей macOS")
+        case .keychainUnavailable(let status):
+            let detail = SecCopyErrorMessageString(status, nil) as String? ?? "\(status)"
+            return L10n.fmt("Не удалось открыть связку ключей macOS: %@", detail)
+        case .accessDenied:
+            return L10n.tr("Доступ к сохранённым паролям не разрешён")
+        case .cancelled:
+            return L10n.tr("Ввод пароля отменён")
+        case .keyMissing:
+            return L10n.tr("Мастер-ключ не найден в связке ключей — введите пароли заново")
         case .wrongKey:
             return L10n.tr("Пароль сохранён другим мастер-ключом — введите его заново")
         case .corrupted:
@@ -387,10 +397,67 @@ enum SecretStore {
     private static let lock = NSRecursiveLock()
     private static var cachedMaster: SymmetricKey?
     private static var cachedSecrets: [String: String]?
+    /// One Touch ID / login-password confirmation per app run.
+    private static var authenticated = false
+    private static let authLock = NSLock()
+
+    // MARK: - Touch ID / system authentication
+
+    /// Asks macOS to confirm the user's presence once per run. On a Mac with
+    /// Touch ID this is the fingerprint prompt; otherwise macOS falls back to
+    /// the login password. The Keychain item keeps its own protection, so a
+    /// copy of the data folder is still useless without the login keychain.
+    static func authenticate(reason: String) async throws {
+        if isAuthenticated() { return }
+
+        let context = LAContext()
+        context.localizedCancelTitle = L10n.tr("Отмена")
+        var error: NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+            // No Touch ID and no password set: do not block the app.
+            markAuthenticated()
+            return
+        }
+        do {
+            let ok = try await evaluate(context, reason: reason)
+            guard ok else { throw SecretStoreError.accessDenied }
+            markAuthenticated()
+        } catch {
+            if let la = error as? LAError,
+               [.userCancel, .appCancel, .systemCancel].contains(la.code) {
+                throw SecretStoreError.cancelled
+            }
+            throw SecretStoreError.accessDenied
+        }
+    }
+
+    private static func isAuthenticated() -> Bool {
+        authLock.lock()
+        defer { authLock.unlock() }
+        return authenticated
+    }
+
+    private static func markAuthenticated() {
+        authLock.lock()
+        authenticated = true
+        authLock.unlock()
+    }
+
+    private static func evaluate(_ context: LAContext, reason: String) async throws -> Bool {
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Bool, Error>) in
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { success, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: success)
+                }
+            }
+        }
+    }
 
     // MARK: - master key (Keychain)
 
-    private static func keychainQuery() -> [String: Any] {
+    private static func baseQuery() -> [String: Any] {
         [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: keychainService,
@@ -398,41 +465,91 @@ enum SecretStore {
         ]
     }
 
-    private static func keychainLoad() -> Data? {
-        var query = keychainQuery()
+    private enum KeychainRead {
+        case success(Data)
+        case notFound
+        case failed(OSStatus)
+    }
+
+    private static func keychainLoad(interactive: Bool) -> KeychainRead {
+        var query = baseQuery()
+        let context = LAContext()
+        if interactive {
+            context.localizedReason = L10n.tr("Разрешить DBooyvol доступ к сохранённым паролям")
+        } else {
+            context.interactionNotAllowed = true
+        }
+        query[kSecUseAuthenticationContext as String] = context
         query[kSecReturnData as String] = true
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         var item: CFTypeRef?
-        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess,
-              let data = item as? Data, data.count == 32 else { return nil }
-        return data
+        let status = SecItemCopyMatching(query as CFDictionary, &item)
+        if status == errSecItemNotFound { return .notFound }
+        guard status == errSecSuccess else { return .failed(status) }
+        guard let data = item as? Data, data.count == 32 else { return .failed(errSecDecode) }
+        return .success(data)
     }
 
-    @discardableResult
-    private static func keychainStore(_ raw: Data) -> Bool {
-        let query = keychainQuery()
-        let attrs: [String: Any] = [
-            kSecValueData as String: raw,
-            kSecAttrLabel as String: "DBooyvol master key"
-        ]
-        let updated = SecItemUpdate(query as CFDictionary, attrs as CFDictionary)
-        if updated == errSecSuccess { return true }
-        guard updated == errSecItemNotFound else { return false }
-        var add = query
-        add.merge(attrs) { $1 }
-        return SecItemAdd(add as CFDictionary, nil) == errSecSuccess
+    private static func keychainAdd(_ raw: Data) -> OSStatus {
+        var add = baseQuery()
+        add[kSecValueData as String] = raw
+        add[kSecAttrLabel as String] = "DBooyvol master key"
+        return SecItemAdd(add as CFDictionary, nil)
     }
 
-    private static func masterKey() throws -> SymmetricKey {
+    /// Only an explicit rotation may replace an existing key. Normal access
+    /// never overwrites the item: a failed read must ask the user, not destroy
+    /// the key that still decrypts the saved passwords.
+    private static func keychainReplace(_ raw: Data) -> OSStatus {
+        let attrs: [String: Any] = [kSecValueData as String: raw]
+        return SecItemUpdate(baseQuery() as CFDictionary, attrs as CFDictionary)
+    }
+
+    private static func isAuthFailure(_ status: OSStatus) -> Bool {
+        status == errSecAuthFailed
+            || status == errSecInteractionNotAllowed
+            || status == errSecUserCanceled
+            || status == errSecNotAvailable
+    }
+
+    private static func masterKey(createIfMissing: Bool) throws -> SymmetricKey {
         if let cachedMaster { return cachedMaster }
-        if let raw = keychainLoad() {
-            let key = SymmetricKey(data: raw)
-            cachedMaster = key
-            return key
+
+        let raw: Data
+        switch keychainLoad(interactive: true) {
+        case .success(let data):
+            raw = data
+        case .notFound:
+            guard createIfMissing else { throw SecretStoreError.keyMissing }
+            let key = SymmetricKey(size: .bits256)
+            let newRaw = key.withUnsafeBytes { Data($0) }
+            let status = keychainAdd(newRaw)
+            if status == errSecSuccess {
+                cachedMaster = key
+                return key
+            }
+            if status == errSecDuplicateItem {
+                // Another instance created it between the read and the add.
+                switch keychainLoad(interactive: true) {
+                case .success(let data): raw = data
+                case .notFound: throw SecretStoreError.keyMissing
+                case .failed(let readStatus):
+                    throw isAuthFailure(readStatus)
+                        ? SecretStoreError.accessDenied
+                        : SecretStoreError.keychainUnavailable(readStatus)
+                }
+            } else if isAuthFailure(status) {
+                throw SecretStoreError.accessDenied
+            } else {
+                throw SecretStoreError.keychainUnavailable(status)
+            }
+        case .failed(let status):
+            if isAuthFailure(status) { throw SecretStoreError.accessDenied }
+            if status == errSecDecode { throw SecretStoreError.corrupted }
+            throw SecretStoreError.keychainUnavailable(status)
         }
-        let key = SymmetricKey(size: .bits256)
-        let raw = key.withUnsafeBytes { Data($0) }
-        guard keychainStore(raw) else { throw SecretStoreError.keychainUnavailable }
+
+        let key = SymmetricKey(data: raw)
         cachedMaster = key
         return key
     }
@@ -498,7 +615,12 @@ enum SecretStore {
         if password.isEmpty {
             map.removeValue(forKey: account)
         } else {
-            map[account] = try encrypt(password, using: try masterKey())
+            // Create the master key only on the very first save. If other
+            // passwords already exist, a missing key means the ciphertext is
+            // stale: ask the user to re-enter instead of silently replacing
+            // the key and making every other password unreadable.
+            let key = try masterKey(createIfMissing: map.isEmpty)
+            map[account] = try encrypt(password, using: key)
         }
         try persist(map)
     }
@@ -507,7 +629,59 @@ enum SecretStore {
         lock.lock()
         defer { lock.unlock() }
         guard let stored = secrets()[account], !stored.isEmpty else { return "" }
-        return try decrypt(stored, using: try masterKey())
+        return try decrypt(stored, using: try masterKey(createIfMissing: false))
+    }
+
+    // MARK: - stale key detection
+
+    private static func storedKeyID(_ stored: String) -> String? {
+        guard stored.hasPrefix(prefix) else { return nil }
+        let rest = stored.dropFirst(prefix.count)
+        guard let separator = rest.firstIndex(of: ":") else { return nil }
+        return String(rest[..<separator])
+    }
+
+    /// Accounts whose ciphertext was written with a key that is not the
+    /// current master key. Used to show one bulk re-entry dialog instead of a
+    /// separate failure for every connection.
+    static func staleAccounts(_ accounts: [String]) -> [String] {
+        lock.lock()
+        defer { lock.unlock() }
+        let map = secrets()
+        let key: SymmetricKey
+        do {
+            key = try masterKey(createIfMissing: false)
+        } catch SecretStoreError.keyMissing {
+            return accounts.filter { account in
+                guard let stored = map[account] else { return false }
+                return stored.hasPrefix(prefix)
+            }
+        } catch {
+            // Access denied or keychain unavailable: do not claim the data is
+            // stale; the normal load path will ask for access.
+            return []
+        }
+        let current = keyID(key)
+        return accounts.filter { account in
+            guard let stored = map[account], let storedID = storedKeyID(stored) else { return false }
+            return storedID != current
+        }
+    }
+
+    static func hasStaleSecrets(_ accounts: [String]) -> Bool {
+        !staleAccounts(accounts).isEmpty
+    }
+
+    /// Diagnostics for the `--secrets-status` dev aid. Never returns key bytes.
+    static func diagnostics(accounts: [String]) -> (keyID: String?, stale: [String], error: String?) {
+        lock.lock()
+        defer { lock.unlock() }
+        do {
+            let key = try masterKey(createIfMissing: false)
+            return (keyID(key), staleAccounts(accounts), nil)
+        } catch {
+            return (nil, [], error.localizedDescription)
+        }
     }
 
     static func delete(_ account: String) {
@@ -558,7 +732,7 @@ enum SecretStore {
     static func rotateMasterKey() throws {
         lock.lock()
         defer { lock.unlock() }
-        let oldKey = try masterKey()
+        let oldKey = try masterKey(createIfMissing: false)
         var plain: [String: String] = [:]
         for (account, stored) in secrets() where !stored.isEmpty {
             plain[account] = try decrypt(stored, using: oldKey)
@@ -570,11 +744,17 @@ enum SecretStore {
         }
         let oldRaw = oldKey.withUnsafeBytes { Data($0) }
         let newRaw = newKey.withUnsafeBytes { Data($0) }
-        guard keychainStore(newRaw) else { throw SecretStoreError.keychainUnavailable }
+        var status = keychainReplace(newRaw)
+        if status == errSecItemNotFound { status = keychainAdd(newRaw) }
+        guard status == errSecSuccess else {
+            throw isAuthFailure(status)
+                ? SecretStoreError.accessDenied
+                : SecretStoreError.keychainUnavailable(status)
+        }
         do {
             try persist(reencrypted)
         } catch {
-            _ = keychainStore(oldRaw)
+            _ = keychainReplace(oldRaw)
             throw error
         }
         cachedMaster = newKey

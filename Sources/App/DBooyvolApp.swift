@@ -249,6 +249,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
+        // Dev aid: --secrets-status prints the master-key id and stale accounts.
+        if CommandLine.arguments.contains("--secrets-status") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                let accounts = AppModel.shared.profiles
+                    .filter { $0.storesPassword }
+                    .map { $0.id.uuidString }
+                let d = SecretStore.diagnostics(accounts: accounts)
+                print("keyid=\(d.keyID ?? "nil") stale=\(d.stale.count) error=\(d.error ?? "none")")
+                NSApp.terminate(nil)
+            }
+        }
+
         // Dev aid: --snapshot /tmp/app.png runs the editor query and saves a PNG of the window.
         if let idx = CommandLine.arguments.firstIndex(of: "--snapshot"), idx + 1 < CommandLine.arguments.count {            let path = CommandLine.arguments[idx + 1]
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

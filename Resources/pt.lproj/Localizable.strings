@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "Como resultado, não há coluna de chave primária '%@'";
 "ВЛД" = "VLA";
 "Введите пароль от «%@»" = "Digite a senha para \"%@\"";
+"Ввод пароля отменён" = "Entrada de senha cancelada";
 "Вернуть 200 строк на страницу" = "Retornar 200 linhas por página";
 "Вернуть по умолчанию" = "Redefinir para o padrão";
 "Вернуть прежний размер" = "Voltar ao tamanho anterior";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Carregue a próxima página de linhas";
 "Дополнительная вставка" = "Colar avançado";
 "Дополнительная вставка…" = "Colar avançado…";
+"Доступ к сохранённым паролям не разрешён" = "O acesso às senhas salvas não é permitido";
 "Другое приложение…" = "Outra aplicação…";
 "Дубай" = "Dubai";
 "Дублировать" = "Duplicar";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Chave (opcional)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "A chave consiste em um \"--\" fixo e qualquer continuação. Uma linha é considerada marcada se a chave estiver no final da linha; uma continuação vazia desativa a combinação.";
+"Ключ шифрования изменился" = "A chave de criptografia mudou";
 "Ключ:" = "Chave:";
 "Кодировка…" = "Codificação…";
 "Комментирование по специальному ключу" = "Comentando usando uma chave especial";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Largura automática máxima: %@ pt";
 "Максимум ширины:" = "Largura máxima:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "A chave mestra não foi encontrada no chaveiro - digite novamente suas senhas";
 "Масштаб" = "Escala";
 "Масштабировать все" = "Dimensionar tudo";
 "Метка NULL" = "Rótulo NULO";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Falha ao definir a tabela de resultados";
 "Не удалось открыть %@" = "Falha ao abrir %@";
 "Не удалось открыть %@: %@" = "Falha ao abrir %@: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Falha ao abrir as Chaves do macOS: %@";
 "Не удалось открыть файл: %@" = "Falha ao abrir arquivo: %@";
 "Не удалось переименовать файл: %@" = "Falha ao renomear arquivo: %@";
 "Не удалось подключиться: %@" = "Falha ao conectar: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Falha ao obter a chave mestra do macOS Keychain";
 "Не удалось получить столбцы %@" = "Falha ao obter colunas %@";
 "Не удалось прочитать %@ как текст" = "Não foi possível ler %@ como texto";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Falha ao descriptografar a senha salva. Digite-a novamente";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Abra a guia";
 "Открыть в…" = "Abrir em…";
 "Открыть запрос в редакторе" = "Abra a consulta no editor";
+"Открыть сохранённый пароль для «%@»" = "Abra a senha salva para \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Abrir lista de teclas de atalho (%@)";
 "Открыть ссылку" = "Abrir link";
 "Открыть файл…" = "Abrir arquivo...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Parâmetros de solicitação";
 "Пароли" = "Senhas";
 "Пароли перешифрованы новым мастер-ключом" = "As senhas são criptografadas novamente com uma nova chave mestra";
+"Пароли сохранены заново" = "Senhas salvas novamente";
 "Пароли…" = "Senhas...";
 "Пароль" = "Senha";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "A senha será solicitada no momento da conexão e armazenada somente até o final da sessão.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Tamanho da fonte da grade de resultados";
 "Размер шрифта: %@ pt" = "Tamanho da fonte: %@ pt";
 "Размер: %@ pt" = "Tamanho: %@pt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Permitir acesso do DBooyvol às senhas salvas";
 "Разрешить вставку нескольких строк за один раз" = "Permitir a inserção de várias linhas de uma vez";
 "Расположить" = "Posição";
 "Расположить на переднем плане" = "Coloque na frente";
@@ -528,13 +535,15 @@
 "Сохранить" = "Salvar";
 "Сохранить значение в файл" = "Salvar valor em arquivo";
 "Сохранить как…" = "Salvar como...";
+"Сохранить пароли" = "Salvar senhas";
 "Сохранить пароль" = "Salvar senha";
 "Сохранить подключение" = "Salvar conexão";
 "Сохранить…" = "Salvar…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Salve as guias e seu texto em tabs.json entre inicializações";
 "Сохранять пароль" = "Salvar senha";
 "Сохранять сжатое значение" = "Salvar valor minificado";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "As senhas salvas são criptografadas com AES-256-GCM. A chave mestra é armazenada no macOS Keychain e vinculada à assinatura do aplicativo, portanto, uma cópia da pasta de dados sem o chaveiro é inútil.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "As senhas salvas não podem ser descriptografadas com a chave anterior. Insira-os novamente - você só precisa fazer isso uma vez. O acesso posterior será confirmado pelo Touch ID.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "As senhas salvas são criptografadas com AES-256-GCM. A chave mestra é armazenada no macOS Keychain; o acesso a ele é confirmado por Touch ID ou senha de usuário. Uma cópia da pasta de dados sem chaveiro é inútil.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "A senha salva será excluída. As guias abertas permanecerão.";
 "Сочетание уже используется: %@" = "Atalho já em uso: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "Você pode marcar uma linha ou linhas com uma chave especial: a combinação %@ comenta e descomenta todas essas linhas de uma vez, sem afetar o resto do script.";

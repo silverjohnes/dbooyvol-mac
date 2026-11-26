@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "V důsledku toho neexistuje žádný sloupec primárního klíče '%@'";
 "ВЛД" = "VLA";
 "Введите пароль от «%@»" = "Zadejte heslo pro \"%@\"";
+"Ввод пароля отменён" = "Zadání hesla bylo zrušeno";
 "Вернуть 200 строк на страницу" = "Vraťte 200 řádků na stránku";
 "Вернуть по умолчанию" = "Obnovit výchozí";
 "Вернуть прежний размер" = "Návrat k předchozí velikosti";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Načtěte další stránku řádků";
 "Дополнительная вставка" = "Pokročilá pasta";
 "Дополнительная вставка…" = "Pokročilá pasta…";
+"Доступ к сохранённым паролям не разрешён" = "Přístup k uloženým heslům není povolen";
 "Другое приложение…" = "Další aplikace…";
 "Дубай" = "Dubaj";
 "Дублировать" = "Duplicitní";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Klíč (volitelné)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Klíč se skládá z pevného „--“ a libovolného pokračování. Řádek je považován za označený, pokud je klíč na samém konci řádku; prázdné pokračování kombinaci zakáže.";
+"Ключ шифрования изменился" = "Šifrovací klíč se změnil";
 "Ключ:" = "Klíč:";
 "Кодировка…" = "Kódování…";
 "Комментирование по специальному ключу" = "Komentování pomocí speciálního klíče";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Maximální automatická šířka: %@ pt";
 "Максимум ширины:" = "Maximální šířka:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "Hlavní klíč nebyl v klíčence nalezen – zadejte prosím znovu svá hesla";
 "Масштаб" = "Měřítko";
 "Масштабировать все" = "Měřítko všech";
 "Метка NULL" = "Štítek NULL";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Definování výsledkové tabulky se nezdařilo";
 "Не удалось открыть %@" = "Nepodařilo se otevřít %@";
 "Не удалось открыть %@: %@" = "Nepodařilo se otevřít %@: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Nepodařilo se otevřít macOS Keychain: %@";
 "Не удалось открыть файл: %@" = "Nepodařilo se otevřít soubor: %@";
 "Не удалось переименовать файл: %@" = "Nepodařilo se přejmenovat soubor: %@";
 "Не удалось подключиться: %@" = "Nepodařilo se připojit: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Nepodařilo se získat hlavní klíč z macOS Keychain";
 "Не удалось получить столбцы %@" = "Nepodařilo se získat sloupce %@";
 "Не удалось прочитать %@ как текст" = "%@ nelze přečíst jako text";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Uložené heslo se nepodařilo dešifrovat – zadejte ho prosím znovu";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Otevřete kartu";
 "Открыть в…" = "Otevřít v…";
 "Открыть запрос в редакторе" = "Otevřete dotaz v editoru";
+"Открыть сохранённый пароль для «%@»" = "Otevřít uložené heslo pro \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Otevřít seznam klávesových zkratek (%@)";
 "Открыть ссылку" = "Otevřít odkaz";
 "Открыть файл…" = "Otevřít soubor...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Parametry požadavku";
 "Пароли" = "Hesla";
 "Пароли перешифрованы новым мастер-ключом" = "Hesla jsou znovu zašifrována pomocí nového hlavního klíče";
+"Пароли сохранены заново" = "Hesla znovu uložena";
 "Пароли…" = "Hesla...";
 "Пароль" = "Heslo";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Heslo bude požadováno při připojení a uloženo pouze do konce relace.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Velikost písma výsledné mřížky";
 "Размер шрифта: %@ pt" = "Velikost písma: %@ pt";
 "Размер: %@ pt" = "Velikost: %@ pt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Povolte DBooyvol přístup k uloženým heslům";
 "Разрешить вставку нескольких строк за один раз" = "Umožňuje vkládání více řádků najednou";
 "Расположить" = "Pozice";
 "Расположить на переднем плане" = "Umístěte vpředu";
@@ -528,13 +535,15 @@
 "Сохранить" = "Uložit";
 "Сохранить значение в файл" = "Uložte hodnotu do souboru";
 "Сохранить как…" = "Uložit jako...";
+"Сохранить пароли" = "Uložte hesla";
 "Сохранить пароль" = "Uložit heslo";
 "Сохранить подключение" = "Uložit připojení";
 "Сохранить…" = "Uložit…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Mezi spuštěními ukládejte karty a jejich text do souboru tabs.json";
 "Сохранять пароль" = "Uložit heslo";
 "Сохранять сжатое значение" = "Uložte zmenšenou hodnotu";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Uložená hesla jsou šifrována pomocí AES-256-GCM. Hlavní klíč je uložen v macOS Keychain a svázán s podpisem aplikace, takže kopie datové složky bez klíčenky je k ničemu.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Uložená hesla nelze dešifrovat pomocí předchozího klíče. Zadejte je znovu – stačí to udělat jednou. Další přístup bude potvrzen Touch ID.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Uložená hesla jsou šifrována pomocí AES-256-GCM. Hlavní klíč je uložen v macOS Keychain; přístup k němu je potvrzen Touch ID nebo uživatelským heslem. Kopie datové složky bez klíčenky je k ničemu.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Uložené heslo bude smazáno. Otevřené karty zůstanou.";
 "Сочетание уже используется: %@" = "Zástupce se již používá: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "Řádek nebo řádky můžete označit speciální klávesou: kombinace %@ okomentuje a odkomentuje všechny takové řádky najednou, aniž by to ovlivnilo zbytek skriptu.";

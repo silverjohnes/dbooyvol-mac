@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "W rezultacie nie ma kolumny klucza podstawowego „%@”";
 "ВЛД" = "WLA";
 "Введите пароль от «%@»" = "Wprowadź hasło dla „%@”";
+"Ввод пароля отменён" = "Wprowadzanie hasła anulowane";
 "Вернуть 200 строк на страницу" = "Zwróć 200 wierszy na stronę";
 "Вернуть по умолчанию" = "Przywróć ustawienia domyślne";
 "Вернуть прежний размер" = "Wróć do poprzedniego rozmiaru";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Załaduj następną stronę wierszy";
 "Дополнительная вставка" = "Zaawansowana pasta";
 "Дополнительная вставка…" = "Zaawansowana pasta…";
+"Доступ к сохранённым паролям не разрешён" = "Dostęp do zapisanych haseł jest zabroniony";
 "Другое приложение…" = "Inne zastosowanie…";
 "Дубай" = "Dubaj";
 "Дублировать" = "Duplikat";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Klucz (opcjonalnie)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Klucz składa się ze stałego „--” i dowolnej kontynuacji. Linię uważa się za zaznaczoną, jeśli klucz znajduje się na samym końcu linii; pusta kontynuacja wyłącza kombinację.";
+"Ключ шифрования изменился" = "Klucz szyfrowania został zmieniony";
 "Ключ:" = "Klucz:";
 "Кодировка…" = "Kodowanie…";
 "Комментирование по специальному ключу" = "Komentowanie za pomocą specjalnego klawisza";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Maksymalna szerokość automatyczna: %@ pkt";
 "Максимум ширины:" = "Maksymalna szerokość:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "W pęku kluczy nie znaleziono klucza głównego — wprowadź ponownie hasła";
 "Масштаб" = "Skala";
 "Масштабировать все" = "Skaluj wszystko";
 "Метка NULL" = "Etykieta NULL";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Nie udało się zdefiniować tabeli wyników";
 "Не удалось открыть %@" = "Nie udało się otworzyć %@";
 "Не удалось открыть %@: %@" = "Nie udało się otworzyć %@: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Nie udało się otworzyć pęku kluczy macOS: %@";
 "Не удалось открыть файл: %@" = "Nie udało się otworzyć pliku: %@";
 "Не удалось переименовать файл: %@" = "Nie udało się zmienić nazwy pliku: %@";
 "Не удалось подключиться: %@" = "Nie udało się połączyć: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Nie udało się uzyskać klucza głównego z pęku kluczy macOS";
 "Не удалось получить столбцы %@" = "Nie udało się pobrać kolumn %@";
 "Не удалось прочитать %@ как текст" = "Nie można odczytać %@ jako tekstu";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Nie udało się odszyfrować zapisanego hasła - wpisz je ponownie";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Otwórz zakładkę";
 "Открыть в…" = "Otwórz w…";
 "Открыть запрос в редакторе" = "Otwórz zapytanie w edytorze";
+"Открыть сохранённый пароль для «%@»" = "Otwórz zapisane hasło dla „%@”";
 "Открыть список горячих клавиш (%@)" = "Otwórz listę skrótów klawiszowych (%@)";
 "Открыть ссылку" = "Otwórz łącze";
 "Открыть файл…" = "Otwórz plik...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Parametry żądania";
 "Пароли" = "Hasła";
 "Пароли перешифрованы новым мастер-ключом" = "Hasła są ponownie szyfrowane nowym kluczem głównym";
+"Пароли сохранены заново" = "Hasła zostały ponownie zapisane";
 "Пароли…" = "Hasła...";
 "Пароль" = "Hasło";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Hasło zostanie poproszony o połączenie i przechowywane tylko do końca sesji.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Rozmiar czcionki siatki wynikowej";
 "Размер шрифта: %@ pt" = "Rozmiar czcionki: %@ pkt";
 "Размер: %@ pt" = "Rozmiar: %@ pkt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Zezwól DBooyvol na dostęp do zapisanych haseł";
 "Разрешить вставку нескольких строк за один раз" = "Zezwalaj na wstawianie wielu wierszy jednocześnie";
 "Расположить" = "Pozycja";
 "Расположить на переднем плане" = "Umieść z przodu";
@@ -528,13 +535,15 @@
 "Сохранить" = "Zapisz";
 "Сохранить значение в файл" = "Zapisz wartość do pliku";
 "Сохранить как…" = "Zapisz jako...";
+"Сохранить пароли" = "Zapisz hasła";
 "Сохранить пароль" = "Zapisz hasło";
 "Сохранить подключение" = "Zapisz połączenie";
 "Сохранить…" = "Zapisz…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Zapisuj karty i ich tekst w pliku tabs.json pomiędzy uruchomieniami";
 "Сохранять пароль" = "Zapisz hasło";
 "Сохранять сжатое значение" = "Zapisz zminimalizowaną wartość";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Zapisane hasła są szyfrowane za pomocą AES-256-GCM. Klucz główny jest przechowywany w pęku kluczy macOS i powiązany z sygnaturą aplikacji, więc kopia folderu danych bez pęku kluczy jest bezużyteczna.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Zapisanych haseł nie można odszyfrować przy użyciu poprzedniego klucza. Wpisz je ponownie – wystarczy, że zrobisz to tylko raz. Dalszy dostęp zostanie potwierdzony Touch ID.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Zapisane hasła są szyfrowane za pomocą AES-256-GCM. Klucz główny jest przechowywany w pęku kluczy macOS; dostęp do niego potwierdzany jest Touch ID lub hasłem użytkownika. Kopia folderu danych bez pęku kluczy jest bezużyteczna.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Zapisane hasło zostanie usunięte. Otwarte karty pozostaną.";
 "Сочетание уже используется: %@" = "Skrót jest już używany: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "Możesz zaznaczyć linię lub linie specjalnym klawiszem: kombinacja %@ komentuje i odkomentuje wszystkie takie linie na raz, bez wpływu na resztę skryptu.";

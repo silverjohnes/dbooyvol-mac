@@ -66,6 +66,7 @@
 "В результате нет столбца первичного ключа «%@»" = "Als gevolg hiervan is er geen primaire sleutelkolom '%@'";
 "ВЛД" = "VLA";
 "Введите пароль от «%@»" = "Voer het wachtwoord in voor \"%@\"";
+"Ввод пароля отменён" = "Wachtwoordinvoer geannuleerd";
 "Вернуть 200 строк на страницу" = "Retourneer 200 rijen per pagina";
 "Вернуть по умолчанию" = "Resetten naar standaard";
 "Вернуть прежний размер" = "Keer terug naar de vorige maat";
@@ -136,6 +137,7 @@
 "Догрузить следующую страницу строк" = "Laad de volgende pagina met rijen";
 "Дополнительная вставка" = "Geavanceerde pasta";
 "Дополнительная вставка…" = "Geavanceerd plakken…";
+"Доступ к сохранённым паролям не разрешён" = "Toegang tot opgeslagen wachtwoorden is niet toegestaan";
 "Другое приложение…" = "Andere toepassing…";
 "Дубай" = "Dubai";
 "Дублировать" = "Duplicaat";
@@ -227,6 +229,7 @@
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Sleutel (optioneel)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "De sleutel bestaat uit een vaste \"--\" en een eventuele voortzetting. Een regel wordt als gemarkeerd beschouwd als de sleutel zich helemaal aan het einde van de regel bevindt; een lege voortzetting schakelt de combinatie uit.";
+"Ключ шифрования изменился" = "De coderingssleutel is gewijzigd";
 "Ключ:" = "Sleutel:";
 "Кодировка…" = "Codering…";
 "Комментирование по специальному ключу" = "Commentaar geven met een speciale sleutel";
@@ -263,6 +266,7 @@
 "Магадан" = "Magadan";
 "Максимальная авто-ширина: %@ pt" = "Maximale automatische breedte: %@ pt";
 "Максимум ширины:" = "Maximale breedte:";
+"Мастер-ключ не найден в связке ключей — введите пароли заново" = "De hoofdsleutel is niet gevonden in de sleutelhanger. Voer uw wachtwoorden opnieuw in";
 "Масштаб" = "Schaal";
 "Масштабировать все" = "Schaal alles";
 "Метка NULL" = "NULL-label";
@@ -290,10 +294,10 @@
 "Не удалось определить таблицу результата" = "Kan resultatentabel niet definiëren";
 "Не удалось открыть %@" = "Kan %@ niet openen";
 "Не удалось открыть %@: %@" = "Kan %@ niet openen: %@";
+"Не удалось открыть связку ключей macOS: %@" = "Kan macOS-sleutelhanger niet openen: %@";
 "Не удалось открыть файл: %@" = "Kan bestand niet openen: %@";
 "Не удалось переименовать файл: %@" = "Kan het bestand niet hernoemen: %@";
 "Не удалось подключиться: %@" = "Kan geen verbinding maken: %@";
-"Не удалось получить мастер-ключ из связки ключей macOS" = "Kan de hoofdsleutel niet ophalen van macOS-sleutelhanger";
 "Не удалось получить столбцы %@" = "Kan kolommen %@ niet ophalen";
 "Не удалось прочитать %@ как текст" = "Kon %@ niet als tekst lezen";
 "Не удалось расшифровать сохранённый пароль — введите его заново" = "Kan het opgeslagen wachtwoord niet decoderen. Voer het opnieuw in";
@@ -343,6 +347,7 @@
 "Открыть вкладку" = "Open het tabblad";
 "Открыть в…" = "Openen over…";
 "Открыть запрос в редакторе" = "Open de query in de editor";
+"Открыть сохранённый пароль для «%@»" = "Open het opgeslagen wachtwoord voor \"%@\"";
 "Открыть список горячих клавиш (%@)" = "Lijst met sneltoetsen openen (%@)";
 "Открыть ссылку" = "Link openen";
 "Открыть файл…" = "Bestand openen...";
@@ -367,6 +372,7 @@
 "Параметры запроса" = "Parameters opvragen";
 "Пароли" = "Wachtwoorden";
 "Пароли перешифрованы новым мастер-ключом" = "Wachtwoorden worden opnieuw gecodeerd met een nieuwe hoofdsleutel";
+"Пароли сохранены заново" = "Wachtwoorden opnieuw opgeslagen";
 "Пароли…" = "Wachtwoorden...";
 "Пароль" = "Wachtwoord";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Het wachtwoord wordt bij het maken van de verbinding gevraagd en slechts tot het einde van de sessie bewaard.";
@@ -459,6 +465,7 @@
 "Размер шрифта таблицы результатов" = "Resultaat rasterlettergrootte";
 "Размер шрифта: %@ pt" = "Lettergrootte: %@ pt";
 "Размер: %@ pt" = "Grootte: %@ pt";
+"Разрешить DBooyvol доступ к сохранённым паролям" = "Geef DBooyvol toegang tot opgeslagen wachtwoorden";
 "Разрешить вставку нескольких строк за один раз" = "Sta het invoegen van meerdere rijen tegelijk toe";
 "Расположить" = "Positie";
 "Расположить на переднем плане" = "Plaats vooraan";
@@ -528,13 +535,15 @@
 "Сохранить" = "Opslaan";
 "Сохранить значение в файл" = "Waarde opslaan in bestand";
 "Сохранить как…" = "Opslaan als...";
+"Сохранить пароли" = "Bewaar wachtwoorden";
 "Сохранить пароль" = "Wachtwoord opslaan";
 "Сохранить подключение" = "Verbinding opslaan";
 "Сохранить…" = "Opslaan…";
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Sla tabbladen en hun tekst op in tabs.json tussen lanceringen";
 "Сохранять пароль" = "Wachtwoord opslaan";
 "Сохранять сжатое значение" = "Bespaar verkleinde waarde";
-"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Opgeslagen wachtwoorden worden gecodeerd met AES-256-GCM. De hoofdsleutel wordt opgeslagen in de macOS-sleutelhanger en gekoppeld aan de app-handtekening, dus een kopie van de gegevensmap zonder de sleutelhanger is nutteloos.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Opgeslagen wachtwoorden kunnen niet worden gedecodeerd met de vorige sleutel. Voer ze opnieuw in. Dit hoeft u maar één keer te doen. Verdere toegang wordt bevestigd door Touch ID.";
+"Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Opgeslagen wachtwoorden worden gecodeerd met AES-256-GCM. De hoofdsleutel wordt opgeslagen in macOS-sleutelhanger; toegang daartoe wordt bevestigd door Touch ID of gebruikerswachtwoord. Een kopie van de gegevensmap zonder sleutelhanger is nutteloos.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Het opgeslagen wachtwoord wordt verwijderd. Open tabbladen blijven bestaan.";
 "Сочетание уже используется: %@" = "Snelkoppeling al in gebruik: %@";
 "Специальным ключом можно пометить строку или строки: сочетание %@ комментирует и раскомментирует все такие строки сразу, не трогая остальной скрипт." = "U kunt een regel of regels markeren met een speciale sleutel: de %@ combinatie becommentarieert en verwijdert commentaar op al dergelijke regels in één keer, zonder de rest van het script te beïnvloeden.";
