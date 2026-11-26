@@ -12,6 +12,7 @@
 "Ctrl + колесо мыши и pinch на тачпаде меняют размер шрифта в таблице результатов." = "Strg + Mausrad und Pinch auf dem Touchpad ändern die Schriftgröße in der Ergebnistabelle.";
 "Display (по умолчанию)" = "Anzeige (Standard)";
 "EZ Connect (хост и сервис)" = "EZ Connect (Host und Dienst)";
+"EZ Connect, TNS или LDAP" = "EZ Connect, TNS oder LDAP";
 "JDBC URL (переопределить, необязательно)" = "JDBC-URL (Überschreiben, optional)";
 "JDBC-драйвер" = "JDBC-Treiber";
 "Java не найдена: %@. Укажите путь в настройках." = "Java nicht gefunden: %@. Geben Sie den Pfad in den Einstellungen an.";
@@ -40,6 +41,7 @@
 "Авто-ширина столбцов включена" = "Automatische Spaltenbreite aktiviert";
 "Автозаполнение" = "Automatisch ausfüllen";
 "Автоматическая ширина столбцов" = "Automatische Spaltenbreite";
+"Автоматически выделять первый параметр в WHERE при открытии скрипта" = "Wählen Sie automatisch den ersten WHERE-Parameter aus, wenn ein Skript geöffnet wird";
 "Автосохранение открытых запросов между сессиями" = "Offene Abfragen zwischen Sitzungen automatisch speichern";
 "Автоформат" = "Automatische Formatierung";
 "Анкоридж" = "Anchorage";
@@ -73,6 +75,7 @@
 "Взять ojdbc*.jar и network/admin из папки Instant Client" = "Nehmen Sie ojdbc*.jar und network/admin aus dem Instant Client-Ordner";
 "Вид" = "Ansicht";
 "Вкладки" = "Tabs";
+"Включает комментирование строк по ключу в конце строки" = "Ermöglicht das Kommentieren von Zeilen durch eine Taste am Ende der Zeile";
 "Владивосток" = "Wladiwostok";
 "Во весь экран" = "Vollbild";
 "Время" = "Zeit";
@@ -81,6 +84,7 @@
 "Всегда заключать в кавычки" = "Immer zitieren";
 "Вставить" = "Einfügen";
 "Вставить без кавычек" = "Ohne Anführungszeichen einfügen";
+"Вставить данные с этими настройками" = "Fügen Sie Daten mit diesen Einstellungen ein";
 "Вставить…" = "Einfügen...";
 "Вставлено: %@ строк" = "Eingefügt: %@ Zeilen";
 "Вставлять NULL" = "NULL einfügen";
@@ -93,8 +97,11 @@
 "Выбрать каталог с файлом config" = "Wählen Sie das Verzeichnis mit der Konfigurationsdatei aus";
 "Выбрать папку network/admin" = "Wählen Sie den Ordner „Netzwerk/Admin“ aus";
 "Выбрать файл базы SQLite" = "Wählen Sie die SQLite-Datenbankdatei aus";
+"Выбрать файл приватного ключа SSH" = "Wählen Sie die private SSH-Schlüsseldatei";
 "Выбрать…" = "Wählen Sie…";
 "Выделена часть данных" = "Ein Teil der Daten wird ausgewählt";
+"Выделить весь результат" = "Wählen Sie das gesamte Ergebnis aus";
+"Выделять параметр только при открытии через поиск (⌘E)" = "Wählen Sie den Parameter nur aus, wenn er über die Suche geöffnet wird (⌘E)";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Nur markieren, wenn die Anfrage über die Suche geöffnet wird (⌘E).";
 "Выйти из полноэкранного режима" = "Vollbildmodus verlassen";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Führen Sie die Abfrage aus: ⌘R oder ⌘↩ (Auswahl oder gesamtes Skript)";
@@ -124,6 +131,8 @@
 "Для выхода зажмите CMD+Q" = "Zum Beenden drücken Sie CMD+Q";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Für dieses Skript ist keine Verbindung ausgewählt.\nWählen Sie eine in der Tab-Leiste aus oder fügen Sie eine neue hinzu (⇧⌘N).";
 "Добавить (⌘N)" = "Addiere (⌘N)";
+"Добавлять номера строк результата" = "Fügen Sie Ergebniszeilennummern hinzu";
+"Добавлять строку с именами столбцов" = "Fügen Sie eine Zeile mit Spaltennamen hinzu";
 "Догрузить следующую страницу строк" = "Laden Sie die nächste Seite mit Zeilen";
 "Дополнительная вставка" = "Erweitertes Einfügen";
 "Дополнительная вставка…" = "Erweitertes Einfügen…";
@@ -145,7 +154,7 @@
 "Загружено с диска: %@" = "Von der Festplatte geladen: %@";
 "Загружены не все данные" = "Es werden nicht alle Daten geladen";
 "Загрузить все" = "Alles laden";
-"Загрузить все оставшиеся строки" = "Laden Sie alle verbleibenden Zeilen";
+"Загрузить все строки" = "Alle Zeilen laden";
 "Загрузить ещё" = "Mehr laden";
 "Загрузить полностью" = "Alle Zeilen laden";
 "Загрузить с диска" = "Von der Festplatte laden";
@@ -176,17 +185,23 @@
 "Изменения отменены" = "Änderungen verworfen";
 "Изменения относятся к разным таблицам — сохранить нельзя" = "Änderungen beziehen sich auf verschiedene Tabellen und können nicht gespeichert werden";
 "Изменить подключение…" = "Verbindung bearbeiten…";
+"Изменить предел ширины столбца" = "Ändern Sie die Spaltenbreitenbeschränkung";
+"Изменить размер страницы" = "Ändern Sie die Seitengröße";
 "Изменить сочетание" = "Verknüpfung ändern";
 "Изменить…" = "Bearbeiten…";
 "Имя" = "Name";
 "Имя или текст запроса — раскладка не важна" = "Name oder Text der Abfrage – Tastaturlayout spielt keine Rolle";
 "Имя отображается в списке подключений." = "Der Name erscheint in der Liste der Verbindungen.";
 "Имя подключения" = "Verbindungsname";
+"Имя пользователя базы данных" = "Datenbankbenutzername";
 "Имя сервиса / SID" = "Dienstname/SID";
 "Имя сервиса в LDAP" = "Dienstname in LDAP";
 "Имя: %@" = "Name: %@";
 "Иркутск" = "Irkutsk";
+"Искать по тексту запроса или имени подключения" = "Suchen Sie nach Abfragetext oder Verbindungsnamen";
+"Использовать SID вместо имени сервиса" = "Verwenden Sie SID anstelle des Dienstnamens";
 "Использовать SSH" = "Verwenden Sie SSH";
+"Использовать SSL для LDAP" = "Verwenden Sie SSL für LDAP";
 "Используется файл config из этого каталога: %@" = "Die Konfigurationsdatei aus diesem Verzeichnis wird verwendet: %@";
 "История" = "Verlauf";
 "История выполненных запросов" = "Verlauf abgeschlossener Anfragen";
@@ -203,10 +218,12 @@
 "КРС" = "KRA";
 "Каир" = "Kairo";
 "Как в базе" = "Datenbanknativ";
+"Как форматировать NULL и пустые значения" = "So formatieren Sie NULL- und leere Werte";
 "Калининград" = "Kaliningrad";
 "Камчатка" = "Kamtschatka";
 "Каракас" = "Caracas";
 "Каталог ~/.ssh" = "~/.ssh-Verzeichnis";
+"Каталог с файлом config для SSH-подключений" = "Verzeichnis mit der Konfigurationsdatei für SSH-Verbindungen";
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Schlüssel (optional)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Der Schlüssel besteht aus einem festen „--“ und einer beliebigen Fortsetzung. Eine Zeile gilt als markiert, wenn der Schlüssel ganz am Ende der Zeile steht; eine leere Fortsetzung deaktiviert die Kombination.";
@@ -219,6 +236,7 @@
 "Комментировать по специальному ключу" = "Mit einem Sonderschlüssel kommentieren";
 "Контакт…" = "Kontakt…";
 "Копировать" = "Kopieren";
+"Копировать в формате HTML для вставки в таблицы" = "Als HTML zum Einfügen in Tabellen kopieren";
 "Копировать заголовки столбцов" = "Spaltenüberschriften kopieren";
 "Копировать имя" = "Namen kopieren";
 "Копировать как CSV" = "Als CSV kopieren";
@@ -253,6 +271,7 @@
 "НЬЮ" = "NEW";
 "Нажмите на сочетание, чтобы изменить его." = "Klicken Sie auf eine Verknüpfung, um sie zu ändern.";
 "Нажмите сочетание…" = "Tastenkürzel drücken…";
+"Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон" = "Klicken Sie, um eine Zeile auszuwählen. ⌘ – hinzufügen, ⇧ – Bereich";
 "Найти" = "Finden";
 "Найти в результате" = "Im Ergebnis suchen";
 "Найти в результате (⌘F при фокусе в таблице)" = "Im Ergebnis suchen (⌘F, wenn die Tabelle den Fokus hat)";
@@ -264,6 +283,7 @@
 "Настройки" = "Einstellungen";
 "Настройки…" = "Einstellungen…";
 "Начать диктовку…" = "Diktat starten...";
+"Не считать кавычки частью значения" = "Behandeln Sie Anführungszeichen nicht als Teil des Wertes";
 "Не удалось выделить локальный порт для SSH-туннеля" = "Der lokale Port für den SSH-Tunnel konnte nicht zugewiesen werden";
 "Не удалось записать файл: %@" = "Datei konnte nicht geschrieben werden: %@";
 "Не удалось определить подключение результата" = "Verbindungsergebnis konnte nicht ermittelt werden";
@@ -305,6 +325,8 @@
 "ОМС" = "OMS";
 "Обновить" = "Aktualisieren";
 "Обновить дерево" = "Baum aktualisieren";
+"Оборачивать в кавычки все значения без исключения" = "Geben Sie ausnahmslos jeden Wert an";
+"Оборачивать значения в кавычки при необходимости" = "Geben Sie bei Bedarf Werte an";
 "Объединить все окна" = "Alle Fenster zusammenführen";
 "Окно" = "Fenster";
 "Окно и справка" = "Fenster und Hilfe";
@@ -318,7 +340,9 @@
 "Открыта база %@" = "Datenbank %@ geöffnet";
 "Открыть" = "Offen";
 "Открыть в приложении" = "In der App öffnen";
+"Открыть вкладку" = "Öffnen Sie die Registerkarte";
 "Открыть в…" = "Geöffnet in…";
+"Открыть запрос в редакторе" = "Öffnen Sie die Abfrage im Editor";
 "Открыть список горячих клавиш (%@)" = "Liste der Hotkeys öffnen (%@)";
 "Открыть ссылку" = "Link öffnen";
 "Открыть файл…" = "Datei öffnen...";
@@ -347,6 +371,7 @@
 "Пароль" = "Passwort";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Das Passwort wird beim Verbindungsaufbau abgefragt und nur bis zum Ende der Sitzung gespeichert.";
 "Пароль не введён" = "Passwort nicht eingegeben";
+"Пароль пользователя базы данных" = "Passwort des Datenbankbenutzers";
 "Пароль сохранён другим мастер-ключом — введите его заново" = "Das Passwort wird durch einen weiteren Hauptschlüssel gespeichert – geben Sie es erneut ein";
 "Пекин" = "Peking";
 "Перезапустить" = "Neustart";
@@ -369,9 +394,12 @@
 "По умолчанию: %@" = "Standard: %@";
 "По центру" = "Zentriert";
 "Повторить" = "Wiederholen";
+"Подбирать ширину столбцов по содержимому" = "Passen Sie die Spaltenbreite an den Inhalt an";
+"Подключаться к базе через SSH-туннель" = "Stellen Sie über einen SSH-Tunnel eine Verbindung zur Datenbank her";
 "Подключаться по SID (иначе service name)" = "Verbindung über SID (auch Dienstname genannt) herstellen";
 "Подключение" = "Verbindung";
 "Подключение для текущего скрипта" = "Verbindung für das aktuelle Skript";
+"Подключение к базе: зелёный — активно, серый — нет" = "Datenbankverbindung: grün – aktiv, grau – keine";
 "Подключение успешно" = "Verbindung erfolgreich";
 "Подключение успешно — %@" = "Verbindung erfolgreich – %@";
 "Подключение: %@" = "Verbindung: %@";
@@ -391,6 +419,8 @@
 "Показать предыдущую вкладку" = "Vorherigen Tab anzeigen";
 "Показать следующую вкладку" = "Nächsten Tab anzeigen";
 "Показать/скрыть боковую панель" = "Seitenleiste ein-/ausblenden";
+"Показывать тип данных во всплывающей подсказке заголовка" = "Zeigen Sie den Datentyp im Tooltip der Spaltenüberschrift an";
+"Показывать тип данных рядом с именем столбца" = "Zeigen Sie den Datentyp neben dem Spaltennamen an";
 "Полноэкранная мозаика" = "Vollbildmosaik";
 "Половинки" = "Hälften";
 "Положение курсора в скрипте: строка : позиция в строке : общая позиция" = "Caret-Position im Skript: Zeile: Spalte: Offset";
@@ -399,7 +429,10 @@
 "Пользователь: %@" = "Benutzer: %@";
 "Понятно" = "Ich verstehe";
 "Порт" = "Hafen";
+"Порт сервера базы данных" = "Datenbankserver-Port";
+"Пояс, в котором показываются значения timestamp" = "Zeitzone, die für Zeitstempelwerte verwendet wird";
 "Правка" = "Bearbeiten";
+"Предел автоматической ширины столбца в pt" = "Automatische Spaltenbreitenbegrenzung in pt";
 "Предыдущая вкладка" = "Vorheriger Tab";
 "Предыдущая открытая вкладка" = "Vorheriger geöffneter Tab";
 "Предыдущее совпадение (⇧↩)" = "Vorheriges Spiel (⇧↩)";
@@ -412,16 +445,21 @@
 "Проверка изменений файлов на диске выключена" = "Die Prüfung auf Änderungen an Dateien auf der Festplatte ist deaktiviert";
 "Проверка подключения…" = "Verbindung wird getestet…";
 "Проверять изменения файлов на диске" = "Suchen Sie nach Änderungen an den Dateien auf der Festplatte";
+"Продолжение ключа после «--»; пустое значение отключает комбинацию" = "Schlüsselsuffix nach «--»; Ein leerer Wert deaktiviert die Verknüpfung";
 "Простой клиент для баз данных" = "Einfacher Datenbank-Client";
 "Прочитать" = "Lesen";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Lesen Sie ldap.ora und sqlnet.ora und füllen Sie die Felder unten aus";
 "Пусто" = "Leer";
 "Пустой первичный ключ «%@»" = "Leerer Primärschlüssel „%@“";
+"Пустые значения записывать как NULL" = "Leere Werte als NULL schreiben";
 "Путь к jar" = "Pfad zum Glas";
 "Разделитель столбцов" = "Spaltentrenner";
 "Разделитель строк" = "Zeilentrenner";
+"Размер шрифта в редакторе SQL" = "Schriftgröße im SQL-Editor";
+"Размер шрифта таблицы результатов" = "Schriftgröße des Ergebnisrasters";
 "Размер шрифта: %@ pt" = "Schriftgröße: %@ pt";
 "Размер: %@ pt" = "Größe: %@ pt";
+"Разрешить вставку нескольких строк за один раз" = "Erlauben Sie das gleichzeitige Einfügen mehrerer Zeilen";
 "Расположить" = "Position";
 "Расположить на переднем плане" = "Vorne platzieren";
 "Редактируемое" = "Bearbeitbar";
@@ -434,6 +472,7 @@
 "СТА" = "IST";
 "Самара" = "Samara";
 "Сбросить вид" = "Ansicht zurücksetzen";
+"Сбросить все сочетания к стандартным" = "Setzen Sie alle Verknüpfungen auf die Standardeinstellungen zurück";
 "Сбросить поиск по истории" = "Verlaufssuche zurücksetzen";
 "Свернуть" = "Zusammenbruch";
 "Свернуть все" = "Alles einklappen";
@@ -449,9 +488,11 @@
 "Системный" = "System";
 "Системный · %@" = "System · %@";
 "Системный моноширинный" = "System-Monospace";
+"Сколько строк запрашивать за один раз" = "Wie viele Zeilen gleichzeitig abgerufen werden sollen";
 "Скопировано (%@): %@ строк" = "Kopiert (%@): %@ Zeilen";
 "Скопировано столбцов: %@" = "Kopierte Spalten: %@";
 "Скопировано: %@ строк" = "Kopiert: %@ Zeilen";
+"Скопировать выделение с этими настройками" = "Kopieren Sie die Auswahl mit diesen Einstellungen";
 "Скопировать показанное значение" = "Kopierwert angezeigt";
 "Скопировать тип данных" = "Datentyp kopieren";
 "Скрипт: %@" = "Skript: %@";
@@ -463,6 +504,7 @@
 "Слева и справа" = "Links und rechts";
 "Слева и четверти" = "Links und Viertel";
 "Слева на экране" = "Links auf dem Bildschirm";
+"Следить за изменениями открытых файлов и предлагать перезагрузить версию с диска" = "Beobachten Sie die geöffneten Dateien und bieten Sie an, die Version von der Festplatte neu zu laden";
 "Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Überwachen Sie geöffnete Dateien und bieten Sie an, eine Version von der Festplatte zu laden, wenn die Datei von einem anderen Programm geändert wurde. Wenn diese Option deaktiviert ist, werden Dateien auf der Festplatte nicht gelesen oder verglichen.";
 "Следующая вкладка" = "Nächste Registerkarte";
 "Следующее совпадение (↩)" = "Nächstes Spiel (↩)";
@@ -473,9 +515,11 @@
 "Снизу слева" = "Unten links";
 "Снизу справа" = "Unten rechts";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Der Inhalt von „%@“ unterscheidet sich von dem auf der Festplatte gespeicherten.\nSoll ich die Version von der Festplatte laden oder den Text im Editor belassen?";
+"Создать новое подключение" = "Erstellen Sie eine neue Verbindung";
 "Создать новое подключение…" = "Erstellen Sie eine neue Verbindung...";
 "Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Erstellen Sie einen neuen Hauptschlüssel und verschlüsseln Sie alle gespeicherten Passwörter erneut";
 "Сортировка: %@ %@" = "Sortieren: %@ %@";
+"Состояние выполнения: готово, выполняется, ошибка" = "Ausführungsstatus: bereit, läuft, Fehler";
 "Сохранение изменений…" = "Änderungen werden gespeichert...";
 "Сохранение…" = "Sparen…";
 "Сохранено" = "Gespeichert";
@@ -487,6 +531,7 @@
 "Сохранить пароль" = "Passwort speichern";
 "Сохранить подключение" = "Verbindung speichern";
 "Сохранить…" = "Speichern…";
+"Сохранять вкладки и их текст в tabs.json между запусками" = "Speichern Sie Tabs und ihren Text zwischen den Starts in tabs.json";
 "Сохранять пароль" = "Passwort speichern";
 "Сохранять сжатое значение" = "Minimierten Wert speichern";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Gespeicherte Passwörter werden mit AES-256-GCM verschlüsselt. Der Hauptschlüssel wird im macOS-Schlüsselbund gespeichert und an die App-Signatur gebunden, sodass eine Kopie des Datenordners ohne Schlüsselbund nutzlos ist.";
@@ -500,6 +545,7 @@
 "Справа на экране" = "Direkt auf dem Bildschirm";
 "Справка" = "Hilfe";
 "Справка DBooyvol" = "DBooyvol-Hilfe";
+"Срок хранения истории запросов" = "Aufbewahrungsfrist für den Abfrageverlauf";
 "Стамбул" = "Istanbul";
 "Старые пароли удалены из связки ключей" = "Alte Passwörter aus Schlüsselbund entfernt";
 "Столбец: %@ %@" = "Spalte: %@ %@";
@@ -514,8 +560,10 @@
 "Таблица: %@" = "Tabelle: %@";
 "Также открывается из меню «Справка» по %@." = "Wird auch über das Hilfemenü auf %@ geöffnet.";
 "Текст" = "Text";
+"Текущее подключение скрипта: имя и тип базы" = "Aktuelle Skriptverbindung: Name und Datenbanktyp";
 "Тест" = "Testen";
 "Тип" = "Typ";
+"Тип базы данных" = "Datenbanktyp";
 "Тип данных показан в названии столбца" = "Der Datentyp wird im Spaltentitel angezeigt";
 "Тип данных показывается при наведении" = "Beim Hover angezeigter Datentyp";
 "Тип данных скрыт из названия столбца" = "Datentyp im Spaltennamen ausgeblendet";
@@ -550,6 +598,7 @@
 "Хост (алиас из ~/.ssh/config)" = "Host (Alias von ~/.ssh/config)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "SSH-Host nicht angegeben: Test und Verbindung geben einen Fehler zurück. Geben Sie Host/Alias ​​an oder deaktivieren Sie SSH.";
 "Хранить историю" = "Behalten Sie die Geschichte";
+"Хранить пароль в зашифрованном виде в связке ключей" = "Speichern Sie das Passwort verschlüsselt im Schlüsselbund";
 "ЧИК" = "CHI";
 "Часовой пояс" = "Zeitzone";
 "Часовой пояс времени: %@" = "Zeitzone: %@";
@@ -565,6 +614,7 @@
 "Шрифт редактора: %@ pt" = "Editor-Schriftart: %@ pt";
 "Шрифт результатов: %@" = "Schriftart der Ergebnisse: %@";
 "Шрифт результатов: %@ pt" = "Schriftart der Ergebnisse: %@pt";
+"Шрифт таблицы результатов" = "Schriftart des Ergebnisrasters";
 "Экспорт" = "Exportieren";
 "Экспорт CSV…" = "CSV exportieren...";
 "Экспорт XLSX…" = "XLSX exportieren…";
@@ -580,6 +630,7 @@
 "ЯКТ" = "JAK";
 "Язык" = "Sprache";
 "Язык интерфейса" = "Schnittstellensprache";
+"Язык интерфейса; применяется после перезапуска" = "Schnittstellensprache; Gilt nach dem Neustart";
 "Язык: %@ — перезапустите приложение" = "Sprache: %@ – Starten Sie die Anwendung neu";
 "Язык: системный — перезапустите приложение" = "Sprache: System – Starten Sie die Anwendung neu";
 "Якутск" = "Jakutsk";

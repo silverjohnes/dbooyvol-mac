@@ -90,6 +90,7 @@ struct ShortcutsView: View {
                 Spacer(minLength: 12)
                 Button("По умолчанию") { resetAll() }
                     .disabled(!store.hasOverrides)
+                    .help(L10n.tr("Сбросить все сочетания к стандартным"))
             }
             .padding(.horizontal, 18)
             .padding(.top, 14)

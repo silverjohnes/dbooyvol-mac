@@ -12,6 +12,7 @@
 "Ctrl + колесо мыши и pinch на тачпаде меняют размер шрифта в таблице результатов." = "Ctrl + fare tekerleği ve dokunmatik yüzeydeki kıstırma, sonuçlar tablosundaki yazı tipi boyutunu değiştirir.";
 "Display (по умолчанию)" = "Ekran (varsayılan)";
 "EZ Connect (хост и сервис)" = "EZ Connect (ana bilgisayar ve hizmet)";
+"EZ Connect, TNS или LDAP" = "EZ Connect, TNS veya LDAP";
 "JDBC URL (переопределить, необязательно)" = "JDBC URL'si (geçersiz kıl, isteğe bağlı)";
 "JDBC-драйвер" = "JDBC sürücüsü";
 "Java не найдена: %@. Укажите путь в настройках." = "Java bulunamadı: %@. Ayarlarda yolu belirtin.";
@@ -40,6 +41,7 @@
 "Авто-ширина столбцов включена" = "Otomatik sütun genişliği etkin";
 "Автозаполнение" = "Otomatik doldurma";
 "Автоматическая ширина столбцов" = "Otomatik sütun genişliği";
+"Автоматически выделять первый параметр в WHERE при открытии скрипта" = "Bir komut dosyası açıldığında ilk WHERE parametresini otomatik olarak seç";
 "Автосохранение открытых запросов между сессиями" = "Oturumlar arasında açık sorguları otomatik olarak kaydet";
 "Автоформат" = "Otomatik format";
 "Анкоридж" = "Anchorage";
@@ -73,6 +75,7 @@
 "Взять ojdbc*.jar и network/admin из папки Instant Client" = "Anlık İstemci klasöründen ojdbc*.jar ve network/admin'i alın";
 "Вид" = "Görüntüle";
 "Вкладки" = "Sekmeler";
+"Включает комментирование строк по ключу в конце строки" = "Satırın sonundaki bir tuşla satırlara yorum eklenmesini sağlar";
 "Владивосток" = "Vladivostok";
 "Во весь экран" = "Tam ekran";
 "Время" = "Zaman";
@@ -81,6 +84,7 @@
 "Всегда заключать в кавычки" = "Her zaman alıntı yap";
 "Вставить" = "Yapıştır";
 "Вставить без кавычек" = "Tırnak işaretleri olmadan yapıştır";
+"Вставить данные с этими настройками" = "Verileri bu ayarlarla yapıştırın";
 "Вставить…" = "Yapıştır...";
 "Вставлено: %@ строк" = "Eklendi: %@ satır";
 "Вставлять NULL" = "NULL ekle";
@@ -93,8 +97,11 @@
 "Выбрать каталог с файлом config" = "Yapılandırma dosyasının bulunduğu dizini seçin";
 "Выбрать папку network/admin" = "Ağ/yönetici klasörünü seçin";
 "Выбрать файл базы SQLite" = "SQLite veritabanı dosyasını seçin";
+"Выбрать файл приватного ключа SSH" = "SSH özel anahtar dosyasını seçin";
 "Выбрать…" = "Seç…";
 "Выделена часть данных" = "Verilerin bir kısmı seçildi";
+"Выделить весь результат" = "Sonucun tamamını seç";
+"Выделять параметр только при открытии через поиск (⌘E)" = "Parametreyi yalnızca arama yoluyla açıldığında seçin (⌘E)";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Yalnızca istek arama (⌘E) aracılığıyla açıldığında vurgulayın.";
 "Выйти из полноэкранного режима" = "Tam ekran modundan çık";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Sorguyu çalıştırın: ⌘R veya ⌘↩ (seçim veya tüm betik)";
@@ -124,6 +131,8 @@
 "Для выхода зажмите CMD+Q" = "Çıkmak için CMD+Q tuşlarına basın";
 "Для этого скрипта не выбрано подключение.\nВыберите подключение в строке вкладок или добавьте новое (⇧⌘N)." = "Bu komut dosyası için bağlantı seçilmedi.\nSekme çubuğundan birini seçin veya yeni bir tane ekleyin (⇧⌘N).";
 "Добавить (⌘N)" = "Ekle (⌘N)";
+"Добавлять номера строк результата" = "Sonuç satır numaralarını ekle";
+"Добавлять строку с именами столбцов" = "Sütun adlarını içeren bir satır ekleyin";
 "Догрузить следующую страницу строк" = "Satırların sonraki sayfasını yükle";
 "Дополнительная вставка" = "Gelişmiş yapıştırma";
 "Дополнительная вставка…" = "Gelişmiş yapıştırma…";
@@ -145,7 +154,7 @@
 "Загружено с диска: %@" = "Diskten yüklendi: %@";
 "Загружены не все данные" = "Tüm veriler yüklenmedi";
 "Загрузить все" = "Tümünü yükle";
-"Загрузить все оставшиеся строки" = "Kalan tüm satırları yükle";
+"Загрузить все строки" = "Tüm satırları yükle";
 "Загрузить ещё" = "Daha fazlasını yükle";
 "Загрузить полностью" = "Tüm satırları yükle";
 "Загрузить с диска" = "Diskten yükle";
@@ -176,17 +185,23 @@
 "Изменения отменены" = "Değişiklikler iptal edildi";
 "Изменения относятся к разным таблицам — сохранить нельзя" = "Değişiklikler farklı tablolarla ilgilidir - kaydedilemez";
 "Изменить подключение…" = "Bağlantıyı düzenle…";
+"Изменить предел ширины столбца" = "Sütun genişliği sınırını değiştirme";
+"Изменить размер страницы" = "Sayfa boyutunu değiştirin";
 "Изменить сочетание" = "Kısayolu değiştir";
 "Изменить…" = "Düzenle…";
 "Имя" = "İsim";
 "Имя или текст запроса — раскладка не важна" = "Sorgu adı veya metni — klavye düzeni önemli değil";
 "Имя отображается в списке подключений." = "Ad, bağlantılar listesinde görünür.";
 "Имя подключения" = "Bağlantı adı";
+"Имя пользователя базы данных" = "Veritabanı kullanıcı adı";
 "Имя сервиса / SID" = "Hizmet adı/SID";
 "Имя сервиса в LDAP" = "LDAP'de hizmet adı";
 "Имя: %@" = "İsim: %@";
 "Иркутск" = "İrkutsk";
+"Искать по тексту запроса или имени подключения" = "Sorgu metnine veya bağlantı adına göre arayın";
+"Использовать SID вместо имени сервиса" = "Hizmet adı yerine SID'yi kullanın";
 "Использовать SSH" = "SSH'yi kullan";
+"Использовать SSL для LDAP" = "LDAP için SSL kullanın";
 "Используется файл config из этого каталога: %@" = "Bu dizindeki yapılandırma dosyası kullanılıyor: %@";
 "История" = "Geçmiş";
 "История выполненных запросов" = "Tamamlanan isteklerin geçmişi";
@@ -203,10 +218,12 @@
 "КРС" = "KRA";
 "Каир" = "Kahire";
 "Как в базе" = "Veritabanı yerel";
+"Как форматировать NULL и пустые значения" = "NULL ve boş değerler nasıl biçimlendirilir";
 "Калининград" = "Kaliningrad";
 "Камчатка" = "Kamçatka";
 "Каракас" = "Karakas";
 "Каталог ~/.ssh" = "~/.ssh dizini";
+"Каталог с файлом config для SSH-подключений" = "SSH bağlantıları için yapılandırma dosyasının bulunduğu dizin";
 "Киритимати" = "Kiritimati";
 "Ключ (необязательно)" = "Anahtar (isteğe bağlı)";
 "Ключ состоит из фиксированного «--» и любого продолжения. Строка считается помеченной, если ключ стоит в самом конце строки; пустое продолжение отключает сочетание." = "Anahtar, sabit bir \"--\" ve herhangi bir devamdan oluşur. Anahtar satırın en sonundaysa satır işaretlenmiş sayılır; boş bir devam, kombinasyonu devre dışı bırakır.";
@@ -219,6 +236,7 @@
 "Комментировать по специальному ключу" = "Özel bir anahtar kullanarak yorum yapın";
 "Контакт…" = "İletişim…";
 "Копировать" = "Kopyala";
+"Копировать в формате HTML для вставки в таблицы" = "Tablolara yapıştırmak için HTML olarak kopyalayın";
 "Копировать заголовки столбцов" = "Sütun başlıklarını kopyala";
 "Копировать имя" = "Adı kopyala";
 "Копировать как CSV" = "CSV olarak kopyala";
@@ -253,6 +271,7 @@
 "НЬЮ" = "NEW";
 "Нажмите на сочетание, чтобы изменить его." = "Değiştirmek için bir kısayola tıklayın.";
 "Нажмите сочетание…" = "Bir kısayola basın…";
+"Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон" = "Bir satırı seçmek için tıklayın; ⌘ — ekle, ⇧ — aralık";
 "Найти" = "Bul";
 "Найти в результате" = "Sonuçta ara";
 "Найти в результате (⌘F при фокусе в таблице)" = "Sonuçta bul (tablo odaklandığında ⌘F)";
@@ -264,6 +283,7 @@
 "Настройки" = "Ayarlar";
 "Настройки…" = "Ayarlar…";
 "Начать диктовку…" = "Dikteyi başlat...";
+"Не считать кавычки частью значения" = "Tırnak işaretlerini değerin bir parçası olarak değerlendirmeyin";
 "Не удалось выделить локальный порт для SSH-туннеля" = "SSH tüneli için yerel bağlantı noktası tahsis edilemedi";
 "Не удалось записать файл: %@" = "Dosya yazılamadı: %@";
 "Не удалось определить подключение результата" = "Bağlantı sonucu belirlenemedi";
@@ -305,6 +325,8 @@
 "ОМС" = "OMS";
 "Обновить" = "Güncelleme";
 "Обновить дерево" = "Ağacı güncelle";
+"Оборачивать в кавычки все значения без исключения" = "İstisnasız her değeri alıntılayın";
+"Оборачивать значения в кавычки при необходимости" = "Gerektiğinde değerleri teklif edin";
 "Объединить все окна" = "Tüm pencereleri birleştir";
 "Окно" = "Pencere";
 "Окно и справка" = "Pencere ve Yardım";
@@ -318,7 +340,9 @@
 "Открыта база %@" = "%@ veritabanı açıldı";
 "Открыть" = "Açık";
 "Открыть в приложении" = "Uygulamada aç";
+"Открыть вкладку" = "Sekmeyi aç";
 "Открыть в…" = "Şu tarihte aç:";
+"Открыть запрос в редакторе" = "Sorguyu düzenleyicide açın";
 "Открыть список горячих клавиш (%@)" = "Kısayol tuşlarının listesini aç (%@)";
 "Открыть ссылку" = "Bağlantıyı aç";
 "Открыть файл…" = "Dosyayı aç...";
@@ -347,6 +371,7 @@
 "Пароль" = "Şifre";
 "Пароль будет запрашиваться при подключении и храниться только до конца сеанса." = "Şifre bağlantı sırasında istenecek ve yalnızca oturumun sonuna kadar saklanacaktır.";
 "Пароль не введён" = "Şifre girilmedi";
+"Пароль пользователя базы данных" = "Veritabanı kullanıcı şifresi";
 "Пароль сохранён другим мастер-ключом — введите его заново" = "Şifre başka bir ana anahtar tarafından kaydedildi - tekrar girin";
 "Пекин" = "Pekin";
 "Перезапустить" = "Yeniden başlat";
@@ -369,9 +394,12 @@
 "По умолчанию: %@" = "Varsayılan: %@";
 "По центру" = "Ortalanmış";
 "Повторить" = "Tekrarla";
+"Подбирать ширину столбцов по содержимому" = "Sütun genişliklerini içeriklerine uygun hale getirin";
+"Подключаться к базе через SSH-туннель" = "Veritabanına SSH tüneli üzerinden bağlanın";
 "Подключаться по SID (иначе service name)" = "SID (başka bir deyişle hizmet adı) ile bağlanın";
 "Подключение" = "Bağlantı";
 "Подключение для текущего скрипта" = "Geçerli komut dosyası için bağlantı";
+"Подключение к базе: зелёный — активно, серый — нет" = "Veritabanı bağlantısı: yeşil — etkin, gri — yok";
 "Подключение успешно" = "Bağlantı başarılı";
 "Подключение успешно — %@" = "Bağlantı başarılı — %@";
 "Подключение: %@" = "Bağlantı: %@";
@@ -391,6 +419,8 @@
 "Показать предыдущую вкладку" = "Önceki sekmeyi göster";
 "Показать следующую вкладку" = "Sonraki sekmeyi göster";
 "Показать/скрыть боковую панель" = "Kenar çubuğunu göster/gizle";
+"Показывать тип данных во всплывающей подсказке заголовка" = "Veri türünü sütun başlığı ipucunda göster";
+"Показывать тип данных рядом с именем столбца" = "Sütun adının yanında veri türünü göster";
 "Полноэкранная мозаика" = "Tam ekran mozaik";
 "Половинки" = "Yarım";
 "Положение курсора в скрипте: строка : позиция в строке : общая позиция" = "Koddaki düzeltme işareti konumu: satır : sütun : uzaklık";
@@ -399,7 +429,10 @@
 "Пользователь: %@" = "Kullanıcı: %@";
 "Понятно" = "Görüyorum";
 "Порт" = "Liman";
+"Порт сервера базы данных" = "Veritabanı sunucusu bağlantı noktası";
+"Пояс, в котором показываются значения timestamp" = "Zaman damgası değerleri için kullanılan saat dilimi";
 "Правка" = "Düzenle";
+"Предел автоматической ширины столбца в pt" = "Nokta cinsinden otomatik sütun genişliği sınırı";
 "Предыдущая вкладка" = "Önceki sekme";
 "Предыдущая открытая вкладка" = "Önceki açık sekme";
 "Предыдущее совпадение (⇧↩)" = "Önceki maç (⇧↩)";
@@ -412,16 +445,21 @@
 "Проверка изменений файлов на диске выключена" = "Diskteki dosyalarda değişiklik olup olmadığının kontrol edilmesi devre dışı";
 "Проверка подключения…" = "Bağlantı test ediliyor…";
 "Проверять изменения файлов на диске" = "Diskteki dosyalarda değişiklik olup olmadığını kontrol edin";
+"Продолжение ключа после «--»; пустое значение отключает комбинацию" = "«--» sonrasındaki anahtar eki; boş bir değer kısayolu devre dışı bırakır";
 "Простой клиент для баз данных" = "Basit veritabanı istemcisi";
 "Прочитать" = "Oku";
 "Прочитать ldap.ora и sqlnet.ora и заполнить поля ниже" = "Ldap.ora ve sqlnet.ora'yı okuyun ve aşağıdaki alanları doldurun";
 "Пусто" = "Boş";
 "Пустой первичный ключ «%@»" = "\"%@\" birincil anahtarını boşaltın";
+"Пустые значения записывать как NULL" = "Boş değerleri NULL olarak yaz";
 "Путь к jar" = "Kavanozun yolu";
 "Разделитель столбцов" = "Sütun ayırıcı";
 "Разделитель строк" = "Hat ayırıcı";
+"Размер шрифта в редакторе SQL" = "SQL düzenleyicide yazı tipi boyutu";
+"Размер шрифта таблицы результатов" = "Sonuç ızgarası yazı tipi boyutu";
 "Размер шрифта: %@ pt" = "Yazı tipi boyutu: %@ nk";
 "Размер: %@ pt" = "Boyut: %@ nk";
+"Разрешить вставку нескольких строк за один раз" = "Aynı anda birden fazla satır eklenmesine izin ver";
 "Расположить" = "Pozisyon";
 "Расположить на переднем плане" = "Öne yerleştirin";
 "Редактируемое" = "Düzenlenebilir";
@@ -434,6 +472,7 @@
 "СТА" = "IST";
 "Самара" = "Samara";
 "Сбросить вид" = "Görünümü sıfırla";
+"Сбросить все сочетания к стандартным" = "Tüm kısayolları varsayılanlara sıfırla";
 "Сбросить поиск по истории" = "Geçmiş aramasını sıfırla";
 "Свернуть" = "Daralt";
 "Свернуть все" = "Tümünü daralt";
@@ -449,9 +488,11 @@
 "Системный" = "Sistem";
 "Системный · %@" = "Sistem · %@";
 "Системный моноширинный" = "Sistem tek aralıklı yazı tipi";
+"Сколько строк запрашивать за один раз" = "Bir seferde kaç satır getirilecek";
 "Скопировано (%@): %@ строк" = "Kopyalandı (%@): %@ satır";
 "Скопировано столбцов: %@" = "Kopyalanan sütunlar: %@";
 "Скопировано: %@ строк" = "Kopyalandı: %@ satır";
+"Скопировать выделение с этими настройками" = "Seçimi bu ayarlarla kopyalayın";
 "Скопировать показанное значение" = "Gösterilen değeri kopyala";
 "Скопировать тип данных" = "Veri türünü kopyala";
 "Скрипт: %@" = "Komut dosyası: %@";
@@ -463,6 +504,7 @@
 "Слева и справа" = "Sol ve sağ";
 "Слева и четверти" = "Sol ve çeyrekler";
 "Слева на экране" = "Ekranda kaldı";
+"Следить за изменениями открытых файлов и предлагать перезагрузить версию с диска" = "Açık dosyaları izleyin ve sürümü diskten yeniden yüklemeyi teklif edin";
 "Следить за открытыми файлами и предлагать загрузить версию с диска, если файл изменился другой программой. Когда выключено, файлы на диске не читаются и не сравниваются." = "Açık dosyaları izleyin ve dosya başka bir program tarafından değiştirilmişse diskten bir sürüm yüklemeyi önerin. Devre dışı bırakıldığında diskteki dosyalar okunmaz veya karşılaştırılmaz.";
 "Следующая вкладка" = "Sonraki sekme";
 "Следующее совпадение (↩)" = "Sonraki maç (↩)";
@@ -473,9 +515,11 @@
 "Снизу слева" = "Sol alt";
 "Снизу справа" = "Sağ alt";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "\"%@\" içeriği diskte depolananlardan farklı.\nSürümü diskten mi yüklemeliyim yoksa metni düzenleyicide mi bırakmalıyım?";
+"Создать новое подключение" = "Yeni bir bağlantı oluştur";
 "Создать новое подключение…" = "Yeni bir bağlantı oluştur...";
 "Создать новый мастер-ключ и заново зашифровать все сохранённые пароли" = "Yeni bir ana anahtar oluşturun ve kayıtlı tüm şifreleri yeniden şifreleyin";
 "Сортировка: %@ %@" = "Sırala: %@ %@";
+"Состояние выполнения: готово, выполняется, ошибка" = "Çalıştırma durumu: hazır, çalışıyor, hata";
 "Сохранение изменений…" = "Değişiklikler kaydediliyor...";
 "Сохранение…" = "Kaydediliyor…";
 "Сохранено" = "Kaydedildi";
@@ -487,6 +531,7 @@
 "Сохранить пароль" = "Şifreyi kaydet";
 "Сохранить подключение" = "Bağlantıyı kaydet";
 "Сохранить…" = "Kaydet…";
+"Сохранять вкладки и их текст в tabs.json между запусками" = "Sekmeleri ve metinlerini başlatmalar arasında tabs.json dosyasına kaydedin";
 "Сохранять пароль" = "Şifreyi kaydet";
 "Сохранять сжатое значение" = "Küçültülmüş değeri kaydet";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS и привязан к подписи приложения, поэтому копия папки с данными без связки ключей бесполезна." = "Kaydedilen şifreler AES-256-GCM ile şifrelenir. Ana anahtar, macOS Anahtar Zincirinde saklanır ve uygulama imzasına bağlanır; dolayısıyla veri klasörünün anahtarlık olmadan bir kopyası işe yaramaz.";
@@ -500,6 +545,7 @@
 "Справа на экране" = "Tam ekranda";
 "Справка" = "Yardım";
 "Справка DBooyvol" = "DBooyvol Yardım";
+"Срок хранения истории запросов" = "Sorgu geçmişi saklama süresi";
 "Стамбул" = "İstanbul";
 "Старые пароли удалены из связки ключей" = "Eski şifreler anahtarlıktan kaldırıldı";
 "Столбец: %@ %@" = "Sütun: %@ %@";
@@ -514,8 +560,10 @@
 "Таблица: %@" = "Tablo: %@";
 "Также открывается из меню «Справка» по %@." = "Ayrıca %@ üzerindeki Yardım menüsünden de açılır.";
 "Текст" = "Metin";
+"Текущее подключение скрипта: имя и тип базы" = "Mevcut komut dosyası bağlantısı: ad ve veritabanı türü";
 "Тест" = "Testi";
 "Тип" = "Tür";
+"Тип базы данных" = "Veritabanı türü";
 "Тип данных показан в названии столбца" = "Veri türü sütun başlığında gösterilir";
 "Тип данных показывается при наведении" = "Fareyle üzerine gelindiğinde gösterilen veri türü";
 "Тип данных скрыт из названия столбца" = "Sütun adında gizlenen veri türü";
@@ -550,6 +598,7 @@
 "Хост (алиас из ~/.ssh/config)" = "Ana Bilgisayar (~/.ssh/config adresinden takma ad)";
 "Хост SSH не указан: тест и подключение вернут ошибку. Укажите хост/алиас или выключите SSH." = "SSH ana bilgisayarı belirtilmedi: test et ve bağlan bir hata döndürecektir. Ana makineyi/takma adı belirtin veya SSH'yi devre dışı bırakın.";
 "Хранить историю" = "Geçmişi sakla";
+"Хранить пароль в зашифрованном виде в связке ключей" = "Şifreyi anahtar zincirinde şifrelenmiş olarak saklayın";
 "ЧИК" = "CHI";
 "Часовой пояс" = "Saat dilimi";
 "Часовой пояс времени: %@" = "Saat dilimi: %@";
@@ -565,6 +614,7 @@
 "Шрифт редактора: %@ pt" = "Editör yazı tipi: %@ pt";
 "Шрифт результатов: %@" = "Sonuçlar yazı tipi: %@";
 "Шрифт результатов: %@ pt" = "Sonuçlar yazı tipi: %@pt";
+"Шрифт таблицы результатов" = "Sonuç ızgarası yazı tipi";
 "Экспорт" = "İhracat";
 "Экспорт CSV…" = "CSV'yi dışa aktar...";
 "Экспорт XLSX…" = "XLSX'i dışa aktar…";
@@ -580,6 +630,7 @@
 "ЯКТ" = "YAK";
 "Язык" = "Dil";
 "Язык интерфейса" = "Arayüz dili";
+"Язык интерфейса; применяется после перезапуска" = "Arayüz dili; yeniden başlatmanın ardından geçerli olur";
 "Язык: %@ — перезапустите приложение" = "Dil: %@ - uygulamayı yeniden başlatın";
 "Язык: системный — перезапустите приложение" = "Dil: sistem - uygulamayı yeniden başlatın";
 "Якутск" = "Yakutsk";

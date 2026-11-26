@@ -95,11 +95,16 @@ struct GridCopySettingsView: View {
             GroupBox {
                 VStack(alignment: .leading, spacing: 8) {
                     Toggle("Копировать заголовки столбцов", isOn: $settings.copyHeader)
+                        .help(L10n.tr("Добавлять строку с именами столбцов"))
                     Toggle("Копировать номера строк", isOn: $settings.copyRowNumbers)
+                        .help(L10n.tr("Добавлять номера строк результата"))
                     Toggle("Заключать значения в кавычки", isOn: $settings.quoteValues)
+                        .help(L10n.tr("Оборачивать значения в кавычки при необходимости"))
                     Toggle("Всегда заключать в кавычки", isOn: $settings.alwaysQuote)
                         .disabled(!settings.quoteValues)
+                        .help(L10n.tr("Оборачивать в кавычки все значения без исключения"))
                     Toggle("Копировать как HTML", isOn: $settings.copyAsHTML)
+                        .help(L10n.tr("Копировать в формате HTML для вставки в таблицы"))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -115,6 +120,7 @@ struct GridCopySettingsView: View {
                         }
                         .labelsHidden()
                         .frame(width: 190)
+                        .help(L10n.tr("Как форматировать NULL и пустые значения"))
                     }
                     Divider()
                         .gridCellColumns(2)
@@ -157,6 +163,7 @@ struct GridCopySettingsView: View {
                     .keyboardShortcut(.cancelAction)
                 Button("Копировать") { copy() }
                     .keyboardShortcut(.defaultAction)
+                    .help(L10n.tr("Скопировать выделение с этими настройками"))
             }
         }
         .padding(18)
@@ -196,8 +203,11 @@ struct GridPasteSettingsView: View {
             GroupBox {
                 VStack(alignment: .leading, spacing: 8) {
                     Toggle("Вставлять несколько строк", isOn: $settings.insertMultipleRows)
+                        .help(L10n.tr("Разрешить вставку нескольких строк за один раз"))
                     Toggle("Игнорировать кавычки", isOn: $settings.ignoreQuotes)
+                        .help(L10n.tr("Не считать кавычки частью значения"))
                     Toggle("Вставлять NULL", isOn: $settings.insertNulls)
+                        .help(L10n.tr("Пустые значения записывать как NULL"))
                     HStack(spacing: 10) {
                         Text("Метка NULL")
                         ComboField(value: $nullText,
@@ -223,6 +233,7 @@ struct GridPasteSettingsView: View {
                     .keyboardShortcut(.cancelAction)
                 Button("Вставить") { paste() }
                     .keyboardShortcut(.defaultAction)
+                    .help(L10n.tr("Вставить данные с этими настройками"))
             }
         }
         .padding(18)

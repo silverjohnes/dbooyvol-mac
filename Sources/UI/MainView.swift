@@ -20,6 +20,7 @@ struct MainView: View {
                                 Text("Нет подключений").foregroundColor(.secondary)
                                 Button("Добавить (⌘N)") { model.addProfile() }
                                     .controlSize(.small)
+                                    .help(L10n.tr("Создать новое подключение"))
                             }
                         }
                     }
@@ -382,22 +383,24 @@ struct MainView: View {
             Circle()
                 .fill(isConnected ? Color.green : Color.secondary.opacity(0.5))
                 .frame(width: 7, height: 7)
+                .help(L10n.tr("Подключение к базе: зелёный — активно, серый — нет"))
             Text(model.status)
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .lineLimit(1)
                 .truncationMode(.tail)
+                .help(L10n.tr("Состояние выполнения: готово, выполняется, ошибка"))
 
             if model.bottomTab == .result, model.result != nil {
                 if let r = model.result, !r.done {
                     Button("Загрузить ещё") { model.loadMore() }
                         .controlSize(.small)
-                        .help("Догрузить следующую страницу строк")
+                        .help(L10n.tr("Догрузить следующую страницу строк"))
                 }
                 Button("Загрузить все") { model.loadAllRows() }
                     .controlSize(.small)
                     .disabled(!model.canLoadAllResult)
-                    .help("Загрузить все оставшиеся строки")
+                    .help(L10n.tr("Загрузить все строки"))
             }
 
             Spacer(minLength: 8)
@@ -450,6 +453,7 @@ struct MainView: View {
                 }
                 .font(.caption)
                 .foregroundColor(.secondary)
+                .help(L10n.tr("Текущее подключение скрипта: имя и тип базы"))
             }
         }
         .padding(.horizontal, 10)

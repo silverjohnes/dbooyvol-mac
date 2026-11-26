@@ -673,7 +673,7 @@ final class GridScrollView: NSScrollView {
 
 /// Frozen row-number gutter drawn next to the grid. It is a sibling of the
 /// scroll view, so horizontal scrolling never moves it.
-final class RowNumberView: NSView {
+final class RowNumberView: NSView, NSViewToolTipOwner {
     weak var table: NSTableView?
     weak var model: AppModel?
 
@@ -737,6 +737,26 @@ final class RowNumberView: NSView {
     override func setFrameSize(_ newSize: NSSize) {
         super.setFrameSize(newSize)
         needsDisplay = true
+        refreshToolTips()
+    }
+
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        refreshToolTips()
+    }
+
+    private func refreshToolTips() {
+        removeAllToolTips()
+        guard !bounds.isEmpty else { return }
+        addToolTip(bounds, owner: self, userData: nil)
+    }
+
+    func view(_ view: NSView, stringForToolTip tag: NSView.ToolTipTag,
+              point: NSPoint, userData data: UnsafeMutableRawPointer?) -> String {
+        if point.y < headerHeight {
+            return L10n.tr("Выделить весь результат")
+        }
+        return L10n.tr("Нажмите, чтобы выделить строку; ⌘ — добавить, ⇧ — диапазон")
     }
 
     private var headerHeight: CGFloat {
