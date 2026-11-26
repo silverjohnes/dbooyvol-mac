@@ -253,7 +253,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if CommandLine.arguments.contains("--secrets-status") {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                 let accounts = AppModel.shared.profiles
-                    .filter { $0.storesPassword }
+                    .filter { $0.storesPassword && !$0.kind.isFileBased }
                     .map { $0.id.uuidString }
                 let d = SecretStore.diagnostics(accounts: accounts)
                 print("keyid=\(d.keyID ?? "nil") stale=\(d.stale.count) error=\(d.error ?? "none")")
