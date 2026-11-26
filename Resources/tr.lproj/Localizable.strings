@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Sekmeleri ve metinlerini başlatmalar arasında tabs.json dosyasına kaydedin";
 "Сохранять пароль" = "Şifreyi kaydet";
 "Сохранять сжатое значение" = "Küçültülmüş değeri kaydet";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Kaydedilen şifrelerin şifresi önceki anahtarla çözülemez. Bunları tekrar girin; bunu yalnızca bir kez yapmanız yeterlidir. Daha fazla erişim Touch ID ile onaylanacaktır.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Kaydedilen şifrelerin şifresi önceki anahtarla çözülemez. Bunları tekrar girin; bunu yalnızca bir kez yapmanız yeterlidir. Daha fazla erişim Touch ID veya kullanıcı şifresi ile onaylanacaktır.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Kaydedilen şifreler AES-256-GCM ile şifrelenir. Ana anahtar, macOS Anahtar Zinciri'nde saklanır; erişim Touch ID veya kullanıcı şifresi ile onaylanır. Veri klasörünün anahtarlıksız bir kopyası işe yaramaz.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Kaydedilen şifre silinecektir. Açık sekmeler kalacak.";
 "Сочетание уже используется: %@" = "Kısayol zaten kullanımda: %@";

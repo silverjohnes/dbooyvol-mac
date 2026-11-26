@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Guarde pestañas y su texto en tabs.json entre lanzamientos";
 "Сохранять пароль" = "Guardar contraseña";
 "Сохранять сжатое значение" = "Guardar valor minimizado";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Las contraseñas guardadas no se pueden descifrar con la clave anterior. Ingreselos nuevamente; solo necesita hacerlo una vez. El acceso adicional será confirmado mediante Touch ID.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Las contraseñas guardadas no se pueden descifrar con la clave anterior. Ingreselos nuevamente; solo necesita hacerlo una vez. El acceso adicional será confirmado mediante Touch ID o contraseña de usuario.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Las contraseñas guardadas están cifradas con AES-256-GCM. La clave maestra se almacena en macOS Keychain; el acceso al mismo se confirma mediante Touch ID o contraseña de usuario. Una copia de la carpeta de datos sin llavero es inútil.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "La contraseña guardada se eliminará. Las pestañas abiertas permanecerán.";
 "Сочетание уже используется: %@" = "Acceso directo ya en uso: %@";

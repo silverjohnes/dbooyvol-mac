@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Save tabs and their text to tabs.json between launches";
 "Сохранять пароль" = "Save password";
 "Сохранять сжатое значение" = "Save minified value";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Saved passwords cannot be decrypted with the previous key. Enter them again - you only need to do this once. Further access will be confirmed by Touch ID.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Saved passwords cannot be decrypted with the previous key. Enter them again - you only need to do this once. Further access will be confirmed by Touch ID or user password.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Saved passwords are encrypted with AES-256-GCM. The master key is stored in macOS Keychain; access to it is confirmed by Touch ID or user password. A copy of the data folder without a keychain is useless.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "The saved password will be deleted. Open tabs will remain.";
 "Сочетание уже используется: %@" = "Shortcut already in use: %@";

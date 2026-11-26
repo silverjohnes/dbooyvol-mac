@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Sla tabbladen en hun tekst op in tabs.json tussen lanceringen";
 "Сохранять пароль" = "Wachtwoord opslaan";
 "Сохранять сжатое значение" = "Bespaar verkleinde waarde";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Opgeslagen wachtwoorden kunnen niet worden gedecodeerd met de vorige sleutel. Voer ze opnieuw in. Dit hoeft u maar één keer te doen. Verdere toegang wordt bevestigd door Touch ID.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Opgeslagen wachtwoorden kunnen niet worden gedecodeerd met de vorige sleutel. Voer ze opnieuw in. Dit hoeft u maar één keer te doen. Verdere toegang wordt bevestigd door Touch ID of gebruikerswachtwoord.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Opgeslagen wachtwoorden worden gecodeerd met AES-256-GCM. De hoofdsleutel wordt opgeslagen in macOS-sleutelhanger; toegang daartoe wordt bevestigd door Touch ID of gebruikerswachtwoord. Een kopie van de gegevensmap zonder sleutelhanger is nutteloos.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Het opgeslagen wachtwoord wordt verwijderd. Open tabbladen blijven bestaan.";
 "Сочетание уже используется: %@" = "Snelkoppeling al in gebruik: %@";

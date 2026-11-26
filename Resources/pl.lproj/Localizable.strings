@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Zapisuj karty i ich tekst w pliku tabs.json pomiędzy uruchomieniami";
 "Сохранять пароль" = "Zapisz hasło";
 "Сохранять сжатое значение" = "Zapisz zminimalizowaną wartość";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Zapisanych haseł nie można odszyfrować przy użyciu poprzedniego klucza. Wpisz je ponownie – wystarczy, że zrobisz to tylko raz. Dalszy dostęp zostanie potwierdzony Touch ID.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Zapisanych haseł nie można odszyfrować przy użyciu poprzedniego klucza. Wpisz je ponownie – wystarczy, że zrobisz to tylko raz. Dalszy dostęp zostanie potwierdzony Touch ID lub hasłem użytkownika.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Zapisane hasła są szyfrowane za pomocą AES-256-GCM. Klucz główny jest przechowywany w pęku kluczy macOS; dostęp do niego potwierdzany jest Touch ID lub hasłem użytkownika. Kopia folderu danych bez pęku kluczy jest bezużyteczna.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Zapisane hasło zostanie usunięte. Otwarte karty pozostaną.";
 "Сочетание уже используется: %@" = "Skrót jest już używany: %@";

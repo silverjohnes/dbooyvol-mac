@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Simpan tab dan teksnya ke tabs.json di antara peluncuran";
 "Сохранять пароль" = "Simpan kata sandi";
 "Сохранять сжатое значение" = "Simpan nilai yang diperkecil";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Kata sandi yang disimpan tidak dapat didekripsi dengan kunci sebelumnya. Masukkan lagi - Anda hanya perlu melakukannya sekali. Akses lebih lanjut akan dikonfirmasi oleh Touch ID.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Kata sandi yang disimpan tidak dapat didekripsi dengan kunci sebelumnya. Masukkan lagi - Anda hanya perlu melakukannya sekali. Akses lebih lanjut akan dikonfirmasi oleh Touch ID atau kata sandi pengguna.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Kata sandi yang disimpan dienkripsi dengan AES-256-GCM. Kunci master disimpan di Rantai Kunci macOS; akses ke sana dikonfirmasi oleh Touch ID atau kata sandi pengguna. Salinan folder data tanpa gantungan kunci tidak ada gunanya.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Kata sandi yang disimpan akan dihapus. Tab yang terbuka akan tetap ada.";
 "Сочетание уже используется: %@" = "Pintasan sudah digunakan: %@";

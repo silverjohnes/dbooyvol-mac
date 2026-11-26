@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Lưu các tab và văn bản của chúng vào tabs.json giữa các lần khởi chạy";
 "Сохранять пароль" = "Lưu mật khẩu";
 "Сохранять сжатое значение" = "Lưu giá trị rút gọn";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Mật khẩu đã lưu không thể được giải mã bằng khóa trước đó. Nhập lại chúng - bạn chỉ cần thực hiện việc này một lần. Quyền truy cập sâu hơn sẽ được xác nhận bằng Touch ID.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Mật khẩu đã lưu không thể được giải mã bằng khóa trước đó. Nhập lại chúng - bạn chỉ cần thực hiện việc này một lần. Quyền truy cập sâu hơn sẽ được xác nhận bằng Touch ID hoặc mật khẩu người dùng.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Mật khẩu đã lưu được mã hóa bằng AES-256-GCM. Khóa chính được lưu trữ trong Chuỗi khóa macOS; quyền truy cập vào nó được xác nhận bằng Touch ID hoặc mật khẩu người dùng. Một bản sao của thư mục dữ liệu không có móc khóa là vô ích.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Mật khẩu đã lưu sẽ bị xóa. Các tab đang mở sẽ vẫn còn.";
 "Сочетание уже используется: %@" = "Phím tắt đã được sử dụng: %@";

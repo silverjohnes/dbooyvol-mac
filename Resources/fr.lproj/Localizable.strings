@@ -542,7 +542,7 @@
 "Сохранять вкладки и их текст в tabs.json между запусками" = "Enregistrez les onglets et leur texte dans tabs.json entre les lancements";
 "Сохранять пароль" = "Enregistrer le mot de passe";
 "Сохранять сжатое значение" = "Enregistrer la valeur minifiée";
-"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID." = "Les mots de passe enregistrés ne peuvent pas être déchiffrés avec la clé précédente. Saisissez-les à nouveau - vous ne devez le faire qu'une seule fois. L'accès ultérieur sera confirmé par Touch ID.";
+"Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя." = "Les mots de passe enregistrés ne peuvent pas être déchiffrés avec la clé précédente. Saisissez-les à nouveau - vous ne devez le faire qu'une seule fois. L'accès ultérieur sera confirmé par Touch ID ou par mot de passe utilisateur.";
 "Сохранённые пароли шифруются AES-256-GCM. Мастер-ключ хранится в связке ключей macOS; доступ к нему подтверждается Touch ID или паролем пользователя. Копия папки с данными без связки ключей бесполезна." = "Les mots de passe enregistrés sont cryptés avec AES-256-GCM. La clé principale est stockée dans le trousseau macOS ; l'accès à celui-ci est confirmé par Touch ID ou par mot de passe utilisateur. Une copie du dossier de données sans trousseau est inutile.";
 "Сохранённый пароль будет удалён. Открытые вкладки останутся." = "Le mot de passe enregistré sera supprimé. Les onglets ouverts resteront.";
 "Сочетание уже используется: %@" = "Raccourci déjà utilisé : %@";

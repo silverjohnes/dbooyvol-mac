@@ -472,7 +472,7 @@ final class AppModel: ObservableObject {
 
         let alert = NSAlert()
         alert.messageText = L10n.tr("Ключ шифрования изменился")
-        alert.informativeText = L10n.tr("Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID.")
+        alert.informativeText = L10n.tr("Сохранённые пароли нельзя расшифровать прежним ключом. Введите их заново — это нужно сделать один раз. Дальше доступ будет подтверждаться Touch ID или паролем пользователя.")
         alert.addButton(withTitle: L10n.tr("Сохранить пароли"))
         alert.addButton(withTitle: L10n.tr("Отмена"))
         alert.accessoryView = scroll
