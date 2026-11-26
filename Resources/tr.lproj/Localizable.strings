@@ -586,10 +586,10 @@
 "Увеличить шрифт" = "Yazı tipini artır";
 "Удалить" = "Sil";
 "Удалить всю историю запросов" = "Tüm sorgu geçmişini temizle";
+"Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Parolaların açık metin olarak saklandığı uygulamanın önceki bir sürümündeki verileri silin";
 "Удалить подключение «%@»?" = "\"%@\" bağlantısı silinsin mi?";
 "Удалить подключение…" = "Bağlantıyı sil...";
 "Удалить старые пароли из связки ключей" = "Eski şifreleri anahtarlıktan kaldırın";
-"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Parolaların açık metin olarak saklandığı önceki sürümün (service ru.evotor.sqldesk) öğelerini silin";
 "Удалить это подключение и сохранённый пароль" = "Bu bağlantıyı ve kayıtlı şifreyi silin";
 "Удалить…" = "Sil…";
 "Українська" = "Ukraynaca";

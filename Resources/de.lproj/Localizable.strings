@@ -586,10 +586,10 @@
 "Увеличить шрифт" = "Schriftart vergrößern";
 "Удалить" = "Löschen";
 "Удалить всю историю запросов" = "Löschen Sie den gesamten Abfrageverlauf";
+"Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Löschen Sie Daten aus einer früheren Version der Anwendung, in der Passwörter im Klartext gespeichert waren";
 "Удалить подключение «%@»?" = "Verbindung „%@“ löschen?";
 "Удалить подключение…" = "Verbindung löschen...";
 "Удалить старые пароли из связки ключей" = "Entfernen Sie alte Passwörter aus dem Schlüsselbund";
-"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Löschen Sie Elemente der vorherigen Version (Dienst ru.evotor.sqldesk), in der Passwörter im Klartext gespeichert wurden";
 "Удалить это подключение и сохранённый пароль" = "Löschen Sie diese Verbindung und das gespeicherte Passwort";
 "Удалить…" = "Löschen…";
 "Українська" = "Ukrainisch";

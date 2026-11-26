@@ -586,10 +586,10 @@
 "Увеличить шрифт" = "Tingkatkan font";
 "Удалить" = "Hapus";
 "Удалить всю историю запросов" = "Hapus semua riwayat kueri";
+"Удалить данные прежней версии приложения, где пароли хранились открытым текстом" = "Hapus data dari aplikasi versi sebelumnya yang kata sandinya disimpan dalam bentuk teks biasa";
 "Удалить подключение «%@»?" = "Hapus koneksi \"%@\"?";
 "Удалить подключение…" = "Hapus koneksi...";
 "Удалить старые пароли из связки ключей" = "Hapus kata sandi lama dari gantungan kunci";
-"Удалить элементы прежней версии (служба ru.evotor.sqldesk), где пароли хранились открытым текстом" = "Hapus elemen versi sebelumnya (layanan ru.evotor.sqldesk), tempat kata sandi disimpan dalam teks biasa";
 "Удалить это подключение и сохранённый пароль" = "Hapus koneksi ini dan kata sandi yang disimpan";
 "Удалить…" = "Hapus…";
 "Українська" = "Ukraina";

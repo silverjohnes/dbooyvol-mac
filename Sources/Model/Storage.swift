@@ -112,15 +112,23 @@ enum AppSettings {
     /// Bundle identifier used before the move to `silver.dbooyvol`. Kept only
     /// to import the old UserDefaults domain once.
     static let previousDefaultsDomain = "ru.evotor.sqldesk"
-    private static let defaultsMigrationKey = "defaultsMigratedFrom"
+    private static let defaultsMigrationKey = "defaultsMigrated"
+    private static let legacyMigrationKey = "defaultsMigratedFrom"
 
     /// macOS keys UserDefaults by bundle identifier. Without this, changing the
     /// identifier would reset the language, fonts, tree state, window frames
     /// and every other preference. Runs before the language is applied.
     static func migrateDefaultsIfNeeded() {
         let defaults = UserDefaults.standard
-        guard defaults.string(forKey: defaultsMigrationKey) == nil else { return }
-        defer { defaults.set(previousDefaultsDomain, forKey: defaultsMigrationKey) }
+        if defaults.bool(forKey: defaultsMigrationKey) { return }
+        // Older builds recorded the old domain name in the new preferences.
+        // Drop it so the old identifier is not left behind anywhere.
+        if defaults.string(forKey: legacyMigrationKey) != nil {
+            defaults.removeObject(forKey: legacyMigrationKey)
+            defaults.set(true, forKey: defaultsMigrationKey)
+            return
+        }
+        defer { defaults.set(true, forKey: defaultsMigrationKey) }
         guard let old = defaults.persistentDomain(forName: previousDefaultsDomain),
               !old.isEmpty else { return }
         for (key, value) in old where key != defaultsMigrationKey {
