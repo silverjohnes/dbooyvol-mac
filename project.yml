@@ -33,7 +33,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: silver.dbooyvol
         PRODUCT_NAME: DBooyvol
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
-        MARKETING_VERSION: "0.1.0"
+        MARKETING_VERSION: "1.0.121"
         CURRENT_PROJECT_VERSION: "121"
       configs:
         Release:
@@ -70,7 +70,7 @@ targets:
           - th
           - sv
           - cs
-        CFBundleShortVersionString: "0.1.0"
+        CFBundleShortVersionString: "1.0.121"
         CFBundleVersion: "121"
         LSMinimumSystemVersion: "13.0"
         LSApplicationCategoryType: public.app-category.developer-tools

@@ -29,6 +29,8 @@ bump-build:
 	@n=$$(cat $(BUILD_FILE) 2>/dev/null || echo 0); n=$$((n+1)); echo $$n > $(BUILD_FILE); \
 	sed -i '' -E "s/(CURRENT_PROJECT_VERSION: \")[0-9]+(\")/\1$$n\2/" project.yml; \
 	sed -i '' -E "s/(CFBundleVersion: \")[0-9]+(\")/\1$$n\2/" project.yml; \
+	sed -i '' -E "s/(MARKETING_VERSION: \")[0-9.]+(\")/\11.0.$$n\2/" project.yml; \
+	sed -i '' -E "s/(CFBundleShortVersionString: \")[0-9.]+(\")/\11.0.$$n\2/" project.yml; \
 	echo "→ сборка $$n"
 
 build: bump-build project

@@ -5,7 +5,7 @@ enum AboutPanel {
 
     static func show() {
         let info = Bundle.main.infoDictionary
-        let version = info?["CFBundleShortVersionString"] as? String ?? "0.1.0"
+        let version = info?["CFBundleShortVersionString"] as? String ?? "1.0"
         let build = info?["CFBundleVersion"] as? String ?? "1"
 
         let credits = NSMutableAttributedString(
