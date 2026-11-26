@@ -95,6 +95,7 @@
 "Выбрать папку network/admin" = "Ağ/yönetici klasörünü seçin";
 "Выбрать файл базы SQLite" = "SQLite veritabanı dosyasını seçin";
 "Выбрать…" = "Seç…";
+"Выделена часть данных" = "Verilerin bir kısmı seçildi";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Yalnızca istek arama (⌘E) aracılığıyla açıldığında vurgulayın.";
 "Выйти из полноэкранного режима" = "Tam ekran modundan çık";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Sorguyu çalıştırın: ⌘R veya ⌘↩ (seçim veya tüm betik)";
@@ -140,9 +141,15 @@
 "Завершить и закрыть все окна" = "Çıkın ve tüm pencereleri kapatın";
 "Загружено %@ строк" = "%@ satır yüklendi";
 "Загружено %@ строк (всего %@ строк)" = "%@ satır yüklendi (%@ toplam satır)";
+"Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ / %@ satır yüklendi. Tüm satırlar yüklensin mi yoksa yüklenenler dışa aktarılsın mı?";
+"Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ satır yüklendi, ancak tümü değil. Tüm satırlar yüklensin mi yoksa yüklenenler dışa aktarılsın mı?";
+"Загружено %@ строк…" = "%@ satır yüklendi…";
 "Загружено с диска: %@" = "Diskten yüklendi: %@";
+"Загружены не все данные" = "Tüm veriler yüklenmedi";
 "Загрузить ещё" = "Daha fazlasını yükle";
+"Загрузить полностью" = "Tüm satırları yükle";
 "Загрузить с диска" = "Diskten yükle";
+"Загрузка всех строк…" = "Tüm satırlar yükleniyor…";
 "Загрузка данных" = "Veri yükleniyor";
 "Заключать значения в кавычки" = "Teklif değerleri";
 "Закрыть" = "Kapat";
@@ -274,6 +281,7 @@
 "Не удалось сохранить: %@" = "Kaydedilemedi: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Eski şifreler kaldırılamadı - macOS isteminde erişime izin verin";
 "Неизвестная ошибка" = "Bilinmeyen hata";
+"Нет" = "Hayır";
 "Нет данных для вставки" = "Eklenecek veri yok";
 "Нет данных для копирования" = "Kopyalanacak veri yok";
 "Нет данных для открытия" = "Açılacak veri yok";
@@ -557,10 +565,15 @@
 "Шрифт результатов: %@ pt" = "Sonuçlar yazı tipi: %@pt";
 "Экспорт" = "İhracat";
 "Экспорт CSV…" = "CSV'yi dışa aktar...";
+"Экспорт XLSX…" = "XLSX'i dışa aktar…";
 "Экспорт XML…" = "XML'i dışa aktar...";
 "Экспорт в CSV (⇧⌘E)" = "CSV'ye aktar (⇧⌘E)";
+"Экспорт в XLSX (⌃⇧⌘E)" = "XLSX'e aktar (⌃⇧⌘E)";
 "Экспорт в XML (⌥⇧⌘E)" = "XML'e aktar (⌥⇧⌘E)";
 "Экспортировано: %@" = "Dışa aktarıldı: %@";
+"Экспортировать выделенное" = "Seçimi dışa aktar";
+"Экспортировать выделенный фрагмент?" = "Seçilen parça dışa aktarılsın mı?";
+"Экспортировать имеющиеся" = "Yüklenen satırları dışa aktar";
 "Эмодзи и символы" = "Emojiler ve semboller";
 "ЯКТ" = "YAK";
 "Язык" = "Dil";

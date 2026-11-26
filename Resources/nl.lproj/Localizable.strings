@@ -95,6 +95,7 @@
 "Выбрать папку network/admin" = "Kies de map netwerk/admin";
 "Выбрать файл базы SQLite" = "Selecteer SQLite-databasebestand";
 "Выбрать…" = "Kies…";
+"Выделена часть данных" = "Een deel van de gegevens is geselecteerd";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Markeer alleen wanneer de aanvraag wordt geopend via zoeken (⌘E).";
 "Выйти из полноэкранного режима" = "Sluit de modus Volledig scherm af";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Voer de query uit: ⌘R of ⌘↩ (selectie of volledig script)";
@@ -140,9 +141,15 @@
 "Завершить и закрыть все окна" = "Sluit af en sluit alle vensters";
 "Загружено %@ строк" = "%@ rijen geladen";
 "Загружено %@ строк (всего %@ строк)" = "%@ rijen geladen (%@ rijen totaal)";
+"Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ van %@ rijen geladen. Alle rijen laden of de geladen rijen exporteren?";
+"Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ rijen geladen, maar niet allemaal. Alle rijen laden of de geladen rijen exporteren?";
+"Загружено %@ строк…" = "%@ rijen geladen…";
 "Загружено с диска: %@" = "Geladen vanaf schijf: %@";
+"Загружены не все данные" = "Niet alle gegevens worden geladen";
 "Загрузить ещё" = "Laad meer";
+"Загрузить полностью" = "Laad alle rijen";
 "Загрузить с диска" = "Laden vanaf schijf";
+"Загрузка всех строк…" = "Alle rijen laden…";
 "Загрузка данных" = "Gegevens laden";
 "Заключать значения в кавычки" = "Citeer waarden";
 "Закрыть" = "Sluiten";
@@ -274,6 +281,7 @@
 "Не удалось сохранить: %@" = "Opslaan mislukt: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Kan oude wachtwoorden niet verwijderen. Sta toegang toe in de macOS-prompt";
 "Неизвестная ошибка" = "Onbekende fout";
+"Нет" = "Nee";
 "Нет данных для вставки" = "Er zijn geen gegevens om in te voegen";
 "Нет данных для копирования" = "Er zijn geen gegevens om te kopiëren";
 "Нет данных для открытия" = "Geen gegevens om te openen";
@@ -557,10 +565,15 @@
 "Шрифт результатов: %@ pt" = "Resultatenlettertype: %@pt";
 "Экспорт" = "Exporteren";
 "Экспорт CSV…" = "CSV exporteren...";
+"Экспорт XLSX…" = "XLSX exporteren…";
 "Экспорт XML…" = "XML exporteren...";
 "Экспорт в CSV (⇧⌘E)" = "Exporteren naar CSV (⇧⌘E)";
+"Экспорт в XLSX (⌃⇧⌘E)" = "Exporteren naar XLSX (⌃⇧⌘E)";
 "Экспорт в XML (⌥⇧⌘E)" = "Exporteren naar XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Geëxporteerd: %@";
+"Экспортировать выделенное" = "Selectie exporteren";
+"Экспортировать выделенный фрагмент?" = "Het geselecteerde fragment exporteren?";
+"Экспортировать имеющиеся" = "Exporteer geladen rijen";
 "Эмодзи и символы" = "Emoji's en symbolen";
 "ЯКТ" = "JAK";
 "Язык" = "Taal";

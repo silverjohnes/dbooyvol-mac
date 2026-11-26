@@ -2816,47 +2816,274 @@ final class AppModel: ObservableObject {
     // MARK: - export
 
     private enum ExportFormat {
-        case csv, xml
-        var ext: String { self == .csv ? "csv" : "xml" }
-        var type: UTType { self == .csv ? .commaSeparatedText : .xml }
-    }
-
-    private func exportPayload() -> (columns: [ColumnInfo], rows: [[String?]]) {
-        guard let r = result else { return ([], []) }
-        if let sel = gridSelection, !r.rows.isEmpty, !r.columns.isEmpty {
-            let rowIdx = sel.effectiveRows(total: r.rows.count).filter { $0 < r.rows.count }
-            let colIdx = sel.effectiveColumns(total: r.columns.count).filter { $0 < r.columns.count }
-            guard !rowIdx.isEmpty, !colIdx.isEmpty else { return (r.columns, r.rows) }
-            let subset = rowIdx.map { i in colIdx.map { c in c < r.rows[i].count ? r.rows[i][c] : nil } }
-            return (colIdx.map { r.columns[$0] }, subset)
+        case csv, xml, xlsx
+        var ext: String {
+            switch self {
+            case .csv: return "csv"
+            case .xml: return "xml"
+            case .xlsx: return "xlsx"
+            }
         }
-        return (r.columns, r.rows)
+        var type: UTType {
+            switch self {
+            case .csv: return .commaSeparatedText
+            case .xml: return .xml
+            case .xlsx: return UTType(filenameExtension: "xlsx") ?? .data
+            }
+        }
     }
 
-    func exportCSV() { export(.csv) }
-    func exportXML() { export(.xml) }
+    private enum ExportScope {
+        /// Everything the grid holds; the bottom buttons and menu items.
+        case all
+        /// Only the current selection; the result grid context menu.
+        case selection
+    }
 
-    private func export(_ format: ExportFormat) {
-        let (columns, rows) = exportPayload()
+    private enum IncompleteChoice {
+        case loadAll, exportLoaded, cancel
+    }
+
+    private enum SelectionChoice {
+        case exportSelection, allData, cancel
+    }
+
+    /// True when the grid shows only a part of the result: the cursor still
+    /// has rows, or the server stopped at its row cap.
+    private func isPartiallyLoaded(_ r: QueryResult) -> Bool {
+        if r.truncated || !r.done { return true }
+        if let total = r.totalRows { return r.rows.count < total }
+        return false
+    }
+
+    /// True when the grid has a selection that does not cover the whole
+    /// result, so exporting "all data" would silently ignore it.
+    private func hasPartialSelection(_ r: QueryResult) -> Bool {
+        guard let sel = gridSelection, !r.rows.isEmpty, !r.columns.isEmpty else { return false }
+        let rows = sel.effectiveRows(total: r.rows.count)
+        let cols = sel.effectiveColumns(total: r.columns.count)
+        guard !rows.isEmpty, !cols.isEmpty else { return false }
+        return rows.count < r.rows.count || cols.count < r.columns.count
+    }
+
+    private func exportPayload(_ scope: ExportScope,
+                               result r: QueryResult) -> (columns: [ColumnInfo], rows: [[String?]]) {
+        guard scope == .selection,
+              let sel = gridSelection, !r.rows.isEmpty, !r.columns.isEmpty else {
+            return (r.columns, r.rows)
+        }
+        let rowIdx = sel.effectiveRows(total: r.rows.count).filter { $0 < r.rows.count }
+        let colIdx = sel.effectiveColumns(total: r.columns.count).filter { $0 < r.columns.count }
+        guard !rowIdx.isEmpty, !colIdx.isEmpty else { return (r.columns, r.rows) }
+        let subset = rowIdx.map { i in colIdx.map { c in c < r.rows[i].count ? r.rows[i][c] : nil } }
+        return (colIdx.map { r.columns[$0] }, subset)
+    }
+
+    func exportCSV() { export(.csv, scope: .all) }
+    func exportXML() { export(.xml, scope: .all) }
+    func exportXLSX() { export(.xlsx, scope: .all) }
+
+    func exportCSVSelection() { export(.csv, scope: .selection) }
+    func exportXMLSelection() { export(.xml, scope: .selection) }
+    func exportXLSXSelection() { export(.xlsx, scope: .selection) }
+
+    private func export(_ format: ExportFormat, scope: ExportScope) {
+        guard let r = result, !r.columns.isEmpty else {
+            error = DBError(message: "Нет данных для экспорта")
+            return
+        }
+        // A context-menu export without a selection means "everything", so it
+        // gets the same completeness check as the bottom buttons.
+        let effectiveScope: ExportScope =
+            (scope == .selection && gridSelection == nil) ? .all : scope
+        // The bottom buttons export all data, but when part of the grid is
+        // selected the user probably meant that fragment.
+        if effectiveScope == .all, hasPartialSelection(r) {
+            switch askAboutSelection() {
+            case .exportSelection:
+                let payload = exportPayload(.selection, result: r)
+                performExport(format, columns: payload.columns, rows: payload.rows)
+                return
+            case .allData:
+                break
+            case .cancel:
+                return
+            }
+        }
+        if effectiveScope == .all, isPartiallyLoaded(r) {
+            switch askAboutIncomplete(r) {
+            case .loadAll:
+                loadAllAndExport(format)
+            case .exportLoaded:
+                performExport(format, columns: r.columns, rows: r.rows)
+            case .cancel:
+                break
+            }
+            return
+        }
+        let payload = exportPayload(effectiveScope, result: r)
+        performExport(format, columns: payload.columns, rows: payload.rows)
+    }
+
+    /// "Выделена часть данных. Экспортировать выделенный фрагмент?"
+    private func askAboutSelection() -> SelectionChoice {
+        let alert = NSAlert()
+        alert.alertStyle = .informational
+        alert.messageText = L10n.tr("Выделена часть данных")
+        alert.informativeText = L10n.tr("Экспортировать выделенный фрагмент?")
+        alert.addButton(withTitle: L10n.tr("Экспортировать выделенное"))
+        alert.addButton(withTitle: L10n.tr("Нет"))
+        alert.addButton(withTitle: L10n.tr("Отмена"))
+        switch alert.runModal() {
+        case .alertFirstButtonReturn: return .exportSelection
+        case .alertSecondButtonReturn: return .allData
+        default: return .cancel
+        }
+    }
+
+    /// "Загружено 1 000 строк из 12 345. Загрузить полностью или
+    /// экспортировать имеющиеся?"
+    private func askAboutIncomplete(_ r: QueryResult) -> IncompleteChoice {
+        let alert = NSAlert()
+        alert.alertStyle = .informational
+        alert.messageText = L10n.tr("Загружены не все данные")
+        let loaded = String(r.rows.count)
+        if let total = r.totalRows, total > r.rows.count {
+            alert.informativeText = L10n.fmt(
+                "Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?",
+                loaded, String(total))
+        } else {
+            alert.informativeText = L10n.fmt(
+                "Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?",
+                loaded)
+        }
+        alert.addButton(withTitle: L10n.tr("Загрузить полностью"))
+        alert.addButton(withTitle: L10n.tr("Экспортировать имеющиеся"))
+        alert.addButton(withTitle: L10n.tr("Отмена"))
+        switch alert.runModal() {
+        case .alertFirstButtonReturn: return .loadAll
+        case .alertSecondButtonReturn: return .exportLoaded
+        default: return .cancel
+        }
+    }
+
+    /// Reads the remaining pages into the tab, then opens the save panel with
+    /// the complete result. The run state is set so the progress card and the
+    /// Stop button behave as they do for a query.
+    private func loadAllAndExport(_ format: ExportFormat) {
+        let tabID = activeTabID
+        guard let r = resultsByTab[tabID], !r.done, let qid = r.queryId,
+              tabRunStates[tabID] != .running,
+              let profile = profiles.first(where: { $0.id == r.profileID }) ?? activeScriptProfile else {
+            if let r = resultsByTab[tabID] {
+                performExport(format, columns: r.columns, rows: r.rows)
+            }
+            return
+        }
+        let session = querySession(for: tabID, profile: profile)
+        setRunState(.running, for: tabID)
+        runningQueries[tabID] = RunningQuery(profileID: profile.id, queryID: qid)
+        status = L10n.tr("Загрузка всех строк…")
+
+        Task {
+            var updated = r
+            var failure: DBError?
+            let pageCount = min(100_000, max(pageSize, 1_000))
+            do {
+                while !updated.done {
+                    if runningQueries[tabID]?.cancelled == true { break }
+                    let page = try await session.fetch(qid, count: pageCount)
+                    if page.rows.isEmpty && !page.done { break }
+                    updated.rows.append(contentsOf: page.rows)
+                    updated.rowIDs.append(contentsOf: Self.makeRowIDs(count: page.rows.count))
+                    updated.done = page.done
+                    updated.queryId = page.done ? nil : qid
+                    if tabID == activeTabID {
+                        status = L10n.fmt("Загружено %@ строк…", String(updated.rows.count))
+                    }
+                }
+            } catch {
+                failure = (error as? SidecarError)?.dbError
+                    ?? DBError(message: error.localizedDescription)
+            }
+
+            let cancelled = runningQueries[tabID]?.cancelled ?? false
+            runningQueries[tabID] = nil
+            if cancelled {
+                setRunState(.idle, for: tabID)
+                if tabID == activeTabID { status = L10n.tr("Отменено") }
+                return
+            }
+            if let failure {
+                errorsByTab[tabID] = failure
+                if tabID == activeTabID { self.error = failure }
+                setRunState(.failed, for: tabID)
+                return
+            }
+
+            // Keep the on-screen order: sort the rows that were just appended
+            // the same way the grid sorted the first page.
+            if let sort = sortsByTab[tabID] ?? resultSort {
+                let order = Self.sortedOrder(updated.rows, column: sort.column,
+                                             columns: updated.columns, sort: sort)
+                updated.rows = order.map { updated.rows[$0] }
+                if updated.rowIDs.count == updated.rows.count {
+                    updated.rowIDs = order.map { updated.rowIDs[$0] }
+                }
+                updated.runID = UUID()
+            }
+            resultsByTab[tabID] = updated
+            if tabID == activeTabID {
+                result = updated
+                status = Self.runStatus(rows: updated.rows.count, done: updated.done,
+                                        durationMs: updated.durationMs, total: updated.totalRows)
+            }
+            setRunState(.succeeded, for: tabID)
+            performExport(format, columns: updated.columns, rows: updated.rows)
+        }
+    }
+
+    private func performExport(_ format: ExportFormat, columns: [ColumnInfo],
+                               rows: [[String?]]) {
         guard !columns.isEmpty else {
             error = DBError(message: "Нет данных для экспорта")
             return
         }
         let panel = NSSavePanel()
-        let stamp = ISO8601DateFormatter().string(from: Date()).replacingOccurrences(of: ":", with: "-")
+        let stamp = ISO8601DateFormatter().string(from: Date())
+            .replacingOccurrences(of: ":", with: "-")
         panel.nameFieldStringValue = "query-\(stamp).\(format.ext)"
         panel.allowedContentTypes = [format.type]
         panel.canCreateDirectories = true
         panel.begin { response in
             guard response == .OK, let url = panel.url else { return }
-            let text = format == .csv
-                ? Exporter.csv(columns: columns, rows: rows)
-                : Exporter.xml(columns: columns, rows: rows)
-            do {
-                try text.write(to: url, atomically: true, encoding: .utf8)
-                Task { @MainActor in self.status = L10n.fmt("Экспортировано: %@", url.lastPathComponent) }
-            } catch {
-                Task { @MainActor in self.error = DBError(message: L10n.fmt("Не удалось записать файл: %@", error.localizedDescription)) }
+            Task.detached(priority: .userInitiated) {
+                let outcome: Result<Void, Error>
+                do {
+                    switch format {
+                    case .csv:
+                        let text = Exporter.csv(columns: columns, rows: rows)
+                        try Data(text.utf8).write(to: url, options: .atomic)
+                    case .xml:
+                        let text = Exporter.xml(columns: columns, rows: rows)
+                        try Data(text.utf8).write(to: url, options: .atomic)
+                    case .xlsx:
+                        try Exporter.xlsx(columns: columns, rows: rows)
+                            .write(to: url, options: .atomic)
+                    }
+                    outcome = .success(())
+                } catch {
+                    outcome = .failure(error)
+                }
+                await MainActor.run {
+                    switch outcome {
+                    case .success:
+                        self.status = L10n.fmt("Экспортировано: %@", url.lastPathComponent)
+                    case .failure(let error):
+                        self.error = DBError(message: L10n.fmt(
+                            "Не удалось записать файл: %@", error.localizedDescription))
+                    }
+                }
             }
         }
     }

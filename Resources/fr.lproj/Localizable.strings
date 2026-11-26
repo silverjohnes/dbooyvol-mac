@@ -95,6 +95,7 @@
 "Выбрать папку network/admin" = "Choisissez le dossier réseau/admin";
 "Выбрать файл базы SQLite" = "Sélectionnez le fichier de base de données SQLite";
 "Выбрать…" = "Choisissez…";
+"Выделена часть данных" = "Une partie des données est sélectionnée";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Mettez en surbrillance uniquement lorsque la demande est ouverte via la recherche (⌘E).";
 "Выйти из полноэкранного режима" = "Quitter le mode plein écran";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Exécutez la requête : ⌘R ou ⌘↩ (sélection ou script entier)";
@@ -140,9 +141,15 @@
 "Завершить и закрыть все окна" = "Quittez et fermez toutes les fenêtres";
 "Загружено %@ строк" = "%@ lignes chargées";
 "Загружено %@ строк (всего %@ строк)" = "%@ lignes chargées (%@ lignes au total)";
+"Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ des %@ lignes chargées. Charger toutes les lignes ou exporter celles chargées ?";
+"Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ lignes chargées, mais pas toutes. Charger toutes les lignes ou exporter celles chargées ?";
+"Загружено %@ строк…" = "%@ lignes chargées…";
 "Загружено с диска: %@" = "Chargé depuis le disque : %@";
+"Загружены не все данные" = "Toutes les données ne sont pas chargées";
 "Загрузить ещё" = "Charger plus";
+"Загрузить полностью" = "Charger toutes les lignes";
 "Загрузить с диска" = "Charger depuis le disque";
+"Загрузка всех строк…" = "Chargement de toutes les lignes…";
 "Загрузка данных" = "Chargement des données";
 "Заключать значения в кавычки" = "Valeurs de devis";
 "Закрыть" = "Fermer";
@@ -274,6 +281,7 @@
 "Не удалось сохранить: %@" = "Échec de l'enregistrement : %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Échec de la suppression des anciens mots de passe - autoriser l'accès dans l'invite macOS";
 "Неизвестная ошибка" = "Erreur inconnue";
+"Нет" = "Non";
 "Нет данных для вставки" = "Aucune donnée à insérer";
 "Нет данных для копирования" = "Aucune donnée à copier";
 "Нет данных для открытия" = "Aucune donnée à ouvrir";
@@ -557,10 +565,15 @@
 "Шрифт результатов: %@ pt" = "Police des résultats : %@pt";
 "Экспорт" = "Exporter";
 "Экспорт CSV…" = "Exporter au format CSV...";
+"Экспорт XLSX…" = "Exporter XLSX…";
 "Экспорт XML…" = "Exporter XML...";
 "Экспорт в CSV (⇧⌘E)" = "Exporter au format CSV (⇧⌘E)";
+"Экспорт в XLSX (⌃⇧⌘E)" = "Exporter vers XLSX (⌃⇧⌘E)";
 "Экспорт в XML (⌥⇧⌘E)" = "Exporter vers XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Exporté : %@";
+"Экспортировать выделенное" = "Exporter la sélection";
+"Экспортировать выделенный фрагмент?" = "Exporter le fragment sélectionné ?";
+"Экспортировать имеющиеся" = "Exporter les lignes chargées";
 "Эмодзи и символы" = "Emojis et symboles";
 "ЯКТ" = "IAK";
 "Язык" = "Langue";

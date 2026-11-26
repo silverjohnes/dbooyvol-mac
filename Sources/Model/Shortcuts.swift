@@ -156,7 +156,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
     case find, toggleComment, toggleMarkedComment
     // Запрос
     case runOrStop, runSelection, runAll, runUnderCursor, cancelQuery
-    case loadMore, exportCSV, exportXML
+    case loadMore, exportCSV, exportXML, exportXLSX
     // Вкладки
     case newQuery, duplicateTab, renameTab, quickOpen, nextTab, previousTab, previousOpenedTab
     // Подключение
@@ -194,6 +194,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
         case .loadMore: return "Загрузить ещё"
         case .exportCSV: return "Экспорт CSV…"
         case .exportXML: return "Экспорт XML…"
+        case .exportXLSX: return "Экспорт XLSX…"
         case .newQuery: return "Новый запрос"
         case .duplicateTab: return "Дублировать вкладку"
         case .renameTab: return "Переименовать вкладку…"
@@ -247,6 +248,7 @@ enum ShortcutAction: String, CaseIterable, Identifiable {
         case .loadMore: return ShortcutBinding(key: "l", modifiers: [.command, .option])
         case .exportCSV: return ShortcutBinding(key: "e", modifiers: [.command, .shift])
         case .exportXML: return ShortcutBinding(key: "e", modifiers: [.command, .option, .shift])
+        case .exportXLSX: return ShortcutBinding(key: "e", modifiers: [.command, .control, .shift])
         case .newQuery: return ShortcutBinding(key: "t", modifiers: .command)
         case .duplicateTab: return ShortcutBinding(key: "d", modifiers: .command)
         case .renameTab: return ShortcutBinding(key: "l", modifiers: .command)

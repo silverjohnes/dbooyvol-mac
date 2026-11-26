@@ -409,6 +409,9 @@ struct MainView: View {
                 Button("XML") { model.exportXML() }
                     .controlSize(.small)
                     .help("Экспорт в XML (⌥⇧⌘E)")
+                Button("XLSX") { model.exportXLSX() }
+                    .controlSize(.small)
+                    .help("Экспорт в XLSX (⌃⇧⌘E)")
                 Button {
                     model.toggleValuePanel()
                 } label: {

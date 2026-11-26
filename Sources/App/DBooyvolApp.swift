@@ -363,6 +363,8 @@ struct DBooyvolApp: App {
                     .appShortcut(shortcuts.binding(for: .exportCSV))
                 Button("Экспорт XML…") { model.exportXML() }
                     .appShortcut(shortcuts.binding(for: .exportXML))
+                Button("Экспорт XLSX…") { model.exportXLSX() }
+                    .appShortcut(shortcuts.binding(for: .exportXLSX))
             }
 
             CommandMenu("Вкладки") {

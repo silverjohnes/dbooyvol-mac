@@ -49,7 +49,7 @@ enum ShortcutCatalog {
         ShortcutSection(id: "query", title: "Запрос", items: [
             .action(.runOrStop), .action(.runSelection), .action(.runAll),
             .action(.runUnderCursor), .action(.cancelQuery), .action(.loadMore),
-            .action(.exportCSV), .action(.exportXML)
+            .action(.exportCSV), .action(.exportXML), .action(.exportXLSX)
         ]),
         ShortcutSection(id: "tabs", title: "Вкладки", items: [
             .action(.newQuery), .action(.duplicateTab), .action(.renameTab),

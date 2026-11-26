@@ -95,6 +95,7 @@
 "Выбрать папку network/admin" = "Vyberte složku network/admin";
 "Выбрать файл базы SQLite" = "Vyberte databázový soubor SQLite";
 "Выбрать…" = "Vyberte si…";
+"Выделена часть данных" = "Část dat je vybrána";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Zvýraznit pouze při otevření požadavku pomocí vyhledávání (⌘E).";
 "Выйти из полноэкранного режима" = "Ukončete režim celé obrazovky";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Spusťte dotaz: ⌘R nebo ⌘↩ (výběr nebo celý skript)";
@@ -140,9 +141,15 @@
 "Завершить и закрыть все окна" = "Ukončete a zavřete všechna okna";
 "Загружено %@ строк" = "Načteno %@ řádků";
 "Загружено %@ строк (всего %@ строк)" = "Načteno %@ řádků (celkem %@ řádků)";
+"Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "Načteno %@ z %@ řádků. Načíst všechny řádky nebo exportovat načtené?";
+"Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "Načteno %@ řádků, ale ne všechny. Načíst všechny řádky nebo exportovat načtené?";
+"Загружено %@ строк…" = "%@ řádků načteno…";
 "Загружено с диска: %@" = "Načteno z disku: %@";
+"Загружены не все данные" = "Nejsou načtena všechna data";
 "Загрузить ещё" = "Načíst více";
+"Загрузить полностью" = "Načíst všechny řádky";
 "Загрузить с диска" = "Načíst z disku";
+"Загрузка всех строк…" = "Načítání všech řádků…";
 "Загрузка данных" = "Načítání dat";
 "Заключать значения в кавычки" = "Hodnoty cenových nabídek";
 "Закрыть" = "Zavřít";
@@ -274,6 +281,7 @@
 "Не удалось сохранить: %@" = "Nepodařilo se uložit: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Nepodařilo se odstranit stará hesla – povolte přístup ve výzvě macOS";
 "Неизвестная ошибка" = "Neznámá chyba";
+"Нет" = "Ne";
 "Нет данных для вставки" = "Žádná data k vložení";
 "Нет данных для копирования" = "Žádná data ke kopírování";
 "Нет данных для открытия" = "Žádná data k otevření";
@@ -557,10 +565,15 @@
 "Шрифт результатов: %@ pt" = "Písmo výsledků: %@pt";
 "Экспорт" = "Exportovat";
 "Экспорт CSV…" = "Exportovat CSV...";
+"Экспорт XLSX…" = "Exportovat XLSX…";
 "Экспорт XML…" = "Exportovat XML...";
 "Экспорт в CSV (⇧⌘E)" = "Exportovat do CSV (⇧⌘E)";
+"Экспорт в XLSX (⌃⇧⌘E)" = "Export do XLSX (⌃⇧⌘E)";
 "Экспорт в XML (⌥⇧⌘E)" = "Export do XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Exportováno: %@";
+"Экспортировать выделенное" = "Exportovat výběr";
+"Экспортировать выделенный фрагмент?" = "Exportovat vybraný fragment?";
+"Экспортировать имеющиеся" = "Export načtených řádků";
 "Эмодзи и символы" = "Emojis a symboly";
 "ЯКТ" = "JAK";
 "Язык" = "Jazyk";

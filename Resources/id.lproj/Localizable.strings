@@ -95,6 +95,7 @@
 "Выбрать папку network/admin" = "Pilih folder jaringan/admin";
 "Выбрать файл базы SQLite" = "Pilih file database SQLite";
 "Выбрать…" = "Pilih…";
+"Выделена часть данных" = "Sebagian dari data dipilih";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Sorot hanya ketika permintaan dibuka melalui pencarian (⌘E).";
 "Выйти из полноэкранного режима" = "Keluar dari mode layar penuh";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Jalankan kueri: ⌘R atau ⌘↩ (pilihan atau seluruh skrip)";
@@ -140,9 +141,15 @@
 "Завершить и закрыть все окна" = "Keluar dan tutup semua jendela";
 "Загружено %@ строк" = "%@ baris dimuat";
 "Загружено %@ строк (всего %@ строк)" = "%@ baris dimuat (%@ total baris)";
+"Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ dari %@ baris dimuat. Muat semua baris atau ekspor yang dimuat?";
+"Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ baris dimuat, tetapi tidak semua. Muat semua baris atau ekspor yang dimuat?";
+"Загружено %@ строк…" = "%@ baris dimuat…";
 "Загружено с диска: %@" = "Dimuat dari disk: %@";
+"Загружены не все данные" = "Tidak semua data dimuat";
 "Загрузить ещё" = "Muat lebih banyak";
+"Загрузить полностью" = "Muat semua baris";
 "Загрузить с диска" = "Muat dari disk";
+"Загрузка всех строк…" = "Memuat semua baris…";
 "Загрузка данных" = "Memuat data";
 "Заключать значения в кавычки" = "Nilai kutipan";
 "Закрыть" = "Tutup";
@@ -274,6 +281,7 @@
 "Не удалось сохранить: %@" = "Gagal menyimpan: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Gagal menghapus kata sandi lama - izinkan akses di perintah macOS";
 "Неизвестная ошибка" = "Kesalahan tidak diketahui";
+"Нет" = "Tidak";
 "Нет данных для вставки" = "Tidak ada data untuk dimasukkan";
 "Нет данных для копирования" = "Tidak ada data untuk disalin";
 "Нет данных для открытия" = "Tidak ada data untuk dibuka";
@@ -557,10 +565,15 @@
 "Шрифт результатов: %@ pt" = "Font hasil: %@pt";
 "Экспорт" = "Ekspor";
 "Экспорт CSV…" = "Ekspor CSV...";
+"Экспорт XLSX…" = "Ekspor XLSX…";
 "Экспорт XML…" = "Ekspor XML...";
 "Экспорт в CSV (⇧⌘E)" = "Ekspor ke CSV (⇧⌘E)";
+"Экспорт в XLSX (⌃⇧⌘E)" = "Ekspor ke XLSX (⌃⇧⌘E)";
 "Экспорт в XML (⌥⇧⌘E)" = "Ekspor ke XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Diekspor: %@";
+"Экспортировать выделенное" = "Ekspor pilihan";
+"Экспортировать выделенный фрагмент?" = "Ekspor fragmen yang dipilih?";
+"Экспортировать имеющиеся" = "Ekspor baris yang dimuat";
 "Эмодзи и символы" = "Emoji dan simbol";
 "ЯКТ" = "YAK";
 "Язык" = "Bahasa";

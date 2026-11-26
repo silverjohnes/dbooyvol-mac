@@ -95,6 +95,7 @@
 "Выбрать папку network/admin" = "Välj mappen nätverk/admin";
 "Выбрать файл базы SQLite" = "Välj SQLite-databasfil";
 "Выбрать…" = "Välj...";
+"Выделена часть данных" = "En del av datan väljs";
 "Выделять только тогда, когда запрос открыт через поиск (⌘E)." = "Markera endast när begäran öppnas via sökning (⌘E).";
 "Выйти из полноэкранного режима" = "Avsluta helskärmsläge";
 "Выполните запрос: ⌘R или ⌘↩ (выделение или весь скрипт)" = "Kör frågan: ⌘R eller ⌘↩ (markering eller hela skriptet)";
@@ -140,9 +141,15 @@
 "Завершить и закрыть все окна" = "Avsluta och stäng alla fönster";
 "Загружено %@ строк" = "%@ rader laddade";
 "Загружено %@ строк (всего %@ строк)" = "%@ rader laddade (%@ rader totalt)";
+"Загружено %@ строк из %@. Загрузить полностью или экспортировать имеющиеся?" = "%@ av %@ rader laddade. Ladda alla rader eller exportera de inlästa?";
+"Загружено %@ строк, но не все. Загрузить полностью или экспортировать имеющиеся?" = "%@ rader laddade, men inte alla. Ladda alla rader eller exportera de inlästa?";
+"Загружено %@ строк…" = "%@ rader laddade...";
 "Загружено с диска: %@" = "Laddade från disk: %@";
+"Загружены не все данные" = "Inte all data laddas";
 "Загрузить ещё" = "Ladda mer";
+"Загрузить полностью" = "Ladda alla rader";
 "Загрузить с диска" = "Ladda från disk";
+"Загрузка всех строк…" = "Laddar alla rader...";
 "Загрузка данных" = "Laddar data";
 "Заключать значения в кавычки" = "Citera värden";
 "Закрыть" = "Stäng";
@@ -274,6 +281,7 @@
 "Не удалось сохранить: %@" = "Det gick inte att spara: %@";
 "Не удалось удалить старые пароли — разрешите доступ в запросе macOS" = "Det gick inte att ta bort gamla lösenord - tillåt åtkomst i macOS-prompt";
 "Неизвестная ошибка" = "Okänt fel";
+"Нет" = "Nej";
 "Нет данных для вставки" = "Inga data att infoga";
 "Нет данных для копирования" = "Inga data att kopiera";
 "Нет данных для открытия" = "Inga data att öppna";
@@ -557,10 +565,15 @@
 "Шрифт результатов: %@ pt" = "Resultatteckensnitt: %@pt";
 "Экспорт" = "Exportera";
 "Экспорт CSV…" = "Exportera CSV...";
+"Экспорт XLSX…" = "Exportera XLSX...";
 "Экспорт XML…" = "Exportera XML...";
 "Экспорт в CSV (⇧⌘E)" = "Exportera till CSV (⇧⌘E)";
+"Экспорт в XLSX (⌃⇧⌘E)" = "Exportera till XLSX (⌃⇧⌘E)";
 "Экспорт в XML (⌥⇧⌘E)" = "Exportera till XML (⌥⇧⌘E)";
 "Экспортировано: %@" = "Exporterat: %@";
+"Экспортировать выделенное" = "Exportera urval";
+"Экспортировать выделенный фрагмент?" = "Exportera det valda fragmentet?";
+"Экспортировать имеющиеся" = "Exportera laddade rader";
 "Эмодзи и символы" = "Emojis och symboler";
 "ЯКТ" = "YAK";
 "Язык" = "Språk";

@@ -1630,6 +1630,7 @@ struct ResultsView: NSViewRepresentable {
             let menu = NSMenu()
             add(to: menu, "CSV…", #selector(ctxExportCSV(_:)))
             add(to: menu, "XML…", #selector(ctxExportXML(_:)))
+            add(to: menu, "XLSX…", #selector(ctxExportXLSX(_:)))
             return menu
         }
 
@@ -1688,11 +1689,15 @@ struct ResultsView: NSViewRepresentable {
         }
 
         @objc private func ctxExportCSV(_ sender: Any?) {
-            model.exportCSV()
+            model.exportCSVSelection()
         }
 
         @objc private func ctxExportXML(_ sender: Any?) {
-            model.exportXML()
+            model.exportXMLSelection()
+        }
+
+        @objc private func ctxExportXLSX(_ sender: Any?) {
+            model.exportXLSXSelection()
         }
 
         @objc private func ctxOpenExcel(_ sender: Any?) {
