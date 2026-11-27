@@ -5,10 +5,10 @@
 код: точные алгоритмы находятся в файлах, перечисленных в конце. Здесь — контракты,
 состояния, форматы, сценарии и список мест, которые придётся заменить.
 
-Версия на момент передачи: **1.0.127 (build 127)**. Тег `v1.0.125` относится к
+Версия на момент передачи: **1.0.128 (build 128)**. Тег `v1.0.125` относится к
 более ранней сборке (1.0.125, build 125, коммит `2fa3b68`); правки после тега —
-в коммитах `4128c34`, `79990c5`, `21c300d` (1.0.126) и `0254536` (1.0.127).
-Bundle ID: `silver.dbooyvol`.
+в коммитах `4128c34`, `79990c5`, `21c300d` (1.0.126), `0254536` (1.0.127) и
+`__HASH__` (1.0.128). Bundle ID: `silver.dbooyvol`.
 
 Документ обновлён после 1.0.125: **локальный фильтр результата удалён
 полностью**, вместо него в статус-баре есть кнопка **«Результат (Tab)»**
@@ -18,6 +18,8 @@ Bundle ID: `silver.dbooyvol`.
 В 1.0.127 вертикальная строка стала одним выделяемым текстовым полотном:
 `⌘A` выделяет всю строку, `⌘C` копирует, экспорт CSV/XML/XLSX доступен из
 контекстного меню и статус-бара, а `⌘A` в сетке выделяет все ячейки.
+В 1.0.128 Java-пакет sidecar переименован из `ru.evotor.sqldesk` в
+`silver.dbooyvol`; `Main-Class` в `sidecar.jar` — `silver.dbooyvol.Main`.
 Сводка изменений — в §16; если текст расходится с кодом, источником истины
 является код.
 
@@ -73,7 +75,7 @@ Windows-версия обязана сохранить:
 
 ### Что можно переиспользовать без изменений
 
-- **Весь Java-sidecar** (`Sidecar/src/main/java/ru/evotor/sqldesk/*.java`) —
+- **Весь Java-sidecar** (`Sidecar/src/main/java/silver/dbooyvol/*.java`) —
   JDBC-движок, разбор `:name`, метаданные, редактирование, форматирование значений.
 - **JDBC-драйверы** в `Resources/`: `postgresql.jar`, `sqlite-jdbc.jar`,
   `clickhouse-jdbc.jar`, `slf4j-api.jar`, `slf4j-nop.jar`, `antlr4-runtime.jar`.
@@ -1440,7 +1442,7 @@ Sources/
     TitlebarRunButton.swift      кнопка запуска в title bar
     WindowLayout.swift           сохранение рамки и сплитов
     AboutPanel.swift, DBIcon.swift, DragGhost.swift
-Sidecar/src/main/java/ru/evotor/sqldesk/
+Sidecar/src/main/java/silver/dbooyvol/
   Main.java                      NDJSON-цикл, потоки, ошибки
   Engine.java                    JDBC, дерево, query/fetch/count, meta, update
   Json.java                      парсер/сериализатор
@@ -1686,7 +1688,7 @@ Windows: один read-only текстовый контрол (или `RichTextB
    настройки.
 10. `Scripts/localize.py` — `EN_OVERRIDES` для новых строк.
 
-### 16.9. Что проверено в 1.0.125–1.0.127
+### 16.9. Что проверено в 1.0.125–1.0.128
 
 - Debug и Release собираются; установленное приложение `silver.dbooyvol`
   1.0.125 (125), подпись валидна, запускается без падений.
@@ -1733,6 +1735,20 @@ Windows: один read-only текстовый контрол (или `RichTextB
   неограниченно, фокус возвращается в текст или в таблицу.
 - Релиз: тег `v1.0.127`, GitHub Release с `DBooyvol-1.0.127-127.zip`
   (Apple Development, без нотаризации).
+
+Сборка 1.0.128 (128), коммит `__HASH__`:
+
+- Java-sidecar переименован: исходники в
+  `Sidecar/src/main/java/silver/dbooyvol/*.java`, `package silver.dbooyvol`,
+  `Main-Class: silver.dbooyvol.Main`. Старый `ru.evotor.sqldesk` остаётся только
+  в миграции старых данных (`Storage.swift`) и в тексте про удаление прежней
+  версии — это намеренно.
+- `Resources/sidecar.jar` пересобран; в Release-бандле лежат только
+  `silver/dbooyvol/*.class`.
+- Проверено напрямую: `{"method":"ping"}` → `pong`; запрос к SQLite-фикстуре
+  вернул 6 строк. Установленное приложение 1.0.128 запускает sidecar из бандла
+  и показывает «Готово. Строк: 6 · 1 мс».
+- Релиз: тег `v1.0.128`, GitHub Release с `DBooyvol-1.0.128-128.zip`.
 
 ### 16.10. Открытые ограничения (не забыть при переносе)
 
