@@ -385,18 +385,14 @@ struct MainView: View {
                     Button {
                         model.toggleSingleRowResult()
                     } label: {
-                        Label(
-                            L10n.tr("Результат (Tab)"),
-                            systemImage: model.showSingleRowResult
-                                ? "rectangle.split.2x1.fill"
-                                : "rectangle.split.2x1"
-                        )
-                        .labelStyle(.titleAndIcon)
-                        .font(.caption)
+                        Image(systemName: model.showSingleRowResult
+                              ? "rectangle.split.2x1.fill"
+                              : "rectangle.split.2x1")
                     }
                     .buttonStyle(.borderless)
                     .foregroundColor(model.showSingleRowResult ? .accentColor : .primary)
-                    .appToolTip(L10n.tr("Результат (Tab): показать строку вертикально или вернуть таблицу"))
+                    .accessibilityLabel(Text(L10n.tr("Результат (Tab)")))
+                    .appToolTip(L10n.tr("Результат (Tab)"))
                 }
             }
 

@@ -1082,7 +1082,7 @@ struct ResultsView: NSViewRepresentable {
             let queryKey = result?.queryName ?? ""
             let headerKey = "\(model.showTypeInColumnHeader)"
             let timeZoneKey = model.timeZoneIdentifier
-            let filterKey = "\(rowCount)"
+            let rowKey = "\(rowCount)"
             if fontKey != lastFontKey || autoKey != lastAutoKey || headerKey != lastHeaderKey
                 || timeZoneKey != lastTimeZoneKey {
                 widthCache.removeAll()
@@ -1094,7 +1094,7 @@ struct ResultsView: NSViewRepresentable {
             // need to be stringified on every SwiftUI update (which happens on
             // each keystroke in the editor).
             let sig = "\(runID?.uuidString ?? "-")#\(rowCount)#\(fontKey)#\(autoKey)"
-                + "#\(queryKey)#\(headerKey)#\(sortKey)#\(orderKey)#\(timeZoneKey)#\(filterKey)"
+                + "#\(queryKey)#\(headerKey)#\(sortKey)#\(orderKey)#\(timeZoneKey)#\(rowKey)"
 
             if sig == signature {
                 // Nothing but the selection or a cell edit changed: repaint

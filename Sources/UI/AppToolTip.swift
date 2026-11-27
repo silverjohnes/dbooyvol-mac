@@ -83,6 +83,7 @@ final class TooltipCenter {
     private var keyObserver: NSObjectProtocol?
     private var activeObserver: NSObjectProtocol?
     private var timer: Timer?
+    private var verifyTimer: Timer?
     private weak var target: NSView?
     private var pendingText: String?
     private var screenPoint: NSPoint = .zero
@@ -193,11 +194,34 @@ final class TooltipCenter {
         timer = nil
         if panel == nil { panel = TooltipPanel() }
         panel?.show(text: text, at: point)
+        startVerifying()
+    }
+
+    /// A tooltip can get stranded if the pointer leaves the control without a
+    /// mouse-moved event reaching us (a window under the cursor, a display
+    /// change). A cheap repeating check keeps it honest.
+    private func startVerifying() {
+        verifyTimer?.invalidate()
+        let timer = Timer(timeInterval: 0.25, repeats: true) { [weak self] _ in
+            guard let self else { return }
+            guard let target = self.target, let window = target.window else {
+                self.hide()
+                return
+            }
+            let frame = window.convertToScreen(target.convert(target.bounds, to: nil))
+            if !frame.contains(NSEvent.mouseLocation) {
+                self.hide()
+            }
+        }
+        RunLoop.main.add(timer, forMode: .common)
+        verifyTimer = timer
     }
 
     func hide() {
         timer?.invalidate()
         timer = nil
+        verifyTimer?.invalidate()
+        verifyTimer = nil
         pendingText = nil
         target = nil
         panel?.orderOut(nil)

@@ -356,6 +356,12 @@ final class SQLTextView: NSTextView {
         insertText(item, replacementRange: context.range)
     }
 
+    /// Hides the suggestion list, e.g. when a query starts running. Without
+    /// this the popup could stay over the editor after Cmd+R.
+    func dismissCompletion() {
+        hideCompletion()
+    }
+
     private func hideCompletion() {
         completionContext = nil
         completionPopup.hide()

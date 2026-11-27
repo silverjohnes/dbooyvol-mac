@@ -449,6 +449,11 @@ final class EditorController: ObservableObject {
         tv.window?.makeFirstResponder(tv)
     }
 
+    /// Closes the SQL suggestion list if it is open over the editor.
+    func dismissCompletions() {
+        (textView as? SQLTextView)?.dismissCompletion()
+    }
+
     /// Re-applies highlighting with the current size, keeping the caret and scroll position.
     func applyFontSize(_ size: CGFloat) {
         guard let tv = textView else { return }

@@ -2,8 +2,8 @@ import SwiftUI
 import AppKit
 
 /// Vertical view of one result row: column names on the left, values on the
-/// right. Opened with Tab in the grid or the "Результат" button in the filter
-/// row; Tab again returns to the normal grid.
+/// right. Opened with Tab in the grid or the "Результат (Tab)" button in the
+/// status bar; Tab again returns to the normal grid.
 struct SingleRowResultView: View {
     @EnvironmentObject var model: AppModel
 
@@ -79,7 +79,7 @@ struct SingleRowResultView: View {
 }
 
 /// Local Tab monitor used only while the vertical single-row view is on screen.
-/// It ignores Tab while a text field has focus, so the filter fields still work.
+/// It ignores Tab while a text field has focus, so the search field still works.
 private struct TabKeyCatcher: NSViewRepresentable {
     let action: () -> Void
 
@@ -118,7 +118,7 @@ private struct TabKeyCatcher: NSViewRepresentable {
                       event.modifierFlags.intersection(.deviceIndependentFlagsMask).isEmpty,
                       NSApp.keyWindow?.attachedSheet == nil else { return event }
                 let responder = view.window?.firstResponder
-                // Editable fields (filter, search) keep Tab for focus moves;
+                // Editable fields (the result search) keep Tab for focus moves;
                 // the read-only text selection in the row view does not.
                 if let textView = responder as? NSTextView, textView.isEditable { return event }
                 if let textField = responder as? NSTextField, textField.isEditable { return event }

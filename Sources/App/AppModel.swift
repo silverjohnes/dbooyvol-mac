@@ -1036,6 +1036,7 @@ final class AppModel: ObservableObject {
     func run(sql: String) {
         let text = sql.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return }
+        editor.dismissCompletions()
         let tabID = activeTabID
         guard let profile = activeScriptProfile else {
             error = DBError(message: L10n.tr("Выберите подключение для этого скрипта"))
@@ -1658,8 +1659,8 @@ final class AppModel: ObservableObject {
 
     /// A click on a tab. When the tab is already active nothing changes — no
     /// text reload and no focus event — so smart selection would never run.
-    /// Re-apply it explicitly so clicking the active tab focuses the filter
-    /// value again.
+    /// Re-apply it explicitly so clicking the active tab focuses the editor
+    /// again.
     func clickTab(_ id: UUID) {
         let wasActive = id == activeTabID
         selectTab(id)
