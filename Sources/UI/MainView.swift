@@ -225,11 +225,6 @@ struct MainView: View {
         } else {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
-                    if model.showFilterPanel {
-                        ResultFilterView()
-                            .environmentObject(model)
-                        Divider()
-                    }
                     if model.showSingleRowResult {
                         SingleRowResultView()
                             .environmentObject(model)
@@ -388,14 +383,20 @@ struct MainView: View {
                 }
                 if model.result != nil {
                     Button {
-                        model.setShowFilterPanel(!model.showFilterPanel)
+                        model.toggleSingleRowResult()
                     } label: {
-                        Image(systemName: model.showFilterPanel
-                              ? "line.3.horizontal.decrease.circle.fill"
-                              : "line.3.horizontal.decrease.circle")
+                        Label(
+                            L10n.tr("Результат (Tab)"),
+                            systemImage: model.showSingleRowResult
+                                ? "rectangle.split.2x1.fill"
+                                : "rectangle.split.2x1"
+                        )
+                        .labelStyle(.titleAndIcon)
+                        .font(.caption)
                     }
                     .buttonStyle(.borderless)
-                    .appToolTip(L10n.tr("Показать или скрыть панель фильтра"))
+                    .foregroundColor(model.showSingleRowResult ? .accentColor : .primary)
+                    .appToolTip(L10n.tr("Результат (Tab): показать строку вертикально или вернуть таблицу"))
                 }
             }
 

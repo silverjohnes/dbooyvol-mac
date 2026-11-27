@@ -8,9 +8,18 @@ enum AppPaths {
     /// Created once. On the first launch after a rename, the previous data
     /// folder is moved so profiles, tabs, history and secrets survive.
     static let support: URL = {
+        let fm = FileManager.default
+        // Isolated profile for UI/DB tests; never used by a normal launch.
+        if let override = ProcessInfo.processInfo.environment["DBOOYVOL_SUPPORT_DIR"],
+           !override.isEmpty {
+            let dir = URL(fileURLWithPath: override, isDirectory: true)
+            try? fm.createDirectory(at: dir, withIntermediateDirectories: true,
+                                    attributes: [.posixPermissions: 0o700])
+            try? fm.setAttributes([.posixPermissions: 0o700], ofItemAtPath: dir.path)
+            return dir
+        }
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         let dir = base.appendingPathComponent("DBooyvol", isDirectory: true)
-        let fm = FileManager.default
         if !fm.fileExists(atPath: dir.path) {
             for legacyName in ["DBuiwol", "SQLDesk"] {
                 let legacy = base.appendingPathComponent(legacyName, isDirectory: true)
@@ -159,7 +168,6 @@ enum AppSettings {
     static let defaultCommentMarkerSuffix = "!#"
     static let timeZoneKey = "displayTimeZone"
     static let checkExternalChangesKey = "checkExternalChanges"
-    static let showFilterPanelKey = "showFilterPanel"
     static let selectedProfileIDKey = "selectedProfileID"
     static func treeExpandedKey(_ id: UUID) -> String { "treeExpanded.\(id.uuidString)" }
 
@@ -182,8 +190,7 @@ enum AppSettings {
             commentByMarkerKey: true,
             commentMarkerSuffixKey: "!#",
             timeZoneKey: "",
-            checkExternalChangesKey: false,
-            showFilterPanelKey: true
+            checkExternalChangesKey: false
         ])
     }
 
@@ -266,13 +273,6 @@ enum AppSettings {
     static var checkExternalChanges: Bool {
         get { UserDefaults.standard.object(forKey: checkExternalChangesKey) as? Bool ?? false }
         set { UserDefaults.standard.set(newValue, forKey: checkExternalChangesKey) }
-    }
-
-    /// Whether the local filter panel is shown above the result grid. On by
-    /// default; it does not change the SQL script, only the visible rows.
-    static var showFilterPanel: Bool {
-        get { UserDefaults.standard.object(forKey: showFilterPanelKey) as? Bool ?? true }
-        set { UserDefaults.standard.set(newValue, forKey: showFilterPanelKey) }
     }
 
     static var resultFontSize: CGFloat {

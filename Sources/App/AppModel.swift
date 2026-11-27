@@ -46,16 +46,8 @@ final class AppModel: ObservableObject {
             AppSettings.selectedProfileID = activeProfileID
         }
     }
-    @Published var result: QueryResult? {
-        didSet { refreshDisplayedRows() }
-    }
+    @Published var result: QueryResult?
     @Published var resultSort: ResultSort?
-    /// One-line local filter for the result grid. Empty means "show every
-    /// row"; it only hides rows and never edits the SQL script or the result.
-    @Published var resultFilterText: String = ""
-    /// Bumped whenever the visible row mapping changes, so the grid reloads.
-    @Published private(set) var resultFilterRevision = 0
-    @Published var showFilterPanel = AppSettings.showFilterPanel
     /// Replaces the grid with a vertical two-column view of one row.
     @Published var showSingleRowResult = false
     @Published var error: DBError?
@@ -189,19 +181,11 @@ final class AppModel: ObservableObject {
     /// last (or an empty grid when it has never been run).
     private var resultsByTab: [UUID: QueryResult] = [:]
     private var sortsByTab: [UUID: ResultSort] = [:]
-    /// One filter line per tab, so switching scripts restores their own view.
-    private var filtersByTab: [UUID: String] = [:]
-    /// nil means "show every row"; otherwise display index -> data row index.
-    private var displayedRowCache: [Int]?
-    private var filterRefreshWork: DispatchWorkItem?
-    /// Distinct values per column, built lazily for filter suggestions.
-    private var filterValueCache: [String: [String]] = [:]
-    private var filterValueCacheToken: UUID?
     /// One-shot request to put the keyboard back into the result grid after
-    /// Tab returns from the vertical single-row view. Without it AppKit's key
-    /// view loop moves focus to the sidebar on the next Tab.
-    private var resultFocusRequest = 0
-    private var resultFocusConsumed = 0
+    /// Tab returns from the vertical single-row view. It stays set until the
+    /// grid confirms that it really became the first responder, so a view
+    /// rebuilt before its window exists cannot swallow the request.
+    @Published private(set) var resultFocusPending = false
     private var historyStore = HistoryStore()
     private var tabsSaveWork: DispatchWorkItem?
     private struct RunningQuery {
@@ -1105,11 +1089,8 @@ final class AppModel: ObservableObject {
                 connected.insert(profile.id)
                 resultsByTab[tabID] = r
                 sortsByTab[tabID] = nil
-                filtersByTab[tabID] = nil
                 loadTableMeta(for: r)
                 if tabID == activeTabID {
-                    filterRefreshWork?.cancel()
-                    resultFilterText = ""
                     showSingleRowResult = false
                     result = r
                     resultSort = nil
@@ -1338,108 +1319,39 @@ final class AppModel: ObservableObject {
         newTab(text: entry.sql)
     }
 
-    // MARK: - result filters and single-row view
+    // MARK: - single-row view
 
-    /// Number of rows the grid currently shows after local filtering.
+    /// Number of rows in the result.
     var displayedRowCount: Int {
-        displayedRowCache?.count ?? (result?.rows.count ?? 0)
+        result?.rows.count ?? 0
     }
 
-    /// Maps a display row to the row index in `result.rows`.
+    /// Kept as the single place that maps a grid row to `result.rows`; with no
+    /// local filtering it is the identity.
     func dataRow(forDisplayRow row: Int) -> Int {
-        guard let cache = displayedRowCache, row >= 0, row < cache.count else { return row }
-        return cache[row]
+        row
     }
 
-    /// Recomputes the visible rows from the one-line filter. Called whenever
-    /// the result changes and after the filter text settles.
-    private func refreshDisplayedRows() {
-        guard let r = result else {
-            displayedRowCache = nil
-            resultFilterRevision += 1
-            return
-        }
-        let query = resultFilterText.trimmingCharacters(in: .whitespacesAndNewlines)
-        if query.isEmpty {
-            displayedRowCache = nil
-        } else {
-            displayedRowCache = r.rows.indices.filter { index in
-                ResultFilter.matches(row: r.rows[index], columns: r.columns, query: query)
-            }
-        }
-        resultFilterRevision += 1
-    }
-
-    func setShowFilterPanel(_ enabled: Bool) {
-        guard enabled != showFilterPanel else { return }
-        showFilterPanel = enabled
-        AppSettings.showFilterPanel = enabled
-        status = enabled ? L10n.tr("Панель фильтра показана")
-            : L10n.tr("Панель фильтра скрыта")
-    }
-
-    /// Typing in the filter line updates the visible rows after a short pause,
-    /// so a large result is not rescanned on every keystroke.
-    func setResultFilterText(_ text: String) {
-        guard text != resultFilterText else { return }
-        resultFilterText = text
-        filtersByTab[activeTabID] = text.isEmpty ? nil : text
-        filterRefreshWork?.cancel()
-        let work = DispatchWorkItem { [weak self] in self?.refreshDisplayedRows() }
-        filterRefreshWork = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: work)
-    }
-
-    func clearResultFilter() {
-        filterRefreshWork?.cancel()
-        resultFilterText = ""
-        filtersByTab[activeTabID] = nil
-        refreshDisplayedRows()
-        status = L10n.tr("Фильтры очищены")
-    }
-
-    /// Distinct values of one column for the filter suggestions. Cached per
-    /// result, because scanning a large grid on every keystroke is wasteful.
-    func filterValueCandidates(for column: String) -> [String] {
-        guard let r = result else { return [] }
-        if filterValueCacheToken != r.runID {
-            filterValueCache.removeAll()
-            filterValueCacheToken = r.runID
-        }
-        let key = column.lowercased()
-        if let cached = filterValueCache[key] { return cached }
-        guard let index = r.columns.firstIndex(where: { $0.name.lowercased() == key }) else {
-            return []
-        }
-        var seen = Set<String>()
-        var values: [String] = []
-        for row in r.rows {
-            guard index < row.count, let value = row[index], !value.isEmpty else { continue }
-            guard seen.insert(value).inserted else { continue }
-            values.append(value)
-            if values.count >= 200 { break }
-        }
-        filterValueCache[key] = values
-        return values
-    }
-
-    /// Tab in the grid, and the "Результат" button in the filter row.
+    /// Tab in the grid, and the "Результат (Tab)" button in the status bar.
     func toggleSingleRowResult() {
-        guard result != nil, displayedRowCount > 0 else { return }
+        guard result != nil else { return }
         showSingleRowResult.toggle()
         focusedPane = .result
-        if !showSingleRowResult {
-            resultFocusRequest += 1
+        if showSingleRowResult {
+            resultFocusPending = false
+        } else {
+            resultFocusPending = true
         }
     }
 
-    /// Called by the grid when it is built. Returns true once for every
-    /// request, so a view that is rebuilt for an unrelated reason does not
-    /// steal focus from the editor.
-    func consumeResultFocusRequest() -> Bool {
-        guard resultFocusRequest > resultFocusConsumed else { return false }
-        resultFocusConsumed = resultFocusRequest
-        return true
+    /// True while the grid should take the keyboard back. The grid clears it
+    /// only after `makeFirstResponder` actually succeeded.
+    func needsResultFocus() -> Bool {
+        resultFocusPending
+    }
+
+    func resultFocusDidApply() {
+        if resultFocusPending { resultFocusPending = false }
     }
 
     /// Display index of the focused row, defaulting to the first one.
@@ -1766,8 +1678,6 @@ final class AppModel: ObservableObject {
         if tabRunStates[id] == .succeeded || tabRunStates[id] == .failed {
             tabRunStates.removeValue(forKey: id)
         }
-        filterRefreshWork?.cancel()
-        resultFilterText = filtersByTab[id] ?? ""
         result = resultsByTab[id]
         resultSort = sortsByTab[id]
         showSingleRowResult = false
@@ -1865,7 +1775,6 @@ final class AppModel: ObservableObject {
         tabs.remove(at: idx)
         resultsByTab[id] = nil
         sortsByTab[id] = nil
-        filtersByTab[id] = nil
         diskContents[id] = nil
         if tabs.isEmpty {
             let tab = QueryTab(title: Self.untitledTitle(1), text: "")
@@ -1904,7 +1813,6 @@ final class AppModel: ObservableObject {
         tabs = tabs.filter { $0.id == id }
         resultsByTab = resultsByTab.filter { $0.key == id }
         sortsByTab = sortsByTab.filter { $0.key == id }
-        filtersByTab = filtersByTab.filter { $0.key == id }
         diskContents = diskContents.filter { $0.key == id }
         for (tabID, session) in tabSessions where tabID != id {
             session.disconnect()

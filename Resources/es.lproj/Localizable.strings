@@ -35,7 +35,6 @@
 "sqlnet.ora не найден" = "sqlnet.ora no encontrado";
 "tnsnames.ora есть" = "tnsnames.ora encontrado";
 "«ghbkf» находит «Прила» и наоборот" = "\"ghbkf\" encuentra \"Prila\" y viceversa";
-"· %@ из %@" = "· %@ de %@";
 "· выделено %@×%@" = "· seleccionado %@×%@";
 "АНК" = "ANC";
 "АПИ" = "API";
@@ -335,8 +334,6 @@
 "Оборачивать в кавычки все значения без исключения" = "Cita todos los valores sin excepción.";
 "Оборачивать значения в кавычки при необходимости" = "Cotizar valores cuando sea necesario";
 "Объединить все окна" = "Fusionar todas las ventanas";
-"Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу." = "Una línea de filtro sobre las filas ya cargadas; el script SQL nunca se cambia. Una línea vacía significa que no hay filtro. Escriba texto para buscar en todas las columnas, o una condición como cantidad > 10 o nombre COMO 'A%'. La pestaña en la cuadrícula abre la fila verticalmente; Tab vuelve nuevamente a la mesa.";
-"Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'." = "Una línea: el texto busca en cada columna; también puede utilizar una columna y una condición, p. cantidad > 10 o nombre COMO 'A%'.";
 "Окно" = "Ventana";
 "Окно и справка" = "Ventana y ayuda";
 "Омск" = "Omsk";
@@ -371,10 +368,6 @@
 "Ошибка сохранения" = "Error al guardar";
 "Ошибка: %@" = "Error: %@";
 "ПЕК" = "PEK";
-"Панель фильтра" = "Panel de filtro";
-"Панель фильтра показана" = "Se muestra el panel de filtro";
-"Панель фильтра результата" = "Panel de filtro de resultados";
-"Панель фильтра скрыта" = "Panel de filtro oculto";
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Carpeta Instant Client: ojdbc*.jar y network/admin se toman de ella";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Carpeta de red/admin con tnsnames.ora, ldap.ora y sqlnet.ora";
 "Папка: %@" = "Carpeta: %@";
@@ -429,14 +422,11 @@
 "Показать вкладку в Finder" = "Mostrar pestaña en Finder";
 "Показать все" = "Mostrar todo";
 "Показать все вкладки" = "Mostrar todas las pestañas";
-"Показать выбранную строку вертикально (Tab)" = "Mostrar la fila seleccionada verticalmente (Tab)";
 "Показать значение выбранной ячейки" = "Mostrar valor de la celda seleccionada";
-"Показать или скрыть панель фильтра" = "Mostrar u ocultar el panel de filtro";
 "Показать панель вкладок" = "Mostrar barra de pestañas";
 "Показать предыдущую вкладку" = "Mostrar pestaña anterior";
 "Показать следующую вкладку" = "Mostrar la siguiente pestaña";
 "Показать/скрыть боковую панель" = "Mostrar/ocultar barra lateral";
-"Показывать панель фильтра над таблицей результатов" = "Mostrar el panel de filtro encima de la cuadrícula de resultados";
 "Показывать тип данных во всплывающей подсказке заголовка" = "Mostrar el tipo de datos en la información sobre herramientas del encabezado de la columna";
 "Показывать тип данных рядом с именем столбца" = "Mostrar el tipo de datos junto al nombre de la columna";
 "Полноэкранная мозаика" = "Mosaico de pantalla completa";
@@ -484,6 +474,8 @@
 "Редактируемое" = "Editable";
 "Редактор" = "Redactor";
 "Результат" = "Resultado";
+"Результат (Tab)" = "Resultado (pestaña)";
+"Результат (Tab): показать строку вертикально или вернуть таблицу" = "Resultado (Tab): muestra la fila verticalmente o regresa a la tabla";
 "Результат последнего запроса" = "Resultado de la última solicitud";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "El resultado contiene columnas de diferentes tablas; no se puede guardar";
 "Русский" = "Ruso";
@@ -518,7 +510,6 @@
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = "Los scripts .sql se abren en una pestaña, las bases de datos .db/.sqlite se abren como una conexión";
 "Скрыть DBooyvol" = "Ocultar DBooyvol";
 "Скрыть остальные" = "Ocultar a otros";
-"Скрыть панель фильтра (включается в настройках)" = "Ocultar el panel de filtro (habilitado en Configuración)";
 "Скрыть сообщение об ошибке" = "Ocultar mensaje de error";
 "Слева" = "Izquierda";
 "Слева и справа" = "Izquierda y derecha";
@@ -534,7 +525,6 @@
 "Снизу и четверти" = "Fondo y cuartos";
 "Снизу слева" = "Abajo a la izquierda";
 "Снизу справа" = "Abajo a la derecha";
-"Снять фильтр" = "Limpiar filtro";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "El contenido de \"%@\" es diferente de los almacenados en el disco.\n¿Debo cargar la versión desde el disco o dejar el texto en el editor?";
 "Создать новое подключение" = "Crear una nueva conexión";
 "Создать новое подключение…" = "Crea una nueva conexión...";
@@ -620,9 +610,6 @@
 "Файл базы (.db / .sqlite)" = "Archivo de base de datos (.db/.sqlite)";
 "Файл изменён на диске" = "Archivo cambiado en el disco";
 "Файлы" = "Archivos";
-"Фильтр" = "Filtrar";
-"Фильтр: текст, столбец > 10, LIKE %…%" = "Filtro: texto, columna > 10, ME GUSTA %…%";
-"Фильтры очищены" = "Filtros borrados";
 "Формат значений" = "Formato de valor";
 "Хост" = "Anfitrión";
 "Хост (алиас из ~/.ssh/config)" = "Host (alias de ~/.ssh/config)";

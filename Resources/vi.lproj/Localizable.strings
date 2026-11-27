@@ -35,7 +35,6 @@
 "sqlnet.ora не найден" = "không tìm thấy sqlnet.ora";
 "tnsnames.ora есть" = "tìm thấy tnsnames.ora";
 "«ghbkf» находит «Прила» и наоборот" = "\"ghbkf\" tìm \"Prila\" và ngược lại";
-"· %@ из %@" = "· %@ trong số %@";
 "· выделено %@×%@" = "· đã chọn %@×%@";
 "АНК" = "ANC";
 "АПИ" = "API";
@@ -335,8 +334,6 @@
 "Оборачивать в кавычки все значения без исключения" = "Trích dẫn mọi giá trị không có ngoại lệ";
 "Оборачивать значения в кавычки при необходимости" = "Trích dẫn giá trị khi cần thiết";
 "Объединить все окна" = "Hợp nhất tất cả các cửa sổ";
-"Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу." = "Một dòng lọc trên các hàng đã được tải; tập lệnh SQL không bao giờ thay đổi. Một dòng trống có nghĩa là không có bộ lọc. Nhập văn bản để tìm kiếm tất cả các cột hoặc một điều kiện chẳng hạn như số tiền > 10 hoặc tên THÍCH 'A%'. Tab trong lưới sẽ mở hàng theo chiều dọc; Tab lại quay trở lại bảng.";
-"Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'." = "Một dòng: văn bản tìm kiếm mọi cột; bạn cũng có thể sử dụng cột và điều kiện, ví dụ: số tiền > 10 hoặc đặt tên THÍCH 'A%'.";
 "Окно" = "Cửa sổ";
 "Окно и справка" = "Cửa sổ và trợ giúp";
 "Омск" = "Omsk";
@@ -371,10 +368,6 @@
 "Ошибка сохранения" = "Lưu lỗi";
 "Ошибка: %@" = "Lỗi: %@";
 "ПЕК" = "BAC";
-"Панель фильтра" = "Bảng lọc";
-"Панель фильтра показана" = "Bảng bộ lọc được hiển thị";
-"Панель фильтра результата" = "Bảng lọc kết quả";
-"Панель фильтра скрыта" = "Bảng bộ lọc bị ẩn";
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Thư mục Instant Client: ojdbc*.jar và network/admin được lấy từ nó";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Thư mục mạng/quản trị viên với tnsnames.ora, ldap.ora và sqlnet.ora";
 "Папка: %@" = "Thư mục: %@";
@@ -429,14 +422,11 @@
 "Показать вкладку в Finder" = "Hiển thị tab trong Finder";
 "Показать все" = "Hiển thị tất cả";
 "Показать все вкладки" = "Hiển thị tất cả các tab";
-"Показать выбранную строку вертикально (Tab)" = "Hiển thị hàng đã chọn theo chiều dọc (Tab)";
 "Показать значение выбранной ячейки" = "Hiển thị giá trị của ô đã chọn";
-"Показать или скрыть панель фильтра" = "Hiển thị hoặc ẩn bảng bộ lọc";
 "Показать панель вкладок" = "Hiển thị thanh tab";
 "Показать предыдущую вкладку" = "Hiển thị tab trước đó";
 "Показать следующую вкладку" = "Hiển thị tab tiếp theo";
 "Показать/скрыть боковую панель" = "Hiển thị/ẩn thanh bên";
-"Показывать панель фильтра над таблицей результатов" = "Hiển thị bảng bộ lọc phía trên lưới kết quả";
 "Показывать тип данных во всплывающей подсказке заголовка" = "Hiển thị kiểu dữ liệu trong chú giải công cụ tiêu đề cột";
 "Показывать тип данных рядом с именем столбца" = "Hiển thị kiểu dữ liệu bên cạnh tên cột";
 "Полноэкранная мозаика" = "Khảm toàn màn hình";
@@ -484,6 +474,8 @@
 "Редактируемое" = "Có thể chỉnh sửa";
 "Редактор" = "Biên tập viên";
 "Результат" = "Kết quả";
+"Результат (Tab)" = "Kết quả (Tab)";
+"Результат (Tab): показать строку вертикально или вернуть таблицу" = "Kết quả (Tab): hiển thị hàng theo chiều dọc hoặc quay về bảng";
 "Результат последнего запроса" = "Kết quả của yêu cầu cuối cùng";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Kết quả chứa các cột từ các bảng khác nhau - không thể lưu được";
 "Русский" = "Tiếng Nga";
@@ -518,7 +510,6 @@
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = "Tập lệnh .sql mở trong một tab, cơ sở dữ liệu .db/.sqlite mở dưới dạng kết nối";
 "Скрыть DBooyvol" = "Ẩn DBooyvol";
 "Скрыть остальные" = "Ẩn người khác";
-"Скрыть панель фильтра (включается в настройках)" = "Ẩn bảng bộ lọc (được bật trong Cài đặt)";
 "Скрыть сообщение об ошибке" = "Ẩn thông báo lỗi";
 "Слева" = "Trái";
 "Слева и справа" = "Trái và phải";
@@ -534,7 +525,6 @@
 "Снизу и четверти" = "Đáy và quý";
 "Снизу слева" = "Dưới cùng bên trái";
 "Снизу справа" = "Dưới cùng bên phải";
-"Снять фильтр" = "Xóa bộ lọc";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "Nội dung của \"%@\" khác với nội dung được lưu trên đĩa.\nTôi nên tải phiên bản từ đĩa hay để lại văn bản trong trình chỉnh sửa?";
 "Создать новое подключение" = "Tạo kết nối mới";
 "Создать новое подключение…" = "Tạo kết nối mới...";
@@ -620,9 +610,6 @@
 "Файл базы (.db / .sqlite)" = "Tệp cơ sở dữ liệu (.db/.sqlite)";
 "Файл изменён на диске" = "Tập tin đã thay đổi trên đĩa";
 "Файлы" = "Tập tin";
-"Фильтр" = "Lọc";
-"Фильтр: текст, столбец > 10, LIKE %…%" = "Bộ lọc: văn bản, cột > 10, THÍCH %…%";
-"Фильтры очищены" = "Đã xóa bộ lọc";
 "Формат значений" = "Định dạng giá trị";
 "Хост" = "Máy chủ";
 "Хост (алиас из ~/.ssh/config)" = "Máy chủ (bí danh từ ~/.ssh/config)";

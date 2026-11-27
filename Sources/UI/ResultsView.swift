@@ -870,6 +870,11 @@ final class ResultsPaneView: NSView {
     let scrollView: GridScrollView
     let rowNumbers: RowNumberView
     static let gutterWidth: CGFloat = 52
+    /// Tab toggles the grid and the vertical single-row view. The monitor is
+    /// installed on the pane, so it keeps working while focus is on the table,
+    /// the gutter or any other non-editable child of the result.
+    var onToggleSingleRow: (() -> Void)?
+    private var tabMonitor: Any?
 
     init(scrollView: GridScrollView, rowNumbers: RowNumberView) {
         self.scrollView = scrollView
@@ -880,6 +885,33 @@ final class ResultsPaneView: NSView {
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        if window != nil, tabMonitor == nil {
+            tabMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
+                guard let self, self.window != nil, self.window?.isKeyWindow == true,
+                      NSApp.keyWindow?.attachedSheet == nil,
+                      event.keyCode == 48,
+                      event.modifierFlags.intersection(.deviceIndependentFlagsMask).isEmpty,
+                      let responder = self.window?.firstResponder as? NSView,
+                      responder === self || responder.isDescendant(of: self) else {
+                    return event
+                }
+                if let textView = responder as? NSTextView, textView.isEditable { return event }
+                if let textField = responder as? NSTextField, textField.isEditable { return event }
+                self.onToggleSingleRow?()
+                return nil
+            }
+        } else if window == nil, let monitor = tabMonitor {
+            NSEvent.removeMonitor(monitor)
+            tabMonitor = nil
+        }
+    }
+
+    deinit {
+        if let tabMonitor { NSEvent.removeMonitor(tabMonitor) }
+    }
 
     override func layout() {
         super.layout()
@@ -958,22 +990,42 @@ struct ResultsView: NSViewRepresentable {
         }
         // Coming back from the single-row view: give Tab back to the table,
         // otherwise the next Tab walks the window's key view loop into the
-        // connection list.
-        if model.consumeResultFocusRequest() {
-            DispatchQueue.main.async { [weak table] in
-                guard let table else { return }
-                if let window = table.window {
-                    window.makeFirstResponder(table)
-                } else {
-                    // The grid may be inserted into its window one run-loop
-                    // later when the single-row view is being replaced.
-                    DispatchQueue.main.async { [weak table] in
-                        table?.window?.makeFirstResponder(table)
-                    }
+        // connection list. The request stays pending until the table really
+        // becomes first responder, because the pane may be re-added to its
+        // window one run-loop later.
+        Self.restoreResultFocus(table, model: model)
+        let pane = ResultsPaneView(scrollView: scroll, rowNumbers: gutter)
+        pane.onToggleSingleRow = { [weak coordinator = context.coordinator] in
+            coordinator?.model.toggleSingleRowResult()
+        }
+        return pane
+    }
+
+    /// Repeats `makeFirstResponder` for a short while, until the grid is in a
+    /// window and accepted the keyboard. Without the retry the third Tab after
+    /// returning from the single-row view could still escape into the sidebar.
+    static func restoreResultFocus(_ table: NSTableView, model: AppModel, attempts: Int = 30) {
+        guard model.needsResultFocus() else { return }
+        DispatchQueue.main.async { [weak table, weak model] in
+            guard let table, let model, model.needsResultFocus() else { return }
+            guard let window = table.window else {
+                guard attempts > 0 else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+                    restoreResultFocus(table, model: model, attempts: attempts - 1)
+                }
+                return
+            }
+            if window.firstResponder !== table {
+                window.makeFirstResponder(table)
+            }
+            if window.firstResponder === table {
+                model.resultFocusDidApply()
+            } else if attempts > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+                    restoreResultFocus(table, model: model, attempts: attempts - 1)
                 }
             }
         }
-        return ResultsPaneView(scrollView: scroll, rowNumbers: gutter)
     }
 
     func updateNSView(_ nsView: ResultsPaneView, context: Context) {
@@ -982,6 +1034,9 @@ struct ResultsView: NSViewRepresentable {
             let header = GridHeaderView()
             header.model = model
             table.headerView = header
+        }
+        if let table = nsView.scrollView.documentView as? NSTableView {
+            Self.restoreResultFocus(table, model: model)
         }
         context.coordinator.update()
         context.coordinator.syncSearch()
@@ -1027,7 +1082,7 @@ struct ResultsView: NSViewRepresentable {
             let queryKey = result?.queryName ?? ""
             let headerKey = "\(model.showTypeInColumnHeader)"
             let timeZoneKey = model.timeZoneIdentifier
-            let filterKey = "\(model.resultFilterRevision)#\(rowCount)"
+            let filterKey = "\(rowCount)"
             if fontKey != lastFontKey || autoKey != lastAutoKey || headerKey != lastHeaderKey
                 || timeZoneKey != lastTimeZoneKey {
                 widthCache.removeAll()
@@ -1137,7 +1192,7 @@ struct ResultsView: NSViewRepresentable {
         func syncSearch() {
             let query = model.resultSearchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
             let result = model.result
-            let key = "\(result?.runID.uuidString ?? "-")#\(model.displayedRowCount)#\(result?.columns.count ?? 0)#\(model.resultFilterRevision)"
+            let key = "\(result?.runID.uuidString ?? "-")#\(model.displayedRowCount)#\(result?.columns.count ?? 0)"
             if query != lastQuery || key != lastSearchKey {
                 lastQuery = query
                 lastSearchKey = key

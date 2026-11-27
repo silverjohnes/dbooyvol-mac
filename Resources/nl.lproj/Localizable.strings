@@ -35,7 +35,6 @@
 "sqlnet.ora не найден" = "sqlnet.ora niet gevonden";
 "tnsnames.ora есть" = "tnsnames.ora gevonden";
 "«ghbkf» находит «Прила» и наоборот" = "\"ghbkf\" vindt \"Prila\" en omgekeerd";
-"· %@ из %@" = "· %@ van %@";
 "· выделено %@×%@" = "· %@×%@ geselecteerd";
 "АНК" = "ANC";
 "АПИ" = "API";
@@ -335,8 +334,6 @@
 "Оборачивать в кавычки все значения без исключения" = "Citeer elke waarde zonder uitzondering";
 "Оборачивать значения в кавычки при необходимости" = "Citeer waarden wanneer dat nodig is";
 "Объединить все окна" = "Voeg alle vensters samen";
-"Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу." = "Eén filterlijn over de reeds geladen rijen; het SQL-script wordt nooit gewijzigd. Een lege regel betekent dat er geen filter is. Typ tekst om in alle kolommen te zoeken, of een voorwaarde zoals bedrag > 10 of naam LIKE 'A%'. Met het tabblad in het raster wordt de rij verticaal geopend; Tab keert opnieuw terug naar de tabel.";
-"Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'." = "Eén regel: tekst doorzoekt elke kolom; u kunt ook een kolom en voorwaarde gebruiken, b.v. bedrag > 10 of naam LIKE 'A%'.";
 "Окно" = "Venster";
 "Окно и справка" = "Venster en hulp";
 "Омск" = "Omsk";
@@ -371,10 +368,6 @@
 "Ошибка сохранения" = "Fout bij opslaan";
 "Ошибка: %@" = "Fout: %@";
 "ПЕК" = "PEK";
-"Панель фильтра" = "Filterpaneel";
-"Панель фильтра показана" = "Filterpaneel getoond";
-"Панель фильтра результата" = "Resultaatfilterpaneel";
-"Панель фильтра скрыта" = "Filterpaneel verborgen";
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client-map: ojdbc*.jar en netwerk/admin worden daaruit gehaald";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Netwerk/admin-map met tnsnames.ora, ldap.ora en sqlnet.ora";
 "Папка: %@" = "Map: %@";
@@ -429,14 +422,11 @@
 "Показать вкладку в Finder" = "Tabblad weergeven in Finder";
 "Показать все" = "Toon alles";
 "Показать все вкладки" = "Toon alle tabbladen";
-"Показать выбранную строку вертикально (Tab)" = "Toon de geselecteerde rij verticaal (tabblad)";
 "Показать значение выбранной ячейки" = "Toon waarde van geselecteerde cel";
-"Показать или скрыть панель фильтра" = "Toon of verberg het filterpaneel";
 "Показать панель вкладок" = "Tabbladbalk weergeven";
 "Показать предыдущую вкладку" = "Vorig tabblad weergeven";
 "Показать следующую вкладку" = "Toon volgend tabblad";
 "Показать/скрыть боковую панель" = "Zijbalk tonen/verbergen";
-"Показывать панель фильтра над таблицей результатов" = "Toon het filterpaneel boven het resultatenraster";
 "Показывать тип данных во всплывающей подсказке заголовка" = "Toon het gegevenstype in de tooltip van de kolomkop";
 "Показывать тип данных рядом с именем столбца" = "Toon het gegevenstype naast de kolomnaam";
 "Полноэкранная мозаика" = "Mozaïek op volledig scherm";
@@ -484,6 +474,8 @@
 "Редактируемое" = "Bewerkbaar";
 "Редактор" = "Redacteur";
 "Результат" = "Resultaat";
+"Результат (Tab)" = "Resultaat (tabblad)";
+"Результат (Tab): показать строку вертикально или вернуть таблицу" = "Resultaat (Tab): toon de rij verticaal of keer terug naar de tabel";
 "Результат последнего запроса" = "Resultaat van de laatste aanvraag";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Het resultaat bevat kolommen uit verschillende tabellen - kan niet worden opgeslagen";
 "Русский" = "Russisch";
@@ -518,7 +510,6 @@
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = ".sql-scripts openen in een tabblad, .db / .sqlite-databases openen als een verbinding";
 "Скрыть DBooyvol" = "DBooyvol verbergen";
 "Скрыть остальные" = "Verberg anderen";
-"Скрыть панель фильтра (включается в настройках)" = "Het filterpaneel verbergen (ingeschakeld in Instellingen)";
 "Скрыть сообщение об ошибке" = "Foutmelding verbergen";
 "Слева" = "Links";
 "Слева и справа" = "Links en rechts";
@@ -534,7 +525,6 @@
 "Снизу и четверти" = "Bodem en kwarten";
 "Снизу слева" = "Linksonder";
 "Снизу справа" = "Rechtsonder";
-"Снять фильтр" = "Filter wissen";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "De inhoud van \"%@\" verschilt van de inhoud die op schijf is opgeslagen.\nMoet ik de versie van schijf laden of de tekst in de editor laten staan?";
 "Создать новое подключение" = "Maak een nieuwe verbinding";
 "Создать новое подключение…" = "Maak een nieuwe verbinding...";
@@ -620,9 +610,6 @@
 "Файл базы (.db / .sqlite)" = "Databasebestand (.db / .sqlite)";
 "Файл изменён на диске" = "Bestand gewijzigd op schijf";
 "Файлы" = "Bestanden";
-"Фильтр" = "Filteren";
-"Фильтр: текст, столбец > 10, LIKE %…%" = "Filter: tekst, kolom > 10, LIKE %…%";
-"Фильтры очищены" = "Filters gewist";
 "Формат значений" = "Waardeformaat";
 "Хост" = "Gastheer";
 "Хост (алиас из ~/.ssh/config)" = "Host (alias van ~/.ssh/config)";

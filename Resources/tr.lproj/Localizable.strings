@@ -35,7 +35,6 @@
 "sqlnet.ora не найден" = "sqlnet.ora bulunamadı";
 "tnsnames.ora есть" = "tnsnames.ora bulundu";
 "«ghbkf» находит «Прила» и наоборот" = "\"ghbkf\", \"Prila\"yı bulur ve bunun tersi de geçerlidir";
-"· %@ из %@" = "· %@ / %@";
 "· выделено %@×%@" = "· %@×%@ seçildi";
 "АНК" = "ANC";
 "АПИ" = "API";
@@ -335,8 +334,6 @@
 "Оборачивать в кавычки все значения без исключения" = "İstisnasız her değeri alıntılayın";
 "Оборачивать значения в кавычки при необходимости" = "Gerektiğinde değerleri teklif edin";
 "Объединить все окна" = "Tüm pencereleri birleştir";
-"Одна строка фильтра к уже загруженным строкам; SQL-скрипт не меняется. Пустая строка — без фильтра. Можно искать текст по всем столбцам или писать условия вида amount > 10, name LIKE 'A%'. Tab в таблице открывает строку вертикально, повторное нажатие возвращает таблицу." = "Zaten yüklenmiş satırların üzerinde bir filtre satırı; SQL betiği asla değişmez. Boş bir satır filtre olmadığı anlamına gelir. Tüm sütunlarda arama yapmak için metni veya miktar > 10 gibi bir koşulu veya 'A%' gibi bir adı yazın. Izgaradaki sekme satırı dikey olarak açar; Sekme tekrar tabloya döner.";
-"Одна строка: текст ищется во всех столбцах; можно указать столбец и условие, например amount > 10 или name LIKE 'A%'." = "Tek satır: metin her sütunda arama yapar; ayrıca bir sütun ve koşul da kullanabilirsiniz; miktar > 10 veya 'A%' gibi bir ad.";
 "Окно" = "Pencere";
 "Окно и справка" = "Pencere ve Yardım";
 "Омск" = "Omsk";
@@ -371,10 +368,6 @@
 "Ошибка сохранения" = "Hatayı kaydet";
 "Ошибка: %@" = "Hata: %@";
 "ПЕК" = "PEK";
-"Панель фильтра" = "Filtre paneli";
-"Панель фильтра показана" = "Gösterilen filtre paneli";
-"Панель фильтра результата" = "Sonuç filtre paneli";
-"Панель фильтра скрыта" = "Filtre paneli gizlendi";
 "Папка Instant Client: из неё берутся ojdbc*.jar и network/admin" = "Instant Client klasörü: ojdbc*.jar ve network/admin buradan alınır";
 "Папка network/admin с tnsnames.ora, ldap.ora и sqlnet.ora" = "Tnsnames.ora, ldap.ora ve sqlnet.ora içeren ağ/yönetici klasörü";
 "Папка: %@" = "Klasör: %@";
@@ -429,14 +422,11 @@
 "Показать вкладку в Finder" = "Sekmeyi Finder'da göster";
 "Показать все" = "Tümünü göster";
 "Показать все вкладки" = "Tüm sekmeleri göster";
-"Показать выбранную строку вертикально (Tab)" = "Seçilen satırı dikey olarak göster (Sekme)";
 "Показать значение выбранной ячейки" = "Seçilen hücrenin değerini göster";
-"Показать или скрыть панель фильтра" = "Filtre panelini göster veya gizle";
 "Показать панель вкладок" = "Sekme çubuğunu göster";
 "Показать предыдущую вкладку" = "Önceki sekmeyi göster";
 "Показать следующую вкладку" = "Sonraki sekmeyi göster";
 "Показать/скрыть боковую панель" = "Kenar çubuğunu göster/gizle";
-"Показывать панель фильтра над таблицей результатов" = "Filtre panelini sonuç tablosunun üzerinde göster";
 "Показывать тип данных во всплывающей подсказке заголовка" = "Veri türünü sütun başlığı ipucunda göster";
 "Показывать тип данных рядом с именем столбца" = "Sütun adının yanında veri türünü göster";
 "Полноэкранная мозаика" = "Tam ekran mozaik";
@@ -484,6 +474,8 @@
 "Редактируемое" = "Düzenlenebilir";
 "Редактор" = "Editör";
 "Результат" = "Sonuç";
+"Результат (Tab)" = "Sonuç (Sekme)";
+"Результат (Tab): показать строку вертикально или вернуть таблицу" = "Sonuç (Sekme): satırı dikey olarak göster veya tabloya dön";
 "Результат последнего запроса" = "Son isteğin sonucu";
 "Результат содержит столбцы разных таблиц — сохранить нельзя" = "Sonuç farklı tablolardan sütunlar içeriyor; kaydedilemez";
 "Русский" = "Rusça";
@@ -518,7 +510,6 @@
 "Скрипты .sql открываются во вкладке, базы .db / .sqlite — как подключение" = ".sql scriptleri bir sekmede açılır, .db / .sqlite veritabanları bağlantı olarak açılır";
 "Скрыть DBooyvol" = "DBooyvol'u gizle";
 "Скрыть остальные" = "Diğerlerini gizle";
-"Скрыть панель фильтра (включается в настройках)" = "Filtre panelini gizle (Ayarlar'da etkindir)";
 "Скрыть сообщение об ошибке" = "Hata mesajını gizle";
 "Слева" = "Sol";
 "Слева и справа" = "Sol ve sağ";
@@ -534,7 +525,6 @@
 "Снизу и четверти" = "Alt ve çeyrekler";
 "Снизу слева" = "Sol alt";
 "Снизу справа" = "Sağ alt";
-"Снять фильтр" = "Filtreyi temizle";
 "Содержимое «%@» отличается от сохранённого на диске.\nЗагрузить версию с диска или оставить текст в редакторе?" = "\"%@\" içeriği diskte depolananlardan farklı.\nSürümü diskten mi yüklemeliyim yoksa metni düzenleyicide mi bırakmalıyım?";
 "Создать новое подключение" = "Yeni bir bağlantı oluştur";
 "Создать новое подключение…" = "Yeni bir bağlantı oluştur...";
@@ -620,9 +610,6 @@
 "Файл базы (.db / .sqlite)" = "Veritabanı dosyası (.db / .sqlite)";
 "Файл изменён на диске" = "Diskteki dosya değiştirildi";
 "Файлы" = "Dosyalar";
-"Фильтр" = "Filtre";
-"Фильтр: текст, столбец > 10, LIKE %…%" = "Filtre: metin, sütun > 10, %…% gibi";
-"Фильтры очищены" = "Filtreler temizlendi";
 "Формат значений" = "Değer Formatı";
 "Хост" = "Sunucu";
 "Хост (алиас из ~/.ssh/config)" = "Ana Bilgisayar (~/.ssh/config adresinden takma ad)";

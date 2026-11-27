@@ -448,7 +448,6 @@ struct DBooyvolApp: App {
                 Divider()
                 Button("Строка вертикально / таблица") { model.toggleSingleRowResult() }
                     .disabled(model.result == nil)
-                Button("Панель фильтра") { model.setShowFilterPanel(!model.showFilterPanel) }
                 Divider()
                 Button("Сбросить вид") { WindowLayout.resetAll() }
                 Divider()
