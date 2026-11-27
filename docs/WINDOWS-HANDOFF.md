@@ -122,6 +122,8 @@ Windows-версия обязана сохранить:
 
 - Один долгоживущий JVM-процесс на всё приложение.
 - Запуск: `java -Dfile.encoding=UTF-8 -Xss4m -jar sidecar.jar`.
+- Java-пакет — `silver.dbooyvol`; точка входа и `Main-Class` в манифесте —
+  `silver.dbooyvol.Main`. Исходники: `Sidecar/src/main/java/silver/dbooyvol/`.
 - Рабочая директория не важна; jar и драйверы лежат рядом.
 - Обмен — построчный NDJSON (UTF-8, `\n`), без Content-Length и без JSON-RPC
   обёртки `jsonrpc`.
@@ -1458,7 +1460,8 @@ Makefile                         build/release/bump
 ## 15. Быстрый старт для Windows-разработчика
 
 1. Прочитать §2–§4 и поднять sidecar вручную:
-   `java -jar Resources/sidecar.jar`, отправить `{"id":1,"method":"ping","params":{}}`.
+   `java -jar Resources/sidecar.jar` (собран `./Sidecar/build.sh`, `Main-Class:
+   silver.dbooyvol.Main`), отправить `{"id":1,"method":"ping","params":{}}`.
 2. Сделать минимальный клиент: процесс + NDJSON + `connect` + `query` + вывод
    строк. Убедиться, что значения приходят строками.
 3. Портировать модели и файлы состояния; проверить чтение существующего
@@ -1523,8 +1526,10 @@ Windows-контракт: DPAPI (пользовательский контекс
 Идентичность приложения (не путать с миграцией данных):
 
 - Bundle ID `silver.dbooyvol`, имя `DBooyvol`, ключи настроек и Keychain — только
-  `silver.dbooyvol*`. Старые `ru.evotor.sqldesk`, `SQLDesk`, `DBuiwol` удалены,
-  а не переименованы в исходниках.
+  `silver.dbooyvol*`. Прежние идентификаторы `ru.evotor.sqldesk` (домен настроек
+  и служба Keychain), `SQLDesk`, `DBuiwol` не используются; в Swift-коде они
+  остались только в миграции старых данных (`Storage.swift`). Java-пакет
+  sidecar при этом переименован в `silver.dbooyvol` (см. §2).
 - В `AppSettings` вместо `defaultsMigratedFrom` остался флаг `defaultsMigrated`.
 - На Windows имя каталога — `DBooyvol` (`%APPDATA%\DBooyvol`); не использовать
   старые имена, если планируется читать macOS-данные.
