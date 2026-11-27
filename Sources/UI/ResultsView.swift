@@ -260,6 +260,8 @@ final class GridTableView: NSTableView {
     var onFocus: (() -> Void)?
     /// Tab switches between the grid and the vertical single-row view.
     var onToggleSingleRow: (() -> Void)?
+    /// ⌘A selects every cell, like the corner above the row numbers.
+    var selectAllHandler: (() -> Void)?
     private var zoomAccumulator: CGFloat = 0
     private var magnifyAccumulator: CGFloat = 0
 
@@ -323,6 +325,10 @@ final class GridTableView: NSTableView {
 
     @objc func copy(_ sender: Any?) {
         copyHandler?()
+    }
+
+    override func selectAll(_ sender: Any?) {
+        selectAllHandler?()
     }
 
     @objc func paste(_ sender: Any?) {
@@ -874,6 +880,8 @@ final class ResultsPaneView: NSView {
     /// installed on the pane, so it keeps working while focus is on the table,
     /// the gutter or any other non-editable child of the result.
     var onToggleSingleRow: (() -> Void)?
+    /// ⌘A while the grid has focus selects every cell.
+    var onSelectAll: (() -> Void)?
     private var tabMonitor: Any?
 
     init(scrollView: GridScrollView, rowNumbers: RowNumberView) {
@@ -892,14 +900,20 @@ final class ResultsPaneView: NSView {
             tabMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
                 guard let self, self.window != nil, self.window?.isKeyWindow == true,
                       NSApp.keyWindow?.attachedSheet == nil,
-                      event.keyCode == 48,
-                      event.modifierFlags.intersection(.deviceIndependentFlagsMask).isEmpty,
                       let responder = self.window?.firstResponder as? NSView,
                       responder === self || responder.isDescendant(of: self) else {
                     return event
                 }
+                // An inline cell editor keeps ⌘A for its own text and Tab for
+                // moving between fields.
                 if let textView = responder as? NSTextView, textView.isEditable { return event }
                 if let textField = responder as? NSTextField, textField.isEditable { return event }
+                let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+                if event.keyCode == 0, flags == .command {
+                    self.onSelectAll?()
+                    return nil
+                }
+                guard event.keyCode == 48, flags.isEmpty else { return event }
                 self.onToggleSingleRow?()
                 return nil
             }
@@ -988,6 +1002,9 @@ struct ResultsView: NSViewRepresentable {
         table.onToggleSingleRow = { [weak coordinator = context.coordinator] in
             coordinator?.model.toggleSingleRowResult()
         }
+        table.selectAllHandler = { [weak coordinator = context.coordinator] in
+            coordinator?.model.selectEntireResult()
+        }
         // Coming back from the single-row view: give Tab back to the table,
         // otherwise the next Tab walks the window's key view loop into the
         // connection list. The request stays pending until the table really
@@ -997,6 +1014,9 @@ struct ResultsView: NSViewRepresentable {
         let pane = ResultsPaneView(scrollView: scroll, rowNumbers: gutter)
         pane.onToggleSingleRow = { [weak coordinator = context.coordinator] in
             coordinator?.model.toggleSingleRowResult()
+        }
+        pane.onSelectAll = { [weak coordinator = context.coordinator] in
+            coordinator?.model.selectEntireResult()
         }
         return pane
     }
